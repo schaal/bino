@@ -1,0 +1,5 @@
+bino (1.2.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #610793)
+
+ -- Daniel Schaal <farbing@web.de>  Fri, 09 Sep 2011 14:23:54 +0200
