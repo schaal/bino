@@ -1,0 +1,6 @@
+New in version 1.2.0:
+- Flexible fullscreen mode with support for multiple screens.
+- Support for remote controls via LIRC.
+- Support for camera devices.
+- A loop mode.
+- User interface improvements.

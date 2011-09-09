@@ -1,0 +1,43 @@
+You can build a Windows binary using MinGW.
+
+The easiest way to do this is to use a GNU/Linux system with the Mingw-cross-env
+environment (http://www.nongnu.org/mingw-cross-env). This is because
+Mingw-cross-env not only provides a recent version of gcc as a cross compiler,
+but also all required libraries, and the nsis package to build an installer.
+
+Mingw-cross-env version 2.22 will provide the required up-to-date libraries, but
+this version is not yet released at the time of writing. In the meantime, you
+can use development revision 1955:
+$ hg clone -r 1955 http://hg.savannah.nongnu.org/hgweb/mingw-cross-env
+
+The following is known to work with Mingw-cross-env installed in /path/to/mce:
+
+1. Build the required Mingw-cross-env packages:
+
+   $ cd /path/to/mce
+   $ make gettext pthreads ffmpeg libass openal glew qt nsis
+
+   (If you do not need to build a Bino installer package, you can skip nsis).
+
+   Add Mingw-cross-env to your PATH:
+   $ export PATH="/path/to/mce/usr/bin:$PATH"
+
+2. Build Bino
+
+   $ cd /path/to/bino
+   $ ./configure --host=i686-pc-mingw32
+   $ make
+
+   Optionally build the installer (requires nsis):
+   $ make package-w32
+
+The installer will install the binary, the manual, and translations along with
+start menu entries, and provide uninstall functionality.
+
+You can also copy just the bino.exe binary from the src subdirectory to any
+Windows machine. If you want to have access to translations and the manual, keep
+the following directory structure:
+c:\<path_to_bino>\bin\bino.exe
+c:\<path_to_bino>\doc\bino.html
+c:\<path_to_bino>\doc\<image_files...>
+c:\<path_to_bino>\locale\<lang>\LC_MESSAGES\bino.mo

@@ -1,0 +1,866 @@
+<html lang="en">
+<head>
+<title>Bino 1.2.0</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Bino 1.2.0">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="top" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual was last updated 31 August 2011 for version
+1.2.0 of Bino.
+
+Copyright (C) 2011
+Martin Lambers (<marlam@marlam.de>),
+Stefan Eilemann (<eile@eyescale.ch>),
+Frédéric Devernay (<Frederic.Devernay@inrialpes.fr>)
+
+     Copying and distribution of this file and the referenced image
+     files, with or without modification, are permitted in any medium
+     without royalty provided the copyright notice and this notice are
+     preserved. These files are offered as-is, without any warranty.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">Bino 1.2.0</h1>
+<div class="node">
+<a name="Top"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Introduction">Introduction</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
+
+</div>
+
+<h2 class="unnumbered">Bino</h2>
+
+<p>This manual was last updated 31 August 2011 for version
+1.2.0 of Bino.
+
+   <p>Copyright &copy; 2011
+Martin Lambers (<a href="mailto:marlam@marlam.de">marlam@marlam.de</a>),
+Stefan Eilemann (<a href="mailto:eile@eyescale.ch">eile@eyescale.ch</a>),
+Frédéric Devernay (<a href="mailto:Frederic.Devernay@inrialpes.fr">Frederic.Devernay@inrialpes.fr</a>)
+
+   <blockquote>
+Copying and distribution of this file and the referenced image files, with or
+without modification, are permitted in any medium without royalty provided the
+copyright notice and this notice are preserved. These files are offered as-is,
+without any warranty. 
+</blockquote>
+
+   <p>Short Contents:
+
+<ul class="menu">
+<li><a accesskey="1" href="#Introduction">Introduction</a>
+<li><a accesskey="2" href="#Invocation">Invocation</a>
+<li><a accesskey="3" href="#Input-Layouts">Input Layouts</a>
+<li><a accesskey="4" href="#Output-Techniques">Output Techniques</a>
+<li><a accesskey="5" href="#Interactive-Control">Interactive Control</a>
+<li><a accesskey="6" href="#Camera-Devices">Camera Devices</a>
+</ul>
+   <div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top">Bino</a>
+<li><a name="toc_Introduction" href="#Introduction">1 Introduction</a>
+<li><a name="toc_Invocation" href="#Invocation">2 Invocation</a>
+<li><a name="toc_Input-Layouts" href="#Input-Layouts">3 Input Layouts</a>
+<ul>
+<li><a href="#Input-Layouts">3.1 Overview</a>
+<li><a href="#Input-Layouts">3.2 Supported Input Layouts</a>
+<li><a href="#Input-Layouts">3.3 File Name Conventions</a>
+</li></ul>
+<li><a name="toc_Output-Techniques" href="#Output-Techniques">4 Output Techniques</a>
+<ul>
+<li><a href="#Output-Techniques">4.1 Overview</a>
+<li><a href="#Output-Techniques">4.2 Supported Output Techniques</a>
+<li><a href="#Output-Techniques">4.3 Crosstalk Ghostbusting</a>
+<li><a href="#Output-Techniques">4.4 Basic Multi Display Support</a>
+<li><a href="#Output-Techniques">4.5 Advanced Multi Display Support</a>
+<ul>
+<li><a href="#Output-Techniques">4.5.1 Building Bino with Equalizer Support</a>
+<li><a href="#Output-Techniques">4.5.2 Configuring Equalizer and Starting Bino</a>
+<li><a href="#Output-Techniques">4.5.3 Example Configurations</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Interactive-Control" href="#Interactive-Control">5 Interactive Control</a>
+<ul>
+<li><a href="#Interactive-Control">5.1 Keyboard Shortcuts</a>
+<li><a href="#Interactive-Control">5.2 Remote Controls</a>
+</li></ul>
+<li><a name="toc_Camera-Devices" href="#Camera-Devices">6 Camera Devices</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<a name="Introduction"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Invocation">Invocation</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">1 Introduction</h2>
+
+<p>Bino is a 3D video player with multi-display support.
+
+   <p>3D videos are more accurately called stereoscopic videos. Such videos have
+separate views for the left and right eye and thus allow depth perception
+through stereopsis.
+
+   <p>The left and right view of a stereoscopic video can be stored using different
+layouts. Sometimes the two views are stored as two separate video streams, but
+most often both views are packed into a single video stream and need to be
+unpacked by the video player. Bino supports all commonly used layouts. 
+See <a href="#Input-Layouts">Input Layouts</a>.
+
+   <p>To display a stereoscopic video, the left and right view have to be prepared in
+a special way so that the left eye sees the left view and the right eye sees
+the right view. Different display techniques use different approaches to
+achieve this separation of the two views. Bino supports a wide variety of such
+techniques. See <a href="#Output-Techniques">Output Techniques</a>.
+
+<div class="node">
+<a name="Invocation"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Input-Layouts">Input Layouts</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Introduction">Introduction</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">2 Invocation</h2>
+
+<p>This section describes the command line interface of Bino.
+
+   <p>Synopsis:
+<code>bino [</code><var>option</var><code>...] [</code><var>file</var><code>...]</code>
+
+   <p>Bino combines all input files into one media source which is then played. This
+means you can have video, audio, and subtitle streams in separate files. The
+files are decoded with the <a href="http://ffmpeg.org/">FFmpeg</a> libraries, so URLs
+and other special constructs are supported.
+
+     <dl>
+<dt>&lsquo;<samp><span class="samp">--help</span></samp>&rsquo;<dd>Print help. 
+<br><dt>&lsquo;<samp><span class="samp">--version</span></samp>&rsquo;<dd>Print version. 
+<br><dt>&lsquo;<samp><span class="samp">-n</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--no-gui</span></samp>&rsquo;<dd>Do not use the GUI, just play the given input in a plain window using the
+parameters given on the command line. 
+<br><dt>&lsquo;<samp><span class="samp">-L</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--log-level=</span><var>LEVEL</var></samp>&rsquo;<dd>Select log level: <var>debug</var>, <var>info</var>, <var>warning</var>, <var>error</var>, or
+<var>quiet</var>. 
+<br><dt>&lsquo;<samp><span class="samp">--device-type=</span><var>TYPE</var></samp>&rsquo;<dd>Type of input device: <var>default</var>, <var>firewire</var>, or <var>x11</var>. 
+<br><dt>&lsquo;<samp><span class="samp">--device-frame-size=</span><var>W</var><span class="samp">x</span><var>H</var></samp>&rsquo;<dd>If the input is a device, request the given frame size, e.g. 640x480. 
+<br><dt>&lsquo;<samp><span class="samp">--device-frame-rate=</span><var>N</var><span class="samp">/</span><var>D</var></samp>&rsquo;<dd>If the input is a device, request the given frame rate, e.g. 25/1. 
+<br><dt>&lsquo;<samp><span class="samp">--lirc-config=</span><var>FILE</var></samp>&rsquo;<dd>Use the given LIRC configuration file. This option can be used more than once. 
+<br><dt>&lsquo;<samp><span class="samp">-v</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--video=</span><var>STREAM</var></samp>&rsquo;<dd>Select video stream (1-n, depending on the input). 
+<br><dt>&lsquo;<samp><span class="samp">-a</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio=</span><var>STREAM</var></samp>&rsquo;<dd>Select audio stream (1-n, depending on the input). 
+<br><dt>&lsquo;<samp><span class="samp">-s</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--subtitle=</span><var>STREAM</var></samp>&rsquo;<dd>Select subtitle stream (1-n, depending on the input). 
+<br><dt>&lsquo;<samp><span class="samp">-i</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--input=</span><var>TYPE</var></samp>&rsquo;<dd>Select input layout. See <a href="#Input-Layouts">Input Layouts</a>. 
+<br><dt>&lsquo;<samp><span class="samp">-o</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--output=</span><var>TYPE</var></samp>&rsquo;<dd>Select output technique. See <a href="#Output-Techniques">Output Techniques</a>. 
+<br><dt>&lsquo;<samp><span class="samp">-S</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--swap-eyes</span></samp>&rsquo;<dd>Swap left/right view. 
+<br><dt>&lsquo;<samp><span class="samp">-f</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--fullscreen</span></samp>&rsquo;<dd>Fullscreen. 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-screens=[</span><var>S0</var><span class="samp">[,</span><var>S1</var><span class="samp">[,...]]]</span></samp>&rsquo;<dd>Use the listed screens <var>S0</var>, <small class="dots">...</small>, <var>Sn</var> in fullscreen mode. Screen
+numbers start with 1. If the list is empty, the primary screen will be used
+(this is the default). 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-flip-left</span></samp>&rsquo;<dd>Flip left view vertically when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-flop-left</span></samp>&rsquo;<dd>Flop left view horizontally when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-flip-right</span></samp>&rsquo;<dd>Flip right view vertically when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-flop-right</span></samp>&rsquo;<dd>Flop right view horizontally when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">-c</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--center</span></samp>&rsquo;<dd>Center window on screen. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-encoding=</span><var>ENC</var></samp>&rsquo;<dd>Set subtitle encoding. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-font=</span><var>FONT</var></samp>&rsquo;<dd>Set subtitle font name. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-size=</span><var>N</var></samp>&rsquo;<dd>Set subtitle font size. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-scale=</span><var>S</var></samp>&rsquo;<dd>Set subtitle scale factor. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-color=</span><var>COLOR</var></samp>&rsquo;<dd>Set subtitle color, in [AA]RRGGBB format. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-parallax=</span><var>VAL</var></samp>&rsquo;<dd>Subtitle parallax adjustment (-1 to +1). 
+<br><dt>&lsquo;<samp><span class="samp">-P</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--parallax=</span><var>VAL</var></samp>&rsquo;<dd>Parallax adjustment (-1 to +1). 
+<br><dt>&lsquo;<samp><span class="samp">-C</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--crosstalk=</span><var>VAL</var></samp>&rsquo;<dd>Crosstalk leak level (0 to 1). Comma-separated values for the R,G,B channels. 
+<br><dt>&lsquo;<samp><span class="samp">-G</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--ghostbust=</span><var>VAL</var></samp>&rsquo;<dd>Amount of crosstalk ghostbusting to apply (0 to 1). 
+<br><dt>&lsquo;<samp><span class="samp">-b</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--benchmark</span></samp>&rsquo;<dd>Benchmark mode: no audio, no time synchronization, output of frames-per-second
+measurements. 
+<br><dt>&lsquo;<samp><span class="samp">-l</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--loop</span></samp>&rsquo;<dd>Loop the input media. 
+</dl>
+
+<div class="node">
+<a name="Input-Layouts"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Output-Techniques">Output Techniques</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Invocation">Invocation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">3 Input Layouts</h2>
+
+<h3 class="section">3.1 Overview</h3>
+
+<p>The left and right view of a stereoscopic video can be stored using different
+layouts. Sometimes they are stored in separate files, sometimes in separate
+streams inside the same file, and often they are packed into a single video on
+top of each other or next to each other, with or without a reduction of
+resolution.
+
+   <p>By default, Bino autodetects the input layout from meta data stored in the file
+(for example, the Matroska and WebM formats have a <code>StereoMode</code> field for
+that purpose). 
+If no meta data is available, Bino tries to autodetect the input layout based on
+the file name. See <a href="#File-Name-Conventions">File Name Conventions</a>. If that fails, too, Bino guesses
+based on the resolution of the input.
+
+<h3 class="section">3.2 Supported Input Layouts</h3>
+
+     <dl>
+<dt><var>mono</var><dd>Single view (2D conventional video).<br>
+<img src="input-layout-mono.png" alt="input-layout-mono.png">
+<br><dt><var>separate-left-right</var><dd>Separate streams: left view first, right view second.<br>
+<img src="input-layout-separate-left-right.png" alt="input-layout-separate-left-right.png">
+<br><dt><var>separate-right-left</var><dd>Separate streams: right view first, left view second.<br>
+<img src="input-layout-separate-right-left.png" alt="input-layout-separate-right-left.png">
+<br><dt><var>top-bottom</var><dd>Single stream: left view top, right view bottom.<br>
+<img src="input-layout-top-bottom.png" alt="input-layout-top-bottom.png">
+<br><dt><var>top-bottom-half</var><dd>Single stream: left view top, right view bottom, both with half height.<br>
+<img src="input-layout-top-bottom-half.png" alt="input-layout-top-bottom-half.png">
+<br><dt><var>bottom-top</var><dd>Single stream: right view top, left view bottom.<br>
+<img src="input-layout-bottom-top.png" alt="input-layout-bottom-top.png">
+<br><dt><var>bottom-top-half</var><dd>Single stream: right view top, left view bottom, both with half height.<br>
+<img src="input-layout-bottom-top-half.png" alt="input-layout-bottom-top-half.png">
+<br><dt><var>left-right</var><dd>Single stream: left view left, right view right.<br>
+<img src="input-layout-left-right.png" alt="input-layout-left-right.png">
+<br><dt><var>left-right-half</var><dd>Single stream: left view left, right view right, both with half width.<br>
+<img src="input-layout-left-right-half.png" alt="input-layout-left-right-half.png">
+<br><dt><var>right-left</var><dd>Single stream: right view left, left view right.<br>
+<img src="input-layout-right-left.png" alt="input-layout-right-left.png">
+<br><dt><var>right-left-half</var><dd>Single stream: right view left, left view right, both with half width.<br>
+<img src="input-layout-right-left-half.png" alt="input-layout-right-left-half.png">
+<br><dt><var>even-odd-rows</var><dd>Single stream: left view in even rows, right view in odd rows.<br>
+<img src="input-layout-even-odd-rows.png" alt="input-layout-even-odd-rows.png">
+<br><dt><var>odd-even-rows</var><dd>Single stream: right view in even rows, left view in odd rows.<br>
+<img src="input-layout-odd-even-rows.png" alt="input-layout-odd-even-rows.png">
+</dl>
+
+<h3 class="section">3.3 File Name Conventions</h3>
+
+<p><a name="File-Name-Conventions"></a>If the meta data stored in a file does not indicate the input layout, Bino
+tries to guess it by looking at the last part of the file name before the file
+name extension (<samp><span class="file">.ext</span></samp>).
+
+   <p>The following file name forms are recognized:
+     <dl>
+<dt><samp><span class="file">*-lr.ext</span></samp><dd>Input layout <var>left-right</var>. 
+<br><dt><samp><span class="file">*-lrh.ext</span></samp><dt><samp><span class="file">*-lrq.ext</span></samp><dd>Input layout <var>left-right-half</var>. 
+<br><dt><samp><span class="file">*-rl.ext</span></samp><dd>Input layout <var>right-left</var>. 
+<br><dt><samp><span class="file">*-rlh.ext</span></samp><dt><samp><span class="file">*-rlq.ext</span></samp><dd>Input layout <var>right-left-half</var>. 
+<br><dt><samp><span class="file">*-tb.ext</span></samp><dt><samp><span class="file">*-ab.ext</span></samp><dd>Input layout <var>top-bottom</var>. 
+<br><dt><samp><span class="file">*-tbh.ext</span></samp><dt><samp><span class="file">*-abq.ext</span></samp><dd>Input layout <var>top-bottom-half</var>. 
+<br><dt><samp><span class="file">*-bt.ext</span></samp><dt><samp><span class="file">*-ba.ext</span></samp><dd>Input layout <var>bottom-top</var>. 
+<br><dt><samp><span class="file">*-bth.ext</span></samp><dt><samp><span class="file">*-baq.ext</span></samp><dd>Input layout <var>bottom-top-half</var>. 
+<br><dt><samp><span class="file">*-eo.ext</span></samp><dt><samp><span class="file">*-eoq.ext</span></samp><dt><samp><span class="file">*-3dir.ext</span></samp><dd>Input layout <var>even-odd-rows</var>. 
+<br><dt><samp><span class="file">*-oe.ext</span></samp><dt><samp><span class="file">*-oeq.ext</span></samp><dt><samp><span class="file">*-3di.ext</span></samp><dd>Input layout <var>odd-even-rows</var>. 
+<br><dt><samp><span class="file">*-2d.ext</span></samp><dd>Input layout <var>mono</var>. 
+</dl>
+
+<div class="node">
+<a name="Output-Techniques"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Interactive-Control">Interactive Control</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Input-Layouts">Input Layouts</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">4 Output Techniques</h2>
+
+<h3 class="section">4.1 Overview</h3>
+
+<p>The left and right view of a stereoscopic video need to be displayed in a way
+that ensures that the left view is only seen by the left eye of the user and
+the right view is only seen by the right eye. There are many different
+techniques to achieve this separation of left and right view, and Bino supports
+most of them.
+
+   <p>With some display techniques, some part of the right view may also seen by the
+left eye and vice versa. This is called crosstalk and leads to ghosting
+artefacts that reduce image quality. For some display types, Bino can reduce
+such artefacts. See <a href="#Crosstalk-Ghostbusting">Crosstalk Ghostbusting</a>.
+
+   <p>One of the simplest output techniques is anaglyph glasses. Such glasses use
+color filters to separate the left and right view. Anaglyph glasses are cheap
+and work with every display, but the view separation and color reproduction are
+of relatively low quality. Still, depending on the video material, Bino can
+achieve high quality results using the
+<a href="http://www.site.uottawa.ca/~edubois/anaglyph/">Dubois method</a> to produce
+video output for anaglyph glasses.
+
+   <p>With OpenGL, the default method to display stereoscopic 3D content is OpenGL
+quad buffered stereo, often used with active shutter glasses. However, graphics
+card manufacturers tend to enable this output technique only on expensive high
+end hardware.
+
+   <p>Many 3D computer displays use polarized glasses to separate left and right
+view, and some autostereoscopic displays do not require any glasses at all. 
+Most of these 3D computer displays expect left and right view packed in a
+single video frame, e.g. on top of each other or next to each other or
+partitioned into even and odd pixel lines or columns. Bino supports all
+variants of such modes; refer to the manual of your display to find out which
+mode is required.
+
+   <p>Another common way to display 3D stereoscopic content is to use two
+conventional 2D displays or projectors for the left and right view and combine
+both views either using a half-transparent mirror, or a single screen with
+polarized glasses. This is supported in Bino using multiscreen output. 
+See <a href="#Basic-Multi-Display-Support">Basic Multi Display Support</a>.
+
+   <p>For more complex setups, such as powerwalls or virtual reality installations
+driven by render clusters, Bino supports distributed video rendering via
+Equalizer. See <a href="#Advanced-Multi-Display-Support">Advanced Multi Display Support</a>.
+
+   <p>The default output technique for stereoscopic 3D input is OpenGL quad buffered
+stereo if the graphics card supports it, otherwise red/cyan anaglyph glasses.
+
+<h3 class="section">4.2 Supported Output Techniques</h3>
+
+     <dl>
+<dt><var>mono-left</var><dd>Left view only.<br>
+<img src="output-type-mono-left.png" alt="output-type-mono-left.png">
+<br><dt><var>mono-right</var><dd>Right view only.<br>
+<img src="output-type-mono-right.png" alt="output-type-mono-right.png">
+<br><dt><var>top-bottom</var><dd>Left view top, right view bottom.<br>
+<img src="output-type-top-bottom.png" alt="output-type-top-bottom.png">
+<br><dt><var>top-bottom-half</var><dd>Left view top, right view bottom, both with half height.<br>
+<img src="output-type-top-bottom-half.png" alt="output-type-top-bottom-half.png">
+<br><dt><var>left-right</var><dd>Left view left, right view right.<br>
+<img src="output-type-left-right.png" alt="output-type-left-right.png">
+<br><dt><var>left-right-half</var><dd>Left view left, right view right, both with half width.<br>
+<img src="output-type-left-right-half.png" alt="output-type-left-right-half.png">
+<br><dt><var>even-odd-rows</var><dd>Left view in even rows, right view in odd rows.<br>
+<img src="output-type-even-odd-rows.png" alt="output-type-even-odd-rows.png">
+<br><dt><var>even-odd-columns</var><dd>Left view in even columns, right view in odd columns.<br>
+<img src="output-type-even-odd-columns.png" alt="output-type-even-odd-columns.png">
+<br><dt><var>checkerboard</var><dd>Left and right view in a checkerboard pattern.<br>
+<img src="output-type-checkerboard.png" alt="output-type-checkerboard.png">
+<br><dt><var>hdmi-frame-pack</var><dd>HDMI frame packing mode (left top, right bottom, plus extra blank lines
+separating the two views). This mode is only necessary if you are forcing your
+display into the corresponding HDMI 3D mode. A description how to do this on
+GNU/Linux can be found in
+<a href="http://lists.nongnu.org/archive/html/bino-list/2011-03/msg00033.html">this post to the Bino mailing list</a>.<br>
+<img src="output-type-hdmi-frame-pack.png" alt="output-type-hdmi-frame-pack.png">
+<br><dt><var>red-cyan-monochrome</var><dd>Red/cyan anaglyph glasses, monochrome method.<br>
+<img src="output-type-red-cyan.png" alt="output-type-red-cyan.png">
+<br><dt><var>red-cyan-half-color</var><dd>Red/cyan anaglyph glasses, half color method.<br>
+<img src="output-type-red-cyan.png" alt="output-type-red-cyan.png">
+<br><dt><var>red-cyan-full-color</var><dd>Red/cyan anaglyph glasses, full color method.<br>
+<img src="output-type-red-cyan.png" alt="output-type-red-cyan.png">
+<br><dt><var>red-cyan-dubois</var><dd>Red/cyan anaglyph glasses, high-quality Dubois method.<br>
+<img src="output-type-red-cyan.png" alt="output-type-red-cyan.png">
+<br><dt><var>green-magenta-monochrome</var><dd>Green/magenta anaglyph glasses, monochrome method.<br>
+<img src="output-type-green-magenta.png" alt="output-type-green-magenta.png">
+<br><dt><var>green-magenta-half-color</var><dd>Green/magenta anaglyph glasses, half color method.<br>
+<img src="output-type-green-magenta.png" alt="output-type-green-magenta.png">
+<br><dt><var>green-magenta-full-color</var><dd>Green/magenta anaglyph glasses, full color method.<br>
+<img src="output-type-green-magenta.png" alt="output-type-green-magenta.png">
+<br><dt><var>green-magenta-dubois</var><dd>Green/magenta anaglyph glasses, high-quality Dubois method.<br>
+<img src="output-type-green-magenta.png" alt="output-type-green-magenta.png">
+<br><dt><var>amber-blue-monochrome</var><dd>Amber/blue anaglyph glasses, monochrome method.<br>
+<img src="output-type-amber-blue.png" alt="output-type-amber-blue.png">
+<br><dt><var>amber-blue-half-color</var><dd>Amber/blue anaglyph glasses, half color method.<br>
+<img src="output-type-amber-blue.png" alt="output-type-amber-blue.png">
+<br><dt><var>amber-blue-full-color</var><dd>Amber/blue anaglyph glasses, full color method.<br>
+<img src="output-type-amber-blue.png" alt="output-type-amber-blue.png">
+<br><dt><var>amber-blue-dubois</var><dd>Amber/blue anaglyph glasses, high-quality Dubois method.<br>
+<img src="output-type-amber-blue.png" alt="output-type-amber-blue.png">
+<br><dt><var>red-green-monochrome</var><dd>Red/green anaglyph glasses, monochrome method.<br>
+<img src="output-type-red-green.png" alt="output-type-red-green.png">
+<br><dt><var>red-blue-monochrome</var><dd>Red/blue anaglyph glasses, monochrome method.<br>
+<img src="output-type-red-blue.png" alt="output-type-red-blue.png">
+<br><dt><var>stereo</var><dd>OpenGL quad-buffer stereo.<br>
+<img src="output-type-stereo.png" alt="output-type-stereo.png">
+<br><dt><var>equalizer</var><dd>Multi-display OpenGL via Equalizer with a 2D canvas setup.<br>
+<br><dt><var>equalizer-3d</var><dd>Multi-display OpenGL via Equalizer with a 3D screen setup.<br>
+</dl>
+
+<h3 class="section">4.3 Crosstalk Ghostbusting</h3>
+
+<p><a name="Crosstalk-Ghostbusting"></a>Many stereoscopic display devices suffer from crosstalk between the left and
+right view. This results in ghosting artifacts that can degrade the viewing
+quality, depending on the video content.
+
+   <p>Bino can optionally reduce the ghosting artifacts. For this, it needs two know
+     <ol type=1 start=1>
+<li>the amount of crosstalk of your display device and
+<li>the amount of ghostbusting that is adequate for the video you want to
+watch.
+        </ol>
+
+   <p>Please note that ghostbusting does not work with anaglyph glasses.
+
+   <p>To measure the display crosstalk, do the following:
+
+     <ol type=1 start=1>
+<li>Display the <a href="gamma-pattern-tb.png"><code>gamma-pattern-tb.png</code></a> image
+and correct the display gamma settings according to the included instructions. 
+You need to have correct gamma settings before measuring crosstalk. 
+<li>Display the
+<a href="crosstalk-pattern-tb.png"><code>crosstalk-pattern-tb.png</code></a> image and
+determine the crosstalk levels using the included instructions.
+        </ol>
+
+   <p>You now have three crosstalk values for the red, green, and blue channels. You
+can now tell Bino about this using the <samp><span class="option">--crosstalk</span></samp> option. For example,
+if you have measured 8% of crosstalk for red, 12% for green, and 10% for blue,
+use
+<pre class="example">     $ bino --crosstalk 0.08,0.12,0.10
+</pre>
+   <p>Once you know the crosstalk levels of your display device, you can set the
+amount of ghostbusting that Bino should apply using the <samp><span class="option">--ghostbust</span></samp>
+option. This will vary depending on the content you want to watch. Movies with
+very dark scenes should be viewed with at least 50% ghostbusting
+(<samp><span class="option">--ghostbust 0.5</span></samp>), whereas overall bright movies, where crosstalk is
+less disturbing, could be viewed with a lower level (e.g. 
+<samp><span class="option">--ghostbust 0.1</span></samp>).
+
+   <p>To check if you crosstalk calibration is correct, display the crosstalk patterns
+with full ghostbusting, like this:
+<pre class="example">     $ bino --crosstalk 0.08,0.12,0.10 --ghostbust 1.0 crosstalk-pattern-tb.png
+</pre>
+   <p>The remaining crosstalk should optimally be 0%.
+
+<h3 class="section">4.4 Basic Multi Display Support</h3>
+
+<p><a name="Basic-Multi-Display-Support"></a>For basic multi display support, Bino requires that all displays are connected
+to a single computer and are configured to display one large desktop.  For such
+a setup, you can configure which screens Bino should use in fullscreen mode.
+
+   <p>For example, if you have two projectors L and R that project onto a single
+screen with polarization filters, and you have configured your desktop to cover
+both projectors next to each other (LR), then you can configure fullscreen mode
+to use both projectors and select the <code>left-right</code> output technique.
+
+   <p>For similar setups, it is sometimes useful to mirror either the left or the
+right view horizontally or vertically. This, too, can be configured in Bino's
+fullscreen settings.
+
+   <p>Of course, you can also combine multiple monitors to form one large display and
+use this with some other output technique, e.g. anaglyph glasses.
+
+   <p>For more advanced setups, e.g. involving multiple computers and/or graphics
+cards or non-planar projection surfaces, you can use Bino's advanced multi
+display support via Equalizer.
+
+<h3 class="section">4.5 Advanced Multi Display Support</h3>
+
+<p><a name="Advanced-Multi-Display-Support"></a>Bino supports distributed multi-display output via the Equalizer framework.
+
+   <p>This is how it works:
+
+<h4 class="subsection">4.5.1 Building Bino with Equalizer Support</h4>
+
+<p>First, install Equalizer 1.0 or later. See
+<a href="http://www.equalizergraphics.com/">http://www.equalizergraphics.com/</a>.  Verify that it works by running the
+included <code>eqHello</code> example.
+
+   <p>Then, build Bino with Equalizer support. The output of configure should contain
+the following line:
+<pre class="example">     Equalizer: yes
+</pre>
+   <p>Now you need an Equalizer configuration file for your display setup.
+
+<h4 class="subsection">4.5.2 Configuring Equalizer and Starting Bino</h4>
+
+<p>Bino needs a two-dimensional Equalizer canvas (= combined screen area),
+subdivided into segments (= single display areas). For example, if you have
+two projectors that project onto a 2m x 1m screen side-by-side, then your
+canvas is 2m x 1m large, and you have two segments: the first segment fills
+the left half of the canvas, and the second segment fills the right half.
+
+   <p>Next, Equalizer needs to know how to render into each segment. For this
+purpose, you define several hierarchical objects: nodes (= processes, possibly
+on different systems), pipes (= graphics cards), windows (= output windows
+with OpenGL contexts), and channels (= parts of windows). The video output
+happens at the channel level: each channel is assigned to one segment of the
+canvas. Most probably you just have one fullscreen window per pipe, and a
+single output channel per window.
+
+   <p>Note that one node is special: the application node, which is the node that
+you initially start (the other nodes are started automatically by Equalizer). 
+The application node is called 'appNode' in the Equalizer configuration, and
+Bino will play audio only on the application node. All video output is then
+synchronized to this audio output.
+
+   <p>Once you have your configuration file (examples are given below), you can
+check if it works correctly using the <samp><span class="command">eqHello</span></samp> example:
+<pre class="example">     $ eqHello --eq-config configuration.eqc
+</pre>
+   <p>Once you made sure that this works, you can start Bino using this command:
+<pre class="example">     $ bino -o equalizer --eq-config configuration.eqc video.mp4
+</pre>
+   <p>Note that all your nodes need access to the video file using the same name, so
+a shared filesystem is helpful if you use multiple systems.
+
+   <p>To play live video from a webcam or TV card, you can set up a streaming server
+using ffserver (part of FFmpeg) or vlc, and then give the appropriate URL to
+Bino. You can use multicast to stream the video to multiple systems
+efficiently.
+
+   <p>The output mode <samp><span class="option">-o equalizer-3d</span></samp> allows to configure non-planar projections. 
+Bino projects the video onto a virtual screen in 3D space. The screen is
+located in the distance of the biggest front-facing segment, and sized to fill
+the wall optimally. By configuring the output segments accordingly, various
+advanced display configurations can be used, e.g. displays rotated around the
+Z axis by an arbitrary angle or non-planar screens.
+
+<h4 class="subsection">4.5.3 Example Configurations</h4>
+
+<h4 class="subheading">Simple 2D video output</h4>
+
+<p>In this example, you have a 2m x 1m screen and two projectors: one for the
+left half of the screen, and one for the right half. The two projectors are
+connected to two graphics cards on the same system.
+
+   <p>In this situation, you have one node with two pipes, and each pipe has a
+fullscreen window with a single output channel. The first output channel is
+assigned to the left segment, and the second output channel is assigned to the
+right channel. The resulting configuration looks like this:
+
+<pre class="example"><pre class="verbatim">     server
+     {
+         config
+         {
+             appNode
+             {
+                 pipe { device 0 window { attributes { hint_fullscreen ON } channel { name "left" }}}
+                 pipe { device 1 window { attributes { hint_fullscreen ON } channel { name "right" }}}
+             }
+             observer {}
+             layout { view { observer 0 }}
+             canvas
+             {
+                 layout 0
+                 wall
+                 {
+                     bottom_left  [ 0.0  0.0 -1 ]
+                     bottom_right [ 2.0  0.0 -1 ]
+                     top_left     [ 0.0  1.0 -1 ]
+                 }
+                 segment { channel "left" viewport [ 0.0 0.0 0.5 1.0 ] }
+                 segment { channel "right" viewport [ 0.5 0.0 0.5 1.0 ] }
+             }
+             compound
+             {
+                 compound { channel ( view 0 segment 0 ) swapbarrier {} }
+                 compound { channel ( view 0 segment 1 ) swapbarrier {} }
+             }
+         }
+     }
+</pre>
+</pre>
+   <h4 class="subheading">3D video output across multiple systems</h4>
+
+<p>In the following example, you have a 4m x 3m screen for 3D projection via
+passive stereo (e.g. polarization). You have two systems, "render1" and
+"render2", each equipped with two graphics cards. The two cards on "render1"
+generate two images for the left half of the screen: one for the left eye view
+and one for the right eye view. The two cards on "render2" generate left and
+right view for the right half of the screen. Additionally, you have a system
+called "master" which has a sound card and should display a small control
+window.
+
+   <p>This setup is very similar to the situation shown in
+<a href="multi-display-vrlab.jpg"><code>multi-display-vrlab.jpg</code></a>.
+
+   <p>The configuration looks like this:
+
+<pre class="example"><pre class="verbatim">     server
+     {
+         connection { hostname "master" }
+         config
+         {
+             appNode
+             {
+                 connection { hostname "master" }
+                 pipe { window { viewport [ 100 100 400 300 ] channel { name "control" }}}
+             }
+             node
+             {
+                 connection { hostname "render1" }
+                 pipe { device 0 window { attributes { hint_fullscreen ON } channel { name "render1left" }}}
+                 pipe { device 1 window { attributes { hint_fullscreen ON } channel { name "render1right" }}}
+             }
+             node
+             {
+                 connection { hostname "render2" }
+                 pipe { device 0 window { attributes { hint_fullscreen ON } channel { name "render2left" }}}
+                 pipe { device 1 window { attributes { hint_fullscreen ON } channel { name "render2right" }}}
+             }
+             observer {}
+             layout { view { observer 0 }}
+             canvas
+             {
+                 layout 0
+                 wall
+                 {
+                     bottom_left  [ 0.0 0.0 -1 ]
+                     bottom_right [ 4.0 0.0 -1 ]
+                     top_left     [ 0.0 3.0 -1 ]
+                 }
+                 segment { channel "render1left"  viewport [ 0.0 0.0 0.5 1.0 ] }
+                 segment { channel "render1right" viewport [ 0.0 0.0 0.5 1.0 ] }
+                 segment { channel "render2left"  viewport [ 0.5 0.0 0.5 1.0 ] }
+                 segment { channel "render2right" viewport [ 0.5 0.0 0.5 1.0 ] }
+                 segment { channel "control"      viewport [ 0.0 0.0 1.0 1.0 ] }
+             }
+             compound
+             {
+                 compound { eye [ LEFT  ] channel ( view 0 segment 0 ) swapbarrier {} }
+                 compound { eye [ RIGHT ] channel ( view 0 segment 1 ) swapbarrier {} }
+                 compound { eye [ LEFT  ] channel ( view 0 segment 2 ) swapbarrier {} }
+                 compound { eye [ RIGHT ] channel ( view 0 segment 3 ) swapbarrier {} }
+                 compound {               channel ( view 0 segment 4 ) swapbarrier {} }
+             }
+         }
+     }
+</pre>
+</pre>
+   <h4 class="subheading">Non-planar Displays</h4>
+
+<p>The <samp><span class="option">-o equalizer-3d</span></samp> mode allows to set up arbitrary-oriented screens
+using either the wall-based or projection-based 3D frustum descriptions.
+
+   <p>In this example we set up two 16:10 displays side-by-side which have been
+rotated around their Z axis by 1.3 degrees radians (~74 degrees).  The image
+<a href="multi-display-rotated.jpg"><code>multi-display-rotated.jpg</code></a> illustrates
+this setup. Other setups include distortion-correct projection for curved
+screens, or arbitrarily-placed screens in a 3D space.
+
+   <p>First, we rotate a normally-aligned screen by 1.3 degrees and output the
+result:
+
+<pre class="example">     eq::Matrix4f matrix(eq::Matrix4f::IDENTITY);
+     matrix.rotate(1.3f, eq::Vector3f::FORWARD);
+     wall.bottomLeft = matrix * wall.bottomLeft;
+     wall.bottomRight = matrix * wall.bottomRight;
+     wall.topLeft = matrix * wall.topLeft;
+     std::cout &lt;&lt; wall &lt;&lt; std::endl;
+</pre>
+   <p>yields a rotated screen centered on the origin:
+
+<pre class="example">     bottom_left  [   -0.69578     0.6371         -1 ]
+     bottom_right [   -0.26778    -0.9046         -1 ]
+     top_left     [    0.26778     0.9046         -1 ]
+</pre>
+   <p>This screen has to be moved along the X-axis for the left and right screen by
+0.5195m, which places the edges of the screen on the origin. The resulting
+wall descriptions are used for the left and right segment, as shown in the
+configuration below.
+
+   <p>The configuration references two GPUs full-screen output. By changing the node
+resource section, the outputs may be mapped to two computers. When disabling
+the fullscreen mode and setting 'device 0' for the second pipe, two windows
+simulate this setup on a single machine.
+
+<pre class="example"><pre class="verbatim">     global
+     {
+         EQ_WINDOW_IATTR_HINT_FULLSCREEN ON
+     }
+     
+     server
+     {
+         config
+         {
+             appNode
+             {
+                 pipe
+                 {
+                     device 0
+                     window
+                     {
+                         viewport [ .215 .5 .4 .4 ]
+                         channel { name "channel1" }
+                     }
+                 }
+                 pipe
+                 {
+                     device 1
+                     window
+                     {
+                         viewport [ .285 .1 .4 .4 ]
+                         attributes{ hint_drawable window }
+                         channel { name "channel2" }
+                     }
+                 }
+             }
+     
+             layout { view{ }}
+             canvas
+             {
+                 layout   0
+     
+                 segment
+                 {
+                     channel  "channel1"
+                     wall
+                     {
+                         bottom_left  [   -1.21528     0.6371         -1 ]
+                         bottom_right [   -0.78728    -0.9046         -1 ]
+                         top_left     [   -0.25172     0.9046         -1 ]
+                     }
+                 }
+                 segment
+                 {
+                     channel  "channel2"
+                     wall
+                     {
+                         bottom_left  [   -0.17628     0.6371         -1 ]
+                         bottom_right [    0.25172    -0.9046         -1 ]
+                         top_left     [    0.78728     0.9046         -1 ]
+                     }
+                 }
+             }
+     
+             compound
+             {
+                 compound
+                 {
+                     channel ( segment 0 )
+                     swapbarrier{}
+                 }
+                 compound
+                 {
+                     channel ( segment 1 )
+                     swapbarrier{}
+                 }
+             }
+         }
+     }
+</pre>
+</pre>
+   <div class="node">
+<a name="Interactive-Control"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Camera-Devices">Camera Devices</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Output-Techniques">Output Techniques</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">5 Interactive Control</h2>
+
+<h3 class="section">5.1 Keyboard Shortcuts</h3>
+
+<p>Bino reacts on a number of keyboard shortcuts during playback.
+
+   <p>The following shortcuts are recognized:
+     <dl>
+<dt><kbd>ESC</kbd><dd>Leave fullscreen mode, or quit when in window mode. 
+<br><dt><kbd>q</kbd><dd>Quit. 
+<br><dt><kbd>p</kbd><br><dt><kbd>SPACE</kbd><dd>Pause / unpause. 
+<br><dt><kbd>f</kbd><dd>Toggle fullscreen. 
+<br><dt><kbd>c</kbd><dd>Center window. 
+<br><dt><kbd>e</kbd><dd>Swap left/right eye. 
+<br><dt><kbd>v</kbd><dd>Cycle through available video streams. 
+<br><dt><kbd>a</kbd><dd>Cycle through available audio streams. 
+<br><dt><kbd>a</kbd><dd>Cycle through available subtitle streams. 
+<br><dt><kbd>1, 2</kbd><dd>Adjust contrast. 
+<br><dt><kbd>3, 4</kbd><dd>Adjust brightness. 
+<br><dt><kbd>5, 6</kbd><dd>Adjust hue. 
+<br><dt><kbd>7, 8</kbd><dd>Adjust saturation. 
+<br><dt><kbd>&lt;, &gt;</kbd><dd>Adjust parallax. 
+<br><dt><kbd>(, )</kbd><dd>Adjust ghostbusting. 
+<br><dt><kbd>LEFT, RIGHT</kbd><dd>Seek 10 seconds backward / forward. 
+<br><dt><kbd>UP, DOWN</kbd><dd>Seek 1 minute backward / forward. 
+<br><dt><kbd>PAGE UP, PAGE DOWN</kbd><dd>Seek 10 minutes backward / forward. 
+<br><dt><kbd>Mouse click</kbd><dd>Seek according to the horizontal click position. 
+</dl>
+
+<h3 class="section">5.2 Remote Controls</h3>
+
+<p>Bino supports remote controls via <a href="http://www.lirc.org/">LIRC</a>.
+
+   <p>Use the client name &lsquo;<samp><span class="samp">bino</span></samp>&rsquo; in your LIRC configuration. The default LIRC
+configuration file usually is <code>~/.lircrc</code>. You can use the
+&lsquo;<samp><span class="samp">--lirc-config</span></samp>&rsquo; option to use one or more custom LIRC configuration files
+instead.
+
+   <p>The following commands are available:
+
+     <dl>
+<dt>&lsquo;<samp><span class="samp">play</span></samp>&rsquo;<dd>Start playback, or exit pause mode. 
+<br><dt>&lsquo;<samp><span class="samp">pause</span></samp>&rsquo;<dd>When playing, go into pause mode. 
+<br><dt>&lsquo;<samp><span class="samp">stop</span></samp>&rsquo;<dd>Stop playback. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-video-stream</span></samp>&rsquo;<dd>Cycle through available video streams. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-audio-stream</span></samp>&rsquo;<dd>Cycle through available audio streams. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-subtitle-stream</span></samp>&rsquo;<dd>Cycle through available subtitle streams. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-stereo-mode-swap</span></samp>&rsquo;<dd>Swap left/right eye. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-fullscreen</span></samp>&rsquo;<dd>Toggle fullscreen. 
+<br><dt>&lsquo;<samp><span class="samp">center</span></samp>&rsquo;<dd>Center window. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-contrast </span><var>delta</var></samp>&rsquo;<dd>Adjust contrast by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-brightness </span><var>delta</var></samp>&rsquo;<dd>Adjust brightness by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-hue </span><var>delta</var></samp>&rsquo;<dd>Adjust hue by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-saturation </span><var>delta</var></samp>&rsquo;<dd>Adjust saturation by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust parallax by adding <var>delta</var>, e.g. -0.01 or +0.01. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-subtitle-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust contrast by adding <var>delta</var>, e.g. -0.01 or +0.01. 
+<br><dt>&lsquo;<samp><span class="samp">seek </span><var>delta</var></samp>&rsquo;<dd>Seek by the given number of seconds relative to the current position.  For
+example -60.0 seeks backwards one minute, and +60.0 seeks forward one minute. 
+<br><dt>&lsquo;<samp><span class="samp">set-pos </span><var>pos</var></samp>&rsquo;<dd>Seek by setting an absolute position in the stream, with <var>pos</var> between 0 and
+1. For example, to seek to the middle of the video, use 0.5. 
+</dl>
+
+   <p>Example LIRC configuration file excerpt:
+<pre class="example">     begin
+       remote = ...
+       button = ...
+       prog   = bino
+       config = adjust-brightness +0.05
+     end
+</pre>
+   <div class="node">
+<a name="Camera-Devices"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Interactive-Control">Interactive Control</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">6 Camera Devices</h2>
+
+<p>Bino supports the following types of camera devices:
+     <ul>
+<li><var>default</var>: the system-specific default device type.<br>
+This is video4linux2 on GNU/Linux, bktr on BSD and Mac OS, and VfW on Windows. 
+This should work for all webcams and similar camera devices. 
+<li><var>firewire</var>: Firewire devices. 
+<li><var>x11</var>: X11-grabber pseudo devices.<br>
+This device type allows to capture part of an X11 screen as a video. It
+requires the user to select a specific frame size and frame rate. The device
+name is of the form
+<code>[</code><var>hostname</var><code>]:</code><var>display</var><code>.</code><var>screen</var><code>[+</code><var>x</var><code>,</code><var>y</var><code>]</code>. For example,
+<code>smith:0.0+160,120</code> would capture from X11 display <code>:0.0</code> on host
+<code>smith</code>, starting at position <code>160,120</code>. 
+</ul>
+
+   <p>Note: for <var>firewire</var> and <var>x11</var> devices to work, your FFmpeg libraries
+must have <var>libdc1394</var> and <var>x11grab</var> support enabled.
+
+</body></html>
+
+<!--
+
+Local Variables:
+coding: utf-8
+End:
+
+-->
