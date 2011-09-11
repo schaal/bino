@@ -7,3 +7,9 @@
 
 override_dh_auto_configure:
 	dh_auto_configure -- LDFLAGS="$(LDFLAGS) -Wl,--as-needed" --docdir=\$${datarootdir}/doc/bino/html
+
+override_dh_strip:
+	dh_strip --dbg-package=bino-dbg
+
+override_dh_install:
+	dh_install --list-missing
