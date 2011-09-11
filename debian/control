@@ -17,11 +17,18 @@ Build-Depends:
  libqt4-opengl-dev
 Standards-Version: 3.9.2
 Homepage: http://bino3d.org/
-#Vcs-Git: git://git.debian.org/collab-maint/bino.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/bino.git;a=summary
+Vcs-Git: git://gitorious.org/farbing-packages/bino.git
+Vcs-Browser: https://gitorious.org/farbing-packages/bino
 
 Package: bino
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: 3D video player
- Video player with support for stereoscopic 3D videos.
+ Bino is a video player with support for a wide variety
+ of stereoscopic video layouts and formats.
+ .
+ Bino can display monoscopic videos, as well as
+ videos with the left and right view stored either
+ in separate streams or displayed side by side.
+ It can output these videos for several types
+ of anaglyph glasses or 3D displays.
