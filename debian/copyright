@@ -52,9 +52,9 @@ Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
 License: Simple All-Permissive License
 
 Files: doc/bino.texi doc/bino.info
-Copyright: 2011 Martin Lambers <marlam@@marlam.de>
-           2011 Stefan Eilemann <eile@@eyescale.ch>
-           2011 Frédéric Devernay <Frederic.Devernay@@inrialpes.fr>
+Copyright: 2011 Martin Lambers <marlam@marlam.de>
+           2011 Stefan Eilemann <eile@eyescale.ch>
+           2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 License: Simple All-Permissive License
 
 Files: pkg/macosx/*
