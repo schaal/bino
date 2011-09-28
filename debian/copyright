@@ -17,7 +17,7 @@ License: GPL-3.0+
 Files: Makefile.am
 Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
 Copyright: 2010-2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: debian/*
 Copyright: 2011 Daniel Schaal <farbing@web.de>
@@ -38,32 +38,32 @@ License: GPL-3.0+
 
 Files: src/icons-local/*
 Copyright: 2011 Martin Lambers <marlam@marlam.de>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: doc/*
 Copyright: 2011 Martin Lambers <marlam@marlam.de>
            2011 Stefan Eilemann <eile@eyescale.ch>
            2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: doc/bino.1
 Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
            2010-2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: doc/bino.texi doc/bino.info
 Copyright: 2011 Martin Lambers <marlam@marlam.de>
            2011 Stefan Eilemann <eile@eyescale.ch>
            2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: pkg/macosx/*
 Copyright: 2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: pkg/w32/*
 Copyright: 2011 Martin Lambers <marlam@marlam.de>
-License: Simple All-Permissive License
+License: BSD-2-clause-like
 
 Files: po/cs.po
 Copyright: 2011 Joe <cuchac@email.cz>
@@ -163,7 +163,7 @@ License: LGPL-3.0+
  On Debian systems, the complete text of the GNU Lesser General
  Public License can be found in "/usr/share/common-licenses/LGPL-3".
 
-License: Simple All-Permissive License
+License: BSD-2-clause-like
  Copying and distribution of this file, with or without modification, are
  permitted in any medium without royalty provided the copyright notice and this
  notice are preserved. These files are offered as-is, without any warranty.
