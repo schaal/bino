@@ -36,7 +36,6 @@ Description: 3D video player
 Package: bino-dbg
 Architecture: any
 Section: debug
-Priority: extra
 Depends: bino (= ${binary:Version}), ${misc:Depends}
 Description: debugging symbols for bino 3D video player
  Bino is a video player with support for a wide variety
