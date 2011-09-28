@@ -3,7 +3,7 @@ Section: video
 Priority: extra
 Maintainer: Daniel Schaal <farbing@web.de>
 Build-Depends:
- debhelper (>= 8.0.0),
+ debhelper (>= 8.1.3),
  dh-autoreconf,
  pkg-config,
  libavcodec-dev (>= 4:0.7),
