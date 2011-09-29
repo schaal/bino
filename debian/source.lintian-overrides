@@ -1,1 +1,2 @@
+# dh compat 9 is used to get dpkg-buildflags values
 bino source: package-needs-versioned-debhelper-build-depends
