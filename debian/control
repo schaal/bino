@@ -2,19 +2,18 @@ Source: bino
 Section: video
 Priority: extra
 Maintainer: Daniel Schaal <farbing@web.de>
-Build-Depends:
- debhelper (>= 8.1.3),
- dh-autoreconf,
- pkg-config,
- libavcodec-dev (>= 4:0.7),
- libavformat-dev (>= 4:0.7),
- libavdevice-dev (>= 4:0.7),
- libswscale-dev (>= 4:0.7),
- libass-dev,
- libopenal-dev,
- libglew-dev,
- liblircclient-dev,
- libqt4-opengl-dev
+Build-Depends: debhelper (>= 8.1.3),
+               dh-autoreconf,
+               libass-dev,
+               libavcodec-dev (>= 4:0.7),
+               libavdevice-dev (>= 4:0.7),
+               libavformat-dev (>= 4:0.7),
+               libglew-dev,
+               liblircclient-dev,
+               libopenal-dev,
+               libqt4-opengl-dev,
+               libswscale-dev (>= 4:0.7),
+               pkg-config
 Standards-Version: 3.9.2
 Homepage: http://bino3d.org/
 Vcs-Git: git://gitorious.org/farbing-packages/bino.git
@@ -22,7 +21,7 @@ Vcs-Browser: https://gitorious.org/farbing-packages/bino
 
 Package: bino
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: 3D video player
  Bino is a video player with support for a wide variety
  of stereoscopic video layouts and formats.
