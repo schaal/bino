@@ -219,7 +219,7 @@ CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
-DEFS = @DEFS@ -DDOCDIR=\"$(docdir)\" -DLOCALEDIR=\"$(localedir)\"
+DEFS = @DEFS@ -DHTMLDIR=\"$(htmldir)\" -DLOCALEDIR=\"$(localedir)\"
 DEPDIR = @DEPDIR@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@

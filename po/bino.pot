@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: bino 1.2.0\n"
+"Project-Id-Version: bino 1.2.1\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2011-09-08 20:01+0200\n"
+"POT-Creation-Date: 2011-10-10 21:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,11 +251,11 @@ msgid ""
 "permitted by law."
 msgstr ""
 
-#: src/main.cpp:330 src/player_qt.cpp:2903
+#: src/main.cpp:330 src/player_qt.cpp:2958
 msgid "Platform:"
 msgstr ""
 
-#: src/main.cpp:332 src/player_qt.cpp:2904
+#: src/main.cpp:332 src/player_qt.cpp:2959
 msgid "Libraries used:"
 msgstr ""
 
@@ -441,114 +441,119 @@ msgstr ""
 msgid "Stereo layout: %s"
 msgstr ""
 
-#: src/media_object.cpp:608
+#: src/media_object.cpp:371
+#, c-format
+msgid "%s video stream %d: Using frame size %dx%d instead of %dx%d."
+msgstr ""
+
+#: src/media_object.cpp:624
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
 msgstr ""
 
-#: src/media_object.cpp:646
+#: src/media_object.cpp:662
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
 msgstr ""
 
-#: src/media_object.cpp:675
+#: src/media_object.cpp:691
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
 msgstr ""
 
-#: src/media_object.cpp:728
+#: src/media_object.cpp:744
 #, c-format
 msgid "No support available for %s device."
 msgstr ""
 
-#: src/media_object.cpp:729 src/player_qt.cpp:1788
+#: src/media_object.cpp:745 src/player_qt.cpp:1831
 msgid "Firewire"
 msgstr ""
 
-#: src/media_object.cpp:730 src/player_qt.cpp:1789
+#: src/media_object.cpp:746 src/player_qt.cpp:1832
 msgid "X11"
 msgstr ""
 
-#: src/media_object.cpp:731
+#: src/media_object.cpp:747
 msgid "default"
 msgstr ""
 
-#: src/media_object.cpp:749 src/media_object.cpp:1195 src/xgl.cpp:297
+#: src/media_object.cpp:765 src/media_object.cpp:1218 src/xgl.cpp:297
 #, c-format
 msgid "%s: %s"
 msgstr ""
 
-#: src/media_object.cpp:760
+#: src/media_object.cpp:776
 #, c-format
 msgid "%s: Cannot read stream info: %s"
 msgstr ""
 
-#: src/media_object.cpp:793
+#: src/media_object.cpp:816
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
 msgstr ""
 
-#: src/media_object.cpp:794
+#: src/media_object.cpp:817
 msgid "video codec"
 msgstr ""
 
-#: src/media_object.cpp:795
+#: src/media_object.cpp:818
 msgid "audio codec"
 msgstr ""
 
-#: src/media_object.cpp:796
+#: src/media_object.cpp:819
 msgid "subtitle codec"
 msgstr ""
 
-#: src/media_object.cpp:797
+#: src/media_object.cpp:820
 msgid "data"
 msgstr ""
 
-#: src/media_object.cpp:798
+#: src/media_object.cpp:821
 msgid "codec not supported"
 msgstr ""
 
-#: src/media_object.cpp:808
+#: src/media_object.cpp:831
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
 msgstr ""
 
-#: src/media_object.cpp:844
+#: src/media_object.cpp:867
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
 msgstr ""
 
-#: src/media_object.cpp:907
+#: src/media_object.cpp:930
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:911
+#: src/media_object.cpp:934
 #, c-format
 msgid "Using up to %d threads for decoding."
 msgstr ""
 
-#: src/media_object.cpp:916
+#: src/media_object.cpp:939
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:923
+#: src/media_object.cpp:946
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:930
+#: src/media_object.cpp:953
 msgid "No usable streams."
 msgstr ""
 
-#: src/media_object.cpp:1211 src/media_object.cpp:1241
-#: src/media_object.cpp:1271
+#: src/media_object.cpp:1234 src/media_object.cpp:1264
+#: src/media_object.cpp:1294
 #, c-format
 msgid "%s: Cannot duplicate packet."
 msgstr ""
 
-#: src/media_object.cpp:1743
+#: src/media_object.cpp:1766
 #, c-format
 msgid "%s: Seeking failed."
 msgstr ""
@@ -908,334 +913,334 @@ msgstr ""
 msgid "Saturation:"
 msgstr ""
 
-#: src/player_qt.cpp:1099 src/player_qt.cpp:1258 src/player_qt.cpp:1377
-#: src/player_qt.cpp:1676 src/player_qt.cpp:1832 src/player_qt.cpp:2491
-#: src/player_qt.cpp:2687 src/player_qt.cpp:2933
+#: src/player_qt.cpp:1099 src/player_qt.cpp:1290 src/player_qt.cpp:1406
+#: src/player_qt.cpp:1695 src/player_qt.cpp:1875 src/player_qt.cpp:2546
+#: src/player_qt.cpp:2742 src/player_qt.cpp:2988
 msgid "OK"
 msgstr ""
 
-#: src/player_qt.cpp:1229
+#: src/player_qt.cpp:1261
 msgid "Display Crosstalk Calibration"
 msgstr ""
 
 #. TRANSLATORS: Please keep the lines short using <br> where necessary.
-#: src/player_qt.cpp:1232
+#: src/player_qt.cpp:1264
 msgid ""
 "<p>Please read the manual to find out<br>how to measure the crosstalk "
 "levels<br>of your display.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1236
+#: src/player_qt.cpp:1268
 msgid "Red:"
 msgstr ""
 
-#: src/player_qt.cpp:1243
+#: src/player_qt.cpp:1275
 msgid "Green:"
 msgstr ""
 
-#: src/player_qt.cpp:1250
+#: src/player_qt.cpp:1282
 msgid "Blue:"
 msgstr ""
 
-#: src/player_qt.cpp:1319
+#: src/player_qt.cpp:1348
 msgid "Subtitle Settings"
 msgstr ""
 
-#: src/player_qt.cpp:1321
+#: src/player_qt.cpp:1350
 msgid "<p>These settings apply to soft subtitles, but not to bitmaps.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1323
+#: src/player_qt.cpp:1352
 msgid "Encoding:"
 msgstr ""
 
-#: src/player_qt.cpp:1324
+#: src/player_qt.cpp:1353
 msgid "<p>Set the subtitle character set encoding.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1338
+#: src/player_qt.cpp:1367
 msgid "Override font:"
 msgstr ""
 
-#: src/player_qt.cpp:1339
+#: src/player_qt.cpp:1368
 msgid "<p>Override the subtitle font family.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1347
+#: src/player_qt.cpp:1376
 msgid "Override font size:"
 msgstr ""
 
-#: src/player_qt.cpp:1348
+#: src/player_qt.cpp:1377
 msgid "<p>Override the subtitle font size.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1357
+#: src/player_qt.cpp:1386
 msgid "Override scale factor:"
 msgstr ""
 
-#: src/player_qt.cpp:1358
+#: src/player_qt.cpp:1387
 msgid "<p>Override the subtitle scale factor.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1368
+#: src/player_qt.cpp:1397
 msgid "Override color:"
 msgstr ""
 
-#: src/player_qt.cpp:1369
+#: src/player_qt.cpp:1398
 msgid "<p>Override the subtitle color.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1625
+#: src/player_qt.cpp:1644
 msgid "Stereoscopic Video Settings"
 msgstr ""
 
-#: src/player_qt.cpp:1627
+#: src/player_qt.cpp:1646
 msgid "Parallax:"
 msgstr ""
 
-#: src/player_qt.cpp:1628
+#: src/player_qt.cpp:1647
 msgid ""
 "<p>Adjust parallax, from -1 to +1. This changes the separation of left and "
 "right view, and thus the perceived distance of the scene.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1643
+#: src/player_qt.cpp:1662
 msgid "Subtitle parallax:"
 msgstr ""
 
-#: src/player_qt.cpp:1644
+#: src/player_qt.cpp:1663
 msgid ""
 "<p>Adjust subtitle parallax, from -1 to +1. This changes the perceived "
 "distance of the subtitles.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1659
+#: src/player_qt.cpp:1678
 msgid "Ghostbusting:"
 msgstr ""
 
-#: src/player_qt.cpp:1660
+#: src/player_qt.cpp:1679
 msgid ""
 "<p>Set the amount of crosstalk ghostbusting, from 0 to 1. You need to set "
 "the crosstalk levels of your display first. Note that crosstalk ghostbusting "
 "does not work with anaglyph glasses.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1783
+#: src/player_qt.cpp:1826
 msgid "Open device"
 msgstr ""
 
-#: src/player_qt.cpp:1786
+#: src/player_qt.cpp:1829
 msgid "<p>Choose a device type.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1787
+#: src/player_qt.cpp:1830
 msgid "Default"
 msgstr ""
 
-#: src/player_qt.cpp:1791 src/player_qt.cpp:1794
+#: src/player_qt.cpp:1834 src/player_qt.cpp:1837
 msgid "<p>Choose a device.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1797
+#: src/player_qt.cpp:1840
 msgid "<p>Set the X11 device string. Refer to the manual for details.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1806
+#: src/player_qt.cpp:1849
 msgid "Request frame size"
 msgstr ""
 
-#: src/player_qt.cpp:1807
+#: src/player_qt.cpp:1850
 msgid ""
 "<p>Request a specific frame size from the device, e.g. 640x480. The device "
 "must support this frame size. Some devices require a frame size to be "
 "selected.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:1818
+#: src/player_qt.cpp:1861
 msgid "Request frame rate"
 msgstr ""
 
-#: src/player_qt.cpp:1819
+#: src/player_qt.cpp:1862
 msgid ""
 "<p>Request a specific frame rate from the device, e.g. 25/1. The device must "
 "support this frame rate. Some devices require a frame rate to be selected.</"
 "p>"
 msgstr ""
 
-#: src/player_qt.cpp:1830 src/player_qt.cpp:2490 src/player_qt.cpp:2686
+#: src/player_qt.cpp:1873 src/player_qt.cpp:2545 src/player_qt.cpp:2741
 msgid "Cancel"
 msgstr ""
 
-#: src/player_qt.cpp:2005
+#: src/player_qt.cpp:2048
 msgid "&File"
 msgstr ""
 
-#: src/player_qt.cpp:2006
+#: src/player_qt.cpp:2049
 msgid "&Open..."
 msgstr ""
 
-#: src/player_qt.cpp:2011
+#: src/player_qt.cpp:2054
 msgid "Open &URL..."
 msgstr ""
 
-#: src/player_qt.cpp:2015
+#: src/player_qt.cpp:2058
 msgid "Open &device..."
 msgstr ""
 
-#: src/player_qt.cpp:2020
+#: src/player_qt.cpp:2063
 msgid "&Quit..."
 msgstr ""
 
-#: src/player_qt.cpp:2026
+#: src/player_qt.cpp:2069
 msgid "&Preferences"
 msgstr ""
 
-#: src/player_qt.cpp:2029
+#: src/player_qt.cpp:2072
 msgid "&Fullscreen Settings..."
 msgstr ""
 
-#: src/player_qt.cpp:2032
+#: src/player_qt.cpp:2075
 msgid "Display &Color Adjustments..."
 msgstr ""
 
-#: src/player_qt.cpp:2035
+#: src/player_qt.cpp:2078
 msgid "Display Cross&talk Calibration..."
 msgstr ""
 
-#: src/player_qt.cpp:2039
+#: src/player_qt.cpp:2082
 msgid "&Subtitle Settings..."
 msgstr ""
 
-#: src/player_qt.cpp:2043
+#: src/player_qt.cpp:2086
 msgid "Stereoscopic Video Settings..."
 msgstr ""
 
-#: src/player_qt.cpp:2046
+#: src/player_qt.cpp:2089
 msgid "&Help"
 msgstr ""
 
-#: src/player_qt.cpp:2047
+#: src/player_qt.cpp:2090
 msgid "&Manual..."
 msgstr ""
 
-#: src/player_qt.cpp:2052
+#: src/player_qt.cpp:2095
 msgid "&Website..."
 msgstr ""
 
-#: src/player_qt.cpp:2056
+#: src/player_qt.cpp:2099
 msgid "&Keyboard Shortcuts"
 msgstr ""
 
-#: src/player_qt.cpp:2060
+#: src/player_qt.cpp:2103
 msgid "&About"
 msgstr ""
 
-#: src/player_qt.cpp:2120 src/player_qt.cpp:2836 src/player_qt.cpp:2844
+#: src/player_qt.cpp:2169 src/player_qt.cpp:2891 src/player_qt.cpp:2899
 #: src/video_output_qt.cpp:92 src/video_output_qt.cpp:400
 #: src/video_output_qt.cpp:422
 msgid "Error"
 msgstr ""
 
-#: src/player_qt.cpp:2473
+#: src/player_qt.cpp:2528
 msgid "Open files"
 msgstr ""
 
-#: src/player_qt.cpp:2486
+#: src/player_qt.cpp:2541
 msgid "Open URL"
 msgstr ""
 
-#: src/player_qt.cpp:2487
+#: src/player_qt.cpp:2542
 msgid "URL:"
 msgstr ""
 
-#: src/player_qt.cpp:2634
+#: src/player_qt.cpp:2689
 msgid "Fullscreen/Multiscreen Settings"
 msgstr ""
 
-#: src/player_qt.cpp:2636
+#: src/player_qt.cpp:2691
 msgid "Configure fullscreen mode:"
 msgstr ""
 
-#: src/player_qt.cpp:2637
+#: src/player_qt.cpp:2692
 msgid "<p>Select the screens to use in fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2639
+#: src/player_qt.cpp:2694
 msgid "Single screen:"
 msgstr ""
 
-#: src/player_qt.cpp:2640
+#: src/player_qt.cpp:2695
 msgid "<p>Use a single screen for fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2643
+#: src/player_qt.cpp:2698
 msgid "Primary screen"
 msgstr ""
 
-#: src/player_qt.cpp:2648 src/player_qt.cpp:2662 src/player_qt.cpp:2663
+#: src/player_qt.cpp:2703 src/player_qt.cpp:2717 src/player_qt.cpp:2718
 #, c-format
 msgid "Screen %d"
 msgstr ""
 
-#: src/player_qt.cpp:2652
+#: src/player_qt.cpp:2707
 msgid "Dual screen:"
 msgstr ""
 
-#: src/player_qt.cpp:2653
+#: src/player_qt.cpp:2708
 msgid "<p>Use two screens for fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2667
+#: src/player_qt.cpp:2722
 msgid "Multi screen:"
 msgstr ""
 
-#: src/player_qt.cpp:2668
+#: src/player_qt.cpp:2723
 msgid "<p>Use multiple screens for fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2670
+#: src/player_qt.cpp:2725
 msgid "<p>Comma-separated list of screens to use for fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2674
+#: src/player_qt.cpp:2729
 msgid "When in fullscreen mode,"
 msgstr ""
 
-#: src/player_qt.cpp:2675
+#: src/player_qt.cpp:2730
 msgid "<p>Set special left/right view handling for fullscreen mode.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2677
+#: src/player_qt.cpp:2732
 msgid "flip left view vertically."
 msgstr ""
 
-#: src/player_qt.cpp:2679
+#: src/player_qt.cpp:2734
 msgid "flop left view horizontally."
 msgstr ""
 
-#: src/player_qt.cpp:2681
+#: src/player_qt.cpp:2736
 msgid "flip right view vertically."
 msgstr ""
 
-#: src/player_qt.cpp:2683
+#: src/player_qt.cpp:2738
 msgid "flop right view horizontally."
 msgstr ""
 
-#: src/player_qt.cpp:2836
+#: src/player_qt.cpp:2891
 msgid "Cannot open manual."
 msgstr ""
 
-#: src/player_qt.cpp:2844
+#: src/player_qt.cpp:2899
 msgid "Cannot open website."
 msgstr ""
 
-#: src/player_qt.cpp:2850
+#: src/player_qt.cpp:2905
 msgid "Keyboard Shortcuts"
 msgstr ""
 
 #. TRANSLATORS: This is a HTML table, shown under Help->Keyboard Shortcuts.
 #. Please make sure that your translation formats properly.
-#: src/player_qt.cpp:2853
+#: src/player_qt.cpp:2908
 msgid ""
 "<p>Keyboard control:<br><table><tr><td>q or ESC</td><td>Stop</td></"
 "tr><tr><td>p or SPACE</td><td>Pause / unpause</td></tr><tr><td>f</"
@@ -1253,17 +1258,17 @@ msgid ""
 "minutes backward / forward</td></tr></table></p>"
 msgstr ""
 
-#: src/player_qt.cpp:2880
+#: src/player_qt.cpp:2935
 #, c-format
 msgid "About %s"
 msgstr ""
 
-#: src/player_qt.cpp:2886
+#: src/player_qt.cpp:2941
 #, c-format
 msgid "The %s 3D video player"
 msgstr ""
 
-#: src/player_qt.cpp:2891
+#: src/player_qt.cpp:2946
 #, c-format
 msgid ""
 "<p>%s version %s.</p><p>Copyright (C) 2011 the Bino developers.</p><p>This "
@@ -1273,19 +1278,19 @@ msgid ""
 "\"%s\">%s</a> for more information on this software.</p>"
 msgstr ""
 
-#: src/player_qt.cpp:2928
+#: src/player_qt.cpp:2983
 msgid "About"
 msgstr ""
 
-#: src/player_qt.cpp:2929
+#: src/player_qt.cpp:2984
 msgid "Libraries"
 msgstr ""
 
-#: src/player_qt.cpp:2930
+#: src/player_qt.cpp:2985
 msgid "Team"
 msgstr ""
 
-#: src/player_qt.cpp:2931
+#: src/player_qt.cpp:2986
 msgid "License"
 msgstr ""
 

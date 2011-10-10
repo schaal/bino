@@ -36,7 +36,7 @@ build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
 subdir = doc
-DIST_COMMON = $(bino_TEXINFOS) $(dist_doc_DATA) $(srcdir)/Makefile.am \
+DIST_COMMON = $(bino_TEXINFOS) $(dist_html_DATA) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/stamp-vti \
 	$(srcdir)/version.texi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -72,7 +72,7 @@ TEXI2PDF = $(TEXI2DVI) --pdf --batch
 MAKEINFOHTML = $(MAKEINFO) --html
 DVIPS = dvips
 am__installdirs = "$(DESTDIR)$(infodir)" "$(DESTDIR)$(man1dir)" \
-	"$(DESTDIR)$(docdir)"
+	"$(DESTDIR)$(htmldir)"
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -97,7 +97,7 @@ am__base_list = \
 man1dir = $(mandir)/man1
 NROFF = nroff
 MANS = $(man_MANS)
-DATA = $(dist_doc_DATA)
+DATA = $(dist_html_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -296,7 +296,7 @@ IMAGES = \
 
 bino_TEXINFOS = bino.texi $(IMAGES)
 AM_MAKEINFOHTMLFLAGS = --no-split
-dist_doc_DATA = bino.html $(IMAGES)
+dist_html_DATA = bino.html $(IMAGES)
 EXTRA_DIST = $(man_MANS)
 all: all-am
 
@@ -536,26 +536,26 @@ uninstall-man1:
 	test -z "$$files" || { \
 	  echo " ( cd '$(DESTDIR)$(man1dir)' && rm -f" $$files ")"; \
 	  cd "$(DESTDIR)$(man1dir)" && rm -f $$files; }
-install-dist_docDATA: $(dist_doc_DATA)
+install-dist_htmlDATA: $(dist_html_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(docdir)" || $(MKDIR_P) "$(DESTDIR)$(docdir)"
-	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	test -z "$(htmldir)" || $(MKDIR_P) "$(DESTDIR)$(htmldir)"
+	@list='$(dist_html_DATA)'; test -n "$(htmldir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(docdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(docdir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(htmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(htmldir)" || exit $$?; \
 	done
 
-uninstall-dist_docDATA:
+uninstall-dist_htmlDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(dist_doc_DATA)'; test -n "$(docdir)" || list=; \
+	@list='$(dist_html_DATA)'; test -n "$(htmldir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(docdir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(docdir)" && rm -f $$files
+	echo " ( cd '$(DESTDIR)$(htmldir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(htmldir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -613,7 +613,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(INFO_DEPS) $(MANS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(infodir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(docdir)"; do \
+	for dir in "$(DESTDIR)$(infodir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(htmldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -661,7 +661,7 @@ info: info-am
 
 info-am: $(INFO_DEPS)
 
-install-data-am: install-dist_docDATA install-info-am install-man
+install-data-am: install-dist_htmlDATA install-info-am install-man
 
 install-dvi: install-dvi-am
 
@@ -782,7 +782,7 @@ ps: ps-am
 
 ps-am: $(PSS)
 
-uninstall-am: uninstall-dist_docDATA uninstall-dvi-am \
+uninstall-am: uninstall-dist_htmlDATA uninstall-dvi-am \
 	uninstall-html-am uninstall-info-am uninstall-man \
 	uninstall-pdf-am uninstall-ps-am
 
@@ -793,7 +793,7 @@ uninstall-man: uninstall-man1
 .PHONY: all all-am check check-am clean clean-aminfo clean-generic \
 	dist-info distclean distclean-generic distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
-	install-data-am install-dist_docDATA install-dvi \
+	install-data-am install-dist_htmlDATA install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
 	install-man1 install-pdf install-pdf-am install-ps \
@@ -801,7 +801,7 @@ uninstall-man: uninstall-man1
 	installdirs maintainer-clean maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-vti mostlyclean \
 	mostlyclean-aminfo mostlyclean-generic mostlyclean-vti pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-dist_docDATA \
+	pdf-am ps ps-am uninstall uninstall-am uninstall-dist_htmlDATA \
 	uninstall-dvi-am uninstall-html-am uninstall-info-am \
 	uninstall-man uninstall-man1 uninstall-pdf-am uninstall-ps-am
 
