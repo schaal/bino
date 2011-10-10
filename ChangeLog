@@ -1,3 +1,94 @@
+commit 87f080ccaf37d97ad9a7959100e5241f44f71638
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2011-10-10 21:17:25 +0200
+
+    Update AUTHORS.
+
+ AUTHORS |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+commit 6e0dc435c3b8ef8a9ffab8bc9e07db8d6ba4d7a2
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2011-10-10 21:17:13 +0200
+
+    Bump version to 1.2.1.
+
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 95ed4ddc4a8327396162d5781b6200d070360768
+Author: Daniel Schaal <farbing@web.de>
+Date:   2011-10-09 13:56:07 +0200
+
+    GUI: save and restore geometry of the MainWindow.
+
+ src/player_qt.cpp |   12 ++++++++++++
+ 1 files changed, 12 insertions(+), 0 deletions(-)
+
+commit ea31318eb7d3862aee627164e19eb5557e4881b6
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2011-10-08 19:00:53 +0200
+
+    GUI: Fix all preferences dialogs to work when no video is opened.
+
+ src/player_qt.cpp |  127 +++++++++++++++++++++++++++++++++++-----------------
+ src/player_qt.h   |    8 ++-
+ 2 files changed, 90 insertions(+), 45 deletions(-)
+
+commit 0d1688e876c7acc8a8bae9a42e2930e4932b2a7a
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2011-10-07 06:52:07 +0200
+
+    Media object: tweak video width/height determination.
+    
+    This adds a workaround for certain video streams where the width/height values
+    reported originally (after avformat_open_input()) differ from those reported
+    after avcodec_open(). This seems to happen mostly with 1920x1088 vs 1920x1088.
+    See also <http://ffmpeg.org/pipermail/libav-user/2011-October/000715.html>.
+
+ src/media_object.cpp |   27 +++++++++++++++++++++++++--
+ src/media_object.h   |    2 +-
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+
+commit a7e9e5372d8ad35185bd6291997cc943fb940408
+Author: Daniel Schaal <farbing@web.de>
+Date:   2011-10-01 08:58:50 +0200
+
+    Install html documentation in ${htmldir}.
+
+ doc/Makefile.am   |    2 +-
+ src/Makefile.am   |    2 +-
+ src/player_qt.cpp |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 11509a922d6fdd2789dd4c30c1ce4a1a4a58a0fd
+Author: Daniel Schaal <farbing@web.de>
+Date:   2011-10-01 08:56:47 +0200
+
+    Use minus sign instead of hyphen in man page.
+
+ doc/bino.1 |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 2b0a8a739c356083ca9c880baba48a6bfc7a0123
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2011-09-21 06:42:25 +0200
+
+    Windows: reenable czech translation in installer.
+
+ pkg/w32/bino.nsi |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 72b8750ca7376d92b39e647ba547b8f24087aef2
+Author: Joe <cuchac@email.cz>
+Date:   2011-09-21 06:41:36 +0200
+
+    Update cs.po.
+
+ po/LINGUAS |    2 +-
+ po/cs.po   |  790 +++++++++++++++++++++++++++++++++++++++---------------------
+ 2 files changed, 522 insertions(+), 270 deletions(-)
+
 commit 273d89b639bb49c1917b3a71ad0c2964534798ca
 Author: Martin Lambers <marlam@marlam.de>
 Date:   2011-09-08 20:12:35 +0200

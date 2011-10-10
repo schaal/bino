@@ -1,249 +1,249 @@
-# French translations for bino package
-# Traductions françaises du paquet bino.
 # Copyright (C) 2011 The Bino developers
-# This file is distributed under the same license as the bino package.
-# Frédéric Devernay <>, 2011.
+# This file is distributed under the same license as the Bino package.
+# Joe <cuchac@email.cz>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
 "POT-Creation-Date: 2011-10-10 21:25+0200\n"
-"PO-Revision-Date: 2011-08-28 17:34+0200\n"
-"Last-Translator: Frédéric Devernay <>\n"
-"Language-Team: French\n"
-"Language: fr\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Joe <cuchac@email.cz>\n"
+"Language-Team: none\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Language: cs_CZ\n"
+"X-Source-Language: C\n"
 
 #: src/base/dbg.cpp:50
 #, c-format
 msgid "Caught signal %d (%s). Aborting."
-msgstr "Signal %d (%s) reçu. Abandon."
+msgstr "Obdržn signál %d (%s). Ukončuji se."
 
 #: src/base/dbg.cpp:57
 msgid "Unexpected exception."
-msgstr "Exception inattendue"
+msgstr "Neočekávaná výjimka."
 
 #. TRANSLATORS: %s will be a mail address.
 #: src/base/dbg.cpp:145
 #, c-format
 msgid "Report bugs to <%s>."
-msgstr "Signalez les bugs à <%s>."
+msgstr "Chyby hlaste na <%s>."
 
 #: src/base/exc.cpp:54 src/base/exc.cpp:72 src/base/exc.cpp:106
 #, c-format
 msgid "Exception: %s"
-msgstr "Exception: %s"
+msgstr "Výjimka: %s"
 
 #: src/base/opt.cpp:151
 #, c-format
 msgid "Invalid option %s."
-msgstr "Option %s invalide."
+msgstr "Neplatná operace %s."
 
 #: src/base/opt.cpp:155
 #, c-format
 msgid "Option --%s does not take an argument."
-msgstr "L'option --%s ne prend pas d'argument."
+msgstr "Volba --%s nepřijímá žádný argument."
 
 #: src/base/opt.cpp:160
 #, c-format
 msgid "Invalid option -%c."
-msgstr "Option -%c invalide."
+msgstr "Neplatná volba -%c."
 
 #: src/base/opt.cpp:169
 #, c-format
 msgid "Option --%s requires an argument."
-msgstr "L'option --%s nécessite un argument."
+msgstr "Volba --%s vyžaduje argument."
 
 #: src/base/opt.cpp:174
 #, c-format
 msgid "Option -%c requires an argument."
-msgstr "L'option -%c nécessite un argument."
+msgstr "Volba -%c vyžaduje argument."
 
 #: src/base/opt.cpp:195
 #, c-format
 msgid "Invalid argument for -%c."
-msgstr "Argument invalide pour -%c."
+msgstr "Neplatný argument pro -%c."
 
 #: src/base/opt.cpp:199
 #, c-format
 msgid "Invalid argument for --%s."
-msgstr "Argument invalide pour --%s."
+msgstr "Neplatný argument pro --%s."
 
 #: src/base/opt.cpp:218
 #, c-format
 msgid "Option --%s (-%c) is mandatory."
-msgstr "L'option --%s (-%c) est obligatoire."
+msgstr "Volba --%s (-%c) je povinná."
 
 #: src/base/opt.cpp:222
 #, c-format
 msgid "Option --%s is mandatory."
-msgstr "L'option --%s est obligatoire."
+msgstr "Volba --%s je povinná."
 
 #: src/base/opt.cpp:236
 msgid "Too few arguments."
-msgstr "Pas assez d'arguments."
+msgstr "Příliš málo parametrů."
 
 #: src/base/opt.cpp:241
 msgid "Too many arguments."
-msgstr "Trop d'arguments."
+msgstr "Příliš mnoho parametrů."
 
 #: src/base/str.cpp:226
 #, c-format
 msgid "Cannot convert string to %s."
-msgstr "Impossible de convertir la chaîne de caractères en %s."
+msgstr "Nelze převést text do %s."
 
 #: src/base/str.cpp:411 src/base/str.cpp:429 src/base/str.cpp:439
 #: src/base/str.cpp:450
 #, c-format
 msgid "Cannot convert %s to %s."
-msgstr "Impossible de convertir %s en %s."
+msgstr "Nelze převést %s to %s."
 
 #: src/base/thread.cpp:40 src/base/thread.cpp:51
 #, c-format
 msgid "Cannot initialize mutex: %s"
-msgstr "Impossible d'initialiser le mutex: %s"
+msgstr "Nelze inicializovat mutex: %s"
 
 #: src/base/thread.cpp:65
 #, c-format
 msgid "Cannot lock mutex: %s"
-msgstr "Impossible de verrouiller le mutex: %s"
+msgstr "Nelze zavřít mutex: %s"
 
 #: src/base/thread.cpp:79
 #, c-format
 msgid "Cannot unlock mutex: %s"
-msgstr "Impossible de déverrouiller le mutex: %s"
+msgstr "Nelze otevřít mutex: %s"
 
 #: src/base/thread.cpp:145
 #, c-format
 msgid "Cannot create thread: %s"
-msgstr "Impossible de créer le thread: %s"
+msgstr "Nelze vytvořit vlákno: %s"
 
 #: src/base/thread.cpp:160
 #, c-format
 msgid "Cannot join with thread: %s"
-msgstr "Impossible de rejoindre le thread: %s"
+msgstr "Nelze se spojit s vláknem: %s"
 
 #: src/base/thread.cpp:182
 #, c-format
 msgid "Cannot cancel thread: %s"
-msgstr "Impossible d'annuler le thread: %s"
+msgstr "Nelze zrušit vlákno: %s"
 
 #: src/base/timer.cpp:69 src/base/timer.cpp:81 src/base/timer.cpp:95
 msgid "Cannot get time."
-msgstr "Impossible d'obtenir l'heure."
+msgstr "Nelze získat aktuální čas."
 
 #: src/audio_output.cpp:61
 msgid "No OpenAL device available."
-msgstr "Aucun périphérique OpenAL disponible."
+msgstr "Není k dispozici žádné OpenAL zařízení."
 
 #: src/audio_output.cpp:66
 msgid "No OpenAL context available."
-msgstr "Aucun contexte OpenAL disponible."
+msgstr "Není k dispozici žádný OpenAL kontext."
 
 #: src/audio_output.cpp:77
 msgid "Cannot create OpenAL buffers."
-msgstr "Impossible de tcréer les tampons OpenAL."
+msgstr "Nelze vytvořit OpenAL buffer."
 
 #: src/audio_output.cpp:86
 msgid "Cannot create OpenAL source."
-msgstr "Impossible de créer la source OpenAL."
+msgstr "Nelze vytvořit OpenAL zdroj."
 
 #: src/audio_output.cpp:99
 msgid "Cannot set OpenAL source parameters."
-msgstr "Impossible de régler les paramètres de la source OpenAL."
+msgstr "Nelze nastavit parametry OpenAL."
 
 #: src/audio_output.cpp:153
 msgid "Cannot check OpenAL source state."
-msgstr "Impossible de vérifier l'état de la source OpenAL."
+msgstr "Nelze ověřit stav OpenAL zdroje."
 
 #: src/audio_output.cpp:160
 msgid "Cannot restart OpenAL source playback."
-msgstr "Impossible de redémarrer la lecture de la source OpenAL."
+msgstr "Nelze znovu spustit přehrávání OpeanAL zdroje."
 
 #: src/audio_output.cpp:313
 #, c-format
 msgid "No OpenAL format available for audio data format %s."
-msgstr "Aucun format OpenAL disponible pour le format de données audio %s."
+msgstr "Neexistuje vhodný OpenAL format pro daný audio formát %s."
 
 #: src/audio_output.cpp:340
 msgid "Cannot buffer initial OpenAL data."
-msgstr "Impossible de mettre les données initiales OpenAL en mémoire tampon."
+msgstr "Nelze načíst počáteční data OpenAL."
 
 #: src/audio_output.cpp:354
 msgid "Cannot buffer OpenAL data."
-msgstr "Impossible de mettre les données OpenAL en mémoire tampon."
+msgstr "Nelze načíst OpenAL data."
 
 #: src/audio_output.cpp:379
 msgid "Cannot start OpenAL source playback."
-msgstr "Impossible de démarrer la lecture de la source OpenAL."
+msgstr "Nelze začít přehrávat OpeanAL zdroj."
 
 #: src/audio_output.cpp:393
 msgid "Cannot pause OpenAL source playback."
-msgstr "Impossible de mettre en pause la source OpenAL."
+msgstr "Nelze přerušit přehrávání OpeanAL zdroje."
 
 #: src/audio_output.cpp:402
 msgid "Cannot unpause OpenAL source playback."
-msgstr "Impossible de quitter la pause de la source OpenAL."
+msgstr "Nelze pokračovat v přehrávání OpeanAL zdroje."
 
 #: src/audio_output.cpp:411
 msgid "Cannot stop OpenAL source playback."
-msgstr "Impossible d'arrêter la lecture de la source OpenAL."
+msgstr "Nelze zastavit přehrávání OpeanAL zdroje."
 
 #: src/audio_output.cpp:422
 msgid "Cannot unqueue OpenAL source buffers."
-msgstr "Impossible de vider la queue de tampons de la source OpenAL."
+msgstr "Nelze odpojit buffery OpeanAL zdroje."
 
 #: src/lib_versions.cpp:121 src/lib_versions.cpp:158 src/media_data.cpp:422
 #: src/media_data.cpp:445 src/media_data.cpp:483 src/media_data.cpp:488
 msgid "unknown"
-msgstr "inconnu"
+msgstr "neznámá"
 
 #: src/lib_versions.cpp:182 src/lib_versions.cpp:194
 msgid "not used"
-msgstr "inutilisé"
+msgstr "nevyužívá se"
 
 #: src/lirc.cpp:63
 msgid "Cannot initialize LIRC."
-msgstr "Impossible d'initialiser LIRC."
+msgstr "Nemohu inicializovat LIRC."
 
 #: src/lirc.cpp:69
 msgid "Cannot set LIRC socket properties."
-msgstr "Impossible de régler les paramètres de socket LIRC."
+msgstr "Nelze nastavit parametry LIRC socketu."
 
 #: src/lirc.cpp:76
 msgid "Cannot read LIRC default configuration."
-msgstr "Impossible de lire la configuration par défaut de LIRC."
+msgstr "Nelze získat výchozí nastavení LIRC."
 
 #: src/lirc.cpp:91
 #, c-format
 msgid "Cannot read LIRC configuration file %s."
-msgstr "Impossible de lire le fichier de configuration LIRC %s."
+msgstr "Nelze přečíst LIRC konfigurační soubor %s."
 
 #: src/lirc.cpp:140
 msgid "Cannot get LIRC event; disabling LIRC support."
-msgstr "Impossible de lire l'événement LIRC ; désactivation du support LIRC."
+msgstr "Nelze získat událost z LIRC; vypínám podporu LIRC."
 
 #: src/lirc.cpp:154
 #, c-format
 msgid "Received invalid command '%s' from LIRC."
-msgstr "Commande LIRC '%s' invalide."
+msgstr "Obdržen neplatný příkaz '%s' z LIRC."
 
 #: src/lirc.cpp:164
 msgid "Cannot get command for LIRC code."
-msgstr "Commande non disponible pour le code LIRC."
+msgstr "Nelze získat příkaz pro daný LIRC kód."
 
 #: src/main.cpp:325
 #, c-format
 msgid "%s version %s"
-msgstr "%s version %s"
+msgstr "%s verze %s"
 
 #: src/main.cpp:326
 msgid "Copyright (C) 2011 the Bino developers."
-msgstr "Copyright (C) 2011 les développeurs Bino."
+msgstr "Copyright (C) 2011 Bino vývojáři."
 
 #: src/main.cpp:327
 msgid ""
@@ -251,17 +251,18 @@ msgid ""
 "the GNU General Public License. There is NO WARRANTY, to the extent "
 "permitted by law."
 msgstr ""
-"Ceci est un logiciel libre. Vous pouvez en distribuer des copies sous les "
-"termes de la GNU General Public License. Il n'y a AUCUNE GARANTIE, dans les "
-"limites autorisées par la loi."
+"Tento program je svobodný software. Můžete jej šířit a modifikovat podle "
+"ustanovení GNU General Public License.Tento program je rozšiřován v naději, "
+"že bude užitečný, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené "
+"záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL."
 
 #: src/main.cpp:330 src/player_qt.cpp:2958
 msgid "Platform:"
-msgstr "Plateforme :"
+msgstr "Platforma:"
 
 #: src/main.cpp:332 src/player_qt.cpp:2959
 msgid "Libraries used:"
-msgstr "Bibliothèques utilisées :"
+msgstr "Použité knihovny:"
 
 #. TRANSLATORS: This is the --help text. Translate only the description,
 #. not the option names. Please keep a proper indentation with spaces, and
@@ -371,150 +372,134 @@ msgid ""
 "  page up, page down       Seek 10 minutes backward / forward.\n"
 "  Mouse click              Seek according to horizontal click position."
 msgstr ""
-"Utilisation :\n"
-"  %s [option...] [fichier...]\n"
+"Použití:\n"
+"  %s [volba...] [soubor...]\n"
 "\n"
 "Options:\n"
-"  --help                   Afficher l'aide.\n"
-"  --version                Afficher la version.\n"
-"  -n|--no-gui              Ne pas utiliser l'IHM, afficher une fenêtre "
-"simple.\n"
-"  -L|--log-level=LEVEL     Niveau de détail du journal (debug/info/warning/"
-"error/quiet).\n"
-"  --device-type=TYPE       Type de périphérique d'entrée: default, firewire, "
-"x11.\\n\"\n"
-"  --device-frame-size=WxH  Demande la résolution WxH au périphérique "
-"d'entrée.\\n\"\n"
-"  --device-frame-rate=N/D  Demande le taux de rafraichissement N/D au "
-"périphérique d'entrée.\\n\"\n"
-"  --lirc-config=FILE       Utilise le fichier de configuration LIRC donné. "
-"Cette\\n\"\n"
-"                           option peut être utilisée plusieurs fois.\\n\"\n"
-"  -v|--video=STREAM        Sélectionner le flux vidéo (1-n, selon "
-"l'entrée).\n"
-"  -a|--audio=STREAM        Sélectionner le flux audio (1-n, selon "
-"l'entrée).\n"
-"  -s|--subtitle=STREAM     Sélectionner le flux de sous-titres (0-n, selon "
-"l'entrée).\n"
-"  -i|--input=TYPE          Sélectionner le type d'entrée (auto-détection par "
-"défaut):\n"
-"    mono                     Une seule vue.\n"
-"    separate-left-right      Flux gauche/droit séparés, gauche d'abord.\n"
-"    separate-right-left      Flux gauche/droit séparés, droit d'abord.\n"
-"    top-bottom               Gauche en haut, droit en bas.\n"
-"    top-bottom-half          Gauche en haut, droit en bas, demi-hauteur.\n"
-"    bottom-top               Gauche en bas, droit en haut.\n"
-"    bottom-top-half          Gauche en bas, droit en haut, demi-hauteur.\n"
-"    left-right               Gauche à gauche, droit à droite.\n"
-"    left-right-half          Gauche à gauche, droit à droite, demi-largeur.\n"
-"    right-left               Gauche à droite, droit à gauche.\n"
-"    right-left-half          Gauche à droite, droit à gauche, demi-largeur.\n"
-"    even-odd-rows            Gauche sur les lignes paires, droit sur les "
-"lignes impaires.\n"
-"    odd-even-rows            Gauche sur les lignes impaires, droit sur les "
-"lignes paires.\n"
-"  -o|--output=TYPE         Sélectionner le type de sortie :\n"
-"    mono-left                Gauche seulement.\n"
-"    mono-right               Droit seulement.\n"
-"    top-bottom               Gauche en haut, droit en bas.\n"
-"    top-bottom-half          Gauche en haut, droit en bas, demi-hauteur.\n"
-"    left-right               Gauche à gauche, droit à droite.\n"
-"    left-right-half          Gauche à gauche, droit à droite, demi-largeur.\n"
-"    even-odd-rows            Gauche sur les lignes paires, droit sur les "
-"lignes impaires.\n"
-"    even-odd-columns         Gauche sur les colonnes paires, droit sur les "
-"colonnes impaires.\n"
-"    checkerboard             Gauche et droit en damier.\n"
-"    hdmi-frame-pack          Mode HDMI frame packing.\n"
-"    red-cyan-monochrome      Anaglyphe rouge/cyan, méthode monochrome.\n"
-"    red-cyan-half-color      Anaglyphe rouge/cyan, méthode demi-couleur.\n"
-"    red-cyan-full-color      Anaglyphe rouge/cyan, méthode pleine couleur.\n"
-"    red-cyan-dubois          Anaglyphe rouge/cyan, méthode Dubois.\n"
-"    green-magenta-monochrome Anaglyphe vert/magenta, méthode monochrome.\n"
-"    green-magenta-half-color Anaglyphe vert/magenta, méthode demi-couleur.\n"
-"    green-magenta-full-color Anaglyphe vert/magenta, méthode pleine "
-"couleur.\n"
-"    green-magenta-dubois     Anaglyphe vert/magenta, méthode Dubois.\n"
-"    amber-blue-monochrome    Anaglyphe ambre/bleu, méthode monochrome.\n"
-"    amber-blue-half-color    Anaglyphe ambre/bleu, méthode demi-couleur.\n"
-"    amber-blue-full-color    Anaglyphe ambre/bleu, méthode pleine couleur.\n"
-"    amber-blue-dubois        Anaglyphe ambre/bleu, méthode Dubois.\n"
-"    red-green-monochrome     Anaglyphe rouge/vert, méthode monochrome.\n"
-"    red-blue-monochrome      Anaglyphe rouge/bleu, méthode monochrome.\n"
-"    stereo                   Stéréo OpenGL quadruple buffer.\n"
-"    equalizer                Multi-affichage par Equalizer (configuration "
-"2D).\n"
-"    equalizer-3d             Multi-affichage par Equalizer (configuration "
-"3D).\n"
-"  -S|--swap-eyes           Echanger les vues gauche et droite.\n"
-"  -f|--fullscreen          Plein écran.\n"
-"  --fullscreen-screens=    Utiliser les écrans désignés pour le plein "
-"écran.\n"
-"     [S0[,S1[,...]]]       La numérotation commence à 1. Utilisation\n"
-"                           de l'écran primaire par défaut.\n"
-"  --fullscreen-flip-left   Flip vertical de la vue gauche en plein écran.\n"
-"  --fullscreen-flop-left   Flop horizontal de la vue gauche en plein écran.\n"
-"  --fullscreen-flip-right  Flip vertical de la vue droite en plein écran.\n"
-"  --fullscreen-flop-right  Flop horizontal de la vue droite en plein écran.\n"
-"  -c|--center              Centrer la fenêtre sur l'écran.\n"
-"  --subtitle-encoding=ENC  Régler l'encodage des sous-titres.\n"
-"  --subtitle-font=FONT     Régler le nom de la fonte des sous-titres.\n"
-"  --subtitle-size=N        Régler la taille de la fonte des sous-titres.\n"
-"  --subtitle-scale=S       Régler le facteur d'échelle des sous-titres.\n"
-"  --subtitle-color=COLOR   Régler la couleur des sous-titres, au format [AA]"
-"RRVVBB.\n"
-"  --subtitle-parallax=VAL  Ajustement de la parallaxe des sous-titres (-1 à "
-"+1).\n"
-"  -P|--parallax=VAL        Ajustement de la parallaxe (-1 à +1).\n"
-"  -C|--crosstalk=VAL       Niveau de fuite du crosstalk (0 à 1); valeurs "
-"séparées\n"
-"                           par des virgules pour les canaux R,V,B.\n"
-"  -G|--ghostbust=VAL       Niveau d'élimination du crosstalk à appliquer (0 "
-"à 1).\n"
-"  -b|--benchmark           Mode banc d'essai (pas d'audio, afficher les "
-"fps).\n"
-"  -l|--loop                Lecture en bloucle.\n"
+"  --help                   Vytiskni nápovědu.\n"
+"  --version                Vytiskni verzi.\n"
+"  -n|--no-gui              Nepoužívej grafické rozhraní, pouze zobraz holé "
+"okno.\n"
+"  -L|--log-level=LEVEL     Co se bude logovat (debug/info/warning/error/"
+"quiet).\n"
+"  --device-type=TYPE       Typ vstupního zařízení: default, firewire, x11.\n"
+"  --device-frame-size=WxH  Požadovaná velikost snímku SÍRKAxVÝSKA ze "
+"vstupního zařízení.\n"
+"  --device-frame-rate=N/D  Požadovaná obnovovací frekvence CITATEL/"
+"JMENOVATEL ze vstupního zařízení.\n"
+"  --lirc-config=FILE       Použij daný LIRC konfigurační soubor. Tato\n"
+"                           volba může být použita vícekrát.\n"
+"  -v|--video=STREAM        Vyber video stopu(1-n, záleží na vstupu).\n"
+"  -a|--audio=STREAM        Vyber zvukovou stopu (1-n, záleží na vstupu).\n"
+"  -s|--subtitle=STREAM     Vyber stopu titulků (0-n, záleží na vstupu).\n"
+"  -i|--input=TYPE          Vyber vstupní formát (výchozí je automatická "
+"detekce):\n"
+"    mono                     Jeden obraz.\n"
+"    separate-left-right      Oddělená levá/pravá stopa, levá první.\n"
+"    separate-right-left      Oddělená levá/pravá stopa, pravá první.\n"
+"    top-bottom               Levá nahoře, pravá dole.\n"
+"    top-bottom-half          Levá nahoře, pravá dole, poloviční výška.\n"
+"    bottom-top               Left dole, pravá nahoře.\n"
+"    bottom-top-half          Left dole, pravá nahoře, poloviční výška.\n"
+"    left-right               Levá nalevo, pravá napravo.\n"
+"    left-right-half          Levá nalevo, pravá napravo, poloviční šířka.\n"
+"    right-left               Levá napravo, pravá nalevo.\n"
+"    right-left-half          Levá napravo, pravá nalevo, poloviční šířka.\n"
+"    even-odd-rows            Levá sudé řádky, pravá liché.\n"
+"    odd-even-rows            Levá liché řádky, pravá sudé.\n"
+"  -o|--output=TYPE         Vyber výstupní formát:\n"
+"    mono-left                Pouze levá.\n"
+"    mono-right               Pouze pravá.\n"
+"    top-bottom               Levá nahoře, pravá dole.\n"
+"    top-bottom-half          Levá nahoře, pravá dole, poloviční výška.\n"
+"    left-right               Levá nalevo, pravá napravo.\n"
+"    left-right-half          Levá nalevo, pravá napravo, poloviční šířka.\n"
+"    even-odd-rows            Levá sudé řádky, pravá liché.\n"
+"    even-odd-columns         Levá sudé sloupce, pravá liché.\n"
+"    checkerboard             Levý a pravý v šachovnici.\n"
+"    hdmi-frame-pack          HDMI režim.\n"
+"    red-cyan-monochrome      Červená/modrá anaglyf, stupně šedi.\n"
+"    red-cyan-half-color      Červená/modrá anaglyf, polotóny.\n"
+"    red-cyan-full-color      Červená/modrá anaglyf, plné tóny.\n"
+"    red-cyan-dubois          Červená/modrá anaglyf, Dubois.\n"
+"    green-magenta-monochrome Zelená/fialová anaglyf, stupně šedi.\n"
+"    green-magenta-half-color Zelená/fialová anaglyf, polotóny.\n"
+"    green-magenta-full-color Zelená/fialová anaglyf, plné tóny.\n"
+"    green-magenta-dubois     Zelená/fialová anaglyf, Dubois.\n"
+"    amber-blue-monochrome    Žlutá/modrá anaglyf, stupně šedi.\n"
+"    amber-blue-half-color    Žlutá/modrá anaglyf, polotóny.\n"
+"    amber-blue-full-color    Žlutá/modrá anaglyf, plné tóny.\n"
+"    amber-blue-dubois        Žlutá/modrá anaglyf, Dubois.\n"
+"    red-green-monochrome     Červená/zelená anaglyf, stupně šedi.\n"
+"    red-blue-monochrome      Červená/modrá anaglyf, stupně šedi.\n"
+"    stereo                   OpenGL quad-buffered stereo.\n"
+"    equalizer                Více monitorů použitím Equalizer (2D scéna).\n"
+"    equalizer-3d             Více monitorů použitím Equalizer (3D scéna).\n"
+"  -S|--swap-eyes           Prohoď levou/pravou.\n"
+"  -f|--fullscreen          Celá obrazovka.\n"
+"  --fullscreen-screens=    Použij vyjmenované obrazovky v celoobrazovkovém "
+"režimu.\n"
+"     [S0[,S1[,...]]]       Císla obrazovek začínají číslem 1. Výchozí\n"
+"                           (prázdný seznam) znamená použít primární "
+"obrazovku.\n"
+"  --fullscreen-flip-left   Překlop levý obraz vertikálně.\n"
+"  --fullscreen-flop-left   Překlop levý obraz horizontálně.\n"
+"  --fullscreen-flip-right  Překlop pravý obraz vertikálně.\n"
+"  --fullscreen-flop-right  Překlop pravýobraz horizontálně.\n"
+"  -c|--center              Vycentruj okno na středu monitoru.\n"
+"  --subtitle-encoding=ENC  Nastav kódování titulků.\n"
+"  --subtitle-font=FONT     Nastav písmo titulků.\n"
+"  --subtitle-size=N        Nastav velikost titulků.\n"
+"  --subtitle-scale=S       Nastav škálovací poměr titulků.\n"
+"  --subtitle-color=COLOR   Nastav barvu titulků, ve formátu [AA]RRGGBB.\n"
+"  --subtitle-parallax=VAL  Nastav parallax titulků (-1 až +1).\n"
+"  -P|--parallax=VAL        Nastv parallax (-1 až +1).\n"
+"  -C|--crosstalk=VAL       Crosstalk (0 až 1); oddělený středníky\n"
+"                           hodnoty pro kanály R,G,B.\n"
+"  -G|--ghostbust=VAL       Ghostbusting (0 to 1).\n"
+"  -b|--benchmark           Test výkonu (bez zvuk, zobrazuje fps).\n"
+"  -l|--loop                Přehrávej vstupní soubor ve smýčce.\n"
 "\n"
-"Contrôle interactif :\n"
-"  q ou ESC                 Quitter.\n"
-"  p ou ESPACE               Pause / continuer.\n"
-"  f                        Basculer le mode plein écran.\n"
-"  c                        Centrer la fenêtre.\n"
-"  e                        Echanger les yeux droit et gauche.\n"
-"  v                        Parcourir les flux vidéo disponibles.\n"
-"  a                        Parcourir les flux audio disponibles.\n"
-"  s                        Parcourir les flux de sous-titres disponibles.\n"
-"  1, 2                     Ajuster le contraste.\n"
-"  3, 4                     Ajuster la luminosité.\n"
-"  5, 6                     Ajuster la teinte.\n"
-"  7, 8                     Ajuster la saturation.\n"
-"  <, >                     Ajuster la parallaxe.\n"
-"  (, )                     Ajuster le ghostbusting.\n"
-"  gauche, droite              Avancer/reculer de 10 secondes.\n"
-"  haut, bas                 Avancer/reculer de 1 minute.\n"
-"  page prec., page suiv.       Avancer/reculer de 10 minutes.\n"
-"  Clic souris              Aller à la position définie par l'abscisse du "
-"clic."
+"Interaktivní ovládání:\n"
+"  ESC                      Opustit celoobrazovkový režim, nebo ukončit.\n"
+"  q                        Ukončit.\n"
+"  p nebo MEZERA            Pozastav / pokračuj.\n"
+"  f                        Přepni na celou obrazovku.\n"
+"  c                        Vycentruj okno.\n"
+"  e                        Prohoď levé/pravé oko.\n"
+"  v                        Procházej dostupné video stopy.\n"
+"  a                        Procházej dostupné zvukové stopy.\n"
+"  s                        Procházej dostupné titulky.\n"
+"  1, 2                     Uprav kontrast.\n"
+"  3, 4                     Uprav jas.\n"
+"  5, 6                     Uprav odstín.\n"
+"  7, 8                     Uprav sytost.\n"
+"  <, >                     Uprav parallax.\n"
+"  (, )                     Uprav ghostbusting.\n"
+"  levá, pravá              Přeskoč 10 sekund dopředu / zpět.\n"
+"  nahoru, dolů             Přeskoč 1 minutu dopředu / zpět.\n"
+"  page up, page down       Přeskoč 10 minut dopředu / zpět.\n"
+"  Stisk myši               Přeskoč vzhledem k horizontální pozici myši."
 
 #: src/main.cpp:597
 msgid "Benchmark mode: audio and time synchronization disabled."
-msgstr "Mode banc d'essai: audio et synchronisation temporelle désactivés."
+msgstr "Testovací režim, synchronizace zvuku a času je vypnuta."
 
 #: src/main.cpp:614
 msgid "This version of Bino was compiled without support for LIRC."
-msgstr "Cette version de Bino a été compilée sans le support LIRC."
+msgstr "Tato verze Bina byla zkompilována bez podpory knihovny LIRC."
 
 #: src/main.cpp:627
 msgid "This version of Bino was compiled without support for Equalizer."
-msgstr "Cette version de Bino a été compilée sans le support Equalizer."
+msgstr "Tato verze Bina byla zkompilována bez podpory knihovny Equalizer."
 
 #: src/main.cpp:634
 msgid "Cannot connect to X server."
-msgstr "Impossible de se connecter au serveur X."
+msgstr "Nelze se připojit k X serveru."
 
 #: src/main.cpp:650
 msgid "No video to play."
-msgstr "Aucune vidéo à jouer."
+msgstr "Nenalezeno žádné video."
 
 #. TRANSLATORS: This is a very short string describing the video size and aspect ratio.
 #: src/media_data.cpp:293
@@ -530,70 +515,69 @@ msgstr "%s, %d ch., %g kHz, %d bit"
 
 #: src/media_input.cpp:277 src/player_qt.cpp:187
 msgid "Input:"
-msgstr "Entrée :"
+msgstr "Vstup:"
 
 #: src/media_input.cpp:282
 #, c-format
 msgid "Video %s: %s"
-msgstr "Vidéo %s : %s"
+msgstr "Video %s: %s"
 
 #: src/media_input.cpp:287
 msgid "No video."
-msgstr "Aucune vidéo."
+msgstr "Žádná video stopa."
 
 #: src/media_input.cpp:293
 #, c-format
 msgid "Audio %s: %s"
-msgstr "Audio %s : %s"
+msgstr "Zvuk %s: %s"
 
 #: src/media_input.cpp:298
 msgid "No audio."
-msgstr "Pas d'audio."
+msgstr "Žádná zvuková stopa."
 
 #: src/media_input.cpp:304
 #, c-format
 msgid "Subtitle %s: %s"
-msgstr "Sous-titres %s : %s"
+msgstr "Titulky %s: %s"
 
 #: src/media_input.cpp:309
 msgid "No subtitle."
-msgstr "Aucun sous-titre."
+msgstr "Žádné titulky."
 
 #: src/media_input.cpp:311
 #, c-format
 msgid "Duration: %g seconds"
-msgstr "Durée : %g secondes"
+msgstr "Délka: %g sekund"
 
 #: src/media_input.cpp:314
 #, c-format
 msgid "Stereo layout: %s"
-msgstr "Mode stéréo : %s"
+msgstr "Stereo režim: %s"
 
 #: src/media_object.cpp:371
 #, fuzzy, c-format
 msgid "%s video stream %d: Using frame size %dx%d instead of %dx%d."
-msgstr "%s flux vidéo %d : Taille de l'image invalide."
+msgstr "%s video stopa %d: Špatná velikost obrazu."
 
 #: src/media_object.cpp:624
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
-msgstr "%s flux vidéo %d : Arrangement stéréo %s non supporté."
+msgstr "%s video stopa %d: Nepodporovaný stereo režim %s."
 
 #: src/media_object.cpp:662
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
-msgstr "%s flux audio %d : Impossible de gérer de l'audio à %d canaux."
+msgstr "%s zvuková stopa %d: Nemohu přehrát zvukovou stopu s %d kanály."
 
 #: src/media_object.cpp:691
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
-msgstr ""
-"%s flux audio %d : Impossible de gérer de l'audio au format d'échantillon %s."
+msgstr "%s zvuková stopa %d: Nemohu přehrát zvukovou stopu ve formátu %s."
 
 #: src/media_object.cpp:744
 #, c-format
 msgid "No support available for %s device."
-msgstr "Périphérique %s non supporté."
+msgstr "Zařízení %s není podporováno."
 
 #: src/media_object.cpp:745 src/player_qt.cpp:1831
 msgid "Firewire"
@@ -605,211 +589,209 @@ msgstr "X11"
 
 #: src/media_object.cpp:747
 msgid "default"
-msgstr "par défaut"
+msgstr "výchozí"
 
 #: src/media_object.cpp:765 src/media_object.cpp:1218 src/xgl.cpp:297
 #, c-format
 msgid "%s: %s"
-msgstr "%s : %s"
+msgstr "%s: %s"
 
 #: src/media_object.cpp:776
 #, c-format
 msgid "%s: Cannot read stream info: %s"
-msgstr "%s : Impossible de lire l'information du flux : %s"
+msgstr "%s: Nemohu přečíst informace o stopě: %s"
 
 #: src/media_object.cpp:816
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
-msgstr "%s flux vidéo %d : Impossible d'ouvrir %s : %s"
+msgstr "%s stopa %d: Nemohu otevřít %s: %s"
 
 #: src/media_object.cpp:817
 msgid "video codec"
-msgstr "codec vidéo"
+msgstr "video kodek"
 
 #: src/media_object.cpp:818
 msgid "audio codec"
-msgstr "codec audio"
+msgstr "zvukový kodek"
 
 #: src/media_object.cpp:819
 msgid "subtitle codec"
-msgstr "codec de sous-titres"
+msgstr "kodek titulků"
 
 #: src/media_object.cpp:820
 msgid "data"
-msgstr "données"
+msgstr "data"
 
 #: src/media_object.cpp:821
 msgid "codec not supported"
-msgstr "codec non supporté"
+msgstr "kodek není podporován"
 
 #: src/media_object.cpp:831
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
-msgstr "%s flux vidéo %d : Taille de l'image invalide."
+msgstr "%s video stopa %d: Špatná velikost obrazu."
 
 #: src/media_object.cpp:867
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
-msgstr "%s flux vidéo %d : Impossible d'initialiser le contexte de conversion."
+msgstr "%s video stopa %d: Nemohu vytvořit conversion context."
 
 #: src/media_object.cpp:930
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
-msgstr "Flux vidéo %d : %s / %s, %g secondes"
+msgstr "Video stopa %d: %s / %s, %g sekund"
 
 #: src/media_object.cpp:934
 #, c-format
 msgid "Using up to %d threads for decoding."
-msgstr "Utilisation de maximum %d threads pour le décodage."
+msgstr "Využívám až %d vláken pro dekódování."
 
 #: src/media_object.cpp:939
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
-msgstr "Flux audio %d : %s / %s, %g secondes"
+msgstr "Zvuková stopa %d: %s / %s, %g sekund"
 
 #: src/media_object.cpp:946
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
-msgstr "Flux de sous-titres %d : %s / %s, %g secondes"
+msgstr "Titulky %d: %s / %s, %g sekund"
 
 #: src/media_object.cpp:953
 msgid "No usable streams."
-msgstr "Aucun flux utilisable"
+msgstr "Žádná použitelná stopa."
 
 #: src/media_object.cpp:1234 src/media_object.cpp:1264
 #: src/media_object.cpp:1294
 #, c-format
 msgid "%s: Cannot duplicate packet."
-msgstr "%s : Impossible de dupliquer le paquet."
+msgstr "%s: Nemohu duplikovat paket."
 
 #: src/media_object.cpp:1766
 #, c-format
 msgid "%s: Seeking failed."
-msgstr "%s : Échec de la recherche."
+msgstr "%s: Vyhledávání selhalo."
 
 #: src/player.cpp:212
 msgid "No video streams found."
-msgstr "Aucun flux vidéo trouvé."
+msgstr "Nebyly nalezeny žádné video stopy."
 
 #: src/player.cpp:218
 msgid "Cannot set requested stereo layout: incompatible media."
-msgstr "Impossible de choisir le mode stéréo sélectionné : média incompatible."
+msgstr "Nemohu nastavit požadovaný stereo formát: nekompatibilní vstup."
 
 #: src/player.cpp:224
 #, c-format
 msgid "Video stream %d not found."
-msgstr "Flux vidéo %d non trouvé."
+msgstr "Video stopa %d nebyla nalezena."
 
 #: src/player.cpp:229
 #, c-format
 msgid "Audio stream %d not found."
-msgstr "Flux audio %d non trouvé."
+msgstr "Zvuková stopa %d nebyla nalezena."
 
 #: src/player.cpp:237
 #, c-format
 msgid "Subtitle stream %d not found."
-msgstr "Flux de sous-titres %d non trouvé."
+msgstr "Stopa titulků %d nebyla nalezena."
 
 #: src/player.cpp:644
 #, c-format
 msgid "Video: delay %g seconds; dropping next frame."
-msgstr "Vidéo : retard de %g secondes; image suivante sautée."
+msgstr "Video: zpoždění %g sekund; zahazuji následující snímek."
 
 #: src/player.cpp:656
 #, c-format
 msgid "FPS: %.2f"
-msgstr "FPS : %.2f"
+msgstr "FPS: %.2f"
 
 #: src/player_equalizer.cpp:138
 msgid "Reading input frame failed."
-msgstr "Echec de la lecture de l'image d'entrée."
+msgstr "Selhalo čtení snímku."
 
 #: src/player_equalizer.cpp:192 src/video_output_qt.cpp:345
 #: src/video_output_qt.cpp:352
 msgid "Waiting for subtitle renderer initialization..."
-msgstr "Attente de l'initialisation du rendu des sous-titres..."
+msgstr "Čekám na inicializaci vykreslování titulků..."
 
 #: src/player_equalizer.cpp:273
 msgid "Init data mapping failed."
-msgstr "Echec du routage des données initiales."
+msgstr "Počáteční mapování dat selhalo."
 
 #: src/player_equalizer.cpp:274
 msgid "Frame data mapping failed."
-msgstr "Echec du routage des images."
+msgstr "Mapování dat snímku selhalo."
 
 #: src/player_equalizer.cpp:275
 msgid "Video player initialization failed."
-msgstr "Echec de l'initialisation du lecteur vidéo."
+msgstr "Nepodařilo se inicializovat přehrávač videa."
 
 #: src/player_equalizer.cpp:276
 msgid "Need at least OpenGL 2.1."
-msgstr "OpenGL 2.1 minimum requis."
+msgstr "Je vyžadováno alespon OpenGL 2.1."
 
 #: src/player_equalizer.cpp:477
 msgid "No canvas in Equalizer configuration."
-msgstr "Pas de canevas dans la configuration Equalizer."
+msgstr "V konfiguraci Equalizeru není nastaveno plátno."
 
 #: src/player_equalizer.cpp:511
 msgid "Equalizer canvas:"
-msgstr "Canevas Equalizer :"
+msgstr "Plátno Equalizeru:"
 
 #: src/player_equalizer.cpp:512
 #, c-format
 msgid "%gx%g, aspect ratio %g:1"
-msgstr "%gx%g, facteur d'aspect %g:1"
+msgstr "%gx%g, poměr stran %g:1"
 
 #: src/player_equalizer.cpp:513
 #, c-format
 msgid "Area for %g:1 video: [ %g %g %g %g @ %g ]"
-msgstr "Région pour vidéo %g:1 : [ %g %g %g %g @ %g ]"
+msgstr "Oblast pro %g:1 video: [ %g %g %g %g @ %g ]"
 
 #: src/player_equalizer.cpp:926 src/video_output_qt.cpp:318
 msgid ""
 "This OpenGL implementation does not support OpenGL 2.1 and framebuffer "
 "objects."
-msgstr ""
-"Cette implémentation OpenGL se supporte pas OpenGL 2.1 et les framebuffer "
-"objects."
+msgstr "OpenGL nepodporuje verzi 2.1 a framebuffer objekty."
 
 #: src/player_equalizer.cpp:1096
 msgid "Equalizer initialization failed."
-msgstr "Echec de l'initialisation d'Equalizer."
+msgstr "Chyba inicializace Equalizeru."
 
 #: src/player_equalizer.cpp:1104
 msgid "Cannot get equalizer configuration."
-msgstr "Impossible de lire la configuration d'Equalizer."
+msgstr "Nelze získat nastavení Equalizeru."
 
 #: src/player_equalizer.cpp:1118
 msgid "Equalizer configuration initialization failed."
-msgstr "Echec de l'initialisation de la configuration d'Equalizer."
+msgstr "Nelze získat nastavení Equalizeru."
 
 #: src/player_qt.cpp:161
 msgid "Video:"
-msgstr "Vidéo :"
+msgstr "Video:"
 
 #: src/player_qt.cpp:162
 msgid "<p>Select the video stream.</p>"
-msgstr "<p>Choisir le flux vidéo.</p>"
+msgstr "<p>Vyber video stopu.</p>"
 
 #: src/player_qt.cpp:168
 msgid "Audio:"
-msgstr "Audio :"
+msgstr "Zvuk:"
 
 #: src/player_qt.cpp:169
 msgid "<p>Select the audio stream.</p>"
-msgstr "<p>Choisir le flux audio.</p>"
+msgstr "<p>Vyber zvukovou stopu.</p>"
 
 #: src/player_qt.cpp:175
 msgid "Subtitle:"
-msgstr "Sous-titres :"
+msgstr "Titulky:"
 
 #: src/player_qt.cpp:176
 msgid "<p>Select the subtitle stream.</p>"
-msgstr "<p>Choisir le flux de sous-titres.</p>"
+msgstr "<p>Vyber stopu titulků.</p>"
 
 #: src/player_qt.cpp:188
 msgid "<p>Set the 3D layout of the video stream.</p>"
-msgstr "<p>Choisir la disposition 3D du flux vidéo</p>"
+msgstr "<p>Nastav 3D formát videa.</p>"
 
 #: src/player_qt.cpp:192
 msgid "2D"
@@ -817,238 +799,237 @@ msgstr "2D"
 
 #: src/player_qt.cpp:193
 msgid "Separate streams, left first"
-msgstr "Flux séparés, gauche d'abord"
+msgstr "Oddělené stopy, levá první"
 
 #: src/player_qt.cpp:194
 msgid "Separate streams, right first"
-msgstr "Flux séparés, droit d'abord"
+msgstr "Oddělené stopy, pravá první"
 
 #: src/player_qt.cpp:195 src/player_qt.cpp:218
 msgid "Top/bottom"
-msgstr "Haut/bas"
+msgstr "Nahoře/Dole"
 
 #: src/player_qt.cpp:196 src/player_qt.cpp:219
 msgid "Top/bottom, half height"
-msgstr "Haut/bas, demi-hauteur"
+msgstr "Nahoře/Dole, poloviční výška"
 
 #: src/player_qt.cpp:197
 msgid "Bottom/top"
-msgstr "Bas/haut"
+msgstr "Dole/Nahoře"
 
 #: src/player_qt.cpp:198
 msgid "Bottom/top, half height"
-msgstr "Bas/haut, demi-hauteur"
+msgstr "Dole/Nahoře, poloviční výška"
 
 #: src/player_qt.cpp:199 src/player_qt.cpp:220
 msgid "Left/right"
-msgstr "gauche/droite"
+msgstr "Levá/Pravá"
 
 #: src/player_qt.cpp:200 src/player_qt.cpp:221
 msgid "Left/right, half width"
-msgstr "Gauche/droite, demi-largeur"
+msgstr "Levá/Pravá, poloviční šířka"
 
 #: src/player_qt.cpp:201
 msgid "Right/left"
-msgstr "Droite/gauche"
+msgstr "Pravá/Levá"
 
 #: src/player_qt.cpp:202
 msgid "Right/left, half width"
-msgstr "Droite/gauche, demi-largeur"
+msgstr "Pravá/Levá, poloviční šířka"
 
 #: src/player_qt.cpp:203 src/player_qt.cpp:222
 msgid "Even/odd rows"
-msgstr "Lignes paires/impaires"
+msgstr "Sudé/Liché řádky"
 
 #: src/player_qt.cpp:204
 msgid "Odd/even rows"
-msgstr "Lignes impaires/paires"
+msgstr "Liché/Sudé řádky"
 
 #: src/player_qt.cpp:210
 msgid "Output:"
-msgstr "Sortie :"
+msgstr "Výstup:"
 
 #: src/player_qt.cpp:211
 msgid "<p>Set the 3D output type for your display.</p>"
-msgstr "Choisir le type de sortie 3D pour votre affichage."
+msgstr "<p>Nastav 3D formát výstupu vašeho monitoru.</p>"
 
 #: src/player_qt.cpp:215
 msgid "Left view"
-msgstr "Vue gauche"
+msgstr "Levý obraz"
 
 #: src/player_qt.cpp:216
 msgid "Right view"
-msgstr "Vue droite"
+msgstr "Pravý obraz"
 
 #: src/player_qt.cpp:217
 msgid "OpenGL stereo"
-msgstr "Stéréo OpenGL"
+msgstr "OpenGL stereo"
 
 #: src/player_qt.cpp:223
 msgid "Even/odd columns"
-msgstr "Colonnes paires/impaires"
+msgstr "Sudé/Liché sloupce"
 
 #: src/player_qt.cpp:224
 msgid "Checkerboard pattern"
-msgstr "Damier"
+msgstr "Šachovnice"
 
 #: src/player_qt.cpp:225
 msgid "HDMI frame packing mode"
-msgstr "Mode HDMI frame packing"
+msgstr "HDMI režim"
 
 #: src/player_qt.cpp:226
 msgid "Red/cyan glasses, monochrome method"
-msgstr "Lunettes rouge/cyan, monochrome"
+msgstr "Červené/modré brýle, stupně šedi"
 
 #: src/player_qt.cpp:227
 msgid "Red/cyan glasses, half-color method"
-msgstr "Lunettes rouge/cyan, demi-couleur"
+msgstr "Červené/modré brýle, polotóny"
 
 #: src/player_qt.cpp:228
 msgid "Red/cyan glasses, full-color method"
-msgstr "Lunettes rouge/cyan, pleine couleur"
+msgstr "Červené/modré brýle, plné tóny"
 
 #: src/player_qt.cpp:229
 msgid "Red/cyan glasses, high-quality Dubois method"
-msgstr "Lunettes rouge/cyan, méthode Dubois"
+msgstr "Červené/modré brýle, kvalitní Dubois metoda"
 
 #: src/player_qt.cpp:230
 msgid "Green/magenta glasses, monochrome method"
-msgstr "Lunettes vert/magenta, monochrome"
+msgstr "Zelené/fialové brýle, stupně šedi"
 
 #: src/player_qt.cpp:231
 msgid "Green/magenta glasses, half-color method"
-msgstr "Lunettes vert/magenta, demi-couleur"
+msgstr "Zelené/fialové brýle, polotóny"
 
 #: src/player_qt.cpp:232
 msgid "Green/magenta glasses, full-color method"
-msgstr "Lunettes vert/magenta, pleine couleur"
+msgstr "Zelené/fialové brýle, plné tóny"
 
 #: src/player_qt.cpp:233
 msgid "Green/magenta glasses, high-quality Dubois method"
-msgstr "Lunettes vert/magenta, méthode Dubois"
+msgstr "Zelené/fialové brýle, kvalitní Dubois metoda"
 
 #: src/player_qt.cpp:234
 msgid "Amber/blue glasses, monochrome method"
-msgstr "Lunettes Ambre/bleu, monochrome"
+msgstr "Žluté/modré brýle, stupně šedi"
 
 #: src/player_qt.cpp:235
 msgid "Amber/blue glasses, half-color method"
-msgstr "Lunettes Ambre/bleu, demi-couleur"
+msgstr "Žluté/modré brýle, polotóny"
 
 #: src/player_qt.cpp:236
 msgid "Amber/blue glasses, full-color method"
-msgstr "Lunettes Ambre/bleu, pleine couleur"
+msgstr "Žluté/modré brýle, plné tóny"
 
 #: src/player_qt.cpp:237
 msgid "Amber/blue glasses, high-quality Dubois method"
-msgstr "Lunettes Ambre/bleu, méthode Dubois"
+msgstr "Žluté/modré brýle, kvalitní Dubois metoda"
 
 #: src/player_qt.cpp:238
 msgid "Red/green glasses, monochrome method"
-msgstr "Lunettes rouge/vert, monochrome"
+msgstr "Červené/zelené brýle, stupně šedi"
 
 #: src/player_qt.cpp:239
 msgid "Red/blue glasses, monochrome method"
-msgstr "Lunettes rouge/bleu, monochrome"
+msgstr "Červené/modré brýle, stupně šedi"
 
 #: src/player_qt.cpp:243
 msgid "Swap left/right"
-msgstr "Echanger gauche/droite"
+msgstr "Prohoď levou/pravou"
 
 #: src/player_qt.cpp:244
 msgid ""
 "<p>Swap the left and right view. Use this if the 3D effect seems wrong.</p>"
 msgstr ""
-"<p>Echanger les vues droite et gauche. À utiliser si l'effet 3D parait "
-"étrange.</p>"
+"<p>Prohoď levou a pravou. Použijte, pokud je 3D efekt špatný (obrácený)</p>"
 
 #: src/player_qt.cpp:511
 msgid "Off"
-msgstr "Eteint"
+msgstr "Žádné"
 
 #: src/player_qt.cpp:745
 msgid ""
 "<p>This slider shows the progress during video playback, and can be used to "
 "seek in the video.</p>"
 msgstr ""
-"<p>Ce curseur montre la progression de la lecture vidéo, et peut être "
-"utiliser pour naviguer dans la vidéo</p>"
+"<p>Tento posuvník zobrazuje pozici přehrávaného videa, můžete ho použít pro "
+"vyhledávání ve videu.</p>"
 
 #: src/player_qt.cpp:752
 msgid "<p>Elapsed / total time.</p>"
-msgstr "<p>Temps écoulé/total.</p>"
+msgstr "<p>Uplynulý / celkový čas.</p>"
 
 #: src/player_qt.cpp:762
 msgid "<p>Play.</p>"
-msgstr "<p>Lecture.</p>"
+msgstr "<p>Spustit.</p>"
 
 #: src/player_qt.cpp:766
 msgid "<p>Pause.</p>"
-msgstr "<p>Pause.</p>"
+msgstr "<p>Pozastav.</p>"
 
 #: src/player_qt.cpp:770
 msgid "<p>Stop.</p>"
-msgstr "<p>Stop.</p>"
+msgstr "<p>Zastav.</p>"
 
 #: src/player_qt.cpp:775
 msgid "<p>Toggle loop mode.</p>"
-msgstr "<p>Basculer le mode lecture en boucle.</p>"
+msgstr "<p>Přepnout přehrávání ve smyčce.</p>"
 
 #: src/player_qt.cpp:782
 msgid ""
 "<p>Switch to fullscreen mode. You can leave fullscreen mode by pressing the "
 "f key.</p>"
 msgstr ""
-"<p>Passer en mode plein écran. Vous pouvez quitter le mode plein écran avec "
-"la touche f ou ESC.</p>"
+"<p>Přepni do režimu celé obrazovky. Tento režim můžete ukončit stiskem "
+"tlačítka f</p>"
 
 #: src/player_qt.cpp:788
 msgid "<p>Center the video area on your screen.</p>"
-msgstr "<p>Centrer la vidéo sur l'écran.</p>"
+msgstr "<p>Vycentruj video na středu obrazovky.</p>"
 
 #: src/player_qt.cpp:795
 msgid "<p>Seek backward 10 minutes.</p>"
-msgstr "<p>Aller 10 minutes en arrière.</p>"
+msgstr "<p>Přeskoč 10 minut zpět.</p>"
 
 #: src/player_qt.cpp:800
 msgid "<p>Seek backward 1 minute.</p>"
-msgstr "<p>Aller 1 minute en arrière.</p>"
+msgstr "<p>Přeskoč 1 minutu zpět.</p>"
 
 #: src/player_qt.cpp:806
 msgid "<p>Seek backward 10 seconds.</p>"
-msgstr "<p>Aller 10 secondes en arrière.</p>"
+msgstr "<p>Přeskoč 10 vteřin zpět.</p>"
 
 #: src/player_qt.cpp:812
 msgid "<p>Seek forward 10 seconds.</p>"
-msgstr "<p>Aller 10 secondes en avant.</p>"
+msgstr "<p>Přeskoč 10 vteřin dopředu.</p>"
 
 #: src/player_qt.cpp:817
 msgid "<p>Seek forward 1 minute.</p>"
-msgstr "<p>Aller 1 minute en avant.</p>"
+msgstr "<p>Přeskoč 1 minutu dopředu.</p>"
 
 #: src/player_qt.cpp:823
 msgid "<p>Seek forward 10 minutes.</p>"
-msgstr "<p>Aller 10 minutes en avant.</p>"
+msgstr "<p>Přeskoč 10 minut dopředu.</p>"
 
 #: src/player_qt.cpp:1052
 msgid "Display Color Adjustments"
-msgstr "Réglages des couleurs d'affichage"
+msgstr "Zobraz nastavení barev"
 
 #: src/player_qt.cpp:1054
 msgid "Contrast:"
-msgstr "Contraste :"
+msgstr "Kontrast:"
 
 #: src/player_qt.cpp:1065
 msgid "Brightness:"
-msgstr "Luminosité :"
+msgstr "Jas:"
 
 #: src/player_qt.cpp:1076
 msgid "Hue:"
-msgstr "Teinte :"
+msgstr "Odstín:"
 
 #: src/player_qt.cpp:1087
 msgid "Saturation:"
-msgstr "Saturation :"
+msgstr "Sytost:"
 
 #: src/player_qt.cpp:1099 src/player_qt.cpp:1290 src/player_qt.cpp:1406
 #: src/player_qt.cpp:1695 src/player_qt.cpp:1875 src/player_qt.cpp:2546
@@ -1058,7 +1039,7 @@ msgstr "OK"
 
 #: src/player_qt.cpp:1261
 msgid "Display Crosstalk Calibration"
-msgstr "Calibrage du crosstalk d'affichage"
+msgstr "Zobra Crosstalk kalibraci"
 
 #. TRANSLATORS: Please keep the lines short using <br> where necessary.
 #: src/player_qt.cpp:1264
@@ -1066,101 +1047,101 @@ msgid ""
 "<p>Please read the manual to find out<br>how to measure the crosstalk "
 "levels<br>of your display.</p>"
 msgstr ""
-"<p>Le manuel explique comment<br>mesurer le niveau de crosstalk<br>de votre "
-"affichage.</p>"
+"<p>Přečtěte si prosím v manuálu<br>jak změřit nastavení crosstalku<br>pro "
+"váš monitor.</p>"
 
 #: src/player_qt.cpp:1268
 msgid "Red:"
-msgstr "Rouge :"
+msgstr "Červená:"
 
 #: src/player_qt.cpp:1275
 msgid "Green:"
-msgstr "Vert :"
+msgstr "Zelená:"
 
 #: src/player_qt.cpp:1282
 msgid "Blue:"
-msgstr "Bleu :"
+msgstr "Modrá:"
 
 #: src/player_qt.cpp:1348
 msgid "Subtitle Settings"
-msgstr "Réglages des sous-titres"
+msgstr "Nastavení titulků"
 
 #: src/player_qt.cpp:1350
 msgid "<p>These settings apply to soft subtitles, but not to bitmaps.</p>"
 msgstr ""
-"<p>Ces réglages s'appliquent aux sous-titres textuels, pas aux bitmaps.</p>"
+"<p>Toto nastavení se aplikuje titulky v textové podobě, ne na obrázkové.</p>"
 
 #: src/player_qt.cpp:1352
 msgid "Encoding:"
-msgstr "Encodage :"
+msgstr "Kódování:"
 
 #: src/player_qt.cpp:1353
 msgid "<p>Set the subtitle character set encoding.</p>"
-msgstr "<p>Choisir l'encodage du jeux de caractères des sous-titres."
+msgstr "<p>Nastaví znakovou stránku titulků.</p>"
 
 #: src/player_qt.cpp:1367
 msgid "Override font:"
-msgstr "Police de caractères :"
+msgstr "Vynutit font:"
 
 #: src/player_qt.cpp:1368
 msgid "<p>Override the subtitle font family.</p>"
-msgstr "<p>Force la police de caractères utilisée pour les sous-titres.</p>"
+msgstr "<p>Vynutí font titulků.</p>"
 
 #: src/player_qt.cpp:1376
 msgid "Override font size:"
-msgstr "Taille de police :"
+msgstr "Vynutit velikost fontu:"
 
 #: src/player_qt.cpp:1377
 msgid "<p>Override the subtitle font size.</p>"
-msgstr "<p>Force la taille de la police des sous-titres.</p>"
+msgstr "<p>Vynutí velikost titulků.</p>"
 
 #: src/player_qt.cpp:1386
 msgid "Override scale factor:"
-msgstr "Facteur d'échelle :"
+msgstr "Vynutit zvětšení:"
 
 #: src/player_qt.cpp:1387
 msgid "<p>Override the subtitle scale factor.</p>"
-msgstr "<p>Force le facteur d'échelle des sous-titres.</p>"
+msgstr "<p>Vynutí zvětšní titulků.</p>"
 
 #: src/player_qt.cpp:1397
 msgid "Override color:"
-msgstr "Couleur :"
+msgstr "Vynutit barvu:"
 
 #: src/player_qt.cpp:1398
 msgid "<p>Override the subtitle color.</p>"
-msgstr "<p>Force la couleur des sous-titres.</p>"
+msgstr "<p>Vynutí barvu titulků.</p>"
 
 #: src/player_qt.cpp:1644
 msgid "Stereoscopic Video Settings"
-msgstr "Réglages de la vidéo stéréoscopique"
+msgstr "Nastavení 3D obrazu"
 
 #: src/player_qt.cpp:1646
 msgid "Parallax:"
-msgstr "Parallaxe :"
+msgstr "Parallax:"
 
 #: src/player_qt.cpp:1647
 msgid ""
 "<p>Adjust parallax, from -1 to +1. This changes the separation of left and "
 "right view, and thus the perceived distance of the scene.</p>"
 msgstr ""
-"<p>Ajuster la parallaxe, de -1 à 1.  Ceci change la séparation des vues "
-"gauche et droite, et donc la distance perçue de la scène.</p>"
+"<p>Upraví parallax, od -1 do +1. Změní vzdálenost levého a pravého obrazu a "
+"tím nastaví hloubku vnímání 3D scény.</p>"
 
 #: src/player_qt.cpp:1662
 msgid "Subtitle parallax:"
-msgstr "Parallaxe des sous-titres :"
+msgstr "Parallax titulků:"
 
 #: src/player_qt.cpp:1663
 msgid ""
 "<p>Adjust subtitle parallax, from -1 to +1. This changes the perceived "
 "distance of the subtitles.</p>"
 msgstr ""
-"<p>Ajuster la parallaxe des sous-titres, de -1 à 1. Ceci change la distance "
-"perçue des sous-titres.</p>"
+"<p>Upraví parallax titulků, od -1 do +1. Změní vnímanou vzdálenost titulků.</"
+"p>"
 
 #: src/player_qt.cpp:1678
 msgid "Ghostbusting:"
-msgstr "Ghostbusting :"
+msgstr "Ghostbusting:"
 
 #: src/player_qt.cpp:1679
 msgid ""
@@ -1168,34 +1149,33 @@ msgid ""
 "the crosstalk levels of your display first. Note that crosstalk ghostbusting "
 "does not work with anaglyph glasses.</p>"
 msgstr ""
-"<p>Choisir le niveau de ghostbusting (élimination du crosstalk), de 0 à 1. "
-"Vous devez régler le niveau de crosstalk de votre affichage d'abord. Le "
-"ghostbusting ne fonctionne pas avec les lunettes anaglyphes.</p>"
+"<p>Set the amount of crosstalk ghostbusting, from 0 to 1. You need to set "
+"the crosstalk levels of your display first. Note that crosstalk ghostbusting "
+"does not work with anaglyph glasses.</p>"
 
 #: src/player_qt.cpp:1826
 msgid "Open device"
-msgstr "Ouvrir le périphérique"
+msgstr "Otevři zařízení"
 
 #: src/player_qt.cpp:1829
 msgid "<p>Choose a device type.</p>"
-msgstr "<p>Sélectionner un type de périphérique.</p>"
+msgstr "<p>Vyberte typ zařízení.</p>"
 
 #: src/player_qt.cpp:1830
 msgid "Default"
-msgstr "Par défaut"
+msgstr "Výchozí"
 
 #: src/player_qt.cpp:1834 src/player_qt.cpp:1837
 msgid "<p>Choose a device.</p>"
-msgstr "<p>Sélectionner un périphérique</p>"
+msgstr "<p>Vyberte zařízení.</p>"
 
 #: src/player_qt.cpp:1840
 msgid "<p>Set the X11 device string. Refer to the manual for details.</p>"
-msgstr ""
-"<p>Identifiant du périphérique X11. Voir le manuel pour les détails.</p>"
+msgstr "<p>Zadejte X11 device string. Podrobnosti najdete v manuálu.</p>"
 
 #: src/player_qt.cpp:1849
 msgid "Request frame size"
-msgstr "Résolution demandée"
+msgstr "Vynutit velikost obrazu"
 
 #: src/player_qt.cpp:1850
 msgid ""
@@ -1203,13 +1183,13 @@ msgid ""
 "must support this frame size. Some devices require a frame size to be "
 "selected.</p>"
 msgstr ""
-"<p>Demande une résolution spécifique au périphérique, par ex. 640x480. Le "
-"périphérique doit supporter cette résolution. Certains périphériques exigent "
-"de sélectionner une résolution.</p>"
+"<p>Požaduj danou velikost obrazu, například 640x480. Zařízení musí danou "
+"velikost podporovat. Některá zařízení vyžadují, aby byla velikost nastavena."
+"</p>"
 
 #: src/player_qt.cpp:1861
 msgid "Request frame rate"
-msgstr "Taux de rafraichissement demandé"
+msgstr "Vynutit snímkovou frekvenci"
 
 #: src/player_qt.cpp:1862
 msgid ""
@@ -1217,183 +1197,183 @@ msgid ""
 "support this frame rate. Some devices require a frame rate to be selected.</"
 "p>"
 msgstr ""
-"<p>Demander un taux de rafraichissement au périphérique, par ex. 25/1. Le "
-"périphérique doit supporter ce taux de rafraichissement. Certains "
-"périphériques exigent de sélectionner un taux de rafraichissement.<p>"
+"<p>Požaduj danou snímkovou frekvenci, například 25/1. Zařízení musí danou "
+"frekvenci podporovat. Některá zařízení vyžadují, aby byla frekvence "
+"nastavena.</p>"
 
 #: src/player_qt.cpp:1873 src/player_qt.cpp:2545 src/player_qt.cpp:2741
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Zrušit"
 
 #: src/player_qt.cpp:2048
 msgid "&File"
-msgstr "&Fichier"
+msgstr "&Soubor"
 
 #: src/player_qt.cpp:2049
 msgid "&Open..."
-msgstr "&Ouvrir..."
+msgstr "&Otevřít..."
 
 #: src/player_qt.cpp:2054
 msgid "Open &URL..."
-msgstr "Ouvrir l'&URL..."
+msgstr "Otevřít &URL..."
 
 #: src/player_qt.cpp:2058
 msgid "Open &device..."
-msgstr "Ouvrir le périphérique..."
+msgstr "Otevřít &zařízení..."
 
 #: src/player_qt.cpp:2063
 msgid "&Quit..."
-msgstr "&Quitter..."
+msgstr "&Ukončit..."
 
 #: src/player_qt.cpp:2069
 msgid "&Preferences"
-msgstr "&Préférences"
+msgstr "&Nastavení"
 
 #: src/player_qt.cpp:2072
 msgid "&Fullscreen Settings..."
-msgstr "Réglages du mode &plein écran..."
+msgstr "Nastavení &celoobrazového režimu..."
 
 #: src/player_qt.cpp:2075
 msgid "Display &Color Adjustments..."
-msgstr "Réglage des &couleurs de l'affichage..."
+msgstr "Nastavení &barev..."
 
 #: src/player_qt.cpp:2078
 msgid "Display Cross&talk Calibration..."
-msgstr "Calibrage du cross&talk de l'affichage..."
+msgstr "Nastavení &Crosstalku..."
 
 #: src/player_qt.cpp:2082
 msgid "&Subtitle Settings..."
-msgstr "Réglage des &sous-titres..."
+msgstr "Nastavení &Titulků..."
 
 #: src/player_qt.cpp:2086
 msgid "Stereoscopic Video Settings..."
-msgstr "Réglages de la vidéo stéréoscopique..."
+msgstr "Nastavení 3D videa..."
 
 #: src/player_qt.cpp:2089
 msgid "&Help"
-msgstr "Aide"
+msgstr "&Nápověda"
 
 #: src/player_qt.cpp:2090
 msgid "&Manual..."
-msgstr "&Manuel..."
+msgstr "&Manuál..."
 
 #: src/player_qt.cpp:2095
 msgid "&Website..."
-msgstr "Site &web..."
+msgstr "&Webová stránka..."
 
 #: src/player_qt.cpp:2099
 msgid "&Keyboard Shortcuts"
-msgstr "Raccourcis clavier"
+msgstr "&Klávesové zkratky"
 
 #: src/player_qt.cpp:2103
 msgid "&About"
-msgstr "&À propos"
+msgstr "&O Binu"
 
 #: src/player_qt.cpp:2169 src/player_qt.cpp:2891 src/player_qt.cpp:2899
 #: src/video_output_qt.cpp:92 src/video_output_qt.cpp:400
 #: src/video_output_qt.cpp:422
 msgid "Error"
-msgstr "Erreur"
+msgstr "Chyba"
 
 #: src/player_qt.cpp:2528
 msgid "Open files"
-msgstr "Ouvrir des fichiers"
+msgstr "Otevři soubory"
 
 #: src/player_qt.cpp:2541
 msgid "Open URL"
-msgstr "Ouvrir un URL"
+msgstr "Otevři URL"
 
 #: src/player_qt.cpp:2542
 msgid "URL:"
-msgstr "URL :"
+msgstr "URL:"
 
 #: src/player_qt.cpp:2689
 msgid "Fullscreen/Multiscreen Settings"
-msgstr "Réglages plein écran/multi-écrans"
+msgstr "Nastavení Celoobrazového/Víceobrazového režimu"
 
 #: src/player_qt.cpp:2691
 msgid "Configure fullscreen mode:"
-msgstr "Configuration du mode plein écran :"
+msgstr "Nastavení celoobrazového režimu:"
 
 #: src/player_qt.cpp:2692
 msgid "<p>Select the screens to use in fullscreen mode.</p>"
-msgstr "<p>Choisir les écrans à utiliser pour le mode plein écran.</p>"
+msgstr "<p>Vyber obrazovky, které budou použity v celoobrazovém režimu.</p>"
 
 #: src/player_qt.cpp:2694
 msgid "Single screen:"
-msgstr "Écran unique :"
+msgstr "Jedna obrazovka:"
 
 #: src/player_qt.cpp:2695
 msgid "<p>Use a single screen for fullscreen mode.</p>"
-msgstr "<p>Utiliser un seul écran pour le mode plein écran.</p>"
+msgstr "<p>Použij jednu obrazovku pro celoobrazový režim.</p>"
 
 #: src/player_qt.cpp:2698
 msgid "Primary screen"
-msgstr "Écran primaire"
+msgstr "Primární obrazovka"
 
 #: src/player_qt.cpp:2703 src/player_qt.cpp:2717 src/player_qt.cpp:2718
 #, c-format
 msgid "Screen %d"
-msgstr "Écran %d"
+msgstr "Obrazovka %d"
 
 #: src/player_qt.cpp:2707
 msgid "Dual screen:"
-msgstr "Double écran :"
+msgstr "Dvě obrazovky:"
 
 #: src/player_qt.cpp:2708
 msgid "<p>Use two screens for fullscreen mode.</p>"
-msgstr "<p>Utiliser deux écrans pour le mode plein écran.</p>"
+msgstr "<p>Použij dvě obrazovky pro celoobrazový režim.</p>"
 
 #: src/player_qt.cpp:2722
 msgid "Multi screen:"
-msgstr "Plein écran :"
+msgstr "Více obrazovek:"
 
 #: src/player_qt.cpp:2723
 msgid "<p>Use multiple screens for fullscreen mode.</p>"
-msgstr "<p>Utiliser plusieurs écrans pour le mode plein écran</p>"
+msgstr "<p>Použij více obrazovek pro celoobrazový režim.</p>"
 
 #: src/player_qt.cpp:2725
 msgid "<p>Comma-separated list of screens to use for fullscreen mode.</p>"
 msgstr ""
-"<p>Liste d'écrans à utiliser pour le mode plein écran, séparés par des "
-"virgules.</p>"
+"<p>Seznam obrazovek pro použití v celoobrazovém režimu, oddělený čárkou.</p>"
 
 #: src/player_qt.cpp:2729
 msgid "When in fullscreen mode,"
-msgstr "En mode plein écran,"
+msgstr "V celoobrazovém režimu,"
 
 #: src/player_qt.cpp:2730
 msgid "<p>Set special left/right view handling for fullscreen mode.</p>"
 msgstr ""
-"<p>Réglages spéciaux pour les vues droite et gauche en plein écran.</p>"
+"<p>Nastav zvláštní chování pravého/levého obrazu při celoobrazovém režimu.</"
+"p>"
 
 #: src/player_qt.cpp:2732
 msgid "flip left view vertically."
-msgstr "flip vertical de la vue gauche"
+msgstr "překlop levý obraz vertikálně."
 
 #: src/player_qt.cpp:2734
 msgid "flop left view horizontally."
-msgstr "flip horizontal de la vue gauche"
+msgstr "překlop levý obraz horizontálně."
 
 #: src/player_qt.cpp:2736
 msgid "flip right view vertically."
-msgstr "flip vertical de la vue droite"
+msgstr "překlop pravý obraz vertikálně."
 
 #: src/player_qt.cpp:2738
 msgid "flop right view horizontally."
-msgstr "flop horizontal de la vue droite"
+msgstr "překlop pravý obraz horizontálně."
 
 #: src/player_qt.cpp:2891
 msgid "Cannot open manual."
-msgstr "Impossible d'ouvrir le manuel."
+msgstr "Nemohu otevřít manál."
 
 #: src/player_qt.cpp:2899
 msgid "Cannot open website."
-msgstr "Impossible d'ouvrir le site web."
+msgstr "Nemohu otevřít webovou stránku."
 
 #: src/player_qt.cpp:2905
 msgid "Keyboard Shortcuts"
-msgstr "Raccourcis clavier"
+msgstr "Klávesové zkratky"
 
 #. TRANSLATORS: This is a HTML table, shown under Help->Keyboard Shortcuts.
 #. Please make sure that your translation formats properly.
@@ -1414,31 +1394,30 @@ msgid ""
 "backward / forward</td></tr><tr><td>page up, page down</td><td>Seek 10 "
 "minutes backward / forward</td></tr></table></p>"
 msgstr ""
-"<p>Contrôle par le clavier:<br><table><tr><td>q ou ESC</td><td>Stop</td></"
-"tr><tr><td>p ou ESPACE</td><td>Pause / continuer</td></tr><tr><td>f</"
-"td><td>Basculer en plein écran</td></tr><tr><td>c</td><td>Centrer la "
-"fenêtre</td></tr><tr><td>e</td><td>Echanger les yeux gauche/droit</td></"
-"tr><tr><td>v</td><td>Parcourir les flux vidéo disponibles</td></"
-"tr><tr><td>a</td><td>Parcourir les flux audio disponibles</td></"
-"tr><tr><td>s</td><td>Parcourir les flux de sous-titres disponibles</td></"
-"tr><tr><td>1, 2</td><td>Ajuster le contraste</td></tr><tr><td>3, 4</"
-"td><td>Ajuster la luminosité</td></tr><tr><td>5, 6</td><td>Ajuster la "
-"teinte</td></tr><tr><td>7, 8</td><td>Ajuster la saturation</td></"
-"tr><tr><td>&lt;, &gt;</td><td>Ajuster la parallaxe</td></tr><tr><td>(, )</"
-"td><td>Adjuster le ghostbusting</td></tr><tr><td>gauche, droite</"
-"td><td>Avancer / reculer de 10 secondes</td></tr><tr><td>haut, bas</"
-"td><td>Avancer / reculer d'1 minute</td></tr><tr><td>page prec., page suiv.</"
-"td><td>Avancer / reculer de 10 minutes</td></tr></table></p>"
+"<p>Ovládání klávesnicí:<br><table><tr><td>q nebo ESC</td><td>Ukončit</td></"
+"tr><tr><td>p nebo MEZERA</td><td>Pozastav / pokračuj</td></tr><tr><td>f</"
+"td><td>Přepni na celou obrazovku</td></tr><tr><td>c</td><td>Vycentruj okno</"
+"td></tr><tr><td>e</td><td>Prohoď levé/pravé oko</td></tr><tr><td>v</"
+"td><td>Procházej dostupné video stopy</td></tr><tr><td>a</td><td>Procházej "
+"dostupné zvukové stopy</td></tr><tr><td>s</td><td>Procházej dostupné "
+"titulky</td></tr><tr><td>1, 2</td><td>Uprav kontrast</td></tr><tr><td>3, 4</"
+"td><td>Uprav jas</td></tr><tr><td>5, 6</td><td>Uprav odstín</td></"
+"tr><tr><td>7, 8</td><td>Uprav sytost</td></tr><tr><td>&lt;, &gt;</"
+"td><td>Uprav parallax</td></tr><tr><td>(, )</td><td>Uprav ghostbusting</td></"
+"tr><tr><td>left, right</td><td>Přeskoč 10 sekund dopředu / zpět</td></"
+"tr><tr><td>up, down</td><td>Přeskoč 1 minutu dopředu / zpět</td></"
+"tr><tr><td>page up, page down</td><td>Přeskoč 10 minut dopředu / zpět</td></"
+"tr></table></p>"
 
 #: src/player_qt.cpp:2935
 #, c-format
 msgid "About %s"
-msgstr "À propos de %s"
+msgstr "O pragramu %s"
 
 #: src/player_qt.cpp:2941
 #, c-format
 msgid "The %s 3D video player"
-msgstr "Le lecteur vidéo 3D %s"
+msgstr "%s 3D video přehrávač"
 
 #: src/player_qt.cpp:2946
 #, c-format
@@ -1449,24 +1428,25 @@ msgid ""
 "a>. There is NO WARRANTY, to the extent permitted by law.</p><p>See <a href="
 "\"%s\">%s</a> for more information on this software.</p>"
 msgstr ""
-"<p>%s version %s.</p><p>Copyright (C) 2011 les développeurs Bino.</p><p>Ceci "
-"est un logiciel libre. Vous pouvez en distribuer des copies sous les termes "
-"de la <a href=\"http://www.gnu.org/licenses/gpl.html\">GNU General Public "
-"License</a>. Il n'y a AUCUNE GARANTIE, dans les limites autorisées par la "
-"loi.</p><p>Voir <a href=\"%s\">%s</a> pour plus d'informations sur ce "
-"logiciel.</p>"
+"<p>%s verze %s.</p><p>Copyright (C) 2011 Bino vývojáři.</p><p>Tento program "
+"je svobodný software. Můžete jej šířit a modifikovat podle ustanovení <a "
+"href=\"http://www.gnu.org/licenses/gpl.html\">GNU General Public License</a>."
+"Tento program je rozšiřován v naději, že bude užitečný, avšak BEZ JAKÉKOLI "
+"ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO "
+"URČITÝ ÚČEL.</p><p>Navštivte <a href=\"%s\">%s</a> pro více informací o "
+"tomto software.</p>"
 
 #: src/player_qt.cpp:2983
 msgid "About"
-msgstr "À propos"
+msgstr "O programu"
 
 #: src/player_qt.cpp:2984
 msgid "Libraries"
-msgstr "Bibliothèques"
+msgstr "Knihovny"
 
 #: src/player_qt.cpp:2985
 msgid "Team"
-msgstr "Équipe"
+msgstr "Tým"
 
 #: src/player_qt.cpp:2986
 msgid "License"
@@ -1474,64 +1454,64 @@ msgstr "Licence"
 
 #: src/subtitle_renderer.cpp:223
 msgid "Cannot initialize LibASS."
-msgstr "Impossible d'initialiser LibASS."
+msgstr "Nemohu inicializovat LibASS."
 
 #: src/subtitle_renderer.cpp:232
 msgid "Cannot initialize LibASS renderer."
-msgstr "Impossible d'initialiser le rendu par LibASS."
+msgstr "Nemohu inicializovat vykreslování LibASS."
 
 #: src/subtitle_renderer.cpp:398
 msgid "Cannot initialize LibASS track."
-msgstr "Impossible d'initialiser la piste LibASS."
+msgstr "Nemohu inicializovat LibASS stopu."
 
 #: src/subtitle_renderer.cpp:409
 #, c-format
 msgid "Subtitle character set conversion failed: %s"
-msgstr "La conversion de jeu de caractère de sous-titres a échoué : %s"
+msgstr "Konverze kódování titulků selhala: %s"
 
 #: src/video_output.cpp:363 src/video_output.cpp:473
 msgid "Cannot create a PBO buffer."
-msgstr "Impossuble de créer un buffer PBO."
+msgstr "Nemohu vytvořit PBO buffer."
 
 #: src/video_output_qt.cpp:313
 #, c-format
 msgid "Cannot initialize GLEW: %s"
-msgstr "Impossible d'initialiser GLEW : %s"
+msgstr "Nemohu inicializovat GLEW: %s"
 
 #: src/video_output_qt.cpp:343
 msgid "Please wait"
-msgstr "Veuillez patienter"
+msgstr "Prosím čekejte"
 
 #: src/video_output_qt.cpp:400 src/video_output_qt.cpp:417
 msgid "Cannot set OpenGL context format."
-msgstr "Impossible de choisir le format du contexte OpenGL"
+msgstr "Nemohu nastavit OpenGL formát."
 
 #: src/video_output_qt.cpp:412
 msgid "The display does not support OpenGL stereo mode."
-msgstr "L'affichage ne supporte pas le mode OpenGL stéréo"
+msgstr "Stereo OpenGL režim není podporován."
 
 #: src/video_output_qt.cpp:505
 msgid "Cannot suspend screensaver."
-msgstr "Impossible de suspendre l'économiseur d'écran."
+msgstr "Nelze zakázat spořič obrazovky."
 
 #: src/video_output_qt.cpp:520
 msgid "Cannot resume screensaver."
-msgstr "Impossible de rétablir l'économiseur d'écran."
+msgstr "Nelze povolit spořič obrazovky."
 
 #: src/xgl.cpp:200
 #, c-format
 msgid "OpenGL FBO error %s."
-msgstr "Erreur OpenGL FBO %s."
+msgstr "Chyba FBO %s."
 
 #: src/xgl.cpp:217
 #, c-format
 msgid "OpenGL error 0x%04X."
-msgstr "Erreur OpenGL 0x%04X."
+msgstr "OpenGL chyba 0x%04X."
 
 #: src/xgl.cpp:282
 #, c-format
 msgid "OpenGL %s '%s': compiler warning:"
-msgstr "OpenGL %s '%s' : avertissement du compilateur :"
+msgstr "OpenGL %s '%s': varování při kompilaci:"
 
 #: src/xgl.cpp:283 src/xgl.cpp:292
 msgid "vertex shader"
@@ -1548,35 +1528,33 @@ msgstr "fragment shader"
 #: src/xgl.cpp:291
 #, c-format
 msgid "OpenGL %s '%s': compilation failed."
-msgstr "OpenGL %s '%s' : Échec de la compilation."
+msgstr "OpenGL %s '%s': selhala kompilace."
 
 #: src/xgl.cpp:296 src/xgl.cpp:363
 msgid "unknown error"
-msgstr "erreur inconnue"
+msgstr "neznámá chyba"
 
 #: src/xgl.cpp:357
 #, c-format
 msgid "OpenGL program '%s': linker warning:"
-msgstr "Programme OpenGL '%s' : avertissement de l'éditeur de liens."
+msgstr "OpenGL program '%s': varování linkeru:"
 
 #: src/xgl.cpp:362
 #, c-format
 msgid "OpenGL program '%s': linking failed."
-msgstr "Programme OpenGL '%s' : erreur de l'éditeur de liens."
+msgstr "OpenGL program '%s': selhalo linkování."
 
 #~ msgid "Unknown exception."
-#~ msgstr "Exception inconnue."
+#~ msgstr "Neznámá výjimka."
 
 #~ msgid "%s audio stream %d: Unsupported audio codec."
-#~ msgstr "%s flux audio %d : Codec audio non supporté."
+#~ msgstr "%s zvuková stopa %d: Nepodporovaný kodek audia."
 
 #~ msgid "%s audio stream %d: Cannot open audio codec: %s"
-#~ msgstr "%s flux audio %d : Impossible d'ouvrir le codec audio : %s"
+#~ msgstr "%s zvuková stopa %d: Nemohu otevřít kodek zvuku: %s"
 
 #~ msgid "%s subtitle stream %d: Unsupported subtitle codec."
-#~ msgstr "%s flux de sous-titres %d : Codec de sous-titres non supporté."
+#~ msgstr "%s stopa titulků %d: Nepodporovaný kodek titulků."
 
 #~ msgid "%s subtitle stream %d: Cannot open subtitle codec: %s"
-#~ msgstr ""
-#~ "%s flux de sous-titres %d : Impossible d'ouvrir le codec de sous-titres : "
-#~ "%s"
+#~ msgstr "%s stopa titulků %d: Nemohu otevřít kodek titulků: %s"
