@@ -1,3 +1,17 @@
+bino (1.2.1-1) unstable; urgency=low
+
+  * Imported Upstream version 1.2.1
+  * add comment to lintian override
+  * wrap-and-sort control and .install files
+  * build-depend on libglew1.6-dev instead of
+    virtual package libglew-dev
+  * delete usr/share/info/dir from debian/tmp
+  * html docs are installed in htmldir now,
+    adapt configure option
+  * remove fix-hyphen-used-as-minus.patch, applied upstream
+
+ -- Daniel Schaal <farbing@web.de>  Mon, 10 Oct 2011 22:23:34 +0200
+
 bino (1.2.0-1) unstable; urgency=low
 
   * Initial release (Closes: #610793)
