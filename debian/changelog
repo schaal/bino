@@ -1,3 +1,12 @@
+bino (1.2.1-2) unstable; urgency=low
+
+  * explicitly disable Equalizer in configure line
+  * Build-Depend on libass-dev >= 0.10.0-2,
+    earlier versions are missing a dependency on libfribidi-dev.
+    (Closes: #646442)
+
+ -- Daniel Schaal <farbing@web.de>  Fri, 16 Dec 2011 22:45:38 +0100
+
 bino (1.2.1-1) unstable; urgency=low
 
   * Imported Upstream version 1.2.1
