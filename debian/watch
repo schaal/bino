@@ -1,2 +1,2 @@
 version=3
-http://download.savannah.gnu.org/releases/bino/bino-([\d\.]*)\.tar\.xz
+http://download.savannah.gnu.org/releases/bino/bino-(\d+\.[24680]\.\d+)\.tar\.xz
