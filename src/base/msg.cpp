@@ -1,7 +1,5 @@
 /*
- * This file is part of bino, a 3D video player.
- *
- * Copyright (C) 2009-2011
+ * Copyright (C) 2009, 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -23,7 +21,6 @@
 #include <limits>
 #include <cstdlib>
 #include <cstdio>
-#include <cwchar>
 
 #include "dbg.h"
 #include "str.h"
@@ -58,7 +55,11 @@ namespace msg
 
     void set_level(level_t l)
     {
+#ifdef NDEBUG
+        _level = (l == msg::DBG ? msg::INF : l);
+#else
         _level = l;
+#endif
     }
 
     int columns()
@@ -154,49 +155,6 @@ namespace msg
         msg(indent, level, s);
     }
 
-    static std::wstring str_to_wstr(const std::string &in)
-    {
-        std::wstring out;
-        size_t l = std::mbstowcs(NULL, in.c_str(), 0);
-        if (l == static_cast<size_t>(-1) || l > static_cast<size_t>(std::numeric_limits<int>::max() - 1))
-        {
-            // This should never happen. We don't want to handle this case, and we don't want to throw
-            // an exception from a msg function, so inform the user and abort.
-            msg::err("Failure in msg::str_to_wstr().");
-            dbg::crash();
-        }
-        out.resize(l);
-        std::mbstowcs(&(out[0]), in.c_str(), l);
-        return out;
-    }
-
-    static int display_width(const std::wstring &ws)
-    {
-#ifdef HAVE_WCWIDTH
-        return std::max(0, ::wcswidth(ws.c_str(), ws.length()));
-#else
-        return ws.size() - 1;
-#endif
-    }
-
-    static int display_width(const wchar_t *ws, size_t n)
-    {
-#ifdef HAVE_WCWIDTH
-        return std::max(0, ::wcswidth(ws, n));
-#else
-        return n;
-#endif
-    }
-
-    static int display_width(wchar_t w)
-    {
-#ifdef HAVE_WCWIDTH
-        return std::max(0, ::wcwidth(w));
-#else
-        return 1;
-#endif
-    }
-
     void msg_txt(int indent, level_t level, const std::string &s)
     {
         if (level < _level)
@@ -204,12 +162,12 @@ namespace msg
             return;
         }
 
-        std::wstring pfx = str_to_wstr(prefix(level) + std::string(indent, ' '));
-        int pfx_dw = display_width(pfx);
-        std::wstring text = str_to_wstr(s);
+        std::wstring pfx = str::to_wstr(prefix(level) + std::string(indent, ' '));
+        size_t pfx_dw = str::display_width(pfx);
+        std::wstring text = str::to_wstr(s);
 
         std::wstring out;
-        int line_dw = 0;
+        size_t line_dw = 0;
         int first_unprinted = 0;
         int last_blank = -1;
         bool end_of_text = false;
@@ -261,11 +219,11 @@ namespace msg
                     out += std::wstring(text.c_str() + first_unprinted, last_blank - first_unprinted + 1);
                     first_unprinted = last_blank + 1;
                     last_blank = -1;
-                    line_dw = display_width(text.c_str() + first_unprinted, text_index - first_unprinted + 1);
+                    line_dw = str::display_width(text.substr(first_unprinted, text_index - first_unprinted + 1));
                 }
                 else
                 {
-                    line_dw += display_width(text[text_index]);
+                    line_dw += str::display_width(text.substr(text_index, 1));
                 }
             }
         }
@@ -337,6 +295,7 @@ namespace msg
         msg_txt(0, level, s);
     }
 
+#ifndef NDEBUG
     void dbg(int indent, const std::string &s)
     {
         if (DBG < _level)
@@ -436,6 +395,7 @@ namespace msg
         va_end(args);
         msg_txt(0, DBG, s);
     }
+#endif
 
     void inf(int indent, const std::string &s)
     {

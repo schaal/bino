@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2011
+ * Copyright (C) 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,7 +26,7 @@
 
 #include <lirc/lirc_client.h>
 
-#include "controller.h"
+#include "dispatch.h"
 
 
 class lircclient : public controller
@@ -38,13 +38,6 @@ private:
     int _socket;
     struct lirc_config *_config;
 
-    // Current player state; required for some commands
-    bool _playing;
-    bool _pausing;
-
-    // Helper function to read a command from a string
-    bool get_command(const std::string &s, command &c);
-
 public:
     lircclient(const std::string &client_name, const std::vector<std::string> &conf_files);
     ~lircclient();
@@ -53,9 +46,6 @@ public:
     void init();
     /* Deinitialize. */
     void deinit();
-
-    /* Receive notifications to keep track of required state. */
-    virtual void receive_notification(const notification &note);
 
     /* Process LIRC events. */
     virtual void process_events();

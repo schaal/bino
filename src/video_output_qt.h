@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,6 +26,15 @@
 #include <QWidget>
 #include <QGLWidget>
 #include <QGLFormat>
+#include <QTimer>
+#include <QThread>
+#include <QMutex>
+
+#ifdef Q_WS_X11
+# include <GL/glxew.h>
+#endif
+
+#include "thread.h"
 
 #include "video_output.h"
 
@@ -33,49 +42,121 @@
 /* Internal interface */
 
 class video_output_qt;
+class video_output_qt_widget;
+
+class gl_thread : public QThread
+{
+private:
+    video_output_qt* _vo_qt;
+    video_output_qt_widget* _vo_qt_widget;
+    bool _render;
+    int _w, _h;
+    mutex _wait_mutex;
+    condition _wait_cond;
+    bool _action_activate;
+    bool _action_prepare;
+    bool _action_finished;
+    bool _redisplay;
+    video_frame _next_frame;
+    subtitle_box _next_subtitle;
+    bool _failure;
+    exc _e;
+    // The display frame number
+    int64_t _display_frameno;
+
+public:
+    gl_thread(video_output_qt* vo_qt, video_output_qt_widget* vo_qt_widget);
+
+#ifdef Q_WS_X11
+    GLXEWContext* glxewGetContext() const;
+#endif
+
+    void set_render(bool r);
+    void resize(int w, int h);
+    void activate_next_frame();
+    void prepare_next_frame(const video_frame &frame, const subtitle_box &subtitle);
+    void redisplay();
+
+    int64_t time_to_next_frame_presentation();
+
+    void run();
+
+    bool failure() const
+    {
+        return _failure;
+    }
+    const exc& exception() const
+    {
+        return _e;
+    }
+};
 
 class video_output_qt_widget : public QGLWidget
 {
     Q_OBJECT
-
 private:
     video_output_qt *_vo;
+    class gl_thread _gl_thread;
+    QTimer _timer;
+    int _width, _height;
+    int _pos_x, _pos_y;
+
+private slots:
+    void check_gl_thread();
 
 public:
     video_output_qt_widget(video_output_qt *vo, const QGLFormat &format, QWidget *parent = NULL);
-    ~video_output_qt_widget();
 
-public slots:
-    void move_event();
+    int vo_width() const;
+    int vo_height() const;
+    int vo_pos_x() const;
+    int vo_pos_y() const;
+
+    void start_rendering();
+    void stop_rendering();
+    void redisplay();
+    class gl_thread* gl_thread()
+    {
+        return &_gl_thread;
+    }
 
 protected:
-    virtual void paintGL();
-    virtual void resizeGL(int width, int height);
-    virtual void moveEvent(QMoveEvent *event);
+#ifdef Q_WS_X11
+# if QT_VERSION < 0x040800
+    /* Work around a bug in Qt < 4.8: On a hide event, the GLWidget calls
+     * makeCurrent() and glFinish(), but this interferes with our GL thread.
+     * This has been fixed in Qt 4.8. */
+    virtual bool event(QEvent* e) { return QWidget::event(e); }
+# endif
+#endif
+    virtual void paintEvent(QPaintEvent* event);
+    virtual void resizeEvent(QResizeEvent* event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
     virtual void focusOutEvent(QFocusEvent *event);
 };
 
-/* Public interface. You can use this as a video container widget, to
- * conveniently catch move events and pass them to the video output, as
- * described below (but note that you still must catch move events for
- * parent widgets yourself). */
+/* Public interface */
 
 class video_container_widget : public QWidget, public controller
 {
     Q_OBJECT
     int _w, _h;
+    QTimer *_timer;
+private slots:
+    void playloop_step();
 public:
     video_container_widget(QWidget *parent = NULL);
+    void start_timer();
     void set_recommended_size(int w, int h);
+    void grab_focus();
 signals:
-    void move_event();
 protected:
     virtual QSize sizeHint() const;
-    virtual void moveEvent(QMoveEvent *event);
+    virtual void moveEvent(QMoveEvent* event);
     virtual void closeEvent(QCloseEvent *event);
+    virtual void receive_notification(const notification& note);
 };
 
 /* Public interface. See the video_output documentation. */
@@ -83,12 +164,24 @@ protected:
 class video_output_qt : public video_output
 {
 private:
+#ifdef Q_WS_X11
+    GLXEWContext _glxew_context;
+#endif
+    GLEWContext _glew_context;
+    int _screen_width, _screen_height;
+    float _screen_pixel_aspect_ratio;
     video_container_widget *_container_widget;
     bool _container_is_external;
     video_output_qt_widget *_widget;
     QGLFormat _format;
     bool _fullscreen;
-    bool _playing;
+    QRect _geom;
+    bool _screensaver_inhibited;
+    bool _recreate_context;
+    bool _recreate_context_stereo;
+#ifdef Q_WS_MAC
+    unsigned int _disableDisplaySleepAssertion;
+#endif
 
     void create_widget();
     void mouse_set_pos(float dest);
@@ -97,53 +190,48 @@ private:
     void resume_screensaver();
 
 protected:
-    virtual void make_context_current();
-    virtual bool context_is_stereo();
+#ifdef Q_WS_X11
+    GLXEWContext* glxewGetContext() const;
+#endif
+    virtual GLEWContext* glewGetContext() const;
+    virtual bool context_is_stereo() const;
     virtual void recreate_context(bool stereo);
-    virtual void trigger_update();
     virtual void trigger_resize(int w, int h);
+
+    virtual int screen_width() const;
+    virtual int screen_height() const;
+    virtual float screen_pixel_aspect_ratio() const;
+    virtual int width() const;
+    virtual int height() const;
+    virtual int pos_x() const;
+    virtual int pos_y() const;
 
 public:
     /* Constructor, Destructor */
     /* If a container widget is given, then it is assumed that this widget is
-     * part of another widget (e.g. a main window). In this case, you also need
-     * to use the move_event() function; see below. If no container widget is
+     * part of another widget (e.g. a main window). If no container widget is
      * given, we will use our own, and it will be a top-level window. */
-    video_output_qt(bool benchmark, video_container_widget *container_widget = NULL);
+    video_output_qt(video_container_widget *container_widget = NULL);
     virtual ~video_output_qt();
-
-    /* If you give a container element to the constructor, you have to call
-     * this function for every move events that the container widget or its
-     * parent widgets receive. This is required for the masking output modes
-     * (even-odd-*, checkerboard). */
-    void move_event();
-
-    /* Grab the keyboard focus for the video widget, to enable keyboard shortcuts */
-    void grab_focus();
 
     virtual void init();
     virtual int64_t wait_for_subtitle_renderer();
     virtual void deinit();
 
     virtual bool supports_stereo() const;
-    virtual int screen_width();
-    virtual int screen_height();
-    virtual float screen_pixel_aspect_ratio();
-    virtual int width();
-    virtual int height();
-    virtual int pos_x();
-    virtual int pos_y();
-    virtual bool fullscreen();
 
     virtual void center();
-    virtual void enter_fullscreen(int screens);
+    virtual void enter_fullscreen();
     virtual void exit_fullscreen();
-    virtual bool toggle_fullscreen(int screens);
+
+    virtual void prepare_next_frame(const video_frame &frame, const subtitle_box &subtitle);
+    virtual void activate_next_frame();
+    virtual int64_t time_to_next_frame_presentation() const;
 
     virtual void process_events();
+    virtual void receive_notification(const notification& note);
 
-    virtual void receive_notification(const notification &note);
-
+    friend class gl_thread;
     friend class video_output_qt_widget;
 };
 

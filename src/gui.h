@@ -1,10 +1,12 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
+ * Daniel Schaal <farbing@web.de>
+ * Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,54 +22,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAYER_GUI_H
-#define PLAYER_GUI_H
+#ifndef GUI_H
+#define GUI_H
+
+#include "config.h"
 
 #include <QMainWindow>
 #include <QWidget>
-#include <QComboBox>
-#include <QPushButton>
-#include <QLabel>
-#include <QDoubleSpinBox>
-#include <QSpinBox>
-#include <QCheckBox>
-#include <QFontComboBox>
-#include <QTimer>
-#include <QSettings>
 #include <QDialog>
-#include <QGroupBox>
-#include <QStackedWidget>
 
-#include "controller.h"
+#include "dispatch.h"
 #include "video_output_qt.h"
-#include "player.h"
 
-
-class player_qt_internal : public player, public controller
-{
-private:
-    bool _playing;
-    video_output_qt *_video_output;
-
-protected:
-    virtual video_output *create_video_output();
-    virtual void destroy_video_output(video_output *vo);
-
-public:
-    player_qt_internal(video_output_qt *video_output);
-    virtual ~player_qt_internal();
-
-    virtual void receive_cmd(const command &cmd);
-
-    virtual void receive_notification(const notification &note);
-
-    const video_output_qt *get_video_output() const;
-    video_output_qt *get_video_output();
-    bool is_playing() const;
-    bool playloop_step();
-    void force_stop();
-    void move_event();
-};
+class QLabel;
+class QComboBox;
+class QPushButton;
+class QDoubleSpinBox;
+class QSpinBox;
+class QCheckBox;
+class QFontComboBox;
+class QSettings;
+class QGroupBox;
+class QSlider;
+class QRadioButton;
+class QLineEdit;
+class QStackedWidget;
+class QTimer;
 
 class in_out_widget : public QWidget, public controller
 {
@@ -75,7 +55,6 @@ class in_out_widget : public QWidget, public controller
 
 private:
     QSettings *_settings;
-    const player_qt_internal *_player;
     QComboBox *_video_combobox;
     QComboBox *_audio_combobox;
     QComboBox *_subtitle_combobox;
@@ -84,7 +63,7 @@ private:
     QCheckBox *_swap_checkbox;
     bool _lock;
 
-    void set_stereo_layout(video_frame::stereo_layout_t stereo_layout, bool stereo_layout_swap);
+    void set_stereo_layout(parameters::stereo_layout_t stereo_layout, bool stereo_layout_swap);
     void set_stereo_mode(parameters::stereo_mode_t stereo_mode, bool stereo_mode_swap);
 
 private slots:
@@ -96,15 +75,14 @@ private slots:
     void swap_changed();
 
 public:
-    in_out_widget(QSettings *settings, const player_qt_internal *player, QWidget *parent);
-    virtual ~in_out_widget();
+    in_out_widget(QSettings *settings, QWidget *parent);
 
-    void update(const player_init_data &init_data, bool have_valid_input, bool playing);
+    void update();
 
     int get_video_stream();
     int get_audio_stream();
     int get_subtitle_stream();
-    void get_stereo_layout(video_frame::stereo_layout_t &stereo_layout, bool &stereo_layout_swap);
+    void get_stereo_layout(parameters::stereo_layout_t &stereo_layout, bool &stereo_layout_swap);
     void get_stereo_mode(parameters::stereo_mode_t &stereo_mode, bool &stereo_mode_swap);
 
     virtual void receive_notification(const notification &note);
@@ -132,29 +110,58 @@ private:
     QPushButton *_fff_button;
     QSlider *_seek_slider;
     QLabel *_pos_label;
-    bool _playing;
+    QPushButton *_audio_mute_button;
+    QSlider *_audio_volume_slider;
+
+private:
+    void update_audio_widgets();
 
 private slots:
-    void play_pressed();
-    void pause_pressed();
-    void stop_pressed();
-    void loop_pressed();
-    void fullscreen_pressed();
-    void center_pressed();
-    void bbb_pressed();
-    void bb_pressed();
-    void b_pressed();
-    void f_pressed();
-    void ff_pressed();
-    void fff_pressed();
+    void play_clicked();
+    void pause_clicked();
+    void stop_clicked();
+    void loop_clicked();
+    void fullscreen_clicked();
+    void center_clicked();
+    void bbb_clicked();
+    void bb_clicked();
+    void b_clicked();
+    void f_clicked();
+    void ff_clicked();
+    void fff_clicked();
     void seek_slider_changed();
+    void audio_mute_clicked();
+    void audio_volume_slider_changed();
 
 public:
-    controls_widget(QSettings *settings, const player_init_data &init_data, QWidget *parent);
-    virtual ~controls_widget();
+    controls_widget(QSettings *settings, QWidget *parent);
 
-    void update(const player_init_data &init_data, bool have_valid_input, bool playing, int64_t input_duration);
+    void update();
     virtual void receive_notification(const notification &note);
+};
+
+class fullscreen_dialog : public QDialog, public controller
+{
+    Q_OBJECT
+
+private:
+    QRadioButton* _single_btn;
+    QComboBox* _single_box;
+    QRadioButton* _dual_btn;
+    QComboBox* _dual_box0;
+    QComboBox* _dual_box1;
+    QRadioButton* _multi_btn;
+    QLineEdit* _multi_edt;
+    QCheckBox* _flip_left_box;
+    QCheckBox* _flop_left_box;
+    QCheckBox* _flip_right_box;
+    QCheckBox* _flop_right_box;
+    QCheckBox* _3d_ready_sync_box;
+    QCheckBox* _inhibit_screensaver_box;
+
+public:
+    fullscreen_dialog(QWidget* parent);
+    void closeEvent(QCloseEvent* e);
 };
 
 class color_dialog : public QDialog, public controller
@@ -162,7 +169,6 @@ class color_dialog : public QDialog, public controller
     Q_OBJECT
 
 private:
-    parameters *_params;
     bool _lock;
     QDoubleSpinBox *_c_spinbox;
     QSlider *_c_slider;
@@ -184,7 +190,7 @@ private slots:
     void s_spinbox_changed(double val);
 
 public:
-    color_dialog(parameters *params, QWidget *parent);
+    color_dialog(QWidget *parent);
 
     virtual void receive_notification(const notification &note);
 };
@@ -194,7 +200,6 @@ class crosstalk_dialog : public QDialog, public controller
     Q_OBJECT
 
 private:
-    parameters *_params;
     bool _lock;
     QDoubleSpinBox *_r_spinbox;
     QDoubleSpinBox *_g_spinbox;
@@ -204,7 +209,64 @@ private slots:
     void spinbox_changed();
 
 public:
-    crosstalk_dialog(parameters *params, QWidget *parent);
+    crosstalk_dialog(QWidget *parent);
+
+    virtual void receive_notification(const notification &note);
+};
+
+class quality_dialog : public QDialog, public controller
+{
+    Q_OBJECT
+
+private:
+    bool _lock;
+    QSpinBox *_q_spinbox;
+    QSlider *_q_slider;
+
+private slots:
+    void q_slider_changed(int val);
+    void q_spinbox_changed(int val);
+
+public:
+    quality_dialog(QWidget *parent);
+
+    virtual void receive_notification(const notification &note);
+};
+
+class zoom_dialog : public QDialog, public controller
+{
+    Q_OBJECT
+
+private:
+    bool _lock;
+    QDoubleSpinBox *_z_spinbox;
+    QSlider *_z_slider;
+
+private slots:
+    void z_slider_changed(int val);
+    void z_spinbox_changed(double val);
+
+public:
+    zoom_dialog(QWidget *parent);
+
+    virtual void receive_notification(const notification &note);
+};
+
+class audio_dialog : public QDialog, public controller
+{
+    Q_OBJECT
+
+private:
+    bool _lock;
+    QComboBox *_device_combobox;
+    QSpinBox *_delay_spinbox;
+
+private slots:
+    void device_changed();
+    void delay_changed();
+
+public:
+    audio_dialog(QWidget *parent);
 
     virtual void receive_notification(const notification &note);
 };
@@ -214,7 +276,6 @@ class subtitle_dialog: public QDialog, public controller
     Q_OBJECT
 
 private:
-    parameters *_params;
     bool _lock;
     QCheckBox *_encoding_checkbox;
     QComboBox *_encoding_combobox;
@@ -226,32 +287,35 @@ private:
     QDoubleSpinBox *_scale_spinbox;
     QCheckBox *_color_checkbox;
     QPushButton *_color_button;
+    QCheckBox *_shadow_checkbox;
+    QComboBox *_shadow_combobox;
     QColor _color;
 
     QList<QTextCodec *> find_codecs();
     void set_color_button(uint32_t c);
 
 private slots:
-    void color_button_pressed();
+    void color_button_clicked();
     void encoding_changed();
     void font_changed();
     void size_changed();
     void scale_changed();
     void color_changed();
+    void shadow_changed();
 
 public:
-    subtitle_dialog(parameters *params, QWidget *parent);
+    subtitle_dialog(QWidget *parent);
 
     virtual void receive_notification(const notification &note);
 };
 
-class stereoscopic_dialog : public QDialog, public controller
+class video_dialog : public QDialog, public controller
 {
     Q_OBJECT
 
 private:
-    parameters *_params;
     bool _lock;
+    QComboBox *_crop_ar_combobox;
     QDoubleSpinBox *_p_spinbox;
     QSlider *_p_slider;
     QDoubleSpinBox *_sp_spinbox;
@@ -259,7 +323,10 @@ private:
     QDoubleSpinBox *_g_spinbox;
     QSlider *_g_slider;
 
+    void set_crop_ar(float val);
+
 private slots:
+    void crop_ar_changed();
     void p_slider_changed(int val);
     void p_spinbox_changed(double val);
     void sp_slider_changed(int val);
@@ -268,7 +335,34 @@ private slots:
     void g_spinbox_changed(double val);
 
 public:
-    stereoscopic_dialog(parameters *params, QWidget *parent);
+    video_dialog(QWidget *parent);
+    void update();
+
+    virtual void receive_notification(const notification &note);
+};
+
+class sdi_output_dialog : public QDialog, public controller
+{
+    Q_OBJECT
+
+private:
+    bool _lock;
+    QComboBox *_sdi_output_format_combobox;
+    QComboBox *_sdi_output_left_stereo_mode_combobox;
+    QComboBox *_sdi_output_right_stereo_mode_combobox;
+
+    void set_sdi_output_format(int val);
+    void set_sdi_output_left_stereo_mode(parameters::stereo_mode_t stereo_mode);
+    void set_sdi_output_right_stereo_mode(parameters::stereo_mode_t stereo_mode);
+
+private slots:
+    void sdi_output_format_changed(int val);
+    void sdi_output_left_stereo_mode_changed(int val);
+    void sdi_output_right_stereo_mode_changed(int val);
+
+public:
+    sdi_output_dialog(QWidget *parent);
+    void update();
 
     virtual void receive_notification(const notification &note);
 };
@@ -279,16 +373,18 @@ class open_device_dialog : public QDialog
 
 private:
     QComboBox *_type_combobox;
-    QStackedWidget *_device_chooser_stack;
-    QComboBox *_default_device_combobox;
-    QComboBox *_firewire_device_combobox;
-    QLineEdit *_x11_device_field;
+    QStackedWidget *_device_chooser_stack[2];
+    QComboBox *_default_device_combobox[2];
+    QComboBox *_firewire_device_combobox[2];
+    QLineEdit *_x11_device_field[2];
+    QCheckBox *_second_device_checkbox;
     QGroupBox *_frame_size_groupbox;
     QSpinBox *_frame_width_spinbox;
     QSpinBox *_frame_height_spinbox;
     QGroupBox *_frame_rate_groupbox;
     QSpinBox *_frame_rate_num_spinbox;
     QSpinBox *_frame_rate_den_spinbox;
+    QCheckBox *_mjpeg_checkbox;
 
 private slots:
     void frame_size_groupbox_clicked(bool checked);
@@ -296,8 +392,8 @@ private slots:
 
 public:
     open_device_dialog(const QStringList &default_devices, const QStringList &firewire_devices,
-            const QString &x11_device, const device_request &dev_request, QWidget *parent);
-    void request(QString &device, device_request &dev_request);
+            const QStringList &last_devices, const device_request &dev_request, QWidget *parent);
+    void request(QStringList &devices, device_request &dev_request);
 };
 
 class main_window : public QMainWindow, public controller
@@ -307,71 +403,90 @@ class main_window : public QMainWindow, public controller
 private:
     QSettings *_settings;
     video_container_widget *_video_container_widget;
-    video_output_qt *_video_output;
     in_out_widget *_in_out_widget;
     controls_widget *_controls_widget;
+    fullscreen_dialog *_fullscreen_dialog;
     color_dialog *_color_dialog;
     crosstalk_dialog *_crosstalk_dialog;
+    quality_dialog *_quality_dialog;
+    zoom_dialog *_zoom_dialog;
+    audio_dialog *_audio_dialog;
     subtitle_dialog *_subtitle_dialog;
-    stereoscopic_dialog *_stereoscopic_dialog;
-    player_qt_internal *_player;
+    video_dialog *_video_dialog;
+#if HAVE_LIBXNVCTRL
+    sdi_output_dialog *_sdi_output_dialog;
+#endif // HAVE_LIBXNVCTRL
     QTimer *_timer;
-    player_init_data _init_data;
-    const player_init_data _init_data_template;
-    bool _stop_request;
+    std::vector<std::string> _now_playing;
 
-    QString current_file_hash();
-    bool open_player();
-    void open(QStringList urls, const device_request &dev_request = device_request());
+    int _max_recent_files;
+    QList<QAction *> _recent_file_actions;
+    QAction *_recent_files_separator;
+    QAction *_clear_recent_separator;
+    QAction *_clear_recent_files_act;
+
+    void update_recent_file_actions();
+    QString stripped_name(const QStringList & filenames);
 
 private slots:
-    void move_event();
     void playloop_step();
     void file_open();
-    void file_open_url();
+    void file_open_urls();
     void file_open_device();
+    void preferences_fullscreen();
     void preferences_colors();
     void preferences_crosstalk();
+    void preferences_quality();
+    void preferences_zoom();
+    void preferences_audio();
     void preferences_subtitle();
-    void preferences_stereoscopic();
-    void preferences_fullscreen();
+    void preferences_video();
+    void preferences_sdi_output();
     void help_manual();
     void help_website();
     void help_keyboard();
     void help_about();
 
+    void open_recent_file();
+    void clear_recent_files();
+
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
-    void moveEvent(QMoveEvent *event);
+    void moveEvent(QMoveEvent* event);
     void closeEvent(QCloseEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
 
 public:
-    main_window(QSettings *settings, const player_init_data &init_data);
+    main_window(QSettings *settings);
     virtual ~main_window();
+
+    void open(QStringList urls, const device_request &dev_request = device_request(),
+            const parameters& initial_params = parameters());
+    video_container_widget* container_widget()
+    {
+        return _video_container_widget;
+    }
 
     virtual void receive_notification(const notification &note);
 };
 
-class player_qt : public player
+class gui
 {
 private:
     main_window *_main_window;
     QSettings *_settings;
 
 public:
-    player_qt();
-    virtual ~player_qt();
+    gui();
+    ~gui();
 
-    QSettings *settings()
+    void open(const open_input_data& input_data);
+
+    class video_container_widget* container_widget()
     {
-        return _settings;
+        return _main_window->container_widget();
     }
-
-    virtual void open(const player_init_data &init_data);
-    virtual void run();
-    virtual void close();
 };
 
 #endif

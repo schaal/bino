@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Gabriele Greco <gabrielegreco@gmail.com>
  *
@@ -45,6 +45,20 @@ const size_t audio_output::_buffer_size = 20160 * 2;
 
 audio_output::audio_output() : controller(), _initialized(false)
 {
+    if (alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT"))
+    {
+        const char *p = alcGetString(NULL, ALC_DEVICE_SPECIFIER);
+        while (p && *p)
+        {
+            _devices.push_back(p);
+            p += _devices.back().length() + 1;
+        }
+        msg::dbg("%d OpenAL devices available:", devices());
+        for (size_t i = 0; i < _devices.size(); i++)
+        {
+            msg::dbg(4, _devices[i]);
+        }
+    }
 }
 
 audio_output::~audio_output()
@@ -52,13 +66,39 @@ audio_output::~audio_output()
     deinit();
 }
 
-void audio_output::init()
+int audio_output::devices() const
+{
+    return _devices.size();
+}
+
+const std::string &audio_output::device_name(int i) const
+{
+    assert(i >= 0 && i < devices());
+    return _devices[i];
+}
+
+void audio_output::init(int i)
 {
     if (!_initialized)
     {
-        if (!(_device = alcOpenDevice(NULL)))
+        if (i < 0)
         {
-            throw exc(_("No OpenAL device available."));
+            if (!(_device = alcOpenDevice(NULL)))
+            {
+                throw exc(_("No OpenAL device available."));
+            }
+        }
+        else if (i >= static_cast<int>(_devices.size()))
+        {
+            throw exc(str::asprintf(_("OpenAL device '%s' is not available."), _("unknown")));
+        }
+        else
+        {
+            if (!(_device = alcOpenDevice(_devices[i].c_str())))
+            {
+                throw exc(str::asprintf(_("OpenAL device '%s' is not available."),
+                            _devices[i].c_str()));
+            }
         }
         if (!(_context = alcCreateContext(_device, NULL)))
         {
@@ -316,6 +356,20 @@ ALenum audio_output::get_al_format(const audio_blob &blob)
     return format;
 }
 
+void audio_output::set_source_parameters()
+{
+    float gain = dispatch::parameters().audio_volume();
+    if (dispatch::parameters().audio_mute())
+    {
+        gain = 0.0f;
+    }
+    alSourcef(_source, AL_GAIN, gain);
+    if (alGetError() != AL_NO_ERROR)
+    {
+        throw exc(_("Cannot set OpenAL audio volume."));
+    }
+}
+
 void audio_output::data(const audio_blob &blob)
 {
     assert(blob.data);
@@ -323,6 +377,7 @@ void audio_output::data(const audio_blob &blob)
     msg::dbg(std::string("Buffering ") + str::from(blob.size) + " bytes of audio data.");
     if (_state == 0)
     {
+        set_source_parameters();
         // Initial buffering
         assert(blob.size == _num_buffers * _buffer_size);
         char *data = static_cast<char *>(blob.data);
@@ -424,4 +479,14 @@ void audio_output::stop()
         alGetSourcei(_source, AL_BUFFERS_PROCESSED, &processed_buffers);
     }
     _state = 0;
+}
+
+void audio_output::receive_notification(const notification& note)
+{
+    if (_initialized
+            && (note.type == notification::audio_volume
+                || note.type == notification::audio_mute))
+    {
+        set_source_parameters();
+    }
 }

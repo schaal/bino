@@ -1,31 +1,30 @@
 You can build a Windows binary using MinGW.
 
-The easiest way to do this is to use a GNU/Linux system with the Mingw-cross-env
-environment (http://www.nongnu.org/mingw-cross-env). This is because
-Mingw-cross-env not only provides a recent version of gcc as a cross compiler,
-but also all required libraries, and the nsis package to build an installer.
+The easiest way to do this is to use a GNU/Linux system with MXE (the M cross
+environment, <http://mxe.cc>). This is because MXE not only provides a recent
+version of gcc as a cross compiler, but also all required libraries, and the
+nsis package to build an installer.
 
-Mingw-cross-env version 2.22 will provide the required up-to-date libraries, but
-this version is not yet released at the time of writing. In the meantime, you
-can use development revision 1955:
-$ hg clone -r 1955 http://hg.savannah.nongnu.org/hgweb/mingw-cross-env
+The current stable version of MXE should work fine.
 
-The following is known to work with Mingw-cross-env installed in /path/to/mce:
+Use the following steps to build Bino using MXE installed in /path/to/mxe:
 
-1. Build the required Mingw-cross-env packages:
+1. Build the required MXE packages:
 
-   $ cd /path/to/mce
+   $ cd /path/to
+   $ git clone -b stable https://github.com/mxe/mxe.git
+   $ cd mxe
    $ make gettext pthreads ffmpeg libass openal glew qt nsis
 
    (If you do not need to build a Bino installer package, you can skip nsis).
 
-   Add Mingw-cross-env to your PATH:
-   $ export PATH="/path/to/mce/usr/bin:$PATH"
+   Add MXE to your PATH:
+   $ export PATH="/path/to/mxe/usr/bin:$PATH"
 
 2. Build Bino
 
    $ cd /path/to/bino
-   $ ./configure --host=i686-pc-mingw32
+   $ ./configure --host=i686-pc-mingw32 --build=`build-aux/config.guess`
    $ make
 
    Optionally build the installer (requires nsis):
