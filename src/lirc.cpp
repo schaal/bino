@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2011
+ * Copyright (C) 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -41,9 +41,7 @@ lircclient::lircclient(
     controller(),
     _client_name(client_name),
     _conf_files(conf_files),
-    _initialized(false),
-    _playing(false),
-    _pausing(false)
+    _initialized(false)
 {
 }
 
@@ -106,27 +104,6 @@ void lircclient::deinit()
     }
 }
 
-void lircclient::receive_notification(const notification &note)
-{
-    std::istringstream current(note.current);
-
-    switch (note.type)
-    {
-    case notification::play:
-        s11n::load(current, _playing);
-        if (!_playing)
-        {
-            _pausing = false;
-        }
-        break;
-    case notification::pause:
-        s11n::load(current, _pausing);
-        break;
-    default:
-        break;
-    }
-}
-
 void lircclient::process_events()
 {
     if (_initialized)
@@ -149,7 +126,7 @@ void lircclient::process_events()
         while ((e = lirc_code2char(_config, code, &cmd)) == 0 && cmd)
         {
             command c;
-            if (!get_command(cmd, c))
+            if (!dispatch::parse_command(cmd, &c))
             {
                 msg::err(str::asprintf(_("Received invalid command '%s' from LIRC."), str::sanitize(cmd).c_str()));
             }
@@ -164,112 +141,4 @@ void lircclient::process_events()
             msg::wrn(_("Cannot get command for LIRC code."));
         }
     }
-}
-
-bool lircclient::get_command(const std::string &s, command &c)
-{
-    std::string t = str::trim(s);
-    bool ok = true;
-    float parameter;
-
-    if (t == "cycle-video-stream")
-    {
-        c = command(command::cycle_video_stream);
-    }
-    else if (t == "cycle-audio-stream")
-    {
-        c = command(command::cycle_audio_stream);
-    }
-    else if (t == "cycle-subtitle-stream")
-    {
-        c = command(command::cycle_subtitle_stream);
-    }
-    else if (t == "toggle-stereo-mode-swap")
-    {
-        c = command(command::toggle_stereo_mode_swap);
-    }
-    else if (t == "toggle-fullscreen")
-    {
-        c = command(command::toggle_fullscreen);
-    }
-    else if (t == "center")
-    {
-        c = command(command::center);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-contrast %f", &parameter) == 1)
-    {
-        c = command(command::adjust_contrast, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-brightness %f", &parameter) == 1)
-    {
-        c = command(command::adjust_brightness, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-hue %f", &parameter) == 1)
-    {
-        c = command(command::adjust_hue, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-saturation %f", &parameter) == 1)
-    {
-        c = command(command::adjust_saturation, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-parallax %f", &parameter) == 1)
-    {
-        c = command(command::adjust_parallax, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "adjust-subtitle-parallax %f", &parameter) == 1)
-    {
-        c = command(command::adjust_subtitle_parallax, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "seek %f", &parameter) == 1)
-    {
-        c = command(command::seek, parameter);
-    }
-    else if (std::sscanf(t.c_str(), "set-pos %f", &parameter) == 1)
-    {
-        c = command(command::set_pos, parameter);
-    }
-    /* The following commands need access to state. */
-    else if (t == "play")
-    {
-        if (!_playing)
-        {
-            c = command(command::toggle_play);
-        }
-        else if (_pausing)
-        {
-            c = command(command::toggle_pause);
-        }
-        else
-        {
-            c = command(command::noop);
-        }
-    }
-    else if (t == "pause")
-    {
-        if (_playing && !_pausing)
-        {
-            c = command(command::toggle_pause);
-        }
-        else
-        {
-            c = command(command::noop);
-        }
-    }
-    else if (t == "stop")
-    {
-        if (_playing)
-        {
-            c = command(command::toggle_play);
-        }
-        else
-        {
-            c = command(command::noop);
-        }
-    }
-    /* No known command. */
-    else
-    {
-        ok = false;
-    }
-    return ok;
 }

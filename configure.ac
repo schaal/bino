@@ -4,8 +4,10 @@ dnl configure.ac
 dnl
 dnl This file is part of bino, a 3D video player.
 dnl
-dnl Copyright (C) 2010-2011
+dnl Copyright (C) 2010, 2011, 2012
 dnl Martin Lambers <marlam@marlam.de>
+dnl Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+dnl Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -21,8 +23,8 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
-AC_PREREQ([2.65])
-AC_INIT([Bino], [1.2.1], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
+AC_PREREQ([2.63])
+AC_INIT([Bino], [1.4.0], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -45,7 +47,8 @@ AC_DEFINE_UNQUOTED([PLATFORM], ["${target}"], [Platform triplet])
 dnl Special handling of W32
 case "${target}" in *-*-mingw32*) w32="yes" ;; *) w32="no " ;; esac
 if test "$w32" = "yes"; then
-    LDFLAGS="-mwindows $LDFLAGS"
+    CXXFLAGS="-mthreads $CXXFLAGS"
+    LDFLAGS="-mthreads -mwindows $LDFLAGS"
     AC_CHECK_TOOL([WINDRES], [windres], [:])
     if test "$WINDRES" = ":"; then
         AC_MSG_ERROR([windres not found])
@@ -69,10 +72,20 @@ if test "$ndebug" = "1"; then
 fi
 
 dnl Feature checks needed by the base module
+AC_MSG_CHECKING([for GCC atomic builtins])
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]],
+    [[int b, x = 0; b = __sync_bool_compare_and_swap(&x, 0, 1);]])],
+    HAVE_GCC_ATOMIC_BUILTINS=1, HAVE_GCC_ATOMIC_BUILTINS=0)
+if test "$HAVE_GCC_ATOMIC_BUILTINS" = "1"; then
+    AC_MSG_RESULT([yes])
+else
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([GCC atomic builtins not found. Please use a newer compiler.])
+fi
 AC_CHECK_DECLS([optreset], [#include <getopt.h>])
 AC_SEARCH_LIBS([clock_gettime], [rt])
 AC_SEARCH_LIBS([pthread_create], [pthread])
-AC_CHECK_FUNCS([backtrace clock_gettime sigaction vasprintf wcwidth])
+AC_CHECK_FUNCS([backtrace clock_gettime fdatasync fnmatch fseeko ftello getpwuid link mmap nl_langinfo posix_fadvise readdir_r sigaction symlink sysconf vasprintf wcswidth])
 CPPFLAGS_bak="$CPPFLAGS"
 LDFLAGS_bak="$LDFLAGS"
 CPPFLAGS="-pthread $CPPFLAGS"
@@ -122,7 +135,7 @@ LIBASS_PKGCONFIG_VERSION="\"\""
 PKG_CHECK_MODULES([libass], [libass >= 0.9.9], [HAVE_LIBASS=1], [HAVE_LIBASS=0])
 if test "$HAVE_LIBASS" != "1"; then
     AC_MSG_WARN([required library libass not found:])
-    AC_MSG_WARN([$libopenal_PKG_ERRORS])
+    AC_MSG_WARN([$libass_PKG_ERRORS])
     AC_MSG_WARN([libass is provided by LibASS; Debian package: libass-dev])
 else
     LIBASS_PKGCONFIG_VERSION="\"`$PKG_CONFIG --modversion libass`\""
@@ -131,18 +144,21 @@ AC_DEFINE_UNQUOTED([LIBASS_PKGCONFIG_VERSION], [$LIBASS_PKGCONFIG_VERSION], [lib
 
 dnl OpenAL
 PKG_CHECK_MODULES([libopenal], [openal >= 0.0], [HAVE_LIBOPENAL=1], [HAVE_LIBOPENAL=0])
-if test "$HAVE_LIBOPENAL" != "1"; then
+if test "$HAVE_LIBOPENAL" = "1"; then
+    CPPFLAGS_BAK="$CPPFLAGS"
+    CPPFLAGS="$CPPFLAGS $libopenal_CFLAGS"
+    AC_CHECK_HEADERS([AL/al.h])
+    CPPFLAGS="$CPPFLAGS_BAK"
+else
     AC_MSG_WARN([required library libopenal not found:])
     AC_MSG_WARN([$libopenal_PKG_ERRORS])
     AC_MSG_WARN([libopenal is provided by OpenAL; Debian package: libopenal-dev])
 fi
 
 dnl Qt
-RCC=""
 AC_ARG_VAR([RCC], [rcc command])
-MOC=""
 AC_ARG_VAR([MOC], [moc command])
-PKG_CHECK_MODULES([libqtopengl], [QtOpenGL >= 0.0], [HAVE_LIBQTOPENGL=1], [HAVE_LIBQTOPENGL=0])
+PKG_CHECK_MODULES([libqtopengl], [QtOpenGL >= 4.6], [HAVE_LIBQTOPENGL=1], [HAVE_LIBQTOPENGL=0])
 if test "$HAVE_LIBQTOPENGL" != "1"; then
     AC_MSG_WARN([required library QtOpenGL not found:])
     AC_MSG_WARN([$libqtopengl_PKG_ERRORS])
@@ -183,7 +199,7 @@ if test "$HAVE_LIBQTOPENGL" = "1"; then
 fi
 
 dnl Equalizer
-dnl We assume that Equalizer includes GLEW. If we don't use Equalizer, we need GLEW separately.
+dnl We assume that Equalizer does not use an included GLEW!
 AC_ARG_WITH([equalizer],
     [AS_HELP_STRING([--without-equalizer], [Disable multi-display support via Equalizer (enabled by default)])],
     [if test "$withval" = "yes"; then equalizer="yes"; else equalizer="no"; fi], [equalizer="yes"])
@@ -195,24 +211,61 @@ if test "$equalizer" = "yes"; then
         AC_MSG_WARN([libEqualizer is provided by Equalizer])
 	equalizer="no"
     fi
-fi
-if test "$equalizer" = "no"; then
+else
     HAVE_LIBEQUALIZER=0
-    dnl glew
-    PKG_CHECK_MODULES([libglew], [glew >= 1.5.0], [HAVE_LIBGLEW=1], [HAVE_LIBGLEW=0])
-    if test "$HAVE_LIBGLEW" != "1"; then
-        AC_MSG_WARN([required library libglew >= 1.5.0 not found:])
-        AC_MSG_WARN([$libglew_PKG_ERRORS])
-        AC_MSG_WARN([libglew is provided by glew; Debian package: libglew-dev])
-    fi
 fi
 AC_DEFINE_UNQUOTED([HAVE_LIBEQUALIZER], [$HAVE_LIBEQUALIZER], [Have Equalizer?])
 AM_CONDITIONAL([HAVE_LIBEQUALIZER], [test "$HAVE_LIBEQUALIZER" = "1"])
 
+dnl glewmx
+PKG_CHECK_MODULES([libglewmx], [glewmx >= 1.6.0], [HAVE_LIBGLEWMX=1], [HAVE_LIBGLEWMX=0])
+if test "$HAVE_LIBGLEWMX" != "1"; then
+    AC_MSG_WARN([required library libglewmx >= 1.6.0 not found:])
+    AC_MSG_WARN([$libglewmx_PKG_ERRORS])
+    AC_MSG_WARN([libglewmx is provided by glew; Debian package: libglewmx-dev])
+fi
+AM_CONDITIONAL([HAVE_LIBGLEWMX], [test "$HAVE_LIBGLEWMX" = "1"])
+
+dnl libXNVCtrl
+AC_ARG_WITH([xnvctrl],
+    [AS_HELP_STRING([--with-xnvctrl], [Enable NVIDIA Quadro SDI output (disabled by default)])],
+    [if test "$withval" = "yes"; then xnvctrl="yes"; else xnvctrl="no"; fi], [xnvctrl="no"])
+if test "$xnvctrl" = "yes"; then
+    CPPFLAGS_BAK="$CPPFLAGS"
+    CPPFLAGS="$CPPFLAGS $libX11_CFLAGS $xnvctrl_CFLAGS"
+    AC_SUBST([xnvctrl_CFLAGS])
+    AC_CHECK_HEADERS([NVCtrl.h NVCtrlLib.h],
+                     [HAVE_LIBXNVCTRL=1],
+                     [HAVE_LIBXNVCTRL=0],
+                     [#include <GL/glx.h>])
+    if test "$HAVE_LIBXNVCTRL" = "1"; then
+        LDFLAGS_BAK="$LDFLAGS"
+        LDFLAGS="$LDFLAGS $xnvctrl_LDFLAGS"
+        AC_SUBST([xnvctrl_LDFLAGS])
+        AC_CHECK_LIB([XNVCtrl],
+                     [XNVCTRLQueryAttribute],
+                     [HAVE_LIBXNVCTRL=1],
+                     [HAVE_LIBXNVCTRL=0],
+                     [$libX11_LIBS -lXext])
+        LDFLAGS="$LDFLAGS_BAK"
+    fi
+    CPPFLAGS="$CPPFLAGS_BAK"
+    if test "$HAVE_LIBXNVCTRL" != "1"; then
+        AC_MSG_WARN([optional library libXNVCtrl not found])
+        AC_MSG_WARN([libXNVCtrl is provided by NVIDIA; Ubuntu package: nvidia-settings])
+        xnvctrl="no"
+    fi
+else
+    HAVE_LIBXNVCTRL=0
+fi
+AC_DEFINE_UNQUOTED([HAVE_LIBXNVCTRL], [$HAVE_LIBXNVCTRL], [Have NVIDIA libXNVCtrl for Quadro SDI output?])
+AM_CONDITIONAL([HAVE_LIBXNVCTRL], [test "$HAVE_LIBXNVCTRL" = "1"])
+
 dnl OpenGL
 dnl We need to explicitly link with OpenGL since we use its functions directly.
-dnl However, this is most probably not necessary on Windows and Mac OS X (for now),
-dnl so we just use a pkg-config check and ignore a failure.
+dnl However, this is most probably not necessary on Windows and Mac OS X (for
+dnl now), so we just use a pkg-config check (which usually only works on Linux)
+dnl and ignore a failure.
 PKG_CHECK_MODULES([libgl], [gl >= 0.0], [HAVE_LIBGL=1], [HAVE_LIBGL=0])
 
 dnl LIRC
@@ -253,8 +306,9 @@ if test "$am_cv_func_iconv" != "yes" \
     -o "$HAVE_LIBASS" != "1" \
     -o "$HAVE_LIBOPENAL" != "1" \
     -o "$HAVE_LIBQTOPENGL" != "1" \
+    -o "$HAVE_LIBGLEWMX" != "1" \
     -o \( "$equalizer" = "yes" -a "$HAVE_LIBEQUALIZER" != "1" \) \
-    -o \( "$HAVE_LIBEQUALIZER" != "1" -a "$HAVE_LIBGLEW" != "1" \) \
+    -o \( "$xnvctrl" = "yes" -a "$HAVE_LIBXNVCTRL" != "1" \) \
     -o \( "$lirc" = "yes" -a "$HAVE_LIBLIRCCLIENT" != "1" \) ; then
     AC_MSG_ERROR([One or more libraries were not found. See messages above.])
 fi
@@ -271,6 +325,7 @@ AC_OUTPUT
 
 dnl Print configuration for user to check
 echo "Configuration:"
-echo "NLS:           $USE_NLS"
-echo "Equalizer:     $equalizer"
-echo "liblircclient: $lirc"
+echo "NLS:                      $USE_NLS"
+echo "Equalizer:                $equalizer"
+echo "NVIDIA Quadro SDI output: $xnvctrl"
+echo "liblircclient:            $lirc"

@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2011
+# Copyright (C) 2010, 2011, 2012
 # Martin Lambers <marlam@marlam.de>
 #
 # Copying and distribution of this file, with or without modification, are
@@ -13,14 +13,15 @@ bino_SOURCES = \
 	media_data.h media_data.cpp \
 	media_object.h media_object.cpp \
 	media_input.h media_input.cpp \
-	controller.h controller.cpp \
-        video_output.h video_output.cpp \
-        video_output_qt.h video_output_qt.cpp \
-	xgl.h xgl.cpp \
-        subtitle_renderer.h subtitle_renderer.cpp \
+	dispatch.h dispatch.cpp \
+	command_file.h command_file.cpp \
+	color_matrix.h color_matrix.cpp \
+	video_output.h video_output.cpp \
+	video_output_qt.h video_output_qt.cpp \
+	subtitle_renderer.h subtitle_renderer.cpp \
 	audio_output.h audio_output.cpp \
 	player.h player.cpp \
-	player_qt.h player_qt.cpp \
+	gui.h gui.cpp \
 	lib_versions.h lib_versions.cpp \
 	main.cpp
 
@@ -28,6 +29,8 @@ ICONS_LOCAL_IPE = \
 	icons-local/input-layout-mono.ipe \
 	icons-local/input-layout-separate-left-right.ipe \
 	icons-local/input-layout-separate-right-left.ipe \
+	icons-local/input-layout-alternating-left-right.ipe \
+	icons-local/input-layout-alternating-right-left.ipe \
 	icons-local/input-layout-top-bottom.ipe \
 	icons-local/input-layout-top-bottom-half.ipe \
 	icons-local/input-layout-bottom-top.ipe \
@@ -38,6 +41,8 @@ ICONS_LOCAL_IPE = \
 	icons-local/input-layout-right-left-half.ipe \
 	icons-local/input-layout-even-odd-rows.ipe \
 	icons-local/input-layout-odd-even-rows.ipe \
+	icons-local/output-type-stereo.ipe \
+	icons-local/output-type-alternating.ipe \
 	icons-local/output-type-mono-left.ipe \
 	icons-local/output-type-mono-right.ipe \
 	icons-local/output-type-top-bottom.ipe \
@@ -52,13 +57,17 @@ ICONS_LOCAL_IPE = \
 	icons-local/output-type-green-magenta.ipe \
 	icons-local/output-type-amber-blue.ipe \
 	icons-local/output-type-red-green.ipe \
-	icons-local/output-type-red-blue.ipe \
-	icons-local/output-type-stereo.ipe
+	icons-local/output-type-red-blue.ipe
 
 ICONS = \
 	icons/application-exit.png \
 	icons/applications-internet.png \
+	icons/audio-volume-high.png \
+	icons/audio-volume-low.png \
+	icons/audio-volume-medium.png \
+	icons/audio-volume-muted.png \
         icons/camera-web.png \
+	icons/dialog-information.png \
 	icons/document-open.png \
 	icons/help-about.png \
 	icons/help-contents.png \
@@ -101,7 +110,7 @@ qt_resources-rcc.cpp: $(filter %.png,$(EXTRA_DIST)) ../AUTHORS ../COPYING
 nodist_bino_SOURCES = \
 	qt_resources.qrc \
 	qt_resources-rcc.cpp \
-	player_qt-moc.cpp \
+	gui-moc.cpp \
 	video_output_qt-moc.cpp \
 	video_output_color.fs.glsl.h \
 	video_output_render.fs.glsl.h
@@ -114,15 +123,15 @@ DEFS += -DHTMLDIR=\"$(htmldir)\" -DLOCALEDIR=\"$(localedir)\"
 
 AM_CPPFLAGS = -I$(top_srcdir)/src/base \
 	$(libavformat_CFLAGS) $(libavdevice_CFLAGS) $(libswscale_CFLAGS) $(libass_CFLAGS) \
-	$(libopenal_CFLAGS) $(libgl_CFLAGS) $(libglew_CFLAGS) $(libqtopengl_CFLAGS)
+	$(libopenal_CFLAGS) $(libgl_CFLAGS) $(libglewmx_CFLAGS) $(libqtopengl_CFLAGS)
 
 bino_LDADD = $(top_builddir)/src/base/libbase.a $(LIBINTL) $(LIBICONV) \
 	$(libavformat_LIBS) $(libavdevice_LIBS) $(libswscale_LIBS) $(libass_LIBS) \
-	$(libopenal_LIBS) $(libgl_LIBS) $(libglew_LIBS) $(libqtopengl_LIBS)
+	$(libopenal_LIBS) $(libgl_LIBS) $(libglewmx_LIBS) $(libqtopengl_LIBS)
 
 if HAVE_LIBEQUALIZER
 bino_SOURCES += player_equalizer.h player_equalizer.cpp
-AM_CPPFLAGS += $(libEqualizer_CFLAGS) -DGLEW_MX
+AM_CPPFLAGS += $(libEqualizer_CFLAGS)
 bino_LDADD += $(libEqualizer_LIBS)
 endif
 
@@ -136,6 +145,12 @@ if W32
 bino_SOURCES += logo/bino_logo.ico
 .ico.o:
 	$(AM_V_GEN)echo "IDI_ICON1 ICON DISCARDABLE \"$<\"" | $(WINDRES) -o $@
+endif
+
+if HAVE_LIBXNVCTRL
+bino_SOURCES += NvSDIout.cpp NvSDIout.h NvSDIutils.cpp NvSDIutils.h
+AM_CPPFLAGS += $(xnvctrl_CFLAGS)
+bino_LDADD += $(xnvctrl_LDFLAGS) -lXNVCtrl
 endif
 
 iconsdatadir = $(datadir)/icons/hicolor

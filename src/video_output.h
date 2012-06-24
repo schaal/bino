@@ -1,10 +1,11 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
+ * Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,16 +29,22 @@
 
 #include <GL/glew.h>
 
+#include "blob.h"
+
 #include "media_data.h"
 #include "subtitle_renderer.h"
-#include "controller.h"
+#include "dispatch.h"
 
+
+class subtitle_updater;
+#if HAVE_LIBXNVCTRL
+class CNvSDIout;
+#endif // HAVE_LIBXNVCTRL
 
 class video_output : public controller
 {
 private:
     bool _initialized;
-    bool _srgb_textures_are_broken;     // XXX: Hack: work around broken SRGB texture implementations
 
     /* We manage two frames, each with its own set of properties etc.
      * The active frame is the one that is displayed, the other frame is the one
@@ -46,82 +53,133 @@ private:
     int _active_index;                                  // 0 or 1
 
     video_frame _frame[2];              // input frames (active / preparing)
-    parameters _params;                 // current parameters for display
     // Step 1: input of video data
+    video_frame _input_last_frame;      // last frame for this step
     GLuint _input_pbo;                  // pixel-buffer object for texture uploading
     GLuint _input_fbo;                  // frame-buffer object for texture clearing
-    GLuint _input_yuv_y_tex[2][2];      // for yuv formats: y component
-    GLuint _input_yuv_u_tex[2][2];      // for yuv formats: u component
-    GLuint _input_yuv_v_tex[2][2];      // for yuv formats: v component
-    GLuint _input_bgra32_tex[2][2];     // for bgra32 format
-    GLuint _input_subtitle_tex[2];      // for subtitles
-    subtitle_box _input_subtitle_box[2];// the subtitle box currently stored in the texture
-    int _input_subtitle_width[2];       // the width of the current subtitle texture
-    int _input_subtitle_height[2];      // the height of the current subtitle texture
-    int64_t _input_subtitle_time[2];    // the timestamp of the current subtitle texture
-    parameters _input_subtitle_params;  // the parameters of the current subtitle texture
-    int _input_yuv_chroma_width_divisor[2];     // for yuv formats: chroma subsampling
-    int _input_yuv_chroma_height_divisor[2];    // for yuv formats: chroma subsampling
+    GLuint _input_yuv_y_tex[2];         // for yuv formats: y component
+    GLuint _input_yuv_u_tex[2];         // for yuv formats: u component
+    GLuint _input_yuv_v_tex[2];         // for yuv formats: v component
+    GLuint _input_bgra32_tex[2];        // for bgra32 format
+    int _input_yuv_chroma_width_divisor;        // for yuv formats: chroma subsampling
+    int _input_yuv_chroma_height_divisor;       // for yuv formats: chroma subsampling
+    subtitle_box _subtitle[2];          // the current subtitle box
+    GLuint _subtitle_tex[2];            // subtitle texture
+    bool _subtitle_tex_current[2];      // whether the subtitle tex contains the current subtitle buffer
     // Step 2: color space conversion and color correction
-    video_frame _color_last_frame;      // last frame for this step; used for reinitialization check
-    GLuint _color_prg;                  // color space transformation, color adjustment
+    parameters _color_last_params[2];   // last params for this step; used for reinitialization check
+    video_frame _color_last_frame[2];   // last frame for this step; used for reinitialization check
+    GLuint _color_prg[2];               // color space transformation, color adjustment
     GLuint _color_fbo;                  // framebuffer object to render into the sRGB texture
-    GLuint _color_srgb_tex[2];          // output: sRGB texture
+    GLuint _color_tex[2][2];            // output: SRGB8 or linear RGB16 texture
     // Step 3: rendering
+    parameters _render_params;          // current parameters for display
     parameters _render_last_params;     // last params for this step; used for reinitialization check
+    video_frame _render_last_frame;     // last frame for this step; used for reinitialization check
     GLuint _render_prg;                 // reads sRGB texture, renders according to _params[_active_index]
     GLuint _render_dummy_tex;           // an empty subtitle texture
     GLuint _render_mask_tex;            // for the masking modes even-odd-{rows,columns}, checkerboard
-    // OpenGL viewports for drawing the two views of the video frame
+    blob _3d_ready_sync_buf;            // for 3-D Ready Sync pixels
+    // OpenGL viewports and tex coordinates for drawing the two views of the video frame
+    GLint _full_viewport[4];
     GLint _viewport[2][4];
+    float _tex_coords[2][4][2];
 
-private:
+    subtitle_updater *_subtitle_updater;        // the subtitle updater thread
+#if HAVE_LIBXNVCTRL
+    CNvSDIout *_nv_sdi_output;          // access the nvidia quadro sdi output card
+    int64_t _last_nv_sdi_displayed_frameno;
+#endif // HAVE_LIBXNVCTRL
+
+    // GL Helper functions
+    bool xglCheckError(const std::string& where = std::string()) const;
+    bool xglCheckFBO(const std::string& where = std::string()) const;
+    GLuint xglCompileShader(const std::string& name, GLenum type, const std::string& src) const;
+    GLuint xglCreateProgram(GLuint vshader, GLuint fshader) const;
+    GLuint xglCreateProgram(const std::string& name,
+            const std::string& vshader_src, const std::string& fshader_src) const;
+    void xglLinkProgram(const std::string& name, const GLuint prg) const;
+    void xglDeleteProgram(GLuint prg) const;
+
+    bool srgb8_textures_are_color_renderable();
+
+    void draw_quad(float x, float y, float w, float h,
+            const float tex_coords[2][4][2] = NULL,
+            const float more_tex_coords[4][2] = NULL) const;
+
     // Step 1: initialize/deinitialize, and check if reinitialization is necessary
-    void input_init(int index, const video_frame &frame);
-    void input_deinit(int index);
-    bool input_is_compatible(int index, const video_frame &current_frame);
+    void input_init(const video_frame &frame);
+    void input_deinit();
+    bool input_is_compatible(const video_frame &current_frame);
+    void subtitle_init(int index);
+    void subtitle_deinit(int index);
     // Step 2: initialize/deinitialize, and check if reinitialization is necessary
-    void color_init(const video_frame &frame);
-    void color_deinit();
-    bool color_is_compatible(const video_frame &current_frame);
+    void color_init(int index, const parameters& params, const video_frame &frame);
+    void color_deinit(int index);
+    bool color_is_compatible(int index, const parameters& params, const video_frame &current_frame);
     // Step 3: initialize/deinitialize, and check if reinitialization is necessary
     void render_init();
     void render_deinit();
+    bool render_needs_subtitle(const parameters& params);
+    bool render_needs_coloradjust(const parameters& params);
+    bool render_needs_ghostbust(const parameters& params);
     bool render_is_compatible();
-
-    // Update the subtitle texture with the given subtitle and according to the
-    // current video display width and height.
-    void update_subtitle_tex(int index, const video_frame &frame, const subtitle_box &subtitle, const parameters &params);
 
 protected:
     subtitle_renderer _subtitle_renderer;
 
-    // Get total size of the video display area. For single window output, this
-    // is the same as the current viewport. The Equalizer video output can override
-    // this function.
-    virtual int video_display_width();
-    virtual int video_display_height();
+    virtual GLEWContext* glewGetContext() const = 0;
 
-    virtual void make_context_current() = 0;    // Make sure our OpenGL context is current
-    virtual bool context_is_stereo() = 0;       // Is our current OpenGL context a stereo context?
+    // Get the total viewport size.
+    int full_display_width() const;
+    int full_display_height() const;
+    // Get size of the viewport area that is used for video. This is overridable for Equalizer.
+    virtual int video_display_width() const;
+    virtual int video_display_height() const;
+
+    virtual bool context_is_stereo() const = 0; // Is our current OpenGL context a stereo context?
     virtual void recreate_context(bool stereo) = 0;     // Recreate an OpenGL context and make it current
-    virtual void trigger_update() = 0;          // Trigger a redraw (i.e. make GL context current and call display())
     virtual void trigger_resize(int w, int h) = 0;      // Trigger a resize the video area
 
-    void clear();                               // Clear the video area
-    void reshape(int w, int h);                 // Call this when the video area was resized
-    bool need_redisplay_on_move();              // Whether we need to redisplay if the video area moved
+    void clear() const;                         // Clear the video area
+    void reshape(int w, int h, const parameters& params = dispatch::parameters());       // Call this when the video area was resized
+
+    /* Get screen properties (fixed) */
+    virtual int screen_width() const = 0;       // in pixels
+    virtual int screen_height() const = 0;      // in pixels
+    virtual float screen_pixel_aspect_ratio() const = 0;// the aspect ratio of a pixel on screen
+
+    /* Get current video area properties */
+    virtual int width() const = 0;              // in pixels
+    virtual int height() const = 0;             // in pixels
+    virtual int pos_x() const = 0;              // in pixels
+    virtual int pos_y() const = 0;              // in pixels
 
     /* Display the current frame.
      * The first version is used by Equalizer, which needs to set some special properties.
-     * The second version is for everyone else.
+     * The second version is used by NVIDIA SDI output.
+     * The third version is for everyone else.
      * TODO: This function needs to handle interlaced frames! */
-    void display_current_frame(bool keep_viewport, bool mono_right_instead_of_left,
-            float x, float y, float w, float h, const GLint viewport[2][4]);
-    void display_current_frame()
+    void display_current_frame(int64_t display_frameno, bool keep_viewport, bool mono_right_instead_of_left,
+            float x, float y, float w, float h,
+            const GLint viewport[2][4], const float tex_coords[2][4][2],
+            int dst_width, int dst_height,
+            parameters::stereo_mode_t stereo_mode);
+    void display_current_frame(int64_t display_frameno, int dst_width, int dst_height, parameters::stereo_mode_t stereo_mode)
     {
-        display_current_frame(false, false, -1.0f, -1.0f, 2.0f, 2.0f, _viewport);
+        display_current_frame(display_frameno, false, false, -1.0f, -1.0f, 2.0f, 2.0f,
+                _viewport, _tex_coords, dst_width, dst_height, stereo_mode);
     }
+    void display_current_frame(int64_t display_frameno = 0)
+    {
+        display_current_frame(display_frameno, false, false, -1.0f, -1.0f, 2.0f, 2.0f,
+                _viewport, _tex_coords, full_display_width(), full_display_height(),
+                dispatch::parameters().stereo_mode());
+    }
+
+#if HAVE_LIBXNVCTRL
+    void sdi_output(int64_t display_frameno = 0);
+#endif // HAVE_LIBXNVCTRL
 
 public:
     /* Constructor, Destructor */
@@ -141,40 +199,24 @@ public:
     void set_suitable_size(int w, int h, float ar, parameters::stereo_mode_t stereo_mode);
 
     /* Get capabilities */
-    virtual bool supports_stereo() const = 0;   // Is OpenGL quad buffered stereo available?
-
-    /* Get screen properties (fixed) */
-    virtual int screen_width() = 0;             // in pixels
-    virtual int screen_height() = 0;            // in pixels
-    virtual float screen_pixel_aspect_ratio() = 0;      // the aspect ratio of a pixel on screen
-
-    /* Get current video area properties */
-    virtual int width() = 0;                    // in pixels
-    virtual int height() = 0;                   // in pixels
-    virtual int pos_x() = 0;                    // in pixels
-    virtual int pos_y() = 0;                    // in pixels
-    virtual bool fullscreen() = 0;              // whether the video area is in fullscreen mode
+    virtual bool supports_stereo() const = 0;           // Is OpenGL quad buffered stereo available?
 
     /* Center video area on screen */
     virtual void center() = 0;
 
     /* Enter/exit fullscreen mode */
-    virtual void enter_fullscreen(int screen) = 0;
+    virtual void enter_fullscreen() = 0;
     virtual void exit_fullscreen() = 0;
-    virtual bool toggle_fullscreen(int screen) = 0;
 
     /* Process window system events (if applicable) */
     virtual void process_events() = 0;
     
     /* Prepare a new frame for display. */
-    void prepare_next_frame(const video_frame &frame, const subtitle_box &subtitle);
+    virtual void prepare_next_frame(const video_frame &frame, const subtitle_box &subtitle);
     /* Switch to the next frame (make it the current one) */
-    void activate_next_frame();
-    /* Set display parameters. */
-    void set_parameters(const parameters &params);
-
-    /* Receive a notification from the player. */
-    virtual void receive_notification(const notification &note) = 0;
+    virtual void activate_next_frame();
+    /* Get an estimation of when the next frame will appear on screen */
+    virtual int64_t time_to_next_frame_presentation() const;
 };
 
 #endif

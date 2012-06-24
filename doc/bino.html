@@ -1,21 +1,21 @@
 <html lang="en">
 <head>
-<title>Bino 1.2.1</title>
+<title>Bino 1.4.0</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="Bino 1.2.1">
+<meta name="description" content="Bino 1.4.0">
 <meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
 <!--
-This manual was last updated 10 October 2011 for version
-1.2.1 of Bino.
+This manual was last updated 24 June 2012 for version
+1.4.0 of Bino.
 
-Copyright (C) 2011
+Copyright (C) 2011, 2012
 Martin Lambers (<marlam@marlam.de>),
 Stefan Eilemann (<eile@eyescale.ch>),
 Frédéric Devernay (<Frederic.Devernay@inrialpes.fr>)
 
-     Copying and distribution of this file and the referenced image
+     Copying and distribution of this file and the accompanying media
      files, with or without modification, are permitted in any medium
      without royalty provided the copyright notice and this notice are
      preserved. These files are offered as-is, without any warranty.
@@ -34,7 +34,7 @@ Frédéric Devernay (<Frederic.Devernay@inrialpes.fr>)
 --></style>
 </head>
 <body>
-<h1 class="settitle">Bino 1.2.1</h1>
+<h1 class="settitle">Bino 1.4.0</h1>
 <div class="node">
 <a name="Top"></a>
 <p><hr>
@@ -45,16 +45,16 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 
 <h2 class="unnumbered">Bino</h2>
 
-<p>This manual was last updated 10 October 2011 for version
-1.2.1 of Bino.
+<p>This manual was last updated 24 June 2012 for version
+1.4.0 of Bino.
 
-   <p>Copyright &copy; 2011
+   <p>Copyright &copy; 2011, 2012
 Martin Lambers (<a href="mailto:marlam@marlam.de">marlam@marlam.de</a>),
 Stefan Eilemann (<a href="mailto:eile@eyescale.ch">eile@eyescale.ch</a>),
 Frédéric Devernay (<a href="mailto:Frederic.Devernay@inrialpes.fr">Frederic.Devernay@inrialpes.fr</a>)
 
    <blockquote>
-Copying and distribution of this file and the referenced image files, with or
+Copying and distribution of this file and the accompanying media files, with or
 without modification, are permitted in any medium without royalty provided the
 copyright notice and this notice are preserved. These files are offered as-is,
 without any warranty. 
@@ -68,7 +68,10 @@ without any warranty.
 <li><a accesskey="3" href="#Input-Layouts">Input Layouts</a>
 <li><a accesskey="4" href="#Output-Techniques">Output Techniques</a>
 <li><a accesskey="5" href="#Interactive-Control">Interactive Control</a>
-<li><a accesskey="6" href="#Camera-Devices">Camera Devices</a>
+<li><a accesskey="6" href="#Scripting">Scripting</a>
+<li><a accesskey="7" href="#Camera-Devices">Camera Devices</a>
+<li><a accesskey="8" href="#Audio_002fVideo-Synchronization">Audio/Video Synchronization</a>
+<li><a accesskey="9" href="#Performance-Tweaking">Performance Tweaking</a>
 </ul>
    <div class="contents">
 <h2>Table of Contents</h2>
@@ -100,7 +103,13 @@ without any warranty.
 <li><a href="#Interactive-Control">5.1 Keyboard Shortcuts</a>
 <li><a href="#Interactive-Control">5.2 Remote Controls</a>
 </li></ul>
-<li><a name="toc_Camera-Devices" href="#Camera-Devices">6 Camera Devices</a>
+<li><a name="toc_Scripting" href="#Scripting">6 Scripting</a>
+<ul>
+<li><a href="#Scripting">6.1 Script Commands</a>
+</li></ul>
+<li><a name="toc_Camera-Devices" href="#Camera-Devices">7 Camera Devices</a>
+<li><a name="toc_Audio_002fVideo-Synchronization" href="#Audio_002fVideo-Synchronization">8 Audio/Video Synchronization</a>
+<li><a name="toc_Performance-Tweaking" href="#Performance-Tweaking">9 Performance Tweaking</a>
 </li></ul>
 </div>
 
@@ -161,12 +170,21 @@ and other special constructs are supported.
 <br><dt>&lsquo;<samp><span class="samp">--version</span></samp>&rsquo;<dd>Print version. 
 <br><dt>&lsquo;<samp><span class="samp">-n</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--no-gui</span></samp>&rsquo;<dd>Do not use the GUI, just play the given input in a plain window using the
 parameters given on the command line. 
+<dt>&lsquo;<samp><span class="samp">--log-file=</span><var>FILE</var></samp>&rsquo;<dd>Append all log messages to the given file. 
 <br><dt>&lsquo;<samp><span class="samp">-L</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--log-level=</span><var>LEVEL</var></samp>&rsquo;<dd>Select log level: <var>debug</var>, <var>info</var>, <var>warning</var>, <var>error</var>, or
 <var>quiet</var>. 
+<br><dt>&lsquo;<samp><span class="samp">--list-audio-devices</span></samp>&rsquo;<dd>Print a list of known audio devices and exit. 
+<br><dt>&lsquo;<samp><span class="samp">-A</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio-device=</span><var>N</var></samp>&rsquo;<dd>Use audio device number <var>N</var>. <var>N</var>=0 is the default device. 
+<br><dt>&lsquo;<samp><span class="samp">D</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio-delay=</span><var>D</var></samp>&rsquo;<dd>Delay audio by D milliseconds. Default is 0. 
+<br><dt>&lsquo;<samp><span class="samp">-V</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio-volume=</span><var>V</var></samp>&rsquo;<dd>Set audio volume (0 to 1). Default is 1. 
+<br><dt>&lsquo;<samp><span class="samp">-m</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio-mute</span></samp>&rsquo;<dd>Mute audio. 
 <br><dt>&lsquo;<samp><span class="samp">--device-type=</span><var>TYPE</var></samp>&rsquo;<dd>Type of input device: <var>default</var>, <var>firewire</var>, or <var>x11</var>. 
 <br><dt>&lsquo;<samp><span class="samp">--device-frame-size=</span><var>W</var><span class="samp">x</span><var>H</var></samp>&rsquo;<dd>If the input is a device, request the given frame size, e.g. 640x480. 
 <br><dt>&lsquo;<samp><span class="samp">--device-frame-rate=</span><var>N</var><span class="samp">/</span><var>D</var></samp>&rsquo;<dd>If the input is a device, request the given frame rate, e.g. 25/1. 
+<br><dt>&lsquo;<samp><span class="samp">--device-format=</span><var>FORMAT</var></samp>&rsquo;<dd>Request format <var>default</var> or <var>mjpeg</var> from device. 
+<br><dt>&lsquo;<samp><span class="samp">--read-commands=</span><var>FILE</var></samp>&rsquo;<dd>Read commands from file. See <a href="#Scripting">Scripting</a>. 
 <br><dt>&lsquo;<samp><span class="samp">--lirc-config=</span><var>FILE</var></samp>&rsquo;<dd>Use the given LIRC configuration file. This option can be used more than once. 
+<br><dt>&lsquo;<samp><span class="samp">--quality=</span><var>Q</var><span class="samp">"</span></samp>&rsquo;<dd>Set rendering quality, from 0 (fastest) to 4 (best, default). 
 <br><dt>&lsquo;<samp><span class="samp">-v</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--video=</span><var>STREAM</var></samp>&rsquo;<dd>Select video stream (1-n, depending on the input). 
 <br><dt>&lsquo;<samp><span class="samp">-a</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--audio=</span><var>STREAM</var></samp>&rsquo;<dd>Select audio stream (1-n, depending on the input). 
 <br><dt>&lsquo;<samp><span class="samp">-s</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--subtitle=</span><var>STREAM</var></samp>&rsquo;<dd>Select subtitle stream (1-n, depending on the input). 
@@ -181,18 +199,25 @@ numbers start with 1. If the list is empty, the primary screen will be used
 <br><dt>&lsquo;<samp><span class="samp">--fullscreen-flop-left</span></samp>&rsquo;<dd>Flop left view horizontally when in fullscreen mode. 
 <br><dt>&lsquo;<samp><span class="samp">--fullscreen-flip-right</span></samp>&rsquo;<dd>Flip right view vertically when in fullscreen mode. 
 <br><dt>&lsquo;<samp><span class="samp">--fullscreen-flop-right</span></samp>&rsquo;<dd>Flop right view horizontally when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">--fullscreen-3dr-sync</span></samp>&rsquo;<dd>Use DLP&reg; 3-D Ready Sync when in fullscreen mode. 
+<br><dt>&lsquo;<samp><span class="samp">-z</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--zoom=</span><var>Z</var></samp>&rsquo;<dd>Set zoom for videos that are wider than the screen, from 0 (off; show full
+video width) to 1 (full; use full screen height). The default is 0. 
+<br><dt>&lsquo;<samp><span class="samp">-C</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--crop=</span><var>W:H</var></samp>&rsquo;<dd>Crop the video to the given aspect ratio, to remove borders. 0:0 disables cropping. 
 <br><dt>&lsquo;<samp><span class="samp">-c</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--center</span></samp>&rsquo;<dd>Center window on screen. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-encoding=</span><var>ENC</var></samp>&rsquo;<dd>Set subtitle encoding. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-font=</span><var>FONT</var></samp>&rsquo;<dd>Set subtitle font name. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-size=</span><var>N</var></samp>&rsquo;<dd>Set subtitle font size. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-scale=</span><var>S</var></samp>&rsquo;<dd>Set subtitle scale factor. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-color=</span><var>COLOR</var></samp>&rsquo;<dd>Set subtitle color, in [AA]RRGGBB format. 
+<br><dt>&lsquo;<samp><span class="samp">--subtitle-shadow=</span><var>-1|0|1</var></samp>&rsquo;<dd>Set subtitle shadow, -1=default, 0=off, 1=on. 
 <br><dt>&lsquo;<samp><span class="samp">--subtitle-parallax=</span><var>VAL</var></samp>&rsquo;<dd>Subtitle parallax adjustment (-1 to +1). 
 <br><dt>&lsquo;<samp><span class="samp">-P</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--parallax=</span><var>VAL</var></samp>&rsquo;<dd>Parallax adjustment (-1 to +1). 
-<br><dt>&lsquo;<samp><span class="samp">-C</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--crosstalk=</span><var>VAL</var></samp>&rsquo;<dd>Crosstalk leak level (0 to 1). Comma-separated values for the R,G,B channels. 
-<br><dt>&lsquo;<samp><span class="samp">-G</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--ghostbust=</span><var>VAL</var></samp>&rsquo;<dd>Amount of crosstalk ghostbusting to apply (0 to 1). 
+<br><dt>&lsquo;<samp><span class="samp">--crosstalk=</span><var>VAL</var></samp>&rsquo;<dd>Crosstalk leak level (0 to 1). Comma-separated values for the R,G,B channels. 
+<br><dt>&lsquo;<samp><span class="samp">--ghostbust=</span><var>VAL</var></samp>&rsquo;<dd>Amount of crosstalk ghostbusting to apply (0 to 1). 
 <br><dt>&lsquo;<samp><span class="samp">-b</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--benchmark</span></samp>&rsquo;<dd>Benchmark mode: no audio, no time synchronization, output of frames-per-second
 measurements. 
+<br><dt>&lsquo;<samp><span class="samp">--swap-interval=</span><var>D</var></samp>&rsquo;<dd>Frame rate divisor relative to display refresh rate. The default is 0 for
+benchmark mode and 1 otherwise. 
 <br><dt>&lsquo;<samp><span class="samp">-l</span></samp>&rsquo;<dt>&lsquo;<samp><span class="samp">--loop</span></samp>&rsquo;<dd>Loop the input media. 
 </dl>
 
@@ -224,6 +249,7 @@ based on the resolution of the input.
 
 <h3 class="section">3.2 Supported Input Layouts</h3>
 
+<p><a name="Supported-Input-Layouts"></a>
      <dl>
 <dt><var>mono</var><dd>Single view (2D conventional video).<br>
 <img src="input-layout-mono.png" alt="input-layout-mono.png">
@@ -231,6 +257,10 @@ based on the resolution of the input.
 <img src="input-layout-separate-left-right.png" alt="input-layout-separate-left-right.png">
 <br><dt><var>separate-right-left</var><dd>Separate streams: right view first, left view second.<br>
 <img src="input-layout-separate-right-left.png" alt="input-layout-separate-right-left.png">
+<br><dt><var>alternating-left-right</var><dd>Alternating frames: left view first, right view second.<br>
+<img src="input-layout-alternating-left-right.png" alt="input-layout-alternating-left-right.png">
+<br><dt><var>alternating-right-left</var><dd>Alternating frames: right view first, left view second.<br>
+<img src="input-layout-alternating-right-left.png" alt="input-layout-alternating-right-left.png">
 <br><dt><var>top-bottom</var><dd>Single stream: left view top, right view bottom.<br>
 <img src="input-layout-top-bottom.png" alt="input-layout-top-bottom.png">
 <br><dt><var>top-bottom-half</var><dd>Single stream: left view top, right view bottom, both with half height.<br>
@@ -334,8 +364,16 @@ stereo if the graphics card supports it, otherwise red/cyan anaglyph glasses.
 
 <h3 class="section">4.2 Supported Output Techniques</h3>
 
+<p><a name="Supported-Output-Techniques"></a>
      <dl>
-<dt><var>mono-left</var><dd>Left view only.<br>
+<dt><var>stereo</var><dd>OpenGL quad-buffer stereo.<br>
+<img src="output-type-stereo.png" alt="output-type-stereo.png">
+<br><dt><var>alternating</var><dd>Left and right view alternating. This can be used for shutter glasses on systems that do not support
+OpenGL quad-buffer stereo, but note that this mode may be unreliable and may swap left/right eyes occasionally,
+depending on your system. In case of problems, disabling the fullscreen mode screensaver inhibition may help. 
+<br>
+<img src="output-type-alternating.png" alt="output-type-alternating.png">
+<br><dt><var>mono-left</var><dd>Left view only.<br>
 <img src="output-type-mono-left.png" alt="output-type-mono-left.png">
 <br><dt><var>mono-right</var><dd>Right view only.<br>
 <img src="output-type-mono-right.png" alt="output-type-mono-right.png">
@@ -387,8 +425,6 @@ GNU/Linux can be found in
 <img src="output-type-red-green.png" alt="output-type-red-green.png">
 <br><dt><var>red-blue-monochrome</var><dd>Red/blue anaglyph glasses, monochrome method.<br>
 <img src="output-type-red-blue.png" alt="output-type-red-blue.png">
-<br><dt><var>stereo</var><dd>OpenGL quad-buffer stereo.<br>
-<img src="output-type-stereo.png" alt="output-type-stereo.png">
 <br><dt><var>equalizer</var><dd>Multi-display OpenGL via Equalizer with a 2D canvas setup.<br>
 <br><dt><var>equalizer-3d</var><dd>Multi-display OpenGL via Equalizer with a 3D screen setup.<br>
 </dl>
@@ -751,7 +787,7 @@ simulate this setup on a single machine.
    <div class="node">
 <a name="Interactive-Control"></a>
 <p><hr>
-Next:&nbsp;<a rel="next" accesskey="n" href="#Camera-Devices">Camera Devices</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="#Scripting">Scripting</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="#Output-Techniques">Output Techniques</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
@@ -770,20 +806,25 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 <br><dt><kbd>p</kbd><br><dt><kbd>SPACE</kbd><dd>Pause / unpause. 
 <br><dt><kbd>f</kbd><dd>Toggle fullscreen. 
 <br><dt><kbd>c</kbd><dd>Center window. 
-<br><dt><kbd>e</kbd><dd>Swap left/right eye. 
+<br><dt><kbd>e</kbd><br><dt><kbd>F7</kbd><dd>Swap left/right eye. 
 <br><dt><kbd>v</kbd><dd>Cycle through available video streams. 
 <br><dt><kbd>a</kbd><dd>Cycle through available audio streams. 
-<br><dt><kbd>a</kbd><dd>Cycle through available subtitle streams. 
+<br><dt><kbd>s</kbd><dd>Cycle through available subtitle streams. 
 <br><dt><kbd>1, 2</kbd><dd>Adjust contrast. 
 <br><dt><kbd>3, 4</kbd><dd>Adjust brightness. 
 <br><dt><kbd>5, 6</kbd><dd>Adjust hue. 
 <br><dt><kbd>7, 8</kbd><dd>Adjust saturation. 
-<br><dt><kbd>&lt;, &gt;</kbd><dd>Adjust parallax. 
+<br><dt><kbd>[, ]</kbd><dd>Adjust parallax. 
 <br><dt><kbd>(, )</kbd><dd>Adjust ghostbusting. 
+<br><dt><kbd>&lt;, &gt;</kbd><dd>Adjust zoom for videos that are wider than the screen. 
+<br><dt><kbd>/, *</kbd><dd>Adjust audio volume. 
+<br><dt><kbd>m</kbd><dd>Toggle audio mute. 
+<br><dt><kbd>.</kbd><dd>Step a single video frame forward. 
 <br><dt><kbd>LEFT, RIGHT</kbd><dd>Seek 10 seconds backward / forward. 
-<br><dt><kbd>UP, DOWN</kbd><dd>Seek 1 minute backward / forward. 
-<br><dt><kbd>PAGE UP, PAGE DOWN</kbd><dd>Seek 10 minutes backward / forward. 
+<br><dt><kbd>DOWN, UP</kbd><dd>Seek 1 minute backward / forward. 
+<br><dt><kbd>PAGE DOWN, PAGE UP</kbd><dd>Seek 10 minutes backward / forward. 
 <br><dt><kbd>Mouse click</kbd><dd>Seek according to the horizontal click position. 
+<br><dt><kbd>"Media Keys"</kbd><dd>Media keys (if available) should work as expected. 
 </dl>
 
 <h3 class="section">5.2 Remote Controls</h3>
@@ -795,29 +836,8 @@ configuration file usually is <code>~/.lircrc</code>. You can use the
 &lsquo;<samp><span class="samp">--lirc-config</span></samp>&rsquo; option to use one or more custom LIRC configuration files
 instead.
 
-   <p>The following commands are available:
-
-     <dl>
-<dt>&lsquo;<samp><span class="samp">play</span></samp>&rsquo;<dd>Start playback, or exit pause mode. 
-<br><dt>&lsquo;<samp><span class="samp">pause</span></samp>&rsquo;<dd>When playing, go into pause mode. 
-<br><dt>&lsquo;<samp><span class="samp">stop</span></samp>&rsquo;<dd>Stop playback. 
-<br><dt>&lsquo;<samp><span class="samp">cycle-video-stream</span></samp>&rsquo;<dd>Cycle through available video streams. 
-<br><dt>&lsquo;<samp><span class="samp">cycle-audio-stream</span></samp>&rsquo;<dd>Cycle through available audio streams. 
-<br><dt>&lsquo;<samp><span class="samp">cycle-subtitle-stream</span></samp>&rsquo;<dd>Cycle through available subtitle streams. 
-<br><dt>&lsquo;<samp><span class="samp">toggle-stereo-mode-swap</span></samp>&rsquo;<dd>Swap left/right eye. 
-<br><dt>&lsquo;<samp><span class="samp">toggle-fullscreen</span></samp>&rsquo;<dd>Toggle fullscreen. 
-<br><dt>&lsquo;<samp><span class="samp">center</span></samp>&rsquo;<dd>Center window. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-contrast </span><var>delta</var></samp>&rsquo;<dd>Adjust contrast by adding <var>delta</var>, e.g. -0.05 or +0.05. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-brightness </span><var>delta</var></samp>&rsquo;<dd>Adjust brightness by adding <var>delta</var>, e.g. -0.05 or +0.05. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-hue </span><var>delta</var></samp>&rsquo;<dd>Adjust hue by adding <var>delta</var>, e.g. -0.05 or +0.05. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-saturation </span><var>delta</var></samp>&rsquo;<dd>Adjust saturation by adding <var>delta</var>, e.g. -0.05 or +0.05. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust parallax by adding <var>delta</var>, e.g. -0.01 or +0.01. 
-<br><dt>&lsquo;<samp><span class="samp">adjust-subtitle-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust contrast by adding <var>delta</var>, e.g. -0.01 or +0.01. 
-<br><dt>&lsquo;<samp><span class="samp">seek </span><var>delta</var></samp>&rsquo;<dd>Seek by the given number of seconds relative to the current position.  For
-example -60.0 seeks backwards one minute, and +60.0 seeks forward one minute. 
-<br><dt>&lsquo;<samp><span class="samp">set-pos </span><var>pos</var></samp>&rsquo;<dd>Seek by setting an absolute position in the stream, with <var>pos</var> between 0 and
-1. For example, to seek to the middle of the video, use 0.5. 
-</dl>
+   <p>The available commands are the same commands that are available for scripting. 
+See <a href="#Script-Commands">Script Commands</a>.
 
    <p>Example LIRC configuration file excerpt:
 <pre class="example">     begin
@@ -828,14 +848,171 @@ example -60.0 seeks backwards one minute, and +60.0 seeks forward one minute.
      end
 </pre>
    <div class="node">
-<a name="Camera-Devices"></a>
+<a name="Scripting"></a>
 <p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Camera-Devices">Camera Devices</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="#Interactive-Control">Interactive Control</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 </div>
 
-<h2 class="chapter">6 Camera Devices</h2>
+<h2 class="chapter">6 Scripting</h2>
+
+<p>Bino can read commands from one or multiple script files. Use the &lsquo;<samp><span class="samp">--read-commands</span></samp>&rsquo;
+option to specify script files.
+
+   <p>Available script commands are listed below. See <a href="#Script-Commands">Script Commands</a>.
+
+   <p>A script file can be a standard text file, but it can also be a named pipe,
+which allows other programs or scripts to submit commands to Bino as they see
+fit.
+
+<pre class="example">     $ mkfifo ~/bino-command-fifo
+     $ bino --read-commands ~/bino-command-fifo &amp;
+     
+     $ echo 'set-contrast 0.1' &gt; ~/bino-command-fifo
+     $ ...
+</pre>
+   <p>Using the &lsquo;<samp><span class="samp">netcat</span></samp>&rsquo; utility, this also works over the network.
+
+<pre class="example">     $ mkfifo ~/bino-command-fifo
+     $ bino --read-commands ~/bino-command-fifo &amp;
+     
+     $ nc -l 1234 &gt; ~/bino-command-fifo &amp;
+     $ telnet localhost 1234
+     set-contrast 0.1
+     ...
+</pre>
+   <p>Here is a simple example script file:
+<pre class="example">     # Play all videos in fullscreen mode.
+     toggle-fullscreen
+     # Open the first video.
+     open /path/to/video.webm
+     # Start playing.
+     play
+     # Wait until the video finishes before continuing this script.
+     wait stop
+     # Open a second video. This one has a space in its file name.
+     open /path/to/video%20file.webm
+     # Start playing.
+     play
+     # Immediately increase brightness.
+     adjust-brightness +0.1
+     # Immediately seek to 60 seconds within the video.
+     seek 60.0
+     # Let the video play for 30.0 seconds before continuing with this script.
+     wait 30.0
+     # Open a third video. This one has left and right view in separate files.
+     open /path/to/left.webm /path/to/right.webm
+     # Start playing.
+     play
+</pre>
+   <p>This script is executed with the following command. The &lsquo;<samp><span class="samp">--no-gui</span></samp>&rsquo; option
+is not necessary, but prevents the GUI to remember the changed brightness
+setting in future sessions.
+<pre class="example">     $ bino --read-commands /path/to/script.txt --no-gui
+</pre>
+   <h3 class="section">6.1 Script Commands</h3>
+
+<p><a name="Script-Commands"></a>One script line defines exactly one script command.  Empty lines or lines
+starting with the &lsquo;<samp><span class="samp">#</span></samp>&rsquo; character are comment lines and define the
+&lsquo;<samp><span class="samp">noop</span></samp>&rsquo; command, which has no effect.
+
+     <dl>
+<dt>&lsquo;<samp><span class="samp">noop</span></samp>&rsquo;<dd>This command has no effect. 
+<br><dt>&lsquo;<samp><span class="samp">quit</span></samp>&rsquo;<dd>Quit the application. 
+<br><dt>&lsquo;<samp><span class="samp">wait </span><var>stop</var><span class="samp">|</span><var>seconds</var></samp>&rsquo;<dd>Wait until the currently playing video stops, or wait for the given number of seconds,
+before processing more commands from this file, script, or FIFO.<br>
+(This command is not available for LIRC remote controls.) 
+<br><dt>&lsquo;<samp><span class="samp">open [</span><var>option</var><span class="samp">...] </span><var>file</var><span class="samp">...</span></samp>&rsquo;<dd>Open the given files.<br>
+You can use percent-encoding to encode special characters. 
+See <a href="http://en.wikipedia.org/wiki/Percent_encoding">http://en.wikipedia.org/wiki/Percent_encoding</a>. 
+Use this if the file names contain whitespace.<br>
+To open devices, the following options are available, analogous to the command
+line options with the same name:
+	
+          <dl>
+	<dt>&lsquo;<samp><span class="samp">--device-type=</span><var>none</var><span class="samp">|</span><var>default</var><span class="samp">|</span><var>firewire</var><span class="samp">|</span><var>x11</var></samp>&rsquo;	<br><dt>&lsquo;<samp><span class="samp">--device-frame-size=</span><var>W</var><span class="samp">x</span><var>H</var></samp>&rsquo;	<br><dt>&lsquo;<samp><span class="samp">--device-frame-rate=</span><var>N</var><span class="samp">/</span><var>D</var></samp>&rsquo;	<br><dt>&lsquo;<samp><span class="samp">--device-format=</span><var>default</var><span class="samp">|</span><var>mjpeg</var></samp>&rsquo;<dd>	</dl>
+     <br><dt>&lsquo;<samp><span class="samp">close</span></samp>&rsquo;<dd>Close the currently opened input. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-play</span></samp>&rsquo;<dd>Toggle playback. 
+<br><dt>&lsquo;<samp><span class="samp">play</span></samp>&rsquo;<dd>Start playback, or exit pause mode. 
+<br><dt>&lsquo;<samp><span class="samp">stop</span></samp>&rsquo;<dd>Stop playback. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-pause</span></samp>&rsquo;<dd>Toggle pause mode. 
+<br><dt>&lsquo;<samp><span class="samp">pause</span></samp>&rsquo;<dd>When playing, go into pause mode. 
+<br><dt>&lsquo;<samp><span class="samp">step</span></samp>&rsquo;<dd>Single-step to the next video frame. 
+<br><dt>&lsquo;<samp><span class="samp">seek </span><var>delta</var></samp>&rsquo;<dd>Seek by the given number of seconds relative to the current position.  For
+example -60.0 seeks backwards one minute, and +600.0 seeks forward ten minutes. 
+<br><dt>&lsquo;<samp><span class="samp">set-pos </span><var>pos</var></samp>&rsquo;<dd>Seek by setting an absolute position in the stream, with <var>pos</var> between 0 and
+1. For example, to seek to the middle of the video, use 0.5. 
+<br><dt>&lsquo;<samp><span class="samp">set-audio-device </span><var>dev</var></samp>&rsquo;<dd>Set the audio device to the one with the given index. 
+<br><dt>&lsquo;<samp><span class="samp">set-quality </span><var>q</var></samp>&rsquo;<dd>Set rendering quality, from 0 (fastest) to 4 (best, default). 
+<br><dt>&lsquo;<samp><span class="samp">set-stereo-mode </span><var>mode</var></samp>&rsquo;<dd>Set the stereo mode. See <a href="#Supported-Output-Techniques">Supported Output Techniques</a>. 
+<br><dt>&lsquo;<samp><span class="samp">set-stereo-mode-swap </span><var>swap</var></samp>&rsquo;<dd>Set stereo mode left/right swap (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">toggle-stereo-mode-swap</span></samp>&rsquo;<dd>Toggle stereo mode left/right swap. 
+<br><dt>&lsquo;<samp><span class="samp">set-crosstalk </span><var>cr</var> <var>cg</var> <var>cb</var></samp>&rsquo;<dd>Set display crosstalk levels for red, green, and blue. Each value must be between 0 and 1. 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-screens </span><var>screens</var></samp>&rsquo;<dd>Set screens to use in fullscreen mode. The value is an integer in which bits
+are set for each screen that should be used (screen 1 = lowest bit). The value
+0 means the default screen. 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-flip-left </span><var>b</var></samp>&rsquo;<dd>Set fullscreen flip left (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-flop-left</span><var>b</var></samp>&rsquo;<dd>Set fullscreen flop left (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-flip-right </span><var>b</var></samp>&rsquo;<dd>Set fullscreen flip right (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-flop-right </span><var>b</var></samp>&rsquo;<dd>Set fullscreen flop right (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-inhibit-screensaver </span><var>b</var></samp>&rsquo;<dd>Set fullscreen inhibit screensaver (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-fullscreen-3dr-sync </span><var>b</var></samp>&rsquo;<dd>Set fullscreen DLP&reg; 3-D Ready Sync (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-contrast </span><var>value</var></samp>&rsquo;<dd>Set contrast to the given <var>value</var>, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-contrast </span><var>delta</var></samp>&rsquo;<dd>Adjust contrast by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-brightness </span><var>value</var></samp>&rsquo;<dd>Set brightness to the given <var>value</var>, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-brightness </span><var>delta</var></samp>&rsquo;<dd>Adjust brightness by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-hue </span><var>value</var></samp>&rsquo;<dd>Set hue to the given <var>value</var>, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-hue </span><var>delta</var></samp>&rsquo;<dd>Adjust hue by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-saturation </span><var>value</var></samp>&rsquo;<dd>Set saturation to the given <var>value</var>, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-saturation </span><var>delta</var></samp>&rsquo;<dd>Adjust saturation by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-zoom </span><var>value</var></samp>&rsquo;<dd>Set zoom to the given <var>value</var>, from 0 to 1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-zoom </span><var>delta</var></samp>&rsquo;<dd>Adjust zoom by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-loop-mode </span><var>mode</var></samp>&rsquo;<dd>Set loop mode to &lsquo;<samp><span class="samp">off</span></samp>&rsquo; or &lsquo;<samp><span class="samp">current</span></samp>&rsquo;. 
+<br><dt>&lsquo;<samp><span class="samp">set-audio-delay </span><var>seconds</var></samp>&rsquo;<dd>Set audio delay. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-encoding </span><var>enc</var></samp>&rsquo;<dd>Set subtitle encoding. An empty value means to use the default. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-font </span><var>font</var></samp>&rsquo;<dd>Set subtitle font. An empty value means to use the default. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-size </span><var>size</var></samp>&rsquo;<dd>Set the subtitle font size. The value is an integer, e.g. 12. 
+Use -1 to keep the default size. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-color </span><var>color</var></samp>&rsquo;<dd>Set the subtitle color as an integer that represents an RGB color. 
+Use a value larger than UINT32_MAX to keep the default color. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-shadow </span><var>mode</var></samp>&rsquo;<dd>Set subtitle shadow to force-on (1), force-off (0), or default (-1). 
+<br><dt>&lsquo;<samp><span class="samp">set-video-stream </span><var>stream</var></samp>&rsquo;<dd>Set video stream. Stream numbers start with 0. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-video-stream</span></samp>&rsquo;<dd>Cycle through available video streams. 
+<br><dt>&lsquo;<samp><span class="samp">set-audio-stream </span><var>stream</var></samp>&rsquo;<dd>Set audio stream. Stream numbers start with 0. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-audio-stream</span></samp>&rsquo;<dd>Cycle through available audio streams. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-stream </span><var>stream</var></samp>&rsquo;<dd>Set subtitle stream. Stream numbers start with 0. Using -1 disables subtitles. 
+<br><dt>&lsquo;<samp><span class="samp">cycle-subtitle-stream</span></samp>&rsquo;<dd>Cycle through available subtitle streams. 
+<br><dt>&lsquo;<samp><span class="samp">set-stereo-layout </span><var>layout</var></samp>&rsquo;<dd>Set stereo layout. See <a href="#Supported-Input-Layouts">Supported Input Layouts</a>. Note that here only the
+left first, right second modes are supported. To get the right first, left second
+modes, use &lsquo;<samp><span class="samp">set-stereo-layout-swap</span></samp>&rsquo;. 
+<br><dt>&lsquo;<samp><span class="samp">set-stereo-layout-swap </span><var>b</var></samp>&rsquo;<dd>Set stereo layout swap (on or off). 
+<br><dt>&lsquo;<samp><span class="samp">set-crop-aspect-ratio </span><var>ar</var></samp>&rsquo;<dd>Set crop aspect ratio, either as a floating point number (e.g. 1.78), or as a
+ratio (e.g. 16:9). 
+<br><dt>&lsquo;<samp><span class="samp">set-parallax </span><var>value</var></samp>&rsquo;<dd>Set parallax, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust parallax by adding <var>delta</var>, e.g. -0.05 or + 0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-ghostbust </span><var>value</var></samp>&rsquo;<dd>Set ghostbust, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-ghostbust </span><var>delta</var></samp>&rsquo;<dd>Adjust ghostbust by adding <var>delta</var>, e.g. -0.05 or + 0.05. 
+<br><dt>&lsquo;<samp><span class="samp">set-subtitle-parallax </span><var>value</var></samp>&rsquo;<dd>Set subtitle parallax, from -1 to +1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-subtitle-parallax </span><var>delta</var></samp>&rsquo;<dd>Adjust subtitle parallax by adding <var>delta</var>, e.g. -0.05 or + 0.05. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-fullscreen</span></samp>&rsquo;<dd>Toggle fullscreen. 
+<br><dt>&lsquo;<samp><span class="samp">center</span></samp>&rsquo;<dd>Center window. 
+<br><dt>&lsquo;<samp><span class="samp">set-audio-volume </span><var>value</var></samp>&rsquo;<dd>Set audio volume, from 0 to 1. 
+<br><dt>&lsquo;<samp><span class="samp">adjust-audio-volume </span><var>delta</var></samp>&rsquo;<dd>Adjust audio volume by adding <var>delta</var>, e.g. -0.05 or +0.05. 
+<br><dt>&lsquo;<samp><span class="samp">toggle-audio-mute</span></samp>&rsquo;<dd>Toggle audio mute. 
+</dl>
+
+<div class="node">
+<a name="Camera-Devices"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Audio_002fVideo-Synchronization">Audio/Video Synchronization</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Scripting">Scripting</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">7 Camera Devices</h2>
 
 <p>Bino supports the following types of camera devices:
      <ul>
@@ -854,6 +1031,64 @@ name is of the form
 
    <p>Note: for <var>firewire</var> and <var>x11</var> devices to work, your FFmpeg libraries
 must have <var>libdc1394</var> and <var>x11grab</var> support enabled.
+
+<div class="node">
+<a name="Audio%2fVideo-Synchronization"></a>
+<a name="Audio_002fVideo-Synchronization"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Performance-Tweaking">Performance Tweaking</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Camera-Devices">Camera Devices</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">8 Audio/Video Synchronization</h2>
+
+<p>Bino uses OpenGL to display video, and OpenGL unfortunately does not provide a
+way to determine exactly when a frame will be visible on screen. On most systems,
+a frame is displayed almost immediately, but some systems introduce a delay, and
+this can cause notable audio/video synchronization errors. 
+This effect may be aggravated by compositing window managers. See
+<a href="http://savannah.nongnu.org/bugs/?35103">bug 35103</a> for more information.
+
+   <p>You can check the audio/video synchronization on your system using the file
+<a href="audio-video-sync.mp4"><code>audio-video-sync.mp4</code></a> (created
+on 12/18/2011 by <a href="http://www.schristiancollins.com">S. Christian Collins</a>). 
+It contains a few bright flashes accompanied by "tick" sounds. The flashes and
+the sounds should be exactly in sync.
+
+   <p>If they are not, you can adjust an audio delay that compensates for the video
+delay. Increase audio delay (e.g. in steps of 50 milliseconds) and replay the
+test video until audio and video are synchronized.
+
+<div class="node">
+<a name="Performance-Tweaking"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Audio_002fVideo-Synchronization">Audio/Video Synchronization</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">9 Performance Tweaking</h2>
+
+<p>Bino should be able to play most video files on a computer with reasonable CPU and graphics power.
+
+   <p>If Bino cannot play a video fast enough, it drops frames. Audio continues to
+play, but video begins to stutter or even to stop completely.
+
+   <p>This can have to two causes: either your CPU cannot decode the video fast
+enough, or your graphics card cannot render the video fast enough.
+
+   <p>In the first case, there is currently not much you can do.
+
+   <p>In the second case, try the following to improve performance:
+     <ol type=1 start=1>
+<li>Reduce the quality setting as far as necessary. 
+<li>Use a lower-quality anaglyph mode instead of the high-quality Dubois mode. 
+<li>Avoid color adjustments: set the contrast, brightness, hue, and saturation adjustments to 0. 
+<li>Avoid ghostbusting: set the ghostbusting parameter to 0. 
+<li>Disable subtitles.
+        </ol>
 
 </body></html>
 

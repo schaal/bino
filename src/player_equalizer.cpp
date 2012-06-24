@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Stefan Eilemann <eile@eyescale.ch>
  *
@@ -34,6 +34,8 @@
 #include "msg.h"
 #include "s11n.h"
 
+#include "dispatch.h"
+#include "media_input.h"
 #include "video_output.h"
 #include "player_equalizer.h"
 
@@ -55,6 +57,8 @@
  * the video.
  */
 
+extern dispatch* global_dispatch;
+static player_equalizer* global_player_equalizer = NULL;
 
 /*
  * player_eq_node
@@ -66,50 +70,25 @@
 class player_eq_node : public player
 {
 private:
-    bool _is_master;
-
-protected:
-    video_output *create_video_output()
-    {
-        // A node does not have its own video output; this is handled via eq_window.
-        return NULL;
-    }
-
-    void destory_video_output(video_output *)
-    {
-    }
-
-    audio_output *create_audio_output()
-    {
-        // Only the master player may have an audio output.
-        return _is_master ? new audio_output() : NULL;
-    }
-
-    void destroy_audio_output(audio_output *ao)
-    {
-        delete ao;
-    }
+    class media_input _media_input;
 
 public:
-    player_eq_node() : player(player::slave), _is_master(false)
+    player_eq_node() : player()
     {
     }
 
-    void make_master()
+    bool init(const open_input_data& input)
     {
-        player::make_master();
-        _is_master = true;
-    }
-
-    bool init(const player_init_data &init_data, video_frame &frame_template)
-    {
-        try
-        {
-            player::open(init_data);
-            frame_template = get_media_input().video_frame_template();
+        try {
+            _media_input.open(input.urls, input.dev_request);
+            if (_media_input.video_streams() == 0)
+                throw exc(_("No video streams found."));
+            if (input.params.stereo_layout_is_set() || input.params.stereo_layout_swap_is_set())
+                _media_input.set_stereo_layout(input.params.stereo_layout(), input.params.stereo_layout_swap());
+            _media_input.select_video_stream(input.params.video_stream());
+            player::open();
         }
-        catch (std::exception &e)
-        {
+        catch (std::exception& e) {
             msg::err("%s", e.what());
             return false;
         }
@@ -118,7 +97,7 @@ public:
 
     void seek(int64_t pos)
     {
-        get_media_input_nonconst().seek(pos);
+        _media_input.seek(pos);
         // The master player read a video frame; do the same to keep sync
         start_frame_read();
     }
@@ -126,34 +105,18 @@ public:
     void start_frame_read()
     {
         // Only called on slave nodes
-        get_media_input_nonconst().start_video_frame_read();
+        _media_input.start_video_frame_read();
     }
 
     void finish_frame_read()
     {
         // Only called on slave nodes
-        _video_frame = get_media_input_nonconst().finish_video_frame_read();
+        _video_frame = _media_input.finish_video_frame_read();
         if (!_video_frame.is_valid())
         {
             msg::err(_("Reading input frame failed."));
             std::exit(1);
         }
-    }
-
-    void step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool *drop_frame, bool *display_frame)
-    {
-        // Only called on the master node
-        player::step(more_steps, seek_to, prep_frame, drop_frame, display_frame);
-    }
-
-    const video_frame &get_video_frame()
-    {
-        return _video_frame;
-    }
-
-    const subtitle_box &get_subtitle()
-    {
-        return _current_subtitle_box;
     }
 };
 
@@ -172,16 +135,27 @@ private:
     eq::Channel *_channel;
     const float _canvas_width;
     const float _canvas_height;
-    const float _canvas_video_area_w;
-    const float _canvas_video_area_h;
+    float _canvas_video_area_w;
+    float _canvas_video_area_h;
 
 protected:
-    int video_display_width() { return screen_width() * _canvas_video_area_w; }
-    int video_display_height() { return screen_height() * _canvas_video_area_h; }
-    void make_context_current() { _channel->getWindow()->makeCurrent(); }
-    bool context_is_stereo() { return false; }
+    int video_display_width() const { return screen_width() * _canvas_video_area_w; }
+    int video_display_height() const { return screen_height() * _canvas_video_area_h; }
+    int screen_width() const { return _channel->getPixelViewport().w / _channel->getViewport().w; }
+    int screen_height() const { return _channel->getPixelViewport().h / _channel->getViewport().h; }
+    float screen_pixel_aspect_ratio() const
+    {
+        float pixels_per_unit_x = _channel->getPixelViewport().w / (_canvas_width * _channel->getViewport().w);
+        float pixels_per_unit_y = _channel->getPixelViewport().h / (_canvas_height * _channel->getViewport().h);
+        return pixels_per_unit_y / pixels_per_unit_x;
+    }
+    int width() const { return _channel->getPixelViewport().w; }
+    int height() const { return _channel->getPixelViewport().h; }
+    int pos_x() const { return 0; }
+    int pos_y() const { return 0; }
+    GLEWContext* glewGetContext() const { return const_cast<GLEWContext*>(_channel->getWindow()->glewGetContext()); }
+    bool context_is_stereo() const { return false; }
     void recreate_context(bool) { }
-    void trigger_update() { }
     void trigger_resize(int, int) { }
 
 public:
@@ -206,47 +180,51 @@ public:
         return 0;
     }
     bool supports_stereo() const { return false; }
-    int screen_width() { return _channel->getPixelViewport().w / _channel->getViewport().w; }
-    int screen_height() { return _channel->getPixelViewport().h / _channel->getViewport().h; }
-    float screen_pixel_aspect_ratio()
-    {
-        float pixels_per_unit_x = _channel->getPixelViewport().w / (_canvas_width * _channel->getViewport().w);
-        float pixels_per_unit_y = _channel->getPixelViewport().h / (_canvas_height * _channel->getViewport().h);
-        return pixels_per_unit_y / pixels_per_unit_x;
-    }
-    int width() { return _channel->getPixelViewport().w; }
-    int height() { return _channel->getPixelViewport().h; }
-    int pos_x() { return 0; }
-    int pos_y() { return 0; }
-    bool fullscreen() { return false; }
     void center() { }
-    void enter_fullscreen(int) { }
+    void enter_fullscreen() { }
     void exit_fullscreen() { }
-    bool toggle_fullscreen(int) { return false; }
-    bool has_events() { return false; }
     void process_events() { }
-    void receive_notification(const notification &) { }
 
 public:
     video_output_eq_channel(eq::Channel *channel,
-            float canvas_width, float canvas_height,
-            float canvas_video_area_w, float canvas_video_area_h) :
+            float canvas_width, float canvas_height) :
         video_output(),
         _channel(channel),
         _canvas_width(canvas_width),
-        _canvas_height(canvas_height),
-        _canvas_video_area_w(canvas_video_area_w),
-        _canvas_video_area_h(canvas_video_area_h)
+        _canvas_height(canvas_height)
     {
     }
 
-    void display_current_frame(bool mono_right_instead_of_left,
-            float x, float y, float w, float h, const GLint viewport[4])
+    void set_canvas_size(float canvas_video_area_w, float canvas_video_area_h)
     {
+        _canvas_video_area_w = canvas_video_area_w;
+        _canvas_video_area_h = canvas_video_area_h;
+    }
+
+    void display_current_frame(bool mono_right_instead_of_left,
+            float x, float y, float w, float h,
+            const GLint viewport[4], const float tex_coords[4][2])
+    {
+        float my_tex_coords[2][4][2] =
+        {
+            {
+                { tex_coords[0][0], tex_coords[0][1] },
+                { tex_coords[1][0], tex_coords[1][1] },
+                { tex_coords[2][0], tex_coords[2][1] },
+                { tex_coords[3][0], tex_coords[3][1] },
+            },
+            {
+                { tex_coords[0][0], tex_coords[0][1] },
+                { tex_coords[1][0], tex_coords[1][1] },
+                { tex_coords[2][0], tex_coords[2][1] },
+                { tex_coords[3][0], tex_coords[3][1] },
+            },
+        };
         GLint vp[2][4];
         std::memcpy(vp[0], viewport, 4 * sizeof(int));
         std::memcpy(vp[1], viewport, 4 * sizeof(int));
-        video_output::display_current_frame(true, mono_right_instead_of_left, x, y, w, h, vp);
+        video_output::display_current_frame(0, true, mono_right_instead_of_left,
+                x, y, w, h, vp, my_tex_coords, 0, 0, parameters::mode_mono_left);
     }
 };
 
@@ -303,20 +281,15 @@ class eq_init_data : public co::Object
 {
 public:
     eq::uint128_t frame_data_id;
-    player_init_data init_data;
+    open_input_data input;
+    parameters params;
     bool flat_screen;
     float canvas_width;
     float canvas_height;
-    struct { float x, y, w, h, d; } canvas_video_area;
 
-    eq_init_data() : init_data()
+    eq_init_data()
     {
         flat_screen = true;
-        canvas_video_area.x = 0.0f;
-        canvas_video_area.y = 0.0f;
-        canvas_video_area.w = 1.0f;
-        canvas_video_area.h = 1.0f;
-        canvas_video_area.d = 1.0f;
     }
 
     virtual ~eq_init_data()
@@ -334,15 +307,11 @@ protected:
         std::ostringstream oss;
         s11n::save(oss, frame_data_id.high());
         s11n::save(oss, frame_data_id.low());
-        s11n::save(oss, init_data);
+        s11n::save(oss, input);
+        s11n::save(oss, params);
         s11n::save(oss, flat_screen);
         s11n::save(oss, canvas_width);
         s11n::save(oss, canvas_height);
-        s11n::save(oss, canvas_video_area.x);
-        s11n::save(oss, canvas_video_area.y);
-        s11n::save(oss, canvas_video_area.w);
-        s11n::save(oss, canvas_video_area.h);
-        s11n::save(oss, canvas_video_area.d);
         os << oss.str();
     }
 
@@ -353,15 +322,11 @@ protected:
         std::istringstream iss(s);
         s11n::load(iss, frame_data_id.high());
         s11n::load(iss, frame_data_id.low());
-        s11n::load(iss, init_data);
+        s11n::load(iss, input);
+        s11n::load(iss, params);
         s11n::load(iss, flat_screen);
         s11n::load(iss, canvas_width);
         s11n::load(iss, canvas_height);
-        s11n::load(iss, canvas_video_area.x);
-        s11n::load(iss, canvas_video_area.y);
-        s11n::load(iss, canvas_video_area.w);
-        s11n::load(iss, canvas_video_area.h);
-        s11n::load(iss, canvas_video_area.d);
     }
 };
 
@@ -372,21 +337,23 @@ protected:
 class eq_frame_data : public co::Object
 {
 public:
+    std::string dispatch_state;
     subtitle_box subtitle;
-    parameters params;
     int64_t seek_to;
     bool prep_frame;
     bool drop_frame;
     bool display_frame;
+    bool display_statistics;
+    struct { float x, y, w, h, d; } canvas_video_area;
+    float tex_coords[4][2];
 
 public:
     eq_frame_data() :
-        subtitle(),
-        params(),
         seek_to(0),
         prep_frame(false),
         drop_frame(false),
-        display_frame(false)
+        display_frame(false),
+        display_statistics(false)
     {
     }
 
@@ -399,12 +366,15 @@ protected:
     virtual void getInstanceData(co::DataOStream &os)
     {
         std::ostringstream oss;
+        s11n::save(oss, dispatch_state);
         s11n::save(oss, subtitle);
-        s11n::save(oss, params);
         s11n::save(oss, seek_to);
         s11n::save(oss, prep_frame);
         s11n::save(oss, drop_frame);
         s11n::save(oss, display_frame);
+        s11n::save(oss, display_statistics);
+        s11n::save(oss, &canvas_video_area, sizeof(canvas_video_area));
+        s11n::save(oss, tex_coords, sizeof(tex_coords));
         os << oss.str();
     }
 
@@ -413,12 +383,15 @@ protected:
         std::string s;
         is >> s;
         std::istringstream iss(s);
+        s11n::load(iss, dispatch_state);
         s11n::load(iss, subtitle);
-        s11n::load(iss, params);
         s11n::load(iss, seek_to);
         s11n::load(iss, prep_frame);
         s11n::load(iss, drop_frame);
         s11n::load(iss, display_frame);
+        s11n::load(iss, display_statistics);
+        s11n::load(iss, &canvas_video_area, sizeof(canvas_video_area));
+        s11n::load(iss, tex_coords, sizeof(tex_coords));
     }
 };
 
@@ -429,49 +402,24 @@ protected:
 class eq_config : public eq::Config
 {
 private:
-    bool _is_master_config;
     eq_init_data _eq_init_data;         // Master eq_init_data instance
     eq_frame_data _eq_frame_data;       // Master eq_frame_data instance
-    player_eq_node _player;             // Master player
-    controller _controller;             // Sends commands to the player
 
 public:
-    video_frame frame_template;         // Video frame properties
-
-public:
-    eq_config(eq::ServerPtr parent) :
-        eq::Config(parent),
-        _is_master_config(false),
-        _eq_init_data(),
-        _eq_frame_data(),
-        _player(),
-        _controller(),
-        frame_template()
+    eq_config(eq::ServerPtr parent) : eq::Config(parent)
     {
     }
 
-    bool is_master_config()
+    bool init(const open_input_data& input, bool flat_screen)
     {
-        return _is_master_config;
-    }
-
-    bool init(const player_init_data &init_data, bool flat_screen)
-    {
-        msg::set_level(init_data.log_level);
         msg::dbg(HERE);
-        // If this function is called, then this is the master config
-        _is_master_config = true;
+        setLatency( 0 );
+
         // Initialize master init/frame data instances
-        _eq_init_data.init_data = init_data;
+        _eq_init_data.input = input;
+        _eq_init_data.params = dispatch::parameters();
         _eq_init_data.flat_screen = flat_screen;
-        _eq_frame_data.params = _eq_init_data.init_data.params;
-        // Initialize master player
-        _player.make_master();
-        if (!_player.init(init_data, frame_template))
-        {
-            return false;
-        }
-        // Find region of canvas to use, depending on the video aspect ratio
+        // Find canvas
         if (getCanvases().size() < 1)
         {
             msg::err(_("No canvas in Equalizer configuration."));
@@ -479,42 +427,9 @@ public:
         }
         float canvas_w = getCanvases()[0]->getWall().getWidth();
         float canvas_h = getCanvases()[0]->getWall().getHeight();
-        float canvas_aspect_ratio = canvas_w / canvas_h;
         _eq_init_data.canvas_width = canvas_w;
         _eq_init_data.canvas_height = canvas_h;
-        _eq_init_data.canvas_video_area.w = 1.0f;
-        _eq_init_data.canvas_video_area.h = 1.0f;
-
-        if (flat_screen)
-        {
-            if (frame_template.aspect_ratio > canvas_aspect_ratio)
-            {
-                // need black borders top and bottom
-                _eq_init_data.canvas_video_area.h = canvas_aspect_ratio / frame_template.aspect_ratio;
-            }
-            else
-            {
-                // need black borders left and right
-                _eq_init_data.canvas_video_area.w = frame_template.aspect_ratio / canvas_aspect_ratio;
-            }
-            _eq_init_data.canvas_video_area.x = (1.0f - _eq_init_data.canvas_video_area.w) / 2.0f;
-            _eq_init_data.canvas_video_area.y = (1.0f - _eq_init_data.canvas_video_area.h) / 2.0f;
-        }
-        else
-        {
-            compute_3d_canvas(&_eq_init_data.canvas_video_area.h, &_eq_init_data.canvas_video_area.d);
-            // compute width and offset for 1m high 'screen' quad in 3D space
-            _eq_init_data.canvas_video_area.w = _eq_init_data.canvas_video_area.h * frame_template.aspect_ratio;
-            _eq_init_data.canvas_video_area.x = -0.5f * _eq_init_data.canvas_video_area.w;
-            _eq_init_data.canvas_video_area.y = -0.5f * _eq_init_data.canvas_video_area.h;
-        }
-        msg::inf(_("Equalizer canvas:"));
-        msg::inf(4, _("%gx%g, aspect ratio %g:1"), canvas_w, canvas_h, canvas_w / canvas_h);
-        msg::inf(4, _("Area for %g:1 video: [ %g %g %g %g @ %g ]"),
-                frame_template.aspect_ratio,
-                _eq_init_data.canvas_video_area.x, _eq_init_data.canvas_video_area.y,
-                _eq_init_data.canvas_video_area.w, _eq_init_data.canvas_video_area.h,
-                _eq_init_data.canvas_video_area.d);
+        msg::inf(_("Equalizer canvas: %gx%g, aspect ratio %g:1"), canvas_w, canvas_h, canvas_w / canvas_h);
         // Register master instances
         registerObject(&_eq_frame_data);
         _eq_init_data.frame_data_id = _eq_frame_data.getID();
@@ -530,25 +445,100 @@ public:
         // Deregister master instances
         deregisterObject(&_eq_init_data);
         deregisterObject(&_eq_frame_data);
-        // Cleanup
-        _player.close();
         msg::dbg(HERE);
         return ret;
     }
 
     virtual uint32_t startFrame()
     {
-        // Run one player step to find out what to do
+        // Run player steps until we are told to do something
         bool more_steps;
-        _player.step(&more_steps, &_eq_frame_data.seek_to,
-                &_eq_frame_data.prep_frame, &_eq_frame_data.drop_frame, &_eq_frame_data.display_frame);
-        if (!more_steps)
-        {
+        do {
+            global_player_equalizer->step(&more_steps, &_eq_frame_data.seek_to,
+                    &_eq_frame_data.prep_frame, &_eq_frame_data.drop_frame, &_eq_frame_data.display_frame);
+            dispatch::process_all_events();
+            if (!dispatch::playing())
+                more_steps = false;
+        }
+        while (more_steps
+                && _eq_frame_data.seek_to == -1
+                && !_eq_frame_data.prep_frame
+                && !_eq_frame_data.drop_frame
+                && !_eq_frame_data.display_frame
+                && !dispatch::pausing());
+        if (!more_steps) {
             this->exit();
+            return 0;
         }
         // Update the video state for all (it might have changed via handleEvent())
-        _eq_frame_data.subtitle = _player.get_subtitle();
-        _eq_frame_data.params = _player.get_parameters();
+        _eq_frame_data.subtitle = global_player_equalizer->get_subtitle_box();
+        _eq_frame_data.dispatch_state = global_dispatch->save_state();
+        // Find region of canvas to use, depending on the video aspect ratio and zoom level
+        float aspect_ratio = dispatch::media_input()->video_frame_template().aspect_ratio;
+        float crop_aspect_ratio = dispatch::parameters().crop_aspect_ratio();
+        float canvas_aspect_ratio = _eq_init_data.canvas_width / _eq_init_data.canvas_height;
+        float zoom = dispatch::parameters().zoom();
+        if (_eq_init_data.flat_screen) {
+            _eq_frame_data.tex_coords[0][0] = 0.0f;
+            _eq_frame_data.tex_coords[0][1] = 0.0f;
+            _eq_frame_data.tex_coords[1][0] = 1.0f;
+            _eq_frame_data.tex_coords[1][1] = 0.0f;
+            _eq_frame_data.tex_coords[2][0] = 1.0f;
+            _eq_frame_data.tex_coords[2][1] = 1.0f;
+            _eq_frame_data.tex_coords[3][0] = 0.0f;
+            _eq_frame_data.tex_coords[3][1] = 1.0f;
+            if (crop_aspect_ratio > 0.0f) {
+                if (aspect_ratio >= crop_aspect_ratio) {
+                    float cutoff = (1.0f - crop_aspect_ratio / aspect_ratio) / 2.0f;
+                    _eq_frame_data.tex_coords[0][0] += cutoff;
+                    _eq_frame_data.tex_coords[1][0] -= cutoff;
+                    _eq_frame_data.tex_coords[2][0] -= cutoff;
+                    _eq_frame_data.tex_coords[3][0] += cutoff;
+                } else {
+                    float cutoff = (1.0f - aspect_ratio / crop_aspect_ratio) / 2.0f;
+                    _eq_frame_data.tex_coords[0][1] += cutoff;
+                    _eq_frame_data.tex_coords[1][1] += cutoff;
+                    _eq_frame_data.tex_coords[2][1] -= cutoff;
+                    _eq_frame_data.tex_coords[3][1] -= cutoff;
+                }
+                aspect_ratio = crop_aspect_ratio;
+            }
+            if (aspect_ratio >= canvas_aspect_ratio) {
+                // need black borders top and bottom
+                float zoom_aspect_ratio = zoom * canvas_aspect_ratio + (1.0f - zoom) * aspect_ratio;
+                _eq_frame_data.canvas_video_area.w = 1.0f;
+                _eq_frame_data.canvas_video_area.h = canvas_aspect_ratio / zoom_aspect_ratio;
+                _eq_frame_data.canvas_video_area.x = (1.0f - _eq_frame_data.canvas_video_area.w) / 2.0f;
+                _eq_frame_data.canvas_video_area.y = (1.0f - _eq_frame_data.canvas_video_area.h) / 2.0f;
+                float cutoff = (1.0f - zoom_aspect_ratio / aspect_ratio) / 2.0f;
+                _eq_frame_data.tex_coords[0][0] += cutoff;
+                _eq_frame_data.tex_coords[1][0] -= cutoff;
+                _eq_frame_data.tex_coords[2][0] -= cutoff;
+                _eq_frame_data.tex_coords[3][0] += cutoff;
+            } else {
+                // need black borders left and right
+                _eq_frame_data.canvas_video_area.w = aspect_ratio / canvas_aspect_ratio;
+                _eq_frame_data.canvas_video_area.h = 1.0f;
+                _eq_frame_data.canvas_video_area.x = (1.0f - _eq_frame_data.canvas_video_area.w) / 2.0f;
+                _eq_frame_data.canvas_video_area.y = (1.0f - _eq_frame_data.canvas_video_area.h) / 2.0f;
+            }
+        }
+        else
+        {
+            compute_3d_canvas(&_eq_frame_data.canvas_video_area.h, &_eq_frame_data.canvas_video_area.d);
+            // compute width and offset for 1m high 'screen' quad in 3D space
+            _eq_frame_data.canvas_video_area.w = _eq_frame_data.canvas_video_area.h * aspect_ratio;
+            _eq_frame_data.canvas_video_area.x = -0.5f * _eq_frame_data.canvas_video_area.w;
+            _eq_frame_data.canvas_video_area.y = -0.5f * _eq_frame_data.canvas_video_area.h;
+            _eq_frame_data.tex_coords[0][0] = 0.0f;
+            _eq_frame_data.tex_coords[0][1] = 0.0f;
+            _eq_frame_data.tex_coords[1][0] = 1.0f;
+            _eq_frame_data.tex_coords[1][1] = 0.0f;
+            _eq_frame_data.tex_coords[2][0] = 1.0f;
+            _eq_frame_data.tex_coords[2][1] = 1.0f;
+            _eq_frame_data.tex_coords[3][0] = 0.0f;
+            _eq_frame_data.tex_coords[3][1] = 1.0f;
+        }
         // Commit the updated frame data
         const eq::uint128_t version = _eq_frame_data.commit();
         // Start this frame with the committed frame data
@@ -565,11 +555,15 @@ public:
         {
             switch (event->data.keyPress.key)
             {
+            case 'S':
+                _eq_frame_data.display_statistics = !_eq_frame_data.display_statistics;
+                break;
             case 'q':
-                _controller.send_cmd(command::toggle_play);
+                controller::send_cmd(command::toggle_play);
                 break;
             case 'e':
-                _controller.send_cmd(command::toggle_stereo_mode_swap);
+            case eq::KC_F7:
+                controller::send_cmd(command::toggle_stereo_mode_swap);
                 break;
             case 'f':
                 /* fullscreen toggling not supported with Equalizer */
@@ -579,79 +573,88 @@ public:
                 break;
             case ' ':
             case 'p':
-                _controller.send_cmd(command::toggle_pause);
+                controller::send_cmd(command::toggle_pause);
+                break;
+            case '.':
+                controller::send_cmd(command::step);
                 break;
             case 'v':
                 /* TODO: cycling video streams is currently not supported with Equalizer.
                  * We would have to cycle the streams in all node players, and thus communicate
                  * the change via frame data. */
-                //_controller.send_cmd(command::cycle_video_stream);
+                //controller::send_cmd(command::cycle_video_stream);
                 break;
             case 'a':
                 /* TODO: cycling audio streams is currently not supported with Equalizer.
                  * We would have to cycle the streams in all node players, and thus communicate
                  * the change via frame data. */
-                //_controller.send_cmd(command::cycle_audio_stream);
+                //controller::send_cmd(command::cycle_audio_stream);
                 break;
             case 's':
                 /* TODO: cycling subtitle streams is currently not supported with Equalizer.
                  * We would have to cycle the streams in all node players, and thus communicate
                  * the change via frame data. */
-                //_controller.send_cmd(command::cycle_subtitle_stream);
+                //controller::send_cmd(command::cycle_subtitle_stream);
                 break;
             case '1':
-                _controller.send_cmd(command::adjust_contrast, -0.05f);
+                controller::send_cmd(command::adjust_contrast, -0.05f);
                 break;
             case '2':
-                _controller.send_cmd(command::adjust_contrast, +0.05f);
+                controller::send_cmd(command::adjust_contrast, +0.05f);
                 break;
             case '3':
-                _controller.send_cmd(command::adjust_brightness, -0.05f);
+                controller::send_cmd(command::adjust_brightness, -0.05f);
                 break;
             case '4':
-                _controller.send_cmd(command::adjust_brightness, +0.05f);
+                controller::send_cmd(command::adjust_brightness, +0.05f);
                 break;
             case '5':
-                _controller.send_cmd(command::adjust_hue, -0.05f);
+                controller::send_cmd(command::adjust_hue, -0.05f);
                 break;
             case '6':
-                _controller.send_cmd(command::adjust_hue, +0.05f);
+                controller::send_cmd(command::adjust_hue, +0.05f);
                 break;
             case '7':
-                _controller.send_cmd(command::adjust_saturation, -0.05f);
+                controller::send_cmd(command::adjust_saturation, -0.05f);
                 break;
             case '8':
-                _controller.send_cmd(command::adjust_saturation, +0.05f);
+                controller::send_cmd(command::adjust_saturation, +0.05f);
                 break;
-            case '<':
-                _controller.send_cmd(command::adjust_parallax, -0.01f);
+            case '[':
+                controller::send_cmd(command::adjust_parallax, -0.01f);
                 break;
-            case '>':
-                _controller.send_cmd(command::adjust_parallax, +0.01f);
+            case ']':
+                controller::send_cmd(command::adjust_parallax, +0.01f);
                 break;
             case '(':
-                _controller.send_cmd(command::adjust_ghostbust, -0.01f);
+                controller::send_cmd(command::adjust_ghostbust, -0.01f);
                 break;
             case ')':
-                _controller.send_cmd(command::adjust_ghostbust, +0.01f);
+                controller::send_cmd(command::adjust_ghostbust, +0.01f);
+                break;
+            case '<':
+                controller::send_cmd(command::adjust_zoom, -0.1f);
+                break;
+            case '>':
+                controller::send_cmd(command::adjust_zoom, +0.1f);
                 break;
             case eq::KC_LEFT:
-                _controller.send_cmd(command::seek, -10.0f);
+                controller::send_cmd(command::seek, -10.0f);
                 break;
             case eq::KC_RIGHT:
-                _controller.send_cmd(command::seek, +10.0f);
-                break;
-            case eq::KC_UP:
-                _controller.send_cmd(command::seek, -60.0f);
+                controller::send_cmd(command::seek, +10.0f);
                 break;
             case eq::KC_DOWN:
-                _controller.send_cmd(command::seek, +60.0f);
+                controller::send_cmd(command::seek, -60.0f);
                 break;
-            case eq::KC_PAGE_UP:
-                _controller.send_cmd(command::seek, -600.0f);
+            case eq::KC_UP:
+                controller::send_cmd(command::seek, +60.0f);
                 break;
             case eq::KC_PAGE_DOWN:
-                _controller.send_cmd(command::seek, +600.0f);
+                controller::send_cmd(command::seek, -600.0f);
+                break;
+            case eq::KC_PAGE_UP:
+                controller::send_cmd(command::seek, +600.0f);
                 break;
             }
         }
@@ -663,14 +666,9 @@ public:
             // Event position relative to destination view (which seems to be the same as the canvas?)
             float dest = event->data.context.vp.x + event_x * event->data.context.vp.w;
             dest = std::min(std::max(dest, 0.0f), 1.0f);                // Clamp to [0,1] - just to be sure
-            _controller.send_cmd(command::set_pos, dest);               // Seek to this position
+            controller::send_cmd(command::set_pos, dest);               // Seek to this position
         }
         return true;
-    }
-
-    player_eq_node *player()
-    {
-        return &_player;
     }
 
 private:
@@ -751,22 +749,20 @@ private:
 class eq_node : public eq::Node
 {
 private:
-    bool _is_app_node;
+    dispatch* _dispatch;
     player_eq_node _player;
 
 public:
     eq_init_data init_data;
     eq_frame_data frame_data;
-    video_frame frame_template;
 
-    eq_node(eq::Config *parent) :
-        eq::Node(parent),
-        _is_app_node(false),
-        _player(),
-        init_data(),
-        frame_data(),
-        frame_template()
+    eq_node(eq::Config *parent) : eq::Node(parent), _dispatch(NULL)
     {
+    }
+
+    ~eq_node()
+    {
+        delete _dispatch;
     }
 
 protected:
@@ -783,11 +779,6 @@ protected:
             setError(ERROR_MAP_INITDATA_FAILED);
             return false;
         }
-        // Is this the application node?
-        if (config->is_master_config())
-        {
-            _is_app_node = true;
-        }
         // Map our FrameData instance to the master instance
         if (!config->mapObject(&frame_data, init_data.frame_data_id))
         {
@@ -795,20 +786,18 @@ protected:
             return false;
         }
 
-        msg::set_level(init_data.init_data.log_level);
         msg::dbg(HERE);
         // Create decoders and input
-        if (!_is_app_node)
+        if (!isApplicationNode( ))
         {
-            if (!_player.init(init_data.init_data, frame_template))
+            _dispatch = new dispatch(NULL, NULL, true, init_data.flat_screen, true,
+                    false, false, init_data.params.log_level(), init_data.params.benchmark(),
+                    init_data.params.swap_interval());
+            if (!_player.init(init_data.input))
             {
                 setError(ERROR_PLAYER_INIT_FAILED);
                 return false;
             }
-        }
-        else
-        {
-            frame_template = config->frame_template;
         }
         msg::dbg(HERE);
         return true;
@@ -823,7 +812,8 @@ protected:
         // Unmap our InitData instance
         config->unmapObject(&init_data);
         // Cleanup
-        _player.close();
+        if (!isApplicationNode( ))
+            _player.close();
         msg::dbg(HERE);
         return eq::Node::configExit();
     }
@@ -833,12 +823,13 @@ protected:
         // Update our frame data
         frame_data.sync(frame_id);
         // Do as we're told
-        if (_is_app_node)
+        if (isApplicationNode( ))
         {
             // Nothing to do since the config's master player already did it
         }
         else
         {
+            _dispatch->load_state(frame_data.dispatch_state);
             if (frame_data.seek_to >= 0)
             {
                 _player.seek(frame_data.seek_to);
@@ -858,7 +849,7 @@ protected:
 
     virtual void frameFinish(const eq::uint128_t &, const uint32_t frame_number)
     {
-        if (_is_app_node)
+        if (isApplicationNode( ))
         {
             // Nothing to do since the config's master player already did it
         }
@@ -877,15 +868,10 @@ protected:
 public:
     const video_frame &get_video_frame()
     {
-        if (_is_app_node)
-        {
-            eq_config *config = static_cast<eq_config *>(getConfig());
-            return config->player()->get_video_frame();
-        }
+        if (isApplicationNode( ))
+            return global_player_equalizer->get_video_frame();
         else
-        {
             return _player.get_video_frame();
-        }
     }
 };
 
@@ -913,6 +899,7 @@ public:
     }
 
 protected:
+
     virtual bool configInitGL(const eq::uint128_t &init_id)
     {
         msg::dbg(HERE);
@@ -940,6 +927,13 @@ protected:
         msg::dbg(HERE);
         return eq::Window::configExitGL();
     }
+
+    virtual void swapBuffers()
+    {
+        eq_node *node = static_cast<eq_node *>(getNode());
+        if (node->frame_data.display_frame)
+            eq::Window::swapBuffers();
+    }
 };
 
 /*
@@ -956,9 +950,7 @@ public:
         eq::Channel(parent),
         _video_output(this,
                 static_cast<eq_node *>(getNode())->init_data.canvas_width,
-                static_cast<eq_node *>(getNode())->init_data.canvas_height,
-                static_cast<eq_node *>(getNode())->init_data.canvas_video_area.w,
-                static_cast<eq_node *>(getNode())->init_data.canvas_video_area.h)
+                static_cast<eq_node *>(getNode())->init_data.canvas_height)
     {
     }
 
@@ -982,12 +974,13 @@ protected:
         eq_node *node = static_cast<eq_node *>(getNode());
         const struct { float x, y, w, h, d; } canvas_video_area =
         {
-            node->init_data.canvas_video_area.x,
-            node->init_data.canvas_video_area.y,
-            node->init_data.canvas_video_area.w,
-            node->init_data.canvas_video_area.h,
-            node->init_data.canvas_video_area.d
+            node->frame_data.canvas_video_area.x,
+            node->frame_data.canvas_video_area.y,
+            node->frame_data.canvas_video_area.w,
+            node->frame_data.canvas_video_area.h,
+            node->frame_data.canvas_video_area.d
         };
+        _video_output.set_canvas_size(canvas_video_area.w, canvas_video_area.h);
         const eq::Viewport &canvas_channel_area = getViewport();
         // Determine the video quad to render
         float quad_x = canvas_video_area.x;
@@ -1016,14 +1009,14 @@ protected:
         bool mono_right_instead_of_left = (getEye() == eq::EYE_RIGHT);
         GLint viewport[4];
         glGetIntegerv(GL_VIEWPORT, viewport);
-        _video_output.display_current_frame(mono_right_instead_of_left, quad_x, quad_y, quad_w, quad_h, viewport);
+        _video_output.display_current_frame(mono_right_instead_of_left, quad_x, quad_y, quad_w, quad_h,
+                viewport, node->frame_data.tex_coords);
     }
 
     virtual void frameStart(const eq::uint128_t &, const uint32_t frame_number)
     {
         // Get frame data via from the node
         eq_node *node = static_cast<eq_node *>(getNode());
-        _video_output.set_parameters(node->frame_data.params);
         // Do as we're told
         if (node->frame_data.prep_frame)
         {
@@ -1036,15 +1029,17 @@ protected:
         }
         if (node->frame_data.display_frame)
         {
-            getWindow()->makeCurrent();
             _video_output.activate_next_frame();
         }
         startFrame(frame_number);
     }
 
-    virtual void frameFinish(const eq::uint128_t &, const uint32_t frame_number)
+    void frameViewFinish( const eq::uint128_t& id )
     {
-        releaseFrame(frame_number);
+        eq_node *node = static_cast<eq_node *>(getNode());
+        if (node->frame_data.display_statistics)
+            drawStatistics();
+        eq::Channel::frameViewFinish( id );
     }
 };
 
@@ -1086,17 +1081,19 @@ public:
  */
 
 player_equalizer::player_equalizer(int *argc, char *argv[], bool flat_screen) :
-    player(player::slave), _flat_screen(flat_screen)
+    player(), _flat_screen(flat_screen)
 {
+    assert(!global_player_equalizer);
+    global_player_equalizer = this;
     /* Initialize Equalizer */
     initErrors();
-    _node_factory = static_cast<void *>(new eq_node_factory);
-    if (!eq::init(*argc, argv, static_cast<eq::NodeFactory *>(_node_factory)))
+    _node_factory = new eq_node_factory;
+    if (!eq::init(*argc, argv, _node_factory))
     {
         throw exc(_("Equalizer initialization failed."));
     }
     /* Get a configuration */
-    _config = static_cast<void *>(eq::getConfig(*argc, argv));
+    _config = static_cast<eq_config *>(eq::getConfig(*argc, argv));
     // The following code is only executed on the application node because
     // eq::getConfig() does not return on other nodes.
     if (!_config)
@@ -1107,32 +1104,51 @@ player_equalizer::player_equalizer(int *argc, char *argv[], bool flat_screen) :
 
 player_equalizer::~player_equalizer()
 {
-    delete static_cast<eq_node_factory *>(_node_factory);
+    eq::releaseConfig(_config);
+    eq::exit();
+    exitErrors();
+    delete _node_factory;
+    global_player_equalizer = NULL;
 }
 
-void player_equalizer::open(const player_init_data &init_data)
+void player_equalizer::open()
 {
-    eq_config *config = static_cast<eq_config *>(_config);
-    if (!config->init(init_data, _flat_screen))
+    if (!_config->init(*(global_dispatch->get_input_data()), _flat_screen))
     {
         throw exc(_("Equalizer configuration initialization failed."));
     }
 }
 
-void player_equalizer::run()
-{
-    eq_config *config = static_cast<eq_config *>(_config);
-    while (config->isRunning())
-    {
-        config->startFrame();
-        config->finishFrame();
-    }
-    config->exit();
-    eq::releaseConfig(config);
-    eq::exit();
-    exitErrors();
-}
+static bool global_quit_request;
 
-void player_equalizer::close()
+class eq_quit_controller : public controller
 {
+    virtual void receive_notification(const notification& note)
+    {
+        if (note.type == notification::quit)
+            global_quit_request = true;
+    }
+};
+
+void player_equalizer::mainloop()
+{
+    global_quit_request = false;
+    eq_quit_controller qc;
+    for (;;) {
+        if (!global_player_equalizer) {
+            dispatch::step();
+            dispatch::process_all_events();
+            if (global_quit_request)
+                return;
+        }
+        if (global_player_equalizer) {
+            eq_config* config = global_player_equalizer->_config;
+            while (config->isRunning()) {
+                config->startFrame();
+                config->finishFrame();
+            }
+            global_dispatch->stop_eq_player();
+            delete global_player_equalizer;
+        }
+    }
 }

@@ -7,6 +7,9 @@
    language is requested. */
 #undef ENABLE_NLS
 
+/* Define to 1 if you have the <AL/al.h> header file. */
+#undef HAVE_AL_AL_H
+
 /* Define to 1 if you have the `backtrace' function. */
 #undef HAVE_BACKTRACE
 
@@ -29,6 +32,21 @@
    don't. */
 #undef HAVE_DECL_OPTRESET
 
+/* Define to 1 if you have the `fdatasync' function. */
+#undef HAVE_FDATASYNC
+
+/* Define to 1 if you have the `fnmatch' function. */
+#undef HAVE_FNMATCH
+
+/* Define to 1 if you have the `fseeko' function. */
+#undef HAVE_FSEEKO
+
+/* Define to 1 if you have the `ftello' function. */
+#undef HAVE_FTELLO
+
+/* Define to 1 if you have the `getpwuid' function. */
+#undef HAVE_GETPWUID
+
 /* Define if the GNU gettext() function is already present or preinstalled. */
 #undef HAVE_GETTEXT
 
@@ -44,8 +62,32 @@
 /* Have liblircclient? */
 #undef HAVE_LIBLIRCCLIENT
 
+/* Have NVIDIA libXNVCtrl for Quadro SDI output? */
+#undef HAVE_LIBXNVCTRL
+
+/* Define to 1 if you have the `link' function. */
+#undef HAVE_LINK
+
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mmap' function. */
+#undef HAVE_MMAP
+
+/* Define to 1 if you have the `nl_langinfo' function. */
+#undef HAVE_NL_LANGINFO
+
+/* Define to 1 if you have the <NVCtrlLib.h> header file. */
+#undef HAVE_NVCTRLLIB_H
+
+/* Define to 1 if you have the <NVCtrl.h> header file. */
+#undef HAVE_NVCTRL_H
+
+/* Define to 1 if you have the `posix_fadvise' function. */
+#undef HAVE_POSIX_FADVISE
+
+/* Define to 1 if you have the `readdir_r' function. */
+#undef HAVE_READDIR_R
 
 /* Define to 1 if you have the `sigaction' function. */
 #undef HAVE_SIGACTION
@@ -62,6 +104,9 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
+/* Define to 1 if you have the `symlink' function. */
+#undef HAVE_SYMLINK
+
 /* Define to 1 if you have the `sysconf' function. */
 #undef HAVE_SYSCONF
 
@@ -77,8 +122,8 @@
 /* Define to 1 if you have the `vasprintf' function. */
 #undef HAVE_VASPRINTF
 
-/* Define to 1 if you have the `wcwidth' function. */
-#undef HAVE_WCWIDTH
+/* Define to 1 if you have the `wcswidth' function. */
+#undef HAVE_WCSWIDTH
 
 /* Define as const if the declaration of iconv() needs const. */
 #undef ICONV_CONST

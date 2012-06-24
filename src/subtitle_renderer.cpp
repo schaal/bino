@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2011
+ * Copyright (C) 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Joe <cuchac@email.cz>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
@@ -98,7 +98,7 @@ subtitle_renderer::~subtitle_renderer()
     {
         try
         {
-            _initializer.cancel();
+            _initializer.finish();
         }
         catch (...)
         {
@@ -270,27 +270,29 @@ bool subtitle_renderer::render_to_display_size(const subtitle_box &box) const
     return (box.format != subtitle_box::image);
 }
 
-void subtitle_renderer::prerender(const subtitle_box &box, int64_t timestamp,
+bool subtitle_renderer::prerender(const subtitle_box &box, int64_t timestamp,
         const parameters &params,
         int width, int height, float pixel_aspect_ratio,
         int &bb_x, int &bb_y, int &bb_w, int &bb_h)
 {
     assert(_initialized);
+    bool r = false;
     _fmt = box.format;
     switch (_fmt)
     {
     case subtitle_box::text:
     case subtitle_box::ass:
-        prerender_ass(box, timestamp, params, width, height, pixel_aspect_ratio);
+        r = prerender_ass(box, timestamp, params, width, height, pixel_aspect_ratio);
         break;
     case subtitle_box::image:
-        prerender_img(box);
+        r = prerender_img(box);
         break;
     }
     bb_x = _bb_x;
     bb_y = _bb_y;
     bb_w = _bb_w;
     bb_h = _bb_h;
+    return r;
 }
 
 void subtitle_renderer::render(uint32_t *bgra32_buffer)
@@ -345,18 +347,17 @@ void subtitle_renderer::blend_ass_image(const ASS_Image *img, uint32_t *buf)
 void subtitle_renderer::set_ass_parameters(const parameters &params)
 {
     std::vector<std::string> overrides;
-    overrides.clear();
-    if (params.subtitle_font != "")
+    if (!params.subtitle_font_is_default())
     {
-        overrides.push_back(std::string("Default.Fontname=") + params.subtitle_font);
+        overrides.push_back(std::string("Default.Fontname=") + params.subtitle_font());
     }
-    if (params.subtitle_size > 0)
+    if (!params.subtitle_size_is_default())
     {
-        overrides.push_back(std::string("Default.Fontsize=") + str::from(params.subtitle_size));
+        overrides.push_back(std::string("Default.Fontsize=") + str::from(params.subtitle_size()));
     }
-    if (params.subtitle_color <= std::numeric_limits<uint32_t>::max())
+    if (!params.subtitle_color_is_default())
     {
-        unsigned int color = params.subtitle_color;
+        unsigned int color = params.subtitle_color();
         unsigned int a = 255u - ((color >> 24u) & 0xffu);
         unsigned int r = (color >> 16u) & 0xffu;
         unsigned int g = (color >> 8u) & 0xffu;
@@ -365,18 +366,23 @@ void subtitle_renderer::set_ass_parameters(const parameters &params)
         overrides.push_back(std::string("Default.PrimaryColour=") + color_str);
         overrides.push_back(std::string("Default.SecondaryColour=") + color_str);
     }
+    if (!params.subtitle_shadow_is_default())
+    {
+        overrides.push_back(std::string("Default.Shadow=")
+                + (params.subtitle_shadow() == 0 ? "0" : "3"));
+    }
     const char *ass_overrides[overrides.size() + 1];
     for (size_t i = 0; i < overrides.size(); i++)
     {
-        ass_overrides[i] = ::strdup(overrides[i].c_str());
+        ass_overrides[i] = overrides[i].c_str();
     }
     ass_overrides[overrides.size()] = NULL;
     ass_set_style_overrides(_ass_library, const_cast<char **>(ass_overrides));
-    ass_set_font_scale(_ass_renderer, (params.subtitle_scale >= 0.0f ? params.subtitle_scale : 1.0));
+    ass_set_font_scale(_ass_renderer, (params.subtitle_scale() >= 0.0f ? params.subtitle_scale() : 1.0));
     ass_process_force_style(_ass_track);
 }
 
-void subtitle_renderer::prerender_ass(const subtitle_box &box, int64_t timestamp,
+bool subtitle_renderer::prerender_ass(const subtitle_box &box, int64_t timestamp,
         const parameters &params, int width, int height, float pixel_aspect_ratio)
 {
     // Lock
@@ -398,11 +404,11 @@ void subtitle_renderer::prerender_ass(const subtitle_box &box, int64_t timestamp
         throw exc(_("Cannot initialize LibASS track."));
     }
     std::string conv_str = box.str;
-    if (params.subtitle_encoding != "")
+    if (params.subtitle_encoding() != "")
     {
         try
         {
-            conv_str = str::convert(box.str, params.subtitle_encoding, "UTF-8");
+            conv_str = str::convert(box.str, params.subtitle_encoding(), "UTF-8");
         }
         catch (std::exception &e)
         {
@@ -441,7 +447,8 @@ void subtitle_renderer::prerender_ass(const subtitle_box &box, int64_t timestamp
     set_ass_parameters(params);
 
     // Render subtitle
-    _ass_img = ass_render_frame(_ass_renderer, _ass_track, timestamp / 1000, NULL);
+    int change_detected = 0;
+    _ass_img = ass_render_frame(_ass_renderer, _ass_track, timestamp / 1000, &change_detected);
 
     // Unlock
     global_libass_mutex.unlock();
@@ -478,6 +485,7 @@ void subtitle_renderer::prerender_ass(const subtitle_box &box, int64_t timestamp
         _bb_y = min_y;
         _bb_h = max_y - min_y + 1;
     }
+    return change_detected;
 }
 
 void subtitle_renderer::render_ass(uint32_t *bgra32_buffer)
@@ -494,7 +502,7 @@ void subtitle_renderer::render_ass(uint32_t *bgra32_buffer)
     }
 }
 
-void subtitle_renderer::prerender_img(const subtitle_box &box)
+bool subtitle_renderer::prerender_img(const subtitle_box &box)
 {
     _img_box = &box;
     // Determine bounding box
@@ -528,6 +536,7 @@ void subtitle_renderer::prerender_img(const subtitle_box &box)
         _bb_y = min_y;
         _bb_h = max_y - min_y + 1;
     }
+    return true;
 }
 
 void subtitle_renderer::render_img(uint32_t *bgra32_buffer)

@@ -1,9 +1,10 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Gabriele Greco <gabrielegreco@gmail.com>
+ * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,16 +26,15 @@
 #include <vector>
 #include <string>
 
-#ifdef __APPLE__
-#  include <OpenAL/al.h>
-#  include <OpenAL/alc.h>
-#else
+#if !defined(__APPLE__) || defined(HAVE_AL_AL_H)
 #  include <AL/al.h>
 #  include <AL/alc.h>
+#else
+#  include <OpenAL/al.h>
+#  include <OpenAL/alc.h>
 #endif
 
-#include "media_data.h"
-#include "controller.h"
+#include "dispatch.h"
 
 
 class audio_output : public controller
@@ -45,6 +45,7 @@ private:
     static const size_t _buffer_size;   // Size of each audio buffer
 
     // OpenAL things
+    std::vector<std::string> _devices;  // List of known OpenAL devices
     bool _initialized;                  // Was this initialized?
     ALCdevice *_device;                 // Audio device        
     ALCcontext *_context;               // Audio context associated with device
@@ -66,12 +67,21 @@ private:
     // Get an OpenAL source format for the audio data in blob (or throw an exception)
     ALenum get_al_format(const audio_blob &blob);
 
+    // Set source parameters
+    void set_source_parameters();
+
 public:
     audio_output();
     ~audio_output();
     
-    /* Initialize the audio device for output. Throw an exception if this fails. */
-    void init();
+    /* How many OpenAL devices are available? */
+    int devices() const;
+    /* Return the name of OpenAL device i. */
+    const std::string &device_name(int i) const;
+
+    /* Initialize the audio device i for output. If i is < 0, the default device
+     * will be used. Throw an exception if this fails. */
+    void init(int i = -1);
     /* Deinitialize the audio device. */
     void deinit();
 
@@ -99,6 +109,9 @@ public:
 
     /* Stop audio playback, and flush all buffers. */
     void stop();
+
+    /* Receive a notification from the dispatch. */
+    virtual void receive_notification(const notification& note);
 };
 
 #endif

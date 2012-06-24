@@ -10,13 +10,13 @@
 This manual was last updated @value{UPDATED} for version
 @value{VERSION} of Bino.
 
-Copyright @copyright{} 2011
+Copyright @copyright{} 2011, 2012
 Martin Lambers (@email{marlam@@marlam.de}),
 Stefan Eilemann (@email{eile@@eyescale.ch}),
 Frédéric Devernay (@email{Frederic.Devernay@@inrialpes.fr})
 
 @quotation
-Copying and distribution of this file and the referenced image files, with or
+Copying and distribution of this file and the accompanying media files, with or
 without modification, are permitted in any medium without royalty provided the
 copyright notice and this notice are preserved. These files are offered as-is,
 without any warranty.
@@ -58,7 +58,10 @@ Short Contents:
 * Input Layouts::
 * Output Techniques::
 * Interactive Control::
+* Scripting::
 * Camera Devices::
+* Audio/Video Synchronization::
+* Performance Tweaking::
 @end menu
 @ifhtml
 @contents
@@ -107,18 +110,40 @@ Print version.
 @itemx --no-gui
 Do not use the GUI, just play the given input in a plain window using the
 parameters given on the command line.
+@itemx --log-file=@var{FILE}
+Append all log messages to the given file.
 @item -L
 @itemx --log-level=@var{LEVEL}
 Select log level: @var{debug}, @var{info}, @var{warning}, @var{error}, or
 @var{quiet}.
+@item --list-audio-devices
+Print a list of known audio devices and exit.
+@item -A
+@itemx --audio-device=@var{N}
+Use audio device number @var{N}. @var{N}=0 is the default device.
+@item D
+@itemx --audio-delay=@var{D}
+Delay audio by D milliseconds. Default is 0.
+@item -V
+@itemx --audio-volume=@var{V}
+Set audio volume (0 to 1). Default is 1.
+@item -m
+@itemx --audio-mute
+Mute audio.
 @item --device-type=@var{TYPE}
 Type of input device: @var{default}, @var{firewire}, or @var{x11}.
 @item --device-frame-size=@var{W}x@var{H}
 If the input is a device, request the given frame size, e.g. 640x480.
 @item --device-frame-rate=@var{N}/@var{D}
 If the input is a device, request the given frame rate, e.g. 25/1.
+@item --device-format=@var{FORMAT}
+Request format @var{default} or @var{mjpeg} from device.
+@item --read-commands=@var{FILE}
+Read commands from file. @xref{Scripting}.
 @item --lirc-config=@var{FILE}
 Use the given LIRC configuration file. This option can be used more than once.
+@item --quality=@var{Q}"
+Set rendering quality, from 0 (fastest) to 4 (best, default).
 @item -v
 @itemx --video=@var{STREAM}
 Select video stream (1-n, depending on the input).
@@ -152,6 +177,15 @@ Flop left view horizontally when in fullscreen mode.
 Flip right view vertically when in fullscreen mode.
 @item --fullscreen-flop-right
 Flop right view horizontally when in fullscreen mode.
+@item --fullscreen-3dr-sync
+Use DLP@registeredsymbol{} 3-D Ready Sync when in fullscreen mode.
+@item -z
+@itemx --zoom=@var{Z}
+Set zoom for videos that are wider than the screen, from 0 (off; show full
+video width) to 1 (full; use full screen height). The default is 0.
+@item -C
+@itemx --crop=@var{W:H}
+Crop the video to the given aspect ratio, to remove borders. 0:0 disables cropping.
 @item -c
 @itemx --center
 Center window on screen.
@@ -165,21 +199,24 @@ Set subtitle font size.
 Set subtitle scale factor.
 @item --subtitle-color=@var{COLOR}
 Set subtitle color, in [AA]RRGGBB format.
+@item --subtitle-shadow=@var{-1|0|1}
+Set subtitle shadow, -1=default, 0=off, 1=on.
 @item --subtitle-parallax=@var{VAL}
 Subtitle parallax adjustment (-1 to +1).
 @item -P
 @itemx --parallax=@var{VAL}
 Parallax adjustment (-1 to +1).
-@item -C
-@itemx --crosstalk=@var{VAL}
+@item --crosstalk=@var{VAL}
 Crosstalk leak level (0 to 1). Comma-separated values for the R,G,B channels.
-@item -G
-@itemx --ghostbust=@var{VAL}
+@item --ghostbust=@var{VAL}
 Amount of crosstalk ghostbusting to apply (0 to 1).
 @item -b
 @itemx --benchmark
 Benchmark mode: no audio, no time synchronization, output of frames-per-second
 measurements.
+@item --swap-interval=@var{D}
+Frame rate divisor relative to display refresh rate. The default is 0 for
+benchmark mode and 1 otherwise.
 @item -l
 @itemx --loop
 Loop the input media.
@@ -204,6 +241,7 @@ the file name. @xref{File Name Conventions}. If that fails, too, Bino guesses
 based on the resolution of the input.
 
 @section Supported Input Layouts
+@anchor{Supported Input Layouts}
 
 @table @var
 @item mono
@@ -215,6 +253,12 @@ Separate streams: left view first, right view second.@*
 @item separate-right-left
 Separate streams: right view first, left view second.@*
 @image{input-layout-separate-right-left,,,,png}
+@item alternating-left-right
+Alternating frames: left view first, right view second.@*
+@image{input-layout-alternating-left-right,,,,png}
+@item alternating-right-left
+Alternating frames: right view first, left view second.@*
+@image{input-layout-alternating-right-left,,,,png}
 @item top-bottom
 Single stream: left view top, right view bottom.@*
 @image{input-layout-top-bottom,,,,png}
@@ -342,8 +386,18 @@ The default output technique for stereoscopic 3D input is OpenGL quad buffered
 stereo if the graphics card supports it, otherwise red/cyan anaglyph glasses.
 
 @section Supported Output Techniques
+@anchor{Supported Output Techniques}
 
 @table @var
+@item stereo
+OpenGL quad-buffer stereo.@*
+@image{output-type-stereo,,,,png}
+@item alternating
+Left and right view alternating. This can be used for shutter glasses on systems that do not support
+OpenGL quad-buffer stereo, but note that this mode may be unreliable and may swap left/right eyes occasionally,
+depending on your system. In case of problems, disabling the fullscreen mode screensaver inhibition may help.
+@*
+@image{output-type-alternating,,,,png}
 @item mono-left
 Left view only.@*
 @image{output-type-mono-left,,,,png}
@@ -420,9 +474,6 @@ Red/green anaglyph glasses, monochrome method.@*
 @item red-blue-monochrome
 Red/blue anaglyph glasses, monochrome method.@*
 @image{output-type-red-blue,,,,png}
-@item stereo
-OpenGL quad-buffer stereo.@*
-@image{output-type-stereo,,,,png}
 @item equalizer
 Multi-display OpenGL via Equalizer with a 2D canvas setup.@*
 @item equalizer-3d
@@ -831,12 +882,13 @@ Toggle fullscreen.
 @item c
 Center window.
 @item e
+@item F7
 Swap left/right eye.
 @item v
 Cycle through available video streams.
 @item a
 Cycle through available audio streams.
-@item a
+@item s
 Cycle through available subtitle streams.
 @item 1, 2
 Adjust contrast.
@@ -846,18 +898,28 @@ Adjust brightness.
 Adjust hue.
 @item 7, 8
 Adjust saturation.
-@item <, >
+@item [, ]
 Adjust parallax.
 @item (, )
 Adjust ghostbusting.
+@item <, >
+Adjust zoom for videos that are wider than the screen.
+@item /, *
+Adjust audio volume.
+@item m
+Toggle audio mute.
+@item .
+Step a single video frame forward.
 @item LEFT, RIGHT
 Seek 10 seconds backward / forward.
-@item UP, DOWN
+@item DOWN, UP
 Seek 1 minute backward / forward.
-@item PAGE UP, PAGE DOWN
+@item PAGE DOWN, PAGE UP
 Seek 10 minutes backward / forward.
 @item Mouse click
 Seek according to the horizontal click position.
+@item "Media Keys"
+Media keys (if available) should work as expected.
 @end table
 
 @section Remote Controls
@@ -869,46 +931,8 @@ configuration file usually is @code{~/.lircrc}. You can use the
 @samp{--lirc-config} option to use one or more custom LIRC configuration files
 instead.
 
-The following commands are available:
-
-@table @samp
-@item play
-Start playback, or exit pause mode.
-@item pause
-When playing, go into pause mode.
-@item stop
-Stop playback.
-@item cycle-video-stream
-Cycle through available video streams.
-@item cycle-audio-stream
-Cycle through available audio streams.
-@item cycle-subtitle-stream
-Cycle through available subtitle streams.
-@item toggle-stereo-mode-swap
-Swap left/right eye.
-@item toggle-fullscreen
-Toggle fullscreen.
-@item center
-Center window.
-@item adjust-contrast @var{delta}
-Adjust contrast by adding @var{delta}, e.g. -0.05 or +0.05.
-@item adjust-brightness @var{delta}
-Adjust brightness by adding @var{delta}, e.g. -0.05 or +0.05.
-@item adjust-hue @var{delta}
-Adjust hue by adding @var{delta}, e.g. -0.05 or +0.05.
-@item adjust-saturation @var{delta}
-Adjust saturation by adding @var{delta}, e.g. -0.05 or +0.05.
-@item adjust-parallax @var{delta}
-Adjust parallax by adding @var{delta}, e.g. -0.01 or +0.01.
-@item adjust-subtitle-parallax @var{delta}
-Adjust contrast by adding @var{delta}, e.g. -0.01 or +0.01.
-@item seek @var{delta}
-Seek by the given number of seconds relative to the current position.  For
-example -60.0 seeks backwards one minute, and +60.0 seeks forward one minute.
-@item set-pos @var{pos}
-Seek by setting an absolute position in the stream, with @var{pos} between 0 and
-1. For example, to seek to the middle of the video, use 0.5.
-@end table
+The available commands are the same commands that are available for scripting.
+@xref{Script Commands}.
 
 Example LIRC configuration file excerpt:
 @example
@@ -919,6 +943,230 @@ begin
   config = adjust-brightness +0.05
 end
 @end example
+
+
+@node Scripting
+@chapter Scripting
+
+Bino can read commands from one or multiple script files. Use the @samp{--read-commands}
+option to specify script files.
+
+Available script commands are listed below. @xref{Script Commands}.
+
+A script file can be a standard text file, but it can also be a named pipe,
+which allows other programs or scripts to submit commands to Bino as they see
+fit.
+
+@example
+$ mkfifo ~/bino-command-fifo
+$ bino --read-commands ~/bino-command-fifo &
+
+$ echo 'set-contrast 0.1' > ~/bino-command-fifo
+$ ...
+@end example
+
+Using the @samp{netcat} utility, this also works over the network.
+
+@example
+$ mkfifo ~/bino-command-fifo
+$ bino --read-commands ~/bino-command-fifo &
+
+$ nc -l 1234 > ~/bino-command-fifo &
+$ telnet localhost 1234
+set-contrast 0.1
+...
+@end example
+
+Here is a simple example script file:
+@example
+# Play all videos in fullscreen mode.
+toggle-fullscreen
+# Open the first video.
+open /path/to/video.webm
+# Start playing.
+play
+# Wait until the video finishes before continuing this script.
+wait stop
+# Open a second video. This one has a space in its file name.
+open /path/to/video%20file.webm
+# Start playing.
+play
+# Immediately increase brightness.
+adjust-brightness +0.1
+# Immediately seek to 60 seconds within the video.
+seek 60.0
+# Let the video play for 30.0 seconds before continuing with this script.
+wait 30.0
+# Open a third video. This one has left and right view in separate files.
+open /path/to/left.webm /path/to/right.webm
+# Start playing.
+play
+@end example
+
+This script is executed with the following command. The @samp{--no-gui} option
+is not necessary, but prevents the GUI to remember the changed brightness
+setting in future sessions.
+@example
+$ bino --read-commands /path/to/script.txt --no-gui
+@end example
+
+@section Script Commands
+@anchor{Script Commands}
+
+One script line defines exactly one script command.  Empty lines or lines
+starting with the @samp{#} character are comment lines and define the
+@samp{noop} command, which has no effect.
+
+@table @samp
+@item noop
+This command has no effect.
+@item quit
+Quit the application.
+@item wait @var{stop}|@var{seconds}
+Wait until the currently playing video stops, or wait for the given number of seconds,
+before processing more commands from this file, script, or FIFO.@*
+(This command is not available for LIRC remote controls.)
+@item open [@var{option}@dots{}] @var{file}@dots{}
+Open the given files.@*
+You can use percent-encoding to encode special characters.
+See @url{http://en.wikipedia.org/wiki/Percent_encoding}.
+Use this if the file names contain whitespace.@*
+To open devices, the following options are available, analogous to the command
+line options with the same name:
+	@table @samp
+	@item --device-type=@var{none}|@var{default}|@var{firewire}|@var{x11}
+	@item --device-frame-size=@var{W}x@var{H}
+	@item --device-frame-rate=@var{N}/@var{D}
+	@item --device-format=@var{default}|@var{mjpeg}
+	@end table
+@item close
+Close the currently opened input.
+@item toggle-play
+Toggle playback.
+@item play
+Start playback, or exit pause mode.
+@item stop
+Stop playback.
+@item toggle-pause
+Toggle pause mode.
+@item pause
+When playing, go into pause mode.
+@item step
+Single-step to the next video frame.
+@item seek @var{delta}
+Seek by the given number of seconds relative to the current position.  For
+example -60.0 seeks backwards one minute, and +600.0 seeks forward ten minutes.
+@item set-pos @var{pos}
+Seek by setting an absolute position in the stream, with @var{pos} between 0 and
+1. For example, to seek to the middle of the video, use 0.5.
+@item set-audio-device @var{dev}
+Set the audio device to the one with the given index.
+@item set-quality @var{q}
+Set rendering quality, from 0 (fastest) to 4 (best, default).
+@item set-stereo-mode @var{mode}
+Set the stereo mode. @xref{Supported Output Techniques}.
+@item set-stereo-mode-swap @var{swap}
+Set stereo mode left/right swap (on or off).
+@item toggle-stereo-mode-swap
+Toggle stereo mode left/right swap.
+@item set-crosstalk @var{cr} @var{cg} @var{cb}
+Set display crosstalk levels for red, green, and blue. Each value must be between 0 and 1.
+@item set-fullscreen-screens @var{screens}
+Set screens to use in fullscreen mode. The value is an integer in which bits
+are set for each screen that should be used (screen 1 = lowest bit). The value
+0 means the default screen.
+@item set-fullscreen-flip-left @var{b}
+Set fullscreen flip left (on or off).
+@item set-fullscreen-flop-left@var{b}
+Set fullscreen flop left (on or off).
+@item set-fullscreen-flip-right @var{b}
+Set fullscreen flip right (on or off).
+@item set-fullscreen-flop-right @var{b}
+Set fullscreen flop right (on or off).
+@item set-fullscreen-inhibit-screensaver @var{b}
+Set fullscreen inhibit screensaver (on or off).
+@item set-fullscreen-3dr-sync @var{b}
+Set fullscreen DLP@registeredsymbol{} 3-D Ready Sync (on or off).
+@item set-contrast @var{value}
+Set contrast to the given @var{value}, from -1 to +1.
+@item adjust-contrast @var{delta}
+Adjust contrast by adding @var{delta}, e.g. -0.05 or +0.05.
+@item set-brightness @var{value}
+Set brightness to the given @var{value}, from -1 to +1.
+@item adjust-brightness @var{delta}
+Adjust brightness by adding @var{delta}, e.g. -0.05 or +0.05.
+@item set-hue @var{value}
+Set hue to the given @var{value}, from -1 to +1.
+@item adjust-hue @var{delta}
+Adjust hue by adding @var{delta}, e.g. -0.05 or +0.05.
+@item set-saturation @var{value}
+Set saturation to the given @var{value}, from -1 to +1.
+@item adjust-saturation @var{delta}
+Adjust saturation by adding @var{delta}, e.g. -0.05 or +0.05.
+@item set-zoom @var{value}
+Set zoom to the given @var{value}, from 0 to 1.
+@item adjust-zoom @var{delta}
+Adjust zoom by adding @var{delta}, e.g. -0.05 or +0.05.
+@item set-loop-mode @var{mode}
+Set loop mode to @samp{off} or @samp{current}.
+@item set-audio-delay @var{seconds}
+Set audio delay.
+@item set-subtitle-encoding @var{enc}
+Set subtitle encoding. An empty value means to use the default.
+@item set-subtitle-font @var{font}
+Set subtitle font. An empty value means to use the default.
+@item set-subtitle-size @var{size}
+Set the subtitle font size. The value is an integer, e.g. 12.
+Use -1 to keep the default size.
+@item set-subtitle-color @var{color}
+Set the subtitle color as an integer that represents an RGB color.
+Use a value larger than UINT32_MAX to keep the default color.
+@item set-subtitle-shadow @var{mode}
+Set subtitle shadow to force-on (1), force-off (0), or default (-1).
+@item set-video-stream @var{stream}
+Set video stream. Stream numbers start with 0.
+@item cycle-video-stream
+Cycle through available video streams.
+@item set-audio-stream @var{stream}
+Set audio stream. Stream numbers start with 0.
+@item cycle-audio-stream
+Cycle through available audio streams.
+@item set-subtitle-stream @var{stream}
+Set subtitle stream. Stream numbers start with 0. Using -1 disables subtitles.
+@item cycle-subtitle-stream
+Cycle through available subtitle streams.
+@item set-stereo-layout @var{layout}
+Set stereo layout. @xref{Supported Input Layouts}. Note that here only the
+left first, right second modes are supported. To get the right first, left second
+modes, use @samp{set-stereo-layout-swap}.
+@item set-stereo-layout-swap @var{b}
+Set stereo layout swap (on or off).
+@item set-crop-aspect-ratio @var{ar}
+Set crop aspect ratio, either as a floating point number (e.g. 1.78), or as a
+ratio (e.g. 16:9).
+@item set-parallax @var{value}
+Set parallax, from -1 to +1.
+@item adjust-parallax @var{delta}
+Adjust parallax by adding @var{delta}, e.g. -0.05 or + 0.05.
+@item set-ghostbust @var{value}
+Set ghostbust, from -1 to +1.
+@item adjust-ghostbust @var{delta}
+Adjust ghostbust by adding @var{delta}, e.g. -0.05 or + 0.05.
+@item set-subtitle-parallax @var{value}
+Set subtitle parallax, from -1 to +1.
+@item adjust-subtitle-parallax @var{delta}
+Adjust subtitle parallax by adding @var{delta}, e.g. -0.05 or + 0.05.
+@item toggle-fullscreen
+Toggle fullscreen.
+@item center
+Center window.
+@item set-audio-volume @var{value}
+Set audio volume, from 0 to 1.
+@item adjust-audio-volume @var{delta}
+Adjust audio volume by adding @var{delta}, e.g. -0.05 or +0.05.
+@item toggle-audio-mute
+Toggle audio mute.
+@end table
 
 
 @node Camera Devices
@@ -941,5 +1189,49 @@ name is of the form
 
 Note: for @var{firewire} and @var{x11} devices to work, your FFmpeg libraries
 must have @var{libdc1394} and @var{x11grab} support enabled.
+
+
+@node Audio/Video Synchronization
+@chapter Audio/Video Synchronization
+
+Bino uses OpenGL to display video, and OpenGL unfortunately does not provide a
+way to determine exactly when a frame will be visible on screen. On most systems,
+a frame is displayed almost immediately, but some systems introduce a delay, and
+this can cause notable audio/video synchronization errors.
+This effect may be aggravated by compositing window managers. See
+@url{http://savannah.nongnu.org/bugs/?35103,bug 35103} for more information.
+
+You can check the audio/video synchronization on your system using the file
+@uref{audio-video-sync.mp4,@code{audio-video-sync.mp4}} (created 
+on 12/18/2011 by @url{http://www.schristiancollins.com,S. Christian Collins}).
+It contains a few bright flashes accompanied by "tick" sounds. The flashes and
+the sounds should be exactly in sync.
+
+If they are not, you can adjust an audio delay that compensates for the video
+delay. Increase audio delay (e.g. in steps of 50 milliseconds) and replay the
+test video until audio and video are synchronized.
+
+
+@node Performance Tweaking
+@chapter Performance Tweaking
+
+Bino should be able to play most video files on a computer with reasonable CPU and graphics power.
+
+If Bino cannot play a video fast enough, it drops frames. Audio continues to
+play, but video begins to stutter or even to stop completely.
+
+This can have to two causes: either your CPU cannot decode the video fast
+enough, or your graphics card cannot render the video fast enough.
+
+In the first case, there is currently not much you can do.
+
+In the second case, try the following to improve performance:
+@enumerate
+@item Reduce the quality setting as far as necessary.
+@item Use a lower-quality anaglyph mode instead of the high-quality Dubois mode.
+@item Avoid color adjustments: set the contrast, brightness, hue, and saturation adjustments to 0.
+@item Avoid ghostbusting: set the ghostbusting parameter to 0.
+@item Disable subtitles.
+@end enumerate
 
 @bye

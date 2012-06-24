@@ -1,7 +1,5 @@
 /*
- * This file is part of bino, a 3D video player.
- *
- * Copyright (C) 2009-2011
+ * Copyright (C) 2009, 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,8 +25,20 @@
 #include <cerrno>
 #include <limits>
 #include <sstream>
+#include <locale>
+#include <cwchar>
 
-#include <iconv.h>
+#ifdef HAVE_NL_LANGINFO
+# include <locale.h>
+# include <langinfo.h>
+#else
+# define WIN32_LEAN_AND_MEAN
+# include <windows.h>
+#endif
+
+#ifdef HAVE_ICONV
+# include <iconv.h>
+#endif
 
 #include "gettext.h"
 #define _(string) gettext(string)
@@ -101,6 +111,7 @@ template<typename T>
 static inline std::string float_to_str(T x)
 {
     std::ostringstream os;
+    os.imbue(std::locale::classic());
     os.precision(std::numeric_limits<T>::digits10 + 1);
     os << x;
     return os.str();
@@ -139,6 +150,37 @@ namespace str
         {
             return std::string();
         }
+    }
+
+    /* Parse a string into tokens */
+
+    std::vector<std::string> tokens(const std::string &s, const std::string &delimiters)
+    {
+        std::vector<std::string> t;
+        size_t index = 0;
+        for (;;)
+        {
+            size_t start = s.find_first_not_of(delimiters, index);
+            if (start != std::string::npos)
+            {
+                size_t end = s.find_first_of(delimiters, start);
+                if (end == std::string::npos)
+                {
+                    t.push_back(s.substr(start));
+                    break;
+                }
+                else
+                {
+                    t.push_back(s.substr(start, end - start));
+                    index = end;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+        return t;
     }
 
     /* Create std::strings from all basic data types */
@@ -242,6 +284,35 @@ namespace str
     template<> float to<float>(const std::string &s) { return _to<float>(s, "float"); }
     template<> double to<double>(const std::string &s) { return _to<double>(s, "double"); }
     template<> long double to<long double>(const std::string &s) { return _to<long double>(s, "long double"); }
+
+    template<typename T>
+    static inline bool _to(const std::string& s, T* x)
+    {
+        T y;
+        try {
+            y = str::to<T>(s);
+        }
+        catch (...) {
+            return false;
+        }
+        *x = y;
+        return true;
+    }
+
+    template<> bool to(const std::string& s, bool* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, signed char* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, unsigned char* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, short* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, unsigned short* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, int* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, unsigned int* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, long* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, unsigned long* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, long long* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, unsigned long long* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, float* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, double* x) { return _to(s, x); }
+    template<> bool to(const std::string& s, long double* x) { return _to(s, x); }
 
     /* Create std::strings printf-like */
 
@@ -380,6 +451,15 @@ namespace str
         }
     }
 
+    std::string human_readable_geodetic(double lat, double lon, double elev)
+    {
+        std::string s = str::asprintf("lat %.6f lon %.6f",
+                180.0 / M_PI * lat, 180.0 / M_PI * lon);
+        if (elev < 0.0 || elev > 0.0)
+            s += " elev " + human_readable_length(elev);
+        return s;
+    }
+
     std::string human_readable_time(int64_t microseconds)
     {
         int64_t hours = microseconds / (1000000ll * 60ll * 60ll);
@@ -396,6 +476,30 @@ namespace str
         return hr;
     }
 
+    /* Get the name of the user's character set */
+    std::string localcharset()
+    {
+#ifdef HAVE_NL_LANGINFO
+        std::string bak = setlocale(LC_CTYPE, NULL);
+        setlocale(LC_CTYPE, "");
+        char *charset = nl_langinfo(CODESET);
+        setlocale(LC_CTYPE, bak.c_str());
+#else
+        char charset[2 + 10 + 1];
+        snprintf(charset, 2 + 10 + 1, "CP%u", GetACP());
+        /* Another instance of incredibly braindead Windows design.
+         * We need to return the active code page to get correct results when
+         * output goes into files or pipes. But the console output codepage is
+         * not related to the active code page. So we force it to be the same.
+         * but this only works if the console window uses a true type font;
+         * raster fonts ignore the console output codepage.
+         * If you find this too stupid to believe, read Microsofts documentation
+         * of the SetConsoleOutputCP function. */
+        SetConsoleOutputCP(GetACP());
+#endif
+        return std::string(charset);
+    }
+
     /* Convert a string from one character set to another */
 
     std::string convert(const std::string &src, const std::string &from_charset, const std::string &to_charset)
@@ -405,6 +509,7 @@ namespace str
             return src;
         }
 
+#ifdef HAVE_ICONV
         iconv_t cd = iconv_open(to_charset.c_str(), from_charset.c_str());
         if (cd == reinterpret_cast<iconv_t>(static_cast<size_t>(-1)))
         {
@@ -451,5 +556,37 @@ namespace str
         }
         free(orig_outbuf);
         return dst;
+#else
+        throw exc(str::asprintf(_("Cannot convert %s to %s."), from_charset.c_str(), to_charset.c_str()), ENOSYS);
+#endif
+    }
+
+    std::wstring to_wstr(const std::string &in)
+    {
+        std::wstring out;
+        size_t l = std::mbstowcs(NULL, in.c_str(), 0);
+        if (l == static_cast<size_t>(-1) || l > static_cast<size_t>(std::numeric_limits<int>::max() - 1)) {
+            // This should never happen. We don't want to handle this case, and we don't want to throw
+            // an exception from a str function, so inform the user and abort.
+            msg::err("Failure in str::to_wstr().");
+            dbg::crash();
+        }
+        out.resize(l);
+        std::mbstowcs(&(out[0]), in.c_str(), l);
+        return out;
+    }
+
+    size_t display_width(const std::wstring& ws)
+    {
+#ifdef HAVE_WCSWIDTH
+        return std::max(0, ::wcswidth(ws.c_str(), ws.length()));
+#else
+        return ws.length();
+#endif
+    }
+
+    size_t display_width(const std::string& s)
+    {
+        return display_width(to_wstr(s));
     }
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010-2011
+ * Copyright (C) 2010, 2011, 2012
  * Martin Lambers <marlam@marlam.de>
  * Joe <cuchac@email.cz>
  *
@@ -75,6 +75,11 @@ public:
     void open(const std::vector<std::string> &urls, const device_request &dev_request = device_request());
 
     /* Get information */
+
+    // The number of URLs (= the number of media objects)
+    size_t urls() const;
+    // Get the URL with the given index
+    const std::string &url(size_t i) const;
 
     // Identifier.
     const std::string &id() const;
@@ -174,9 +179,9 @@ public:
     void select_subtitle_stream(int subtitle_stream);
 
     /* Check whether a stereo layout is supported by this input. */
-    bool stereo_layout_is_supported(video_frame::stereo_layout_t layout, bool swap) const;
+    bool stereo_layout_is_supported(parameters::stereo_layout_t layout, bool swap) const;
     /* Set the stereo layout. It must be supported by the input. */
-    void set_stereo_layout(video_frame::stereo_layout_t layout, bool swap);
+    void set_stereo_layout(parameters::stereo_layout_t layout, bool swap);
 
     /* Start to read a video frame from the active stream asynchronously
      * (in a separate thread). */
