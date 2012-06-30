@@ -8,7 +8,8 @@
 override_dh_auto_configure:
 	dh_auto_configure -- LDFLAGS="$(LDFLAGS) -Wl,--as-needed" \
 	                     --htmldir=\$${docdir}/html \
-	                     --without-equalizer
+	                     --without-equalizer \
+	                     --disable-silent-rules
 
 override_dh_strip:
 	dh_strip --dbg-package=bino-dbg
