@@ -1,3 +1,19 @@
+bino (1.4.0-1) unstable; urgency=low
+
+  * Imported Upstream version 1.4.0
+  * Add Build-Depends on debhelper >= 9, remove lintian override
+  * debian/gbp.conf: disable pristine-tar as it doesn't support xz yet.
+  * debian/control:
+    * update Standards-Version to 3.9.3 (no changes needed)
+    * build-Depend on libglewmx-dev instead of libglew-dev
+    * build-Depend on texinfo
+  * debian/copyright:
+    * update Format url to new canonical url
+    * update for new upstream version
+  * debian/watch: only consider versions with even version numbers.
+
+ -- Daniel Schaal <farbing@web.de>  Sun, 24 Jun 2012 11:57:35 +0200
+
 bino (1.2.1-2) unstable; urgency=low
 
   * explicitly disable Equalizer in configure line
