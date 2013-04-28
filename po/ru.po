@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2012-06-24 11:25+0200\n"
+"POT-Creation-Date: 2013-01-27 22:06+0100\n"
 "PO-Revision-Date: 2012-06-18 21:29+0600\n"
 "Last-Translator: Alexey Osipov <simba@lerlan.ru>\n"
 "Language-Team: \n"
@@ -111,84 +111,84 @@ msgstr "Отказ системной функции:"
 msgid "Cannot get time."
 msgstr "Невозможно получить время."
 
-#: src/audio_output.cpp:88
+#: src/audio_output.cpp:93
 msgid "No OpenAL device available."
 msgstr "Устройства OpenAL не доступны."
 
-#: src/audio_output.cpp:93 src/audio_output.cpp:99
+#: src/audio_output.cpp:98 src/audio_output.cpp:104
 #, c-format
 msgid "OpenAL device '%s' is not available."
 msgstr "Устройство OpenAL '%s' не доступно."
 
-#: src/audio_output.cpp:93 src/lib_versions.cpp:121 src/lib_versions.cpp:158
+#: src/audio_output.cpp:98 src/lib_versions.cpp:121 src/lib_versions.cpp:158
 #: src/media_data.cpp:1194 src/media_data.cpp:1217 src/media_data.cpp:1255
 #: src/media_data.cpp:1260
 msgid "unknown"
 msgstr "неизвестно"
 
-#: src/audio_output.cpp:106
+#: src/audio_output.cpp:111
 msgid "No OpenAL context available."
 msgstr "Контекст OpenAL не доступен."
 
-#: src/audio_output.cpp:117
+#: src/audio_output.cpp:122
 msgid "Cannot create OpenAL buffers."
 msgstr "Невозможно создать буферы OpenAL."
 
-#: src/audio_output.cpp:126
+#: src/audio_output.cpp:131
 msgid "Cannot create OpenAL source."
 msgstr "Невозможно создать источник OpenAL."
 
-#: src/audio_output.cpp:139
+#: src/audio_output.cpp:144
 msgid "Cannot set OpenAL source parameters."
 msgstr "Невозможно установить параметры источника OpenAL."
 
-#: src/audio_output.cpp:193
+#: src/audio_output.cpp:198
 msgid "Cannot check OpenAL source state."
 msgstr "Невозможно проверить состояние источника OpenAL."
 
-#: src/audio_output.cpp:200
+#: src/audio_output.cpp:205
 msgid "Cannot restart OpenAL source playback."
 msgstr "Невозможно возобновить воспроизведение источника OpenAL."
 
-#: src/audio_output.cpp:353
+#: src/audio_output.cpp:358
 #, c-format
 msgid "No OpenAL format available for audio data format %s."
 msgstr "Для формата аудио %s не найдено подходящих форматов OpenAL."
 
-#: src/audio_output.cpp:369
+#: src/audio_output.cpp:374
 msgid "Cannot set OpenAL audio volume."
 msgstr "Невозможно установить громкость OpenAL."
 
-#: src/audio_output.cpp:395
+#: src/audio_output.cpp:400
 msgid "Cannot buffer initial OpenAL data."
 msgstr "Невозможно буферизировать начальные данные OpenAL."
 
-#: src/audio_output.cpp:409
+#: src/audio_output.cpp:414
 msgid "Cannot buffer OpenAL data."
 msgstr "Невозможно буферизировать данные OpenAL."
 
-#: src/audio_output.cpp:434
+#: src/audio_output.cpp:439
 msgid "Cannot start OpenAL source playback."
 msgstr "Невозможно начать воспроизведение источника OpenAL."
 
-#: src/audio_output.cpp:448
+#: src/audio_output.cpp:453
 msgid "Cannot pause OpenAL source playback."
 msgstr "Невозможно приостановить воспроизведение источника OpenAL."
 
-#: src/audio_output.cpp:457
+#: src/audio_output.cpp:462
 msgid "Cannot unpause OpenAL source playback."
 msgstr "Невозможно возобновить воспроизведение источника OpenAL."
 
-#: src/audio_output.cpp:466
+#: src/audio_output.cpp:471
 msgid "Cannot stop OpenAL source playback."
 msgstr "Невозможно остановить воспроизведение источника OpenAL."
 
-#: src/audio_output.cpp:477
+#: src/audio_output.cpp:482
 msgid "Cannot unqueue OpenAL source buffers."
 msgstr "Невозможно получить из очереди буферы источника OpenAL."
 
 #: src/command_file.cpp:63 src/command_file.cpp:79 src/command_file.cpp:125
-#: src/main.cpp:373 src/media_object.cpp:847 src/media_object.cpp:1312
+#: src/main.cpp:374 src/media_object.cpp:850 src/media_object.cpp:1315
 #: src/video_output.cpp:419
 #, c-format
 msgid "%s: %s"
@@ -231,7 +231,7 @@ msgstr "Аудио дорожка %d не найдена."
 msgid "Subtitle stream %d not found."
 msgstr "Дорожка субтитров %d не найдена."
 
-#: src/dispatch.cpp:555 src/main.cpp:763
+#: src/dispatch.cpp:555 src/main.cpp:767
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "Эта версия Bino была собрана без поддержки Equalizer."
 
@@ -267,68 +267,68 @@ msgstr "Источник:"
 msgid "<p>Set the 3D layout of the video stream.</p>"
 msgstr "<p>Укажите 3D раскладку исходного видеофайла.</p>"
 
-#: src/gui.cpp:138 src/main.cpp:430
+#: src/gui.cpp:138 src/main.cpp:431
 msgid "2D"
 msgstr "2D"
 
-#: src/gui.cpp:139 src/main.cpp:431
+#: src/gui.cpp:139 src/main.cpp:432
 msgid "Separate streams, left first"
 msgstr "Отдельные видеофайлы, сначала левый"
 
-#: src/gui.cpp:140 src/main.cpp:432
+#: src/gui.cpp:140 src/main.cpp:433
 msgid "Separate streams, right first"
 msgstr "Отдельные видеофайлы, сначала правый"
 
-#: src/gui.cpp:141 src/main.cpp:433
+#: src/gui.cpp:141 src/main.cpp:434
 msgid "Alternating, left first"
 msgstr "Чередование кадров, сначала левый"
 
-#: src/gui.cpp:142 src/main.cpp:434
+#: src/gui.cpp:142 src/main.cpp:435
 msgid "Alternating, right first"
 msgstr "Чередование кадров, сначала правый"
 
 #: src/gui.cpp:143 src/gui.cpp:167 src/gui.cpp:2151 src/gui.cpp:2180
-#: src/main.cpp:435 src/main.cpp:450
+#: src/main.cpp:436 src/main.cpp:451
 msgid "Top/bottom"
 msgstr "Сверху/снизу"
 
 #: src/gui.cpp:144 src/gui.cpp:168 src/gui.cpp:2152 src/gui.cpp:2181
-#: src/main.cpp:436 src/main.cpp:451
+#: src/main.cpp:437 src/main.cpp:452
 msgid "Top/bottom, half height"
 msgstr "Сверху/снизу, в половину высоты"
 
-#: src/gui.cpp:145 src/main.cpp:437
+#: src/gui.cpp:145 src/main.cpp:438
 msgid "Bottom/top"
 msgstr "Снизу/сверху"
 
-#: src/gui.cpp:146 src/main.cpp:438
+#: src/gui.cpp:146 src/main.cpp:439
 msgid "Bottom/top, half height"
 msgstr "Снизу/сверху, в половину высоты"
 
 #: src/gui.cpp:147 src/gui.cpp:169 src/gui.cpp:2153 src/gui.cpp:2182
-#: src/main.cpp:439 src/main.cpp:452
+#: src/main.cpp:440 src/main.cpp:453
 msgid "Left/right"
 msgstr "Слева/справа"
 
 #: src/gui.cpp:148 src/gui.cpp:170 src/gui.cpp:2154 src/gui.cpp:2183
-#: src/main.cpp:440 src/main.cpp:453
+#: src/main.cpp:441 src/main.cpp:454
 msgid "Left/right, half width"
 msgstr "Слева/справа, в половину ширины"
 
-#: src/gui.cpp:149 src/main.cpp:441
+#: src/gui.cpp:149 src/main.cpp:442
 msgid "Right/left"
 msgstr "Справа/слева"
 
-#: src/gui.cpp:150 src/main.cpp:442
+#: src/gui.cpp:150 src/main.cpp:443
 msgid "Right/left, half width"
 msgstr "Справа/слева, в половину ширины"
 
 #: src/gui.cpp:151 src/gui.cpp:171 src/gui.cpp:2155 src/gui.cpp:2184
-#: src/main.cpp:443 src/main.cpp:454
+#: src/main.cpp:444 src/main.cpp:455
 msgid "Even/odd rows"
 msgstr "Четные/нечетные ряды"
 
-#: src/gui.cpp:152 src/main.cpp:444
+#: src/gui.cpp:152 src/main.cpp:445
 msgid "Odd/even rows"
 msgstr "Нечетные/четные ряды"
 
@@ -340,87 +340,87 @@ msgstr "Режим:"
 msgid "<p>Set the 3D output type for your display.</p>"
 msgstr "<p>Укажите 3D режим для вашего дисплея.</p>"
 
-#: src/gui.cpp:163 src/gui.cpp:2149 src/gui.cpp:2178 src/main.cpp:448
+#: src/gui.cpp:163 src/gui.cpp:2149 src/gui.cpp:2178 src/main.cpp:449
 msgid "Left view"
 msgstr "Левый видеоряд"
 
-#: src/gui.cpp:164 src/gui.cpp:2150 src/gui.cpp:2179 src/main.cpp:449
+#: src/gui.cpp:164 src/gui.cpp:2150 src/gui.cpp:2179 src/main.cpp:450
 msgid "Right view"
 msgstr "Правый видеоряд"
 
-#: src/gui.cpp:165 src/main.cpp:446
+#: src/gui.cpp:165 src/main.cpp:447
 msgid "OpenGL stereo"
 msgstr "Стерео OpenGL"
 
-#: src/gui.cpp:166 src/main.cpp:447
+#: src/gui.cpp:166 src/main.cpp:448
 msgid "Left/right alternating"
 msgstr "Чередование кадров (левый/правый)"
 
-#: src/gui.cpp:172 src/gui.cpp:2156 src/gui.cpp:2185 src/main.cpp:455
+#: src/gui.cpp:172 src/gui.cpp:2156 src/gui.cpp:2185 src/main.cpp:456
 msgid "Even/odd columns"
 msgstr "Четные/нечетные столбцы"
 
-#: src/gui.cpp:173 src/gui.cpp:2157 src/gui.cpp:2186 src/main.cpp:456
+#: src/gui.cpp:173 src/gui.cpp:2157 src/gui.cpp:2186 src/main.cpp:457
 msgid "Checkerboard pattern"
 msgstr "В шахматном порядке"
 
-#: src/gui.cpp:174 src/main.cpp:457
+#: src/gui.cpp:174 src/main.cpp:458
 msgid "HDMI frame packing mode"
 msgstr "Режим упаковки кадров HDMI"
 
-#: src/gui.cpp:175 src/gui.cpp:2158 src/gui.cpp:2187 src/main.cpp:458
+#: src/gui.cpp:175 src/gui.cpp:2158 src/gui.cpp:2187 src/main.cpp:459
 msgid "Red/cyan glasses, monochrome"
 msgstr "Красно-голубые очки, черно-белый режим"
 
-#: src/gui.cpp:176 src/gui.cpp:2159 src/gui.cpp:2188 src/main.cpp:459
+#: src/gui.cpp:176 src/gui.cpp:2159 src/gui.cpp:2188 src/main.cpp:460
 msgid "Red/cyan glasses, half color"
 msgstr "Красно-голубые очки, половина цветности"
 
-#: src/gui.cpp:177 src/gui.cpp:2160 src/gui.cpp:2189 src/main.cpp:460
+#: src/gui.cpp:177 src/gui.cpp:2160 src/gui.cpp:2189 src/main.cpp:461
 msgid "Red/cyan glasses, full color"
 msgstr "Красно-голубые очки, полноцветный режим"
 
-#: src/gui.cpp:178 src/gui.cpp:2161 src/gui.cpp:2190 src/main.cpp:461
+#: src/gui.cpp:178 src/gui.cpp:2161 src/gui.cpp:2190 src/main.cpp:462
 msgid "Red/cyan glasses, Dubois"
 msgstr "Красно-голубые очки, метод Дюбуа"
 
-#: src/gui.cpp:179 src/gui.cpp:2162 src/gui.cpp:2191 src/main.cpp:462
+#: src/gui.cpp:179 src/gui.cpp:2162 src/gui.cpp:2191 src/main.cpp:463
 msgid "Green/magenta glasses, monochrome"
 msgstr "Зелёно-пурпурные очки, черно-белый режим"
 
-#: src/gui.cpp:180 src/gui.cpp:2163 src/gui.cpp:2192 src/main.cpp:463
+#: src/gui.cpp:180 src/gui.cpp:2163 src/gui.cpp:2192 src/main.cpp:464
 msgid "Green/magenta glasses, half color"
 msgstr "Зелёно-пурпурные очки, половина цветности"
 
-#: src/gui.cpp:181 src/gui.cpp:2164 src/gui.cpp:2193 src/main.cpp:464
+#: src/gui.cpp:181 src/gui.cpp:2164 src/gui.cpp:2193 src/main.cpp:465
 msgid "Green/magenta glasses, full color"
 msgstr "Зелёно-пурпурные очки, полноцветный режим"
 
-#: src/gui.cpp:182 src/gui.cpp:2165 src/gui.cpp:2194 src/main.cpp:465
+#: src/gui.cpp:182 src/gui.cpp:2165 src/gui.cpp:2194 src/main.cpp:466
 msgid "Green/magenta glasses, Dubois"
 msgstr "Зелёно-пурпурные очки, метод Дюбуа"
 
-#: src/gui.cpp:183 src/gui.cpp:2166 src/gui.cpp:2195 src/main.cpp:466
+#: src/gui.cpp:183 src/gui.cpp:2166 src/gui.cpp:2195 src/main.cpp:467
 msgid "Amber/blue glasses, monochrome"
 msgstr "Янтарно-синие очки, черно-белый режим"
 
-#: src/gui.cpp:184 src/gui.cpp:2167 src/gui.cpp:2196 src/main.cpp:467
+#: src/gui.cpp:184 src/gui.cpp:2167 src/gui.cpp:2196 src/main.cpp:468
 msgid "Amber/blue glasses, half color"
 msgstr "Янтарно-синие очки, половина цветности"
 
-#: src/gui.cpp:185 src/gui.cpp:2168 src/gui.cpp:2197 src/main.cpp:468
+#: src/gui.cpp:185 src/gui.cpp:2168 src/gui.cpp:2197 src/main.cpp:469
 msgid "Amber/blue glasses, full color"
 msgstr "Янтарно-синие очки, полноцветный режим"
 
-#: src/gui.cpp:186 src/gui.cpp:2169 src/gui.cpp:2198 src/main.cpp:469
+#: src/gui.cpp:186 src/gui.cpp:2169 src/gui.cpp:2198 src/main.cpp:470
 msgid "Amber/blue glasses, Dubois"
 msgstr "Янтарно-синие очки, метод Дюбуа"
 
-#: src/gui.cpp:187 src/gui.cpp:2170 src/gui.cpp:2199 src/main.cpp:470
+#: src/gui.cpp:187 src/gui.cpp:2170 src/gui.cpp:2199 src/main.cpp:471
 msgid "Red/green glasses, monochrome"
 msgstr "Красно-зелёные очки, черно-белый режим"
 
-#: src/gui.cpp:188 src/gui.cpp:2171 src/gui.cpp:2200 src/main.cpp:471
+#: src/gui.cpp:188 src/gui.cpp:2171 src/gui.cpp:2200 src/main.cpp:472
 msgid "Red/blue glasses, monochrome"
 msgstr "Красно-синие очки, черно-белый режим"
 
@@ -881,11 +881,11 @@ msgstr "Открыть устройство(а)"
 msgid "<p>Choose a device type.</p>"
 msgstr "<p>Выберите тип устройства.</p>"
 
-#: src/gui.cpp:2620 src/media_object.cpp:823
+#: src/gui.cpp:2620 src/media_object.cpp:826
 msgid "Firewire"
 msgstr "Firewire"
 
-#: src/gui.cpp:2621 src/media_object.cpp:824
+#: src/gui.cpp:2621 src/media_object.cpp:827
 msgid "X11"
 msgstr "X11"
 
@@ -1069,9 +1069,9 @@ msgstr "Адрес(а):"
 msgid "<p>Enter one or more space separated URLs.</p>"
 msgstr "<p>Введите один или более адресов (URL), разделенных пробелами.</p>"
 
-#: src/gui.cpp:3653 src/gui.cpp:3661 src/video_output_qt.cpp:286
-#: src/video_output_qt.cpp:522 src/video_output_qt.cpp:719
-#: src/video_output_qt.cpp:731 src/video_output_qt.cpp:752
+#: src/gui.cpp:3653 src/gui.cpp:3661 src/video_output_qt.cpp:299
+#: src/video_output_qt.cpp:535 src/video_output_qt.cpp:732
+#: src/video_output_qt.cpp:744 src/video_output_qt.cpp:765
 msgid "Error"
 msgstr "Ошибка"
 
@@ -1091,7 +1091,7 @@ msgstr "Горячие клавиши"
 msgid "Keyboard control:"
 msgstr "Управление с клавиатуры:"
 
-#: src/gui.cpp:3674 src/main.cpp:505
+#: src/gui.cpp:3674 src/main.cpp:506
 msgid "ESC"
 msgstr "ESC"
 
@@ -1099,107 +1099,107 @@ msgstr "ESC"
 msgid "Stop"
 msgstr "Стоп"
 
-#: src/gui.cpp:3675 src/main.cpp:507
+#: src/gui.cpp:3675 src/main.cpp:508
 msgid "SPACE"
 msgstr "ПРОБЕЛ"
 
-#: src/gui.cpp:3675 src/main.cpp:507
+#: src/gui.cpp:3675 src/main.cpp:508
 msgid "Pause / unpause"
 msgstr "Пауза / Воспроизведение"
 
-#: src/gui.cpp:3676 src/main.cpp:508
+#: src/gui.cpp:3676 src/main.cpp:509
 msgid "Toggle fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/gui.cpp:3677 src/main.cpp:509
+#: src/gui.cpp:3677 src/main.cpp:510
 msgid "Center window"
 msgstr "Расположить окно по центру"
 
-#: src/gui.cpp:3678 src/main.cpp:510
+#: src/gui.cpp:3678 src/main.cpp:511
 msgid "Swap left/right eye"
 msgstr "Поменять местами левый и правый видеоряды"
 
-#: src/gui.cpp:3679 src/main.cpp:511
+#: src/gui.cpp:3679 src/main.cpp:512
 msgid "Cycle through available video streams"
 msgstr "Переключить видео дорожку"
 
-#: src/gui.cpp:3680 src/main.cpp:512
+#: src/gui.cpp:3680 src/main.cpp:513
 msgid "Cycle through available audio streams"
 msgstr "Переключить аудио дорожку"
 
-#: src/gui.cpp:3681 src/main.cpp:513
+#: src/gui.cpp:3681 src/main.cpp:514
 msgid "Cycle through available subtitle streams"
 msgstr "Переключить дорожку субтитров"
 
-#: src/gui.cpp:3682 src/main.cpp:514
+#: src/gui.cpp:3682 src/main.cpp:515
 msgid "Adjust contrast"
 msgstr "Регулировка контрастности"
 
-#: src/gui.cpp:3683 src/main.cpp:515
+#: src/gui.cpp:3683 src/main.cpp:516
 msgid "Adjust brightness"
 msgstr "Регулировка яркости"
 
-#: src/gui.cpp:3684 src/main.cpp:516
+#: src/gui.cpp:3684 src/main.cpp:517
 msgid "Adjust hue"
 msgstr "Регулировка оттенка"
 
-#: src/gui.cpp:3685 src/main.cpp:517
+#: src/gui.cpp:3685 src/main.cpp:518
 msgid "Adjust saturation"
 msgstr "Регулировка насыщенности"
 
-#: src/gui.cpp:3686 src/main.cpp:518
+#: src/gui.cpp:3686 src/main.cpp:519
 msgid "Adjust parallax"
 msgstr "Регулировка параллакса"
 
-#: src/gui.cpp:3687 src/main.cpp:519
+#: src/gui.cpp:3687 src/main.cpp:520
 msgid "Adjust ghostbusting"
 msgstr "Подавление перекрестных помех"
 
-#: src/gui.cpp:3688 src/main.cpp:520
+#: src/gui.cpp:3688 src/main.cpp:521
 msgid "Adjust zoom for wide videos"
 msgstr "Регулировка масштаба для широкоэкранных видео"
 
-#: src/gui.cpp:3689 src/main.cpp:521
+#: src/gui.cpp:3689 src/main.cpp:522
 msgid "Adjust audio volume"
 msgstr "Регулировка громкости"
 
-#: src/gui.cpp:3690 src/main.cpp:522
+#: src/gui.cpp:3690 src/main.cpp:523
 msgid "Toggle audio mute"
 msgstr "Включить/выключить звук"
 
-#: src/gui.cpp:3691 src/main.cpp:523
+#: src/gui.cpp:3691 src/main.cpp:524
 msgid "Step a single video frame forward"
 msgstr "Перемотка на один кадр вперед"
 
-#: src/gui.cpp:3692 src/main.cpp:524
+#: src/gui.cpp:3692 src/main.cpp:525
 msgid "left, right"
 msgstr "влево, вправо"
 
-#: src/gui.cpp:3692 src/main.cpp:524
+#: src/gui.cpp:3692 src/main.cpp:525
 msgid "Seek 10 seconds backward / forward"
 msgstr "Перемотка на 10 секунд назад / вперед"
 
-#: src/gui.cpp:3693 src/main.cpp:525
+#: src/gui.cpp:3693 src/main.cpp:526
 msgid "down, up"
 msgstr "вниз, вверх"
 
-#: src/gui.cpp:3693 src/main.cpp:525
+#: src/gui.cpp:3693 src/main.cpp:526
 msgid "Seek 1 minute backward / forward"
 msgstr "Перемотка на 1 минуту назад / вперед"
 
-#: src/gui.cpp:3694 src/main.cpp:526
+#: src/gui.cpp:3694 src/main.cpp:527
 msgid "page down, page up"
 msgstr "page down, page up"
 
-#: src/gui.cpp:3694 src/main.cpp:526
+#: src/gui.cpp:3694 src/main.cpp:527
 msgid "Seek 10 minutes backward / forward"
 msgstr "Перемотка на 10 минут назад / вперед"
 
-#: src/gui.cpp:3695 src/main.cpp:528
+#: src/gui.cpp:3695 src/main.cpp:529
 msgid "Media keys"
 msgstr "Мультимедийные клавиши"
 
-#: src/gui.cpp:3695 src/main.cpp:528
+#: src/gui.cpp:3695 src/main.cpp:529
 msgid "Media keys should work as expected"
 msgstr "Должны работать как задумано."
 
@@ -1216,24 +1216,24 @@ msgstr "3D видео плеер %s"
 #: src/gui.cpp:3722
 #, c-format
 msgid ""
-"<p>%s version %s.</p><p>Copyright (C) 2012 the Bino developers.</p><p>This "
+"<p>%s version %s.</p><p>Copyright (C) 2013 the Bino developers.</p><p>This "
 "is free software. You may redistribute copies of it under the terms of the "
 "<a href=\"http://www.gnu.org/licenses/gpl.html\">GNU General Public License</"
 "a>. There is NO WARRANTY, to the extent permitted by law.</p><p>See <a href="
 "\"%s\">%s</a> for more information on this software.</p>"
 msgstr ""
-"<p>%s версия %s.</p><p>Copyright (C) 2012 разработчики Bino.</p><p>Это "
+"<p>%s версия %s.</p><p>Copyright (C) 2013 разработчики Bino.</p><p>Это "
 "свободное программное обеспечение. Вы можете распространять его копии "
 "согласно требованиям <a href=\"http://www.gnu.org/licenses/gpl.html\">GNU "
 "General Public License</a>. Программное обеспечение поставляется БЕЗ КАКИХ-"
 "ЛИБО ГАРАНТИЙ, за исключением предусмотренных законом.</p><p>Для получения "
 "подробной информации об этом ПО посетите <a href=\"%s\">%s</a>.</p>"
 
-#: src/gui.cpp:3734 src/main.cpp:390
+#: src/gui.cpp:3734 src/main.cpp:391
 msgid "Platform:"
 msgstr "Платформа:"
 
-#: src/gui.cpp:3735 src/main.cpp:392
+#: src/gui.cpp:3735 src/main.cpp:393
 msgid "Libraries used:"
 msgstr "Используемые библиотеки:"
 
@@ -1287,16 +1287,16 @@ msgstr "От LIRC получена некорректная команда '%s'.
 msgid "Cannot get command for LIRC code."
 msgstr "Невозможно получить команду для LIRC кода."
 
-#: src/main.cpp:385
+#: src/main.cpp:386
 #, c-format
 msgid "%s version %s"
 msgstr "%s версия %s"
 
-#: src/main.cpp:386
-msgid "Copyright (C) 2012 the Bino developers."
-msgstr "Copyright (C) 2012 Разработчики Bino."
-
 #: src/main.cpp:387
+msgid "Copyright (C) 2013 the Bino developers."
+msgstr "Copyright (C) 2013 Разработчики Bino."
+
+#: src/main.cpp:388
 msgid ""
 "This is free software. You may redistribute copies of it under the terms of "
 "the GNU General Public License. There is NO WARRANTY, to the extent "
@@ -1308,266 +1308,266 @@ msgstr ""
 
 #. TRANSLATORS: This is the --help text. Please keep the line length limited.
 #. * The --help output should look good with a line width of 80 characters.
-#: src/main.cpp:405
+#: src/main.cpp:406
 msgid "Usage:"
 msgstr "Использование:"
 
-#: src/main.cpp:407
+#: src/main.cpp:408
 msgid "Options:"
 msgstr "Опции:"
 
-#: src/main.cpp:408
+#: src/main.cpp:409
 msgid "Print help"
 msgstr "Вывести справку"
 
-#: src/main.cpp:409
+#: src/main.cpp:410
 msgid "Print version"
 msgstr "Вывести версию"
 
-#: src/main.cpp:410
+#: src/main.cpp:411
 msgid "Do not use the GUI, just show a plain window"
 msgstr "Только окно, без элементов управления"
 
-#: src/main.cpp:411
+#: src/main.cpp:412
 msgid "Append all log messages to the given file"
 msgstr "Выводить все сообщения в данный файл"
 
-#: src/main.cpp:412
+#: src/main.cpp:413
 msgid "Set log level (debug/info/warning/error/quiet)"
 msgstr "Журналирование (debug/info/warning/error/quiet)"
 
-#: src/main.cpp:413
+#: src/main.cpp:414
 msgid "Print a list of known audio devices and exit"
 msgstr "Вывести список звуковых устройств и выйти"
 
-#: src/main.cpp:414
+#: src/main.cpp:415
 msgid "Use audio device number N (N=0 is the default)"
 msgstr "Использовать аудио устройство N (по умолч. 0)"
 
-#: src/main.cpp:415
+#: src/main.cpp:416
 msgid "Delay audio by D milliseconds (default 0)"
 msgstr "Задержка аудио на D миллисекунд (по умолч. 0)"
 
-#: src/main.cpp:416
+#: src/main.cpp:417
 msgid "Set audio volume (0 to 1, default 1)"
 msgstr "Громкость (от 0 до 1, по умолчанию 1)"
 
-#: src/main.cpp:417
+#: src/main.cpp:418
 msgid "Mute audio"
 msgstr "Выключить звук"
 
-#: src/main.cpp:418
+#: src/main.cpp:419
 msgid "Type of input device: default, firewire, x11"
 msgstr "Тип устройства ввода: default, firewire, x11"
 
-#: src/main.cpp:419
+#: src/main.cpp:420
 msgid "Request frame size WxH from input device"
 msgstr "Размер кадра для устройства ввода"
 
-#: src/main.cpp:420
+#: src/main.cpp:421
 msgid "Request frame rate N/D from input device"
 msgstr "Частота кадров для устройства ввода"
 
-#: src/main.cpp:421
+#: src/main.cpp:422
 msgid "Request device format 'default' or 'mjpeg'"
 msgstr "Формат для устройства ввода: 'default', 'mjpeg'"
 
-#: src/main.cpp:422
+#: src/main.cpp:423
 msgid "Read commands from a file"
 msgstr "Прочитать команды из файла"
 
-#: src/main.cpp:423
+#: src/main.cpp:424
 msgid "Use the given LIRC configuration file"
 msgstr "Использовать данный файл конфигурации LIRC"
 
-#: src/main.cpp:424
+#: src/main.cpp:425
 msgid "This option can be used more than once"
 msgstr "Эта опция может быть использована много раз"
 
-#: src/main.cpp:425
+#: src/main.cpp:426
 msgid "Output quality (0=fastest to 4=best/default)"
 msgstr "Качество изображения (0=быстро...4=качественно)"
 
-#: src/main.cpp:426
+#: src/main.cpp:427
 msgid "Select video stream (1-n, depending on input)"
 msgstr "Видео дорожка (от 1 до n)"
 
-#: src/main.cpp:427
+#: src/main.cpp:428
 msgid "Select audio stream (1-n, depending on input)"
 msgstr "Аудио дорожка (от 1 до n)"
 
-#: src/main.cpp:428
+#: src/main.cpp:429
 msgid "Select subtitle stream (0-n, dep. on input)"
 msgstr "Дорожка субтитров (от 0 до n)"
 
-#: src/main.cpp:429
+#: src/main.cpp:430
 msgid "Select input type (default autodetect):"
 msgstr "Входной режим (по умолчанию - автоопределение):"
 
-#: src/main.cpp:445
+#: src/main.cpp:446
 msgid "Select output type:"
 msgstr "Выходной режим:"
 
-#: src/main.cpp:472
+#: src/main.cpp:473
 msgid "Multi-display via Equalizer (2D setup)"
 msgstr "Многоэкранный через Equalizer (2D)"
 
-#: src/main.cpp:473
+#: src/main.cpp:474
 msgid "Multi-display via Equalizer (3D setup)"
 msgstr "Многоэкранный через Equalizer (3D)"
 
-#: src/main.cpp:474
+#: src/main.cpp:475
 msgid "Swap left/right view"
 msgstr "Поменять местами левый и правый видеоряды"
 
-#: src/main.cpp:475
+#: src/main.cpp:476
 msgid "Fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/main.cpp:476
+#: src/main.cpp:477
 msgid "Use the listed screens in fullscreen mode"
 msgstr "Экраны для полноэкранного режима"
 
-#: src/main.cpp:477
+#: src/main.cpp:478
 msgid "Screen numbers start with 1"
 msgstr "Номера экранов начинаются с 1"
 
-#: src/main.cpp:478
+#: src/main.cpp:479
 msgid "An empty list defaults to the primary screen"
 msgstr "Пустой список означает главный экран"
 
-#: src/main.cpp:479
+#: src/main.cpp:480
 msgid "Flip left view vertically when fullscreen"
 msgstr "Отразить левый видеоряд вертикально"
 
-#: src/main.cpp:480
+#: src/main.cpp:481
 msgid "Flop left view horizontally when fullscreen"
 msgstr "Отразить левый видеоряд горизонтально"
 
-#: src/main.cpp:481
+#: src/main.cpp:482
 msgid "Flip right view vertically when fullscreen"
 msgstr "Отразить правый видеоряд вертикально"
 
-#: src/main.cpp:482
+#: src/main.cpp:483
 msgid "Flop right view horizontally when fullscreen"
 msgstr "Отразить правый видеоряд горизонтально"
 
-#: src/main.cpp:483
+#: src/main.cpp:484
 msgid "Use DLP 3-D Ready Sync when fullscreen"
 msgstr "Включить DLP 3-D Ready в полноэкранном режиме"
 
-#: src/main.cpp:484
+#: src/main.cpp:485
 msgid "Set zoom for wide videos (0=off to 1=full)"
 msgstr "Масштаб для широкоэкранных видео (от 0 до 1)"
 
-#: src/main.cpp:485
+#: src/main.cpp:486
 msgid "Crop video to given aspect ratio (0:0=off)"
 msgstr "Обрезать видео по соотношению сторон (0:0=выкл)"
 
-#: src/main.cpp:486
+#: src/main.cpp:487
 msgid "Center window on screen"
 msgstr "Расположить окно по центру экрана"
 
-#: src/main.cpp:487
+#: src/main.cpp:488
 msgid "Set subtitle encoding"
 msgstr "Кодировка для субтитров"
 
-#: src/main.cpp:488
+#: src/main.cpp:489
 msgid "Set subtitle font name"
 msgstr "Шрифт для субтитров"
 
-#: src/main.cpp:489
+#: src/main.cpp:490
 msgid "Set subtitle font size"
 msgstr "Размер шрифта для субтитров"
 
-#: src/main.cpp:490
+#: src/main.cpp:491
 msgid "Set subtitle scale factor"
 msgstr "Множитель масштаба субтитров"
 
-#: src/main.cpp:491
+#: src/main.cpp:492
 msgid "Set subtitle color, in [AA]RRGGBB format"
 msgstr "Цвет субтитров, в формате [AA]RRGGBB"
 
-#: src/main.cpp:492
+#: src/main.cpp:493
 msgid "Set subtitle shadow, -1=default, 0=off, 1=on"
 msgstr "Тень под субтитрами (-1=умолч, 0=выкл, 1=вкл)"
 
-#: src/main.cpp:493
+#: src/main.cpp:494
 msgid "Subtitle parallax adjustment (-1 to +1)"
 msgstr "Параллакс субтитров (от -1 до +1)"
 
-#: src/main.cpp:494
+#: src/main.cpp:495
 msgid "Parallax adjustment (-1 to +1)"
 msgstr "Параллакс (от -1 до +1)"
 
-#: src/main.cpp:495
+#: src/main.cpp:496
 msgid "Crosstalk leak level (0 to 1)"
 msgstr "Уровень перекрестных помех (от 0 до 1)"
 
-#: src/main.cpp:496
+#: src/main.cpp:497
 msgid "Comma-separated values for R,G,B"
 msgstr "Значения для R,G,B, разделенные запятыми"
 
-#: src/main.cpp:497
+#: src/main.cpp:498
 msgid "Amount of ghostbusting to apply (0 to 1)"
 msgstr "Сила подавления перекрестных помех (от 0 до 1)"
 
-#: src/main.cpp:498
+#: src/main.cpp:499
 msgid "Benchmark mode (no audio, show fps)"
 msgstr "Измерение производительности (FPS, без звука)"
 
-#: src/main.cpp:499
+#: src/main.cpp:500
 msgid "Frame rate divisor for display refresh rate"
 msgstr "Делитель частоты кадров для частоты экрана"
 
-#: src/main.cpp:500
+#: src/main.cpp:501
 msgid "Default is 0 for benchmark mode, 1 otherwise"
 msgstr "По умолчанию для измерения FPS - 0, иначе - 1"
 
-#: src/main.cpp:501
+#: src/main.cpp:502
 msgid "Loop the input media"
 msgstr "Режим повтора"
 
-#: src/main.cpp:502
+#: src/main.cpp:503
 msgid "Set SDI output format"
 msgstr "Выходной формат SDI"
 
-#: src/main.cpp:504
+#: src/main.cpp:505
 msgid "Interactive control:"
 msgstr "Интерактивное управление:"
 
-#: src/main.cpp:505
+#: src/main.cpp:506
 msgid "Leave fullscreen mode, or quit"
 msgstr "Покинуть полноэкранный режим или выйти"
 
-#: src/main.cpp:506
+#: src/main.cpp:507
 msgid "Quit"
 msgstr "Выход"
 
-#: src/main.cpp:527
+#: src/main.cpp:528
 msgid "Mouse click"
 msgstr "Щелчок мышью"
 
-#: src/main.cpp:527
+#: src/main.cpp:528
 msgid "Seek according to horizontal click position"
 msgstr "Перемотка по горизонтальному положению курсора"
 
-#: src/main.cpp:535
+#: src/main.cpp:598
 msgid "No audio devices known."
 msgstr "Нет звуковых устройств."
 
-#: src/main.cpp:607
+#: src/main.cpp:613
 msgid "Benchmark mode: audio and time synchronization disabled."
 msgstr ""
 "Режим оценки производительности: воспроизведение аудио отключено, "
 "воспроизведение видео с максимально-возможной скоростью."
 
-#: src/main.cpp:623
+#: src/main.cpp:627
 #, c-format
 msgid "Unknown mode %s."
 msgstr "Неизвестный режим %s."
 
-#: src/main.cpp:755
+#: src/main.cpp:759
 msgid "This version of Bino was compiled without support for LIRC."
 msgstr "Эта версия Bino была собрана без поддержки LIRC."
 
@@ -1620,106 +1620,106 @@ msgstr "Продолжительность: %g секунд"
 msgid "Stereo layout: %s"
 msgstr "Стерео раскладка: %s"
 
-#: src/media_object.cpp:684
+#: src/media_object.cpp:682
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
 msgstr "%s видео дорожка %d: Неподдерживаемая стерео раскладка %s."
 
-#: src/media_object.cpp:722
+#: src/media_object.cpp:720
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
 msgstr "%s аудио дорожка %d: Невозможно обработать аудио с %d каналами."
 
-#: src/media_object.cpp:751
+#: src/media_object.cpp:754
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
 msgstr "%s аудио дорожка %d: Невозможно обработать аудио в формате %s."
 
-#: src/media_object.cpp:822
+#: src/media_object.cpp:825
 #, c-format
 msgid "No support available for %s device."
 msgstr "Устройство %s не поддерживается."
 
-#: src/media_object.cpp:825
+#: src/media_object.cpp:828
 msgid "default"
 msgstr "default"
 
-#: src/media_object.cpp:858
+#: src/media_object.cpp:861
 #, c-format
 msgid "%s: Cannot read stream info: %s"
 msgstr "%s: Невозможно прочитать информацию о дорожке: %s"
 
-#: src/media_object.cpp:902
+#: src/media_object.cpp:905
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
 msgstr "%s дорожка %d: Невозможно открыть %s: %s"
 
-#: src/media_object.cpp:903
+#: src/media_object.cpp:906
 msgid "video codec"
 msgstr "видео кодек"
 
-#: src/media_object.cpp:904
+#: src/media_object.cpp:907
 msgid "audio codec"
 msgstr "аудио кодек"
 
-#: src/media_object.cpp:905
+#: src/media_object.cpp:908
 msgid "subtitle codec"
 msgstr "кодек субтитров"
 
-#: src/media_object.cpp:906
+#: src/media_object.cpp:909
 msgid "data"
 msgstr "данные"
 
-#: src/media_object.cpp:907
+#: src/media_object.cpp:910
 msgid "codec not supported"
 msgstr "кодек не поддерживается"
 
-#: src/media_object.cpp:917
+#: src/media_object.cpp:920
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
 msgstr "%s видео дорожка %d: Неверный размер кадра."
 
-#: src/media_object.cpp:961
+#: src/media_object.cpp:964
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
 msgstr "%s видео дорожка %d: Невозможно инициализировать кодек."
 
-#: src/media_object.cpp:1024
+#: src/media_object.cpp:1027
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
 msgstr "Видео дорожка %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1028
+#: src/media_object.cpp:1031
 #, c-format
 msgid "Using up to %d threads for decoding."
 msgstr "Используем максимум %d потоков для декодирования."
 
-#: src/media_object.cpp:1033
+#: src/media_object.cpp:1036
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
 msgstr "Аудио дорожка %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1040
+#: src/media_object.cpp:1043
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
 msgstr "Дорожка субтитров %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1047
+#: src/media_object.cpp:1050
 msgid "No usable streams."
 msgstr "Нет подходящих дорожек."
 
-#: src/media_object.cpp:1328 src/media_object.cpp:1358
-#: src/media_object.cpp:1388
+#: src/media_object.cpp:1331 src/media_object.cpp:1361
+#: src/media_object.cpp:1391
 #, c-format
 msgid "%s: Cannot duplicate packet."
 msgstr "%s: Невозможно создать копию пакета."
 
-#: src/media_object.cpp:1482
+#: src/media_object.cpp:1484
 #, c-format
 msgid "%s video stream %d: Dropping %dx%d frame"
 msgstr "%s видео дорожка %d: пропускаем кадр %dx%d"
 
-#: src/media_object.cpp:1945
+#: src/media_object.cpp:1972
 #, c-format
 msgid "%s: Seeking failed."
 msgstr "%s: Перемотка не удалась."
@@ -1738,8 +1738,8 @@ msgstr "FPS: %.2f"
 msgid "Reading input frame failed."
 msgstr "Чтение исходного кадра не удалось."
 
-#: src/player_equalizer.cpp:166 src/video_output_qt.cpp:673
-#: src/video_output_qt.cpp:680
+#: src/player_equalizer.cpp:166 src/video_output_qt.cpp:686
+#: src/video_output_qt.cpp:693
 msgid "Waiting for subtitle renderer initialization..."
 msgstr "Инициализация визуализатора субтитров..."
 
@@ -1846,40 +1846,40 @@ msgstr "OpenGL программа '%s': предупреждение компо�
 msgid "OpenGL program '%s': linking failed."
 msgstr "OpenGL программа '%s': ошибка компоновки."
 
-#: src/video_output.cpp:1547 src/video_output.cpp:1687
+#: src/video_output.cpp:1545 src/video_output.cpp:1689
 msgid "Cannot create a PBO buffer."
 msgstr "Невозможно создать буфер PBO."
 
-#: src/video_output_qt.cpp:624
+#: src/video_output_qt.cpp:637
 #, c-format
 msgid "Cannot initialize GLEW: %s"
 msgstr "Невозможно инициализировать GLEW: %s"
 
-#: src/video_output_qt.cpp:644
+#: src/video_output_qt.cpp:657
 msgid "This OpenGL implementation does not support required features."
 msgstr "Данная реализация OpenGL не поддерживает требуемых функций."
 
-#: src/video_output_qt.cpp:671
+#: src/video_output_qt.cpp:684
 msgid "Please wait"
 msgstr "Пожалуйста, подождите"
 
-#: src/video_output_qt.cpp:731
+#: src/video_output_qt.cpp:744
 msgid "Cannot get valid OpenGL context."
 msgstr "Невозможно установить формат OpenGL."
 
-#: src/video_output_qt.cpp:742
+#: src/video_output_qt.cpp:755
 msgid "The display does not support OpenGL stereo mode."
 msgstr "Дисплей не поддерживает режим OpenGL стерео."
 
-#: src/video_output_qt.cpp:747
+#: src/video_output_qt.cpp:760
 msgid "Cannot set OpenGL context format."
 msgstr "Невозможно установить формат OpenGL."
 
-#: src/video_output_qt.cpp:840
+#: src/video_output_qt.cpp:853
 msgid "Cannot suspend screensaver."
 msgstr "Невозможно отключить хранитель экрана."
 
-#: src/video_output_qt.cpp:861
+#: src/video_output_qt.cpp:874
 msgid "Cannot resume screensaver."
 msgstr "Невозможно включить хранитель экрана."
 
