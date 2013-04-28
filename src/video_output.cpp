@@ -1264,10 +1264,8 @@ void video_output::display_current_frame(
     glUseProgram(_render_prg);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _color_tex[_active_index][left]);
-    if (left != right) {
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, _color_tex[_active_index][right]);
-    }
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, _color_tex[_active_index][right]);
     glUniform1i(glGetUniformLocation(_render_prg, "rgb_l"), 0);
     glUniform1i(glGetUniformLocation(_render_prg, "rgb_r"), 1);
     glUniform1f(glGetUniformLocation(_render_prg, "parallax"),
@@ -1656,6 +1654,10 @@ void video_output::prepare_next_frame(const video_frame &frame, const subtitle_b
         bool buffer_updated = _subtitle_updater->get(
                 &sub_outwidth, &sub_outheight,
                 &ptr, &bb_x, &bb_y, &bb_w, &bb_h);
+        bb_x = std::min(std::max(bb_x, 0), sub_outwidth - 1);
+        bb_y = std::min(std::max(bb_y, 0), sub_outheight - 1);
+        bb_w = std::min(std::max(bb_w, 0), sub_outwidth - bb_x);
+        bb_h = std::min(std::max(bb_h, 0), sub_outheight - bb_y);
         if (buffer_updated || !_subtitle_tex_current[index]) {
             // Make sure the texture has the right size
             assert(xglCheckError(HERE));

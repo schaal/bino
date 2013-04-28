@@ -4,7 +4,7 @@ dnl configure.ac
 dnl
 dnl This file is part of bino, a 3D video player.
 dnl
-dnl Copyright (C) 2010, 2011, 2012
+dnl Copyright (C) 2010, 2011, 2012, 2013
 dnl Martin Lambers <marlam@marlam.de>
 dnl Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 dnl Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
@@ -24,7 +24,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
 AC_PREREQ([2.63])
-AC_INIT([Bino], [1.4.0], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
+AC_INIT([Bino], [1.4.2], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -49,18 +49,24 @@ case "${target}" in *-*-mingw32*) w32="yes" ;; *) w32="no " ;; esac
 if test "$w32" = "yes"; then
     CXXFLAGS="-mthreads $CXXFLAGS"
     LDFLAGS="-mthreads -mwindows $LDFLAGS"
-    AC_CHECK_TOOL([WINDRES], [windres], [:])
-    if test "$WINDRES" = ":"; then
+    AC_ARG_VAR([WINDRES], [windres command])
+    if test -z "$WINDRES"; then
+        AC_CHECK_TOOLS([WINDRES], [windres])
+    fi
+    if test -z "$WINDRES"; then
         AC_MSG_ERROR([windres not found])
     fi
-    AC_CHECK_TOOL([MAKENSIS], [makensis], [:])
-    if test "$MAKENSIS" = ":"; then
+    AC_ARG_VAR([MAKENSIS], [makensis command])
+    if test -z "$MAKENSIS"; then
+        AC_CHECK_TOOLS([MAKENSIS], [makensis])
+    fi
+    if test -z "$MAKENSIS"; then
         AC_MSG_WARN([optional tool makensis not found])
     fi
 else
-    MAKENSIS=":"
+    MAKENSIS=""
 fi
-AM_CONDITIONAL([HAVE_MAKENSIS], [test "$MAKENSIS" != ":"])
+AM_CONDITIONAL([HAVE_MAKENSIS], [test -n "$MAKENSIS"])
 AM_CONDITIONAL([W32], [test "$w32" = "yes"])
 
 dnl Configure switches
@@ -164,8 +170,12 @@ if test "$HAVE_LIBQTOPENGL" != "1"; then
     AC_MSG_WARN([$libqtopengl_PKG_ERRORS])
     AC_MSG_WARN([QtOpenGL is provided by Qt; Debian package: libqt4-opengl-dev])
 else
-    AC_CHECK_TOOLS([RCC], [rcc-qt4 rcc])
-    AC_CHECK_TOOLS([MOC], [moc-qt4 moc])
+    if test -z "$RCC"; then
+        AC_CHECK_TOOLS([RCC], [rcc-qt4 rcc])
+    fi
+    if test -z "$MOC"; then
+        AC_CHECK_TOOLS([MOC], [moc-qt4 moc])
+    fi
     if test -z "$RCC" -o -z "$MOC"; then
         AC_MSG_WARN([required tools rcc and/or moc not found; QtOpenGL not usable])
         HAVE_LIBQTOPENGL="0"
