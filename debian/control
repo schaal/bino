@@ -17,8 +17,8 @@ Build-Depends: debhelper (>= 9),
                texinfo
 Standards-Version: 3.9.4
 Homepage: http://bino3d.org/
-Vcs-Git: git://gitorious.org/farbing-packages/bino.git
-Vcs-Browser: https://gitorious.org/farbing-packages/bino
+Vcs-Git: git://github.com/schaal/bino.git
+Vcs-Browser: https://github.com/schaal/bino
 
 Package: bino
 Architecture: any
