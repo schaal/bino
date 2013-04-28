@@ -3,7 +3,7 @@ Upstream-Name: bino
 Source: http://bino3d.org/download.html
 
 Files: *
-Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
 License: GPL-3.0+
 
 Files: aclocal.m4
@@ -127,6 +127,10 @@ License: BSD-2-clause-like
 Files: pkg/w32/*
 Copyright: 2011 Martin Lambers <marlam@marlam.de>
 License: BSD-2-clause-like
+
+Files: po/bg.po
+Copyright: 2012 Krasimir S. Stefanov <lokiisyourmaster@gmail.com>
+License: GPL-3.0+
 
 Files: po/de.po
 Copyright: 2011-2012 Martin Lambers <marlam@marlam.de>
