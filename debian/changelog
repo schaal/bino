@@ -1,3 +1,17 @@
+bino (1.4.2-1) unstable; urgency=low
+
+  * Imported Upstream version 1.4.2
+  * debian/rules:
+    * make build more verbose
+    * deleting usr/share/info/dir no longer necessary
+    * use DEB_LDFLAGS_MAINT_APPEND instead of LDFLAGS directly.
+  * debian/copyright: Update for 1.4.2.
+  * debian/control:
+    * Update to Standards-Version 3.9.4, no changes needed.
+    * Move git repo to github.
+
+ -- Daniel Schaal <farbing@web.de>  Wed, 01 May 2013 08:57:38 +0200
+
 bino (1.4.0-1) unstable; urgency=low
 
   * Imported Upstream version 1.4.0
