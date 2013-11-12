@@ -110,7 +110,7 @@ Print version.
 @itemx --no-gui
 Do not use the GUI, just play the given input in a plain window using the
 parameters given on the command line.
-@itemx --log-file=@var{FILE}
+@item --log-file=@var{FILE}
 Append all log messages to the given file.
 @item -L
 @itemx --log-level=@var{LEVEL}
@@ -1109,7 +1109,7 @@ Set zoom to the given @var{value}, from 0 to 1.
 Adjust zoom by adding @var{delta}, e.g. -0.05 or +0.05.
 @item set-loop-mode @var{mode}
 Set loop mode to @samp{off} or @samp{current}.
-@item set-audio-delay @var{seconds}
+@item set-audio-delay @var{milliseconds}
 Set audio delay.
 @item set-subtitle-encoding @var{enc}
 Set subtitle encoding. An empty value means to use the default.

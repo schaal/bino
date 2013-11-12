@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.0\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2013-01-27 22:06+0100\n"
+"POT-Creation-Date: 2013-11-11 21:02+0100\n"
 "PO-Revision-Date: 2012-10-13 00:33+0200\n"
 "Last-Translator: Krasimir S. Stefanov <lokiisyourmaster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgid "Cannot unqueue OpenAL source buffers."
 msgstr "OpenAL буферите не могат да бъдат премахнати от опашката."
 
 #: src/command_file.cpp:63 src/command_file.cpp:79 src/command_file.cpp:125
-#: src/main.cpp:374 src/media_object.cpp:850 src/media_object.cpp:1315
+#: src/main.cpp:374 src/media_object.cpp:851 src/media_object.cpp:1322
 #: src/video_output.cpp:419
 #, c-format
 msgid "%s: %s"
@@ -607,8 +607,8 @@ msgstr ""
 
 #: src/gui.cpp:1107 src/gui.cpp:1273 src/gui.cpp:1408 src/gui.cpp:1469
 #: src/gui.cpp:1534 src/gui.cpp:1612 src/gui.cpp:1736 src/gui.cpp:2004
-#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3398 src/gui.cpp:3445
-#: src/gui.cpp:3762
+#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3414 src/gui.cpp:3461
+#: src/gui.cpp:3778
 msgid "OK"
 msgstr "Добре"
 
@@ -877,11 +877,11 @@ msgstr "Отваряне на устройство"
 msgid "<p>Choose a device type.</p>"
 msgstr "<p>Избор на типа на устройството.</p>"
 
-#: src/gui.cpp:2620 src/media_object.cpp:826
+#: src/gui.cpp:2620 src/media_object.cpp:827
 msgid "Firewire"
 msgstr "Firewire"
 
-#: src/gui.cpp:2621 src/media_object.cpp:827
+#: src/gui.cpp:2621 src/media_object.cpp:828
 msgid "X11"
 msgstr "X11"
 
@@ -943,7 +943,7 @@ msgstr ""
 "<p>Изискване на MJPEG данни от устройството. Някои устройства може да "
 "игнорират тази заявка.</p>"
 
-#: src/gui.cpp:2687 src/gui.cpp:3444
+#: src/gui.cpp:2687 src/gui.cpp:3460
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -1031,11 +1031,11 @@ msgstr "Бързи клавиши"
 msgid "&About"
 msgstr "Относно"
 
-#: src/gui.cpp:3391
+#: src/gui.cpp:3407
 msgid "Tip"
 msgstr "Съвет"
 
-#: src/gui.cpp:3394
+#: src/gui.cpp:3410
 msgid ""
 "<p>You can select and open multiple files at once.</p><p>This is useful for "
 "example if you have extra subtitle files,<br>or if left and right view are "
@@ -1045,171 +1045,171 @@ msgstr ""
 "например когато имате субтитри в отделен файл,<br>или левия и десния канал "
 "са в отделни файлове</p>"
 
-#: src/gui.cpp:3397
+#: src/gui.cpp:3413
 msgid "Do not show this message again."
 msgstr "Да не се показва повече."
 
-#: src/gui.cpp:3414
+#: src/gui.cpp:3430
 msgid "Open files"
 msgstr "Отваряне на файлове"
 
-#: src/gui.cpp:3438
+#: src/gui.cpp:3454
 msgid "Open URL(s)"
 msgstr "Отваряне на адрес(и)"
 
-#: src/gui.cpp:3439
+#: src/gui.cpp:3455
 msgid "URL(s):"
 msgstr "Адрес(и)"
 
-#: src/gui.cpp:3440
+#: src/gui.cpp:3456
 msgid "<p>Enter one or more space separated URLs.</p>"
 msgstr "<p>Въведете един или повече адреси, разделени с интервал.</p>"
 
-#: src/gui.cpp:3653 src/gui.cpp:3661 src/video_output_qt.cpp:299
+#: src/gui.cpp:3669 src/gui.cpp:3677 src/video_output_qt.cpp:299
 #: src/video_output_qt.cpp:535 src/video_output_qt.cpp:732
 #: src/video_output_qt.cpp:744 src/video_output_qt.cpp:765
 msgid "Error"
 msgstr "Грешка"
 
-#: src/gui.cpp:3653
+#: src/gui.cpp:3669
 msgid "Cannot open manual."
 msgstr "Ръководството не може да бъде отворено."
 
-#: src/gui.cpp:3661
+#: src/gui.cpp:3677
 msgid "Cannot open website."
 msgstr "Интернет страницата не може да бъде отворена."
 
-#: src/gui.cpp:3669
+#: src/gui.cpp:3685
 msgid "Keyboard Shortcuts"
 msgstr "Бързи клавиши"
 
-#: src/gui.cpp:3672
+#: src/gui.cpp:3688
 msgid "Keyboard control:"
 msgstr "Контролиране с клавиатура:"
 
-#: src/gui.cpp:3674 src/main.cpp:506
+#: src/gui.cpp:3690 src/main.cpp:506
 msgid "ESC"
 msgstr "ESC"
 
-#: src/gui.cpp:3674
+#: src/gui.cpp:3690
 msgid "Stop"
 msgstr "Спиране"
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "SPACE"
 msgstr "SPACE"
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "Pause / unpause"
 msgstr "Пауза / Пускане"
 
-#: src/gui.cpp:3676 src/main.cpp:509
+#: src/gui.cpp:3692 src/main.cpp:509
 msgid "Toggle fullscreen"
 msgstr "Превключване на пълен екран"
 
-#: src/gui.cpp:3677 src/main.cpp:510
+#: src/gui.cpp:3693 src/main.cpp:510
 msgid "Center window"
 msgstr "Центриране на прозореца"
 
-#: src/gui.cpp:3678 src/main.cpp:511
+#: src/gui.cpp:3694 src/main.cpp:511
 msgid "Swap left/right eye"
 msgstr "Размяна ляво/дясно"
 
-#: src/gui.cpp:3679 src/main.cpp:512
+#: src/gui.cpp:3695 src/main.cpp:512
 msgid "Cycle through available video streams"
 msgstr "Превключване между наличните видео потоци"
 
-#: src/gui.cpp:3680 src/main.cpp:513
+#: src/gui.cpp:3696 src/main.cpp:513
 msgid "Cycle through available audio streams"
 msgstr "Превключване между наличните аудио потоци"
 
-#: src/gui.cpp:3681 src/main.cpp:514
+#: src/gui.cpp:3697 src/main.cpp:514
 msgid "Cycle through available subtitle streams"
 msgstr "Превключване между наличните субтитри"
 
-#: src/gui.cpp:3682 src/main.cpp:515
+#: src/gui.cpp:3698 src/main.cpp:515
 msgid "Adjust contrast"
 msgstr "Настройка на контраста"
 
-#: src/gui.cpp:3683 src/main.cpp:516
+#: src/gui.cpp:3699 src/main.cpp:516
 msgid "Adjust brightness"
 msgstr "Настройка на яркостта"
 
-#: src/gui.cpp:3684 src/main.cpp:517
+#: src/gui.cpp:3700 src/main.cpp:517
 msgid "Adjust hue"
 msgstr "Настройка на оттенъка"
 
-#: src/gui.cpp:3685 src/main.cpp:518
+#: src/gui.cpp:3701 src/main.cpp:518
 msgid "Adjust saturation"
 msgstr "Настройка на наситеността"
 
-#: src/gui.cpp:3686 src/main.cpp:519
+#: src/gui.cpp:3702 src/main.cpp:519
 msgid "Adjust parallax"
 msgstr "Настройка на паралакса"
 
-#: src/gui.cpp:3687 src/main.cpp:520
+#: src/gui.cpp:3703 src/main.cpp:520
 msgid "Adjust ghostbusting"
 msgstr "Настройка на подтискането на смесване между изгледите"
 
-#: src/gui.cpp:3688 src/main.cpp:521
+#: src/gui.cpp:3704 src/main.cpp:521
 msgid "Adjust zoom for wide videos"
 msgstr "Настройка на увеличението за широко видео"
 
-#: src/gui.cpp:3689 src/main.cpp:522
+#: src/gui.cpp:3705 src/main.cpp:522
 msgid "Adjust audio volume"
 msgstr "Настройка на нивото на звука"
 
-#: src/gui.cpp:3690 src/main.cpp:523
+#: src/gui.cpp:3706 src/main.cpp:523
 msgid "Toggle audio mute"
 msgstr "Заглушаване на звука"
 
-#: src/gui.cpp:3691 src/main.cpp:524
+#: src/gui.cpp:3707 src/main.cpp:524
 msgid "Step a single video frame forward"
 msgstr "Преминаване един кадър напред"
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "left, right"
 msgstr "ляво, дясно"
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "Seek 10 seconds backward / forward"
 msgstr "Преминаване 10 секунди назад / напред"
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "down, up"
 msgstr "надолу, нагоре"
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "Seek 1 minute backward / forward"
 msgstr "Преминаване 1 минута назад / напред"
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "page down, page up"
 msgstr "страница надолу, страница нагоре"
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "Seek 10 minutes backward / forward"
 msgstr "Преминаване 10 минути назад / напред"
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys"
 msgstr "Мултимедийни клавиши"
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys should work as expected"
 msgstr "Мултимедийните клавиши трябва да работят нормално"
 
-#: src/gui.cpp:3711
+#: src/gui.cpp:3727
 #, c-format
 msgid "About %s"
 msgstr "Относно %s"
 
-#: src/gui.cpp:3717
+#: src/gui.cpp:3733
 #, c-format
 msgid "The %s 3D video player"
 msgstr "%s 3D видео плеър"
 
-#: src/gui.cpp:3722
+#: src/gui.cpp:3738
 #, c-format
 msgid ""
 "<p>%s version %s.</p><p>Copyright (C) 2013 the Bino developers.</p><p>This "
@@ -1225,27 +1225,27 @@ msgstr ""
 "доколкото това е позволено от закона.</p><p>Вижте <a href=\"%s\">%s</a> за "
 "повече информация.</p>"
 
-#: src/gui.cpp:3734 src/main.cpp:391
+#: src/gui.cpp:3750 src/main.cpp:391
 msgid "Platform:"
 msgstr "Платформа:"
 
-#: src/gui.cpp:3735 src/main.cpp:393
+#: src/gui.cpp:3751 src/main.cpp:393
 msgid "Libraries used:"
 msgstr "Използвани библиотеки:"
 
-#: src/gui.cpp:3757
+#: src/gui.cpp:3773
 msgid "About"
 msgstr "Относно"
 
-#: src/gui.cpp:3758
+#: src/gui.cpp:3774
 msgid "Libraries"
 msgstr "Библиотеки"
 
-#: src/gui.cpp:3759
+#: src/gui.cpp:3775
 msgid "Team"
 msgstr "Екип"
 
-#: src/gui.cpp:3760
+#: src/gui.cpp:3776
 msgid "License"
 msgstr "Лиценз"
 
@@ -1615,108 +1615,108 @@ msgstr "Продължителност: %g секунди"
 msgid "Stereo layout: %s"
 msgstr "Стерео разположение: %s"
 
-#: src/media_object.cpp:682
+#: src/media_object.cpp:683
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
 msgstr "%s видео поток %d: Неподдържана стереоскопична конфигурация %s."
 
-#: src/media_object.cpp:720
+#: src/media_object.cpp:721
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
 msgstr "%s аудио поток %d: Не може да се възпроизведе аудио с %d канал(и)."
 
-#: src/media_object.cpp:754
+#: src/media_object.cpp:755
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
 msgstr ""
 "%s аудио поток %d: Не може да се възпроизведе аудио с формат на семплите %s."
 
-#: src/media_object.cpp:825
+#: src/media_object.cpp:826
 #, c-format
 msgid "No support available for %s device."
 msgstr "Няма поддръжка за устройство %s."
 
-#: src/media_object.cpp:828
+#: src/media_object.cpp:829
 msgid "default"
 msgstr "по подразбиране"
 
-#: src/media_object.cpp:861
+#: src/media_object.cpp:862
 #, c-format
 msgid "%s: Cannot read stream info: %s"
 msgstr "%s: Не може да се прочете информация за потока: %s"
 
-#: src/media_object.cpp:905
+#: src/media_object.cpp:906
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
 msgstr "%s поток %d: Не може да се отвори %s: %s"
 
-#: src/media_object.cpp:906
+#: src/media_object.cpp:907
 msgid "video codec"
 msgstr "видео кодек"
 
-#: src/media_object.cpp:907
+#: src/media_object.cpp:908
 msgid "audio codec"
 msgstr "аудио кодек"
 
-#: src/media_object.cpp:908
+#: src/media_object.cpp:909
 msgid "subtitle codec"
 msgstr "кодек на субтитрите"
 
-#: src/media_object.cpp:909
+#: src/media_object.cpp:910
 msgid "data"
 msgstr "данни"
 
-#: src/media_object.cpp:910
+#: src/media_object.cpp:911
 msgid "codec not supported"
 msgstr "кодекът не се поддържа"
 
-#: src/media_object.cpp:920
+#: src/media_object.cpp:921
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
 msgstr "%s видео поток %d: невалиден размер на кадъра."
 
-#: src/media_object.cpp:964
+#: src/media_object.cpp:965
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
 msgstr ""
 "%s видео поток %d: Не може да се инициализира контекста за конвертиране."
 
-#: src/media_object.cpp:1027
+#: src/media_object.cpp:1028
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
 msgstr "Видео поток %d: %s / %s, %g секунди"
 
-#: src/media_object.cpp:1031
+#: src/media_object.cpp:1032
 #, c-format
 msgid "Using up to %d threads for decoding."
 msgstr "Използване на максимум %d нишки за декодиране."
 
-#: src/media_object.cpp:1036
+#: src/media_object.cpp:1037
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
 msgstr "Аудио поток %d: %s / %s, %g секунди"
 
-#: src/media_object.cpp:1043
+#: src/media_object.cpp:1044
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
 msgstr "Поток със субтитри %d: %s / %s, %g секунди"
 
-#: src/media_object.cpp:1050
+#: src/media_object.cpp:1051
 msgid "No usable streams."
 msgstr "Няма използваеми потоци."
 
-#: src/media_object.cpp:1331 src/media_object.cpp:1361
-#: src/media_object.cpp:1391
+#: src/media_object.cpp:1338 src/media_object.cpp:1368
+#: src/media_object.cpp:1398
 #, c-format
 msgid "%s: Cannot duplicate packet."
 msgstr "%s: Пакетът не може да се дублира."
 
-#: src/media_object.cpp:1484
+#: src/media_object.cpp:1491
 #, c-format
 msgid "%s video stream %d: Dropping %dx%d frame"
 msgstr "%s видео поток %d: Отхвърляне на кадър %dx%d"
 
-#: src/media_object.cpp:1972
+#: src/media_object.cpp:1979
 #, c-format
 msgid "%s: Seeking failed."
 msgstr "%s: превъртането се провали."
