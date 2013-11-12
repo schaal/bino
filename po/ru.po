@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2013-01-27 22:06+0100\n"
+"POT-Creation-Date: 2013-11-11 21:02+0100\n"
 "PO-Revision-Date: 2012-06-18 21:29+0600\n"
 "Last-Translator: Alexey Osipov <simba@lerlan.ru>\n"
 "Language-Team: \n"
@@ -188,7 +188,7 @@ msgid "Cannot unqueue OpenAL source buffers."
 msgstr "Невозможно получить из очереди буферы источника OpenAL."
 
 #: src/command_file.cpp:63 src/command_file.cpp:79 src/command_file.cpp:125
-#: src/main.cpp:374 src/media_object.cpp:850 src/media_object.cpp:1315
+#: src/main.cpp:374 src/media_object.cpp:851 src/media_object.cpp:1322
 #: src/video_output.cpp:419
 #, c-format
 msgid "%s: %s"
@@ -606,8 +606,8 @@ msgstr "<p>Отключить хранитель экрана во время п
 
 #: src/gui.cpp:1107 src/gui.cpp:1273 src/gui.cpp:1408 src/gui.cpp:1469
 #: src/gui.cpp:1534 src/gui.cpp:1612 src/gui.cpp:1736 src/gui.cpp:2004
-#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3398 src/gui.cpp:3445
-#: src/gui.cpp:3762
+#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3414 src/gui.cpp:3461
+#: src/gui.cpp:3778
 msgid "OK"
 msgstr "OK"
 
@@ -881,11 +881,11 @@ msgstr "Открыть устройство(а)"
 msgid "<p>Choose a device type.</p>"
 msgstr "<p>Выберите тип устройства.</p>"
 
-#: src/gui.cpp:2620 src/media_object.cpp:826
+#: src/gui.cpp:2620 src/media_object.cpp:827
 msgid "Firewire"
 msgstr "Firewire"
 
-#: src/gui.cpp:2621 src/media_object.cpp:827
+#: src/gui.cpp:2621 src/media_object.cpp:828
 msgid "X11"
 msgstr "X11"
 
@@ -947,7 +947,7 @@ msgstr ""
 "<p>Потребовать от устройства данные в формате MJPEG. Устройство может "
 "проигнорировать данное требование.</p>"
 
-#: src/gui.cpp:2687 src/gui.cpp:3444
+#: src/gui.cpp:2687 src/gui.cpp:3460
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1035,11 +1035,11 @@ msgstr "&Горячие клавиши"
 msgid "&About"
 msgstr "О програ&мме"
 
-#: src/gui.cpp:3391
+#: src/gui.cpp:3407
 msgid "Tip"
 msgstr "Совет"
 
-#: src/gui.cpp:3394
+#: src/gui.cpp:3410
 msgid ""
 "<p>You can select and open multiple files at once.</p><p>This is useful for "
 "example if you have extra subtitle files,<br>or if left and right view are "
@@ -1049,171 +1049,171 @@ msgstr ""
 "есть отдельный файл с субтитрами,<br>или если левый и правый видеоряды "
 "записаны в разных файлах.</p>"
 
-#: src/gui.cpp:3397
+#: src/gui.cpp:3413
 msgid "Do not show this message again."
 msgstr "Больше не показывать это сообщение."
 
-#: src/gui.cpp:3414
+#: src/gui.cpp:3430
 msgid "Open files"
 msgstr "Открыть файлы"
 
-#: src/gui.cpp:3438
+#: src/gui.cpp:3454
 msgid "Open URL(s)"
 msgstr "Открыть адрес(а)"
 
-#: src/gui.cpp:3439
+#: src/gui.cpp:3455
 msgid "URL(s):"
 msgstr "Адрес(а):"
 
-#: src/gui.cpp:3440
+#: src/gui.cpp:3456
 msgid "<p>Enter one or more space separated URLs.</p>"
 msgstr "<p>Введите один или более адресов (URL), разделенных пробелами.</p>"
 
-#: src/gui.cpp:3653 src/gui.cpp:3661 src/video_output_qt.cpp:299
+#: src/gui.cpp:3669 src/gui.cpp:3677 src/video_output_qt.cpp:299
 #: src/video_output_qt.cpp:535 src/video_output_qt.cpp:732
 #: src/video_output_qt.cpp:744 src/video_output_qt.cpp:765
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/gui.cpp:3653
+#: src/gui.cpp:3669
 msgid "Cannot open manual."
 msgstr "Невозможно открыть справку."
 
-#: src/gui.cpp:3661
+#: src/gui.cpp:3677
 msgid "Cannot open website."
 msgstr "Невозможно открыть веб-сайт."
 
-#: src/gui.cpp:3669
+#: src/gui.cpp:3685
 msgid "Keyboard Shortcuts"
 msgstr "Горячие клавиши"
 
-#: src/gui.cpp:3672
+#: src/gui.cpp:3688
 msgid "Keyboard control:"
 msgstr "Управление с клавиатуры:"
 
-#: src/gui.cpp:3674 src/main.cpp:506
+#: src/gui.cpp:3690 src/main.cpp:506
 msgid "ESC"
 msgstr "ESC"
 
-#: src/gui.cpp:3674
+#: src/gui.cpp:3690
 msgid "Stop"
 msgstr "Стоп"
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "SPACE"
 msgstr "ПРОБЕЛ"
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "Pause / unpause"
 msgstr "Пауза / Воспроизведение"
 
-#: src/gui.cpp:3676 src/main.cpp:509
+#: src/gui.cpp:3692 src/main.cpp:509
 msgid "Toggle fullscreen"
 msgstr "Полноэкранный режим"
 
-#: src/gui.cpp:3677 src/main.cpp:510
+#: src/gui.cpp:3693 src/main.cpp:510
 msgid "Center window"
 msgstr "Расположить окно по центру"
 
-#: src/gui.cpp:3678 src/main.cpp:511
+#: src/gui.cpp:3694 src/main.cpp:511
 msgid "Swap left/right eye"
 msgstr "Поменять местами левый и правый видеоряды"
 
-#: src/gui.cpp:3679 src/main.cpp:512
+#: src/gui.cpp:3695 src/main.cpp:512
 msgid "Cycle through available video streams"
 msgstr "Переключить видео дорожку"
 
-#: src/gui.cpp:3680 src/main.cpp:513
+#: src/gui.cpp:3696 src/main.cpp:513
 msgid "Cycle through available audio streams"
 msgstr "Переключить аудио дорожку"
 
-#: src/gui.cpp:3681 src/main.cpp:514
+#: src/gui.cpp:3697 src/main.cpp:514
 msgid "Cycle through available subtitle streams"
 msgstr "Переключить дорожку субтитров"
 
-#: src/gui.cpp:3682 src/main.cpp:515
+#: src/gui.cpp:3698 src/main.cpp:515
 msgid "Adjust contrast"
 msgstr "Регулировка контрастности"
 
-#: src/gui.cpp:3683 src/main.cpp:516
+#: src/gui.cpp:3699 src/main.cpp:516
 msgid "Adjust brightness"
 msgstr "Регулировка яркости"
 
-#: src/gui.cpp:3684 src/main.cpp:517
+#: src/gui.cpp:3700 src/main.cpp:517
 msgid "Adjust hue"
 msgstr "Регулировка оттенка"
 
-#: src/gui.cpp:3685 src/main.cpp:518
+#: src/gui.cpp:3701 src/main.cpp:518
 msgid "Adjust saturation"
 msgstr "Регулировка насыщенности"
 
-#: src/gui.cpp:3686 src/main.cpp:519
+#: src/gui.cpp:3702 src/main.cpp:519
 msgid "Adjust parallax"
 msgstr "Регулировка параллакса"
 
-#: src/gui.cpp:3687 src/main.cpp:520
+#: src/gui.cpp:3703 src/main.cpp:520
 msgid "Adjust ghostbusting"
 msgstr "Подавление перекрестных помех"
 
-#: src/gui.cpp:3688 src/main.cpp:521
+#: src/gui.cpp:3704 src/main.cpp:521
 msgid "Adjust zoom for wide videos"
 msgstr "Регулировка масштаба для широкоэкранных видео"
 
-#: src/gui.cpp:3689 src/main.cpp:522
+#: src/gui.cpp:3705 src/main.cpp:522
 msgid "Adjust audio volume"
 msgstr "Регулировка громкости"
 
-#: src/gui.cpp:3690 src/main.cpp:523
+#: src/gui.cpp:3706 src/main.cpp:523
 msgid "Toggle audio mute"
 msgstr "Включить/выключить звук"
 
-#: src/gui.cpp:3691 src/main.cpp:524
+#: src/gui.cpp:3707 src/main.cpp:524
 msgid "Step a single video frame forward"
 msgstr "Перемотка на один кадр вперед"
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "left, right"
 msgstr "влево, вправо"
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "Seek 10 seconds backward / forward"
 msgstr "Перемотка на 10 секунд назад / вперед"
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "down, up"
 msgstr "вниз, вверх"
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "Seek 1 minute backward / forward"
 msgstr "Перемотка на 1 минуту назад / вперед"
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "page down, page up"
 msgstr "page down, page up"
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "Seek 10 minutes backward / forward"
 msgstr "Перемотка на 10 минут назад / вперед"
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys"
 msgstr "Мультимедийные клавиши"
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys should work as expected"
 msgstr "Должны работать как задумано."
 
-#: src/gui.cpp:3711
+#: src/gui.cpp:3727
 #, c-format
 msgid "About %s"
 msgstr "О %s"
 
-#: src/gui.cpp:3717
+#: src/gui.cpp:3733
 #, c-format
 msgid "The %s 3D video player"
 msgstr "3D видео плеер %s"
 
-#: src/gui.cpp:3722
+#: src/gui.cpp:3738
 #, c-format
 msgid ""
 "<p>%s version %s.</p><p>Copyright (C) 2013 the Bino developers.</p><p>This "
@@ -1229,27 +1229,27 @@ msgstr ""
 "ЛИБО ГАРАНТИЙ, за исключением предусмотренных законом.</p><p>Для получения "
 "подробной информации об этом ПО посетите <a href=\"%s\">%s</a>.</p>"
 
-#: src/gui.cpp:3734 src/main.cpp:391
+#: src/gui.cpp:3750 src/main.cpp:391
 msgid "Platform:"
 msgstr "Платформа:"
 
-#: src/gui.cpp:3735 src/main.cpp:393
+#: src/gui.cpp:3751 src/main.cpp:393
 msgid "Libraries used:"
 msgstr "Используемые библиотеки:"
 
-#: src/gui.cpp:3757
+#: src/gui.cpp:3773
 msgid "About"
 msgstr "О программе"
 
-#: src/gui.cpp:3758
+#: src/gui.cpp:3774
 msgid "Libraries"
 msgstr "Библиотеки"
 
-#: src/gui.cpp:3759
+#: src/gui.cpp:3775
 msgid "Team"
 msgstr "Команда"
 
-#: src/gui.cpp:3760
+#: src/gui.cpp:3776
 msgid "License"
 msgstr "Лицензия"
 
@@ -1620,106 +1620,106 @@ msgstr "Продолжительность: %g секунд"
 msgid "Stereo layout: %s"
 msgstr "Стерео раскладка: %s"
 
-#: src/media_object.cpp:682
+#: src/media_object.cpp:683
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
 msgstr "%s видео дорожка %d: Неподдерживаемая стерео раскладка %s."
 
-#: src/media_object.cpp:720
+#: src/media_object.cpp:721
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
 msgstr "%s аудио дорожка %d: Невозможно обработать аудио с %d каналами."
 
-#: src/media_object.cpp:754
+#: src/media_object.cpp:755
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
 msgstr "%s аудио дорожка %d: Невозможно обработать аудио в формате %s."
 
-#: src/media_object.cpp:825
+#: src/media_object.cpp:826
 #, c-format
 msgid "No support available for %s device."
 msgstr "Устройство %s не поддерживается."
 
-#: src/media_object.cpp:828
+#: src/media_object.cpp:829
 msgid "default"
 msgstr "default"
 
-#: src/media_object.cpp:861
+#: src/media_object.cpp:862
 #, c-format
 msgid "%s: Cannot read stream info: %s"
 msgstr "%s: Невозможно прочитать информацию о дорожке: %s"
 
-#: src/media_object.cpp:905
+#: src/media_object.cpp:906
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
 msgstr "%s дорожка %d: Невозможно открыть %s: %s"
 
-#: src/media_object.cpp:906
+#: src/media_object.cpp:907
 msgid "video codec"
 msgstr "видео кодек"
 
-#: src/media_object.cpp:907
+#: src/media_object.cpp:908
 msgid "audio codec"
 msgstr "аудио кодек"
 
-#: src/media_object.cpp:908
+#: src/media_object.cpp:909
 msgid "subtitle codec"
 msgstr "кодек субтитров"
 
-#: src/media_object.cpp:909
+#: src/media_object.cpp:910
 msgid "data"
 msgstr "данные"
 
-#: src/media_object.cpp:910
+#: src/media_object.cpp:911
 msgid "codec not supported"
 msgstr "кодек не поддерживается"
 
-#: src/media_object.cpp:920
+#: src/media_object.cpp:921
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
 msgstr "%s видео дорожка %d: Неверный размер кадра."
 
-#: src/media_object.cpp:964
+#: src/media_object.cpp:965
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
 msgstr "%s видео дорожка %d: Невозможно инициализировать кодек."
 
-#: src/media_object.cpp:1027
+#: src/media_object.cpp:1028
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
 msgstr "Видео дорожка %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1031
+#: src/media_object.cpp:1032
 #, c-format
 msgid "Using up to %d threads for decoding."
 msgstr "Используем максимум %d потоков для декодирования."
 
-#: src/media_object.cpp:1036
+#: src/media_object.cpp:1037
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
 msgstr "Аудио дорожка %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1043
+#: src/media_object.cpp:1044
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
 msgstr "Дорожка субтитров %d: %s / %s, %g секунд"
 
-#: src/media_object.cpp:1050
+#: src/media_object.cpp:1051
 msgid "No usable streams."
 msgstr "Нет подходящих дорожек."
 
-#: src/media_object.cpp:1331 src/media_object.cpp:1361
-#: src/media_object.cpp:1391
+#: src/media_object.cpp:1338 src/media_object.cpp:1368
+#: src/media_object.cpp:1398
 #, c-format
 msgid "%s: Cannot duplicate packet."
 msgstr "%s: Невозможно создать копию пакета."
 
-#: src/media_object.cpp:1484
+#: src/media_object.cpp:1491
 #, c-format
 msgid "%s video stream %d: Dropping %dx%d frame"
 msgstr "%s видео дорожка %d: пропускаем кадр %dx%d"
 
-#: src/media_object.cpp:1972
+#: src/media_object.cpp:1979
 #, c-format
 msgid "%s: Seeking failed."
 msgstr "%s: Перемотка не удалась."

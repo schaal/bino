@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: bino 1.4.2\n"
+"Project-Id-Version: bino 1.4.3\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2013-01-27 22:06+0100\n"
+"POT-Creation-Date: 2013-11-11 21:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgid "Cannot unqueue OpenAL source buffers."
 msgstr ""
 
 #: src/command_file.cpp:63 src/command_file.cpp:79 src/command_file.cpp:125
-#: src/main.cpp:374 src/media_object.cpp:850 src/media_object.cpp:1315
+#: src/main.cpp:374 src/media_object.cpp:851 src/media_object.cpp:1322
 #: src/video_output.cpp:419
 #, c-format
 msgid "%s: %s"
@@ -597,8 +597,8 @@ msgstr ""
 
 #: src/gui.cpp:1107 src/gui.cpp:1273 src/gui.cpp:1408 src/gui.cpp:1469
 #: src/gui.cpp:1534 src/gui.cpp:1612 src/gui.cpp:1736 src/gui.cpp:2004
-#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3398 src/gui.cpp:3445
-#: src/gui.cpp:3762
+#: src/gui.cpp:2203 src/gui.cpp:2689 src/gui.cpp:3414 src/gui.cpp:3461
+#: src/gui.cpp:3778
 msgid "OK"
 msgstr ""
 
@@ -846,11 +846,11 @@ msgstr ""
 msgid "<p>Choose a device type.</p>"
 msgstr ""
 
-#: src/gui.cpp:2620 src/media_object.cpp:826
+#: src/gui.cpp:2620 src/media_object.cpp:827
 msgid "Firewire"
 msgstr ""
 
-#: src/gui.cpp:2621 src/media_object.cpp:827
+#: src/gui.cpp:2621 src/media_object.cpp:828
 msgid "X11"
 msgstr ""
 
@@ -902,7 +902,7 @@ msgid ""
 "request.</p>"
 msgstr ""
 
-#: src/gui.cpp:2687 src/gui.cpp:3444
+#: src/gui.cpp:2687 src/gui.cpp:3460
 msgid "Cancel"
 msgstr ""
 
@@ -990,182 +990,182 @@ msgstr ""
 msgid "&About"
 msgstr ""
 
-#: src/gui.cpp:3391
+#: src/gui.cpp:3407
 msgid "Tip"
 msgstr ""
 
-#: src/gui.cpp:3394
+#: src/gui.cpp:3410
 msgid ""
 "<p>You can select and open multiple files at once.</p><p>This is useful for "
 "example if you have extra subtitle files,<br>or if left and right view are "
 "stored in separate files.</p>"
 msgstr ""
 
-#: src/gui.cpp:3397
+#: src/gui.cpp:3413
 msgid "Do not show this message again."
 msgstr ""
 
-#: src/gui.cpp:3414
+#: src/gui.cpp:3430
 msgid "Open files"
 msgstr ""
 
-#: src/gui.cpp:3438
+#: src/gui.cpp:3454
 msgid "Open URL(s)"
 msgstr ""
 
-#: src/gui.cpp:3439
+#: src/gui.cpp:3455
 msgid "URL(s):"
 msgstr ""
 
-#: src/gui.cpp:3440
+#: src/gui.cpp:3456
 msgid "<p>Enter one or more space separated URLs.</p>"
 msgstr ""
 
-#: src/gui.cpp:3653 src/gui.cpp:3661 src/video_output_qt.cpp:299
+#: src/gui.cpp:3669 src/gui.cpp:3677 src/video_output_qt.cpp:299
 #: src/video_output_qt.cpp:535 src/video_output_qt.cpp:732
 #: src/video_output_qt.cpp:744 src/video_output_qt.cpp:765
 msgid "Error"
 msgstr ""
 
-#: src/gui.cpp:3653
+#: src/gui.cpp:3669
 msgid "Cannot open manual."
 msgstr ""
 
-#: src/gui.cpp:3661
+#: src/gui.cpp:3677
 msgid "Cannot open website."
 msgstr ""
 
-#: src/gui.cpp:3669
+#: src/gui.cpp:3685
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/gui.cpp:3672
+#: src/gui.cpp:3688
 msgid "Keyboard control:"
 msgstr ""
 
-#: src/gui.cpp:3674 src/main.cpp:506
+#: src/gui.cpp:3690 src/main.cpp:506
 msgid "ESC"
 msgstr ""
 
-#: src/gui.cpp:3674
+#: src/gui.cpp:3690
 msgid "Stop"
 msgstr ""
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "SPACE"
 msgstr ""
 
-#: src/gui.cpp:3675 src/main.cpp:508
+#: src/gui.cpp:3691 src/main.cpp:508
 msgid "Pause / unpause"
 msgstr ""
 
-#: src/gui.cpp:3676 src/main.cpp:509
+#: src/gui.cpp:3692 src/main.cpp:509
 msgid "Toggle fullscreen"
 msgstr ""
 
-#: src/gui.cpp:3677 src/main.cpp:510
+#: src/gui.cpp:3693 src/main.cpp:510
 msgid "Center window"
 msgstr ""
 
-#: src/gui.cpp:3678 src/main.cpp:511
+#: src/gui.cpp:3694 src/main.cpp:511
 msgid "Swap left/right eye"
 msgstr ""
 
-#: src/gui.cpp:3679 src/main.cpp:512
+#: src/gui.cpp:3695 src/main.cpp:512
 msgid "Cycle through available video streams"
 msgstr ""
 
-#: src/gui.cpp:3680 src/main.cpp:513
+#: src/gui.cpp:3696 src/main.cpp:513
 msgid "Cycle through available audio streams"
 msgstr ""
 
-#: src/gui.cpp:3681 src/main.cpp:514
+#: src/gui.cpp:3697 src/main.cpp:514
 msgid "Cycle through available subtitle streams"
 msgstr ""
 
-#: src/gui.cpp:3682 src/main.cpp:515
+#: src/gui.cpp:3698 src/main.cpp:515
 msgid "Adjust contrast"
 msgstr ""
 
-#: src/gui.cpp:3683 src/main.cpp:516
+#: src/gui.cpp:3699 src/main.cpp:516
 msgid "Adjust brightness"
 msgstr ""
 
-#: src/gui.cpp:3684 src/main.cpp:517
+#: src/gui.cpp:3700 src/main.cpp:517
 msgid "Adjust hue"
 msgstr ""
 
-#: src/gui.cpp:3685 src/main.cpp:518
+#: src/gui.cpp:3701 src/main.cpp:518
 msgid "Adjust saturation"
 msgstr ""
 
-#: src/gui.cpp:3686 src/main.cpp:519
+#: src/gui.cpp:3702 src/main.cpp:519
 msgid "Adjust parallax"
 msgstr ""
 
-#: src/gui.cpp:3687 src/main.cpp:520
+#: src/gui.cpp:3703 src/main.cpp:520
 msgid "Adjust ghostbusting"
 msgstr ""
 
-#: src/gui.cpp:3688 src/main.cpp:521
+#: src/gui.cpp:3704 src/main.cpp:521
 msgid "Adjust zoom for wide videos"
 msgstr ""
 
-#: src/gui.cpp:3689 src/main.cpp:522
+#: src/gui.cpp:3705 src/main.cpp:522
 msgid "Adjust audio volume"
 msgstr ""
 
-#: src/gui.cpp:3690 src/main.cpp:523
+#: src/gui.cpp:3706 src/main.cpp:523
 msgid "Toggle audio mute"
 msgstr ""
 
-#: src/gui.cpp:3691 src/main.cpp:524
+#: src/gui.cpp:3707 src/main.cpp:524
 msgid "Step a single video frame forward"
 msgstr ""
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "left, right"
 msgstr ""
 
-#: src/gui.cpp:3692 src/main.cpp:525
+#: src/gui.cpp:3708 src/main.cpp:525
 msgid "Seek 10 seconds backward / forward"
 msgstr ""
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "down, up"
 msgstr ""
 
-#: src/gui.cpp:3693 src/main.cpp:526
+#: src/gui.cpp:3709 src/main.cpp:526
 msgid "Seek 1 minute backward / forward"
 msgstr ""
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "page down, page up"
 msgstr ""
 
-#: src/gui.cpp:3694 src/main.cpp:527
+#: src/gui.cpp:3710 src/main.cpp:527
 msgid "Seek 10 minutes backward / forward"
 msgstr ""
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys"
 msgstr ""
 
-#: src/gui.cpp:3695 src/main.cpp:529
+#: src/gui.cpp:3711 src/main.cpp:529
 msgid "Media keys should work as expected"
 msgstr ""
 
-#: src/gui.cpp:3711
+#: src/gui.cpp:3727
 #, c-format
 msgid "About %s"
 msgstr ""
 
-#: src/gui.cpp:3717
+#: src/gui.cpp:3733
 #, c-format
 msgid "The %s 3D video player"
 msgstr ""
 
-#: src/gui.cpp:3722
+#: src/gui.cpp:3738
 #, c-format
 msgid ""
 "<p>%s version %s.</p><p>Copyright (C) 2013 the Bino developers.</p><p>This "
@@ -1175,27 +1175,27 @@ msgid ""
 "\"%s\">%s</a> for more information on this software.</p>"
 msgstr ""
 
-#: src/gui.cpp:3734 src/main.cpp:391
+#: src/gui.cpp:3750 src/main.cpp:391
 msgid "Platform:"
 msgstr ""
 
-#: src/gui.cpp:3735 src/main.cpp:393
+#: src/gui.cpp:3751 src/main.cpp:393
 msgid "Libraries used:"
 msgstr ""
 
-#: src/gui.cpp:3757
+#: src/gui.cpp:3773
 msgid "About"
 msgstr ""
 
-#: src/gui.cpp:3758
+#: src/gui.cpp:3774
 msgid "Libraries"
 msgstr ""
 
-#: src/gui.cpp:3759
+#: src/gui.cpp:3775
 msgid "Team"
 msgstr ""
 
-#: src/gui.cpp:3760
+#: src/gui.cpp:3776
 msgid "License"
 msgstr ""
 
@@ -1561,106 +1561,106 @@ msgstr ""
 msgid "Stereo layout: %s"
 msgstr ""
 
-#: src/media_object.cpp:682
+#: src/media_object.cpp:683
 #, c-format
 msgid "%s video stream %d: Unsupported stereo layout %s."
 msgstr ""
 
-#: src/media_object.cpp:720
+#: src/media_object.cpp:721
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with %d channels."
 msgstr ""
 
-#: src/media_object.cpp:754
+#: src/media_object.cpp:755
 #, c-format
 msgid "%s audio stream %d: Cannot handle audio with sample format %s."
 msgstr ""
 
-#: src/media_object.cpp:825
+#: src/media_object.cpp:826
 #, c-format
 msgid "No support available for %s device."
 msgstr ""
 
-#: src/media_object.cpp:828
+#: src/media_object.cpp:829
 msgid "default"
 msgstr ""
 
-#: src/media_object.cpp:861
+#: src/media_object.cpp:862
 #, c-format
 msgid "%s: Cannot read stream info: %s"
 msgstr ""
 
-#: src/media_object.cpp:905
+#: src/media_object.cpp:906
 #, c-format
 msgid "%s stream %d: Cannot open %s: %s"
 msgstr ""
 
-#: src/media_object.cpp:906
+#: src/media_object.cpp:907
 msgid "video codec"
 msgstr ""
 
-#: src/media_object.cpp:907
+#: src/media_object.cpp:908
 msgid "audio codec"
 msgstr ""
 
-#: src/media_object.cpp:908
+#: src/media_object.cpp:909
 msgid "subtitle codec"
 msgstr ""
 
-#: src/media_object.cpp:909
+#: src/media_object.cpp:910
 msgid "data"
 msgstr ""
 
-#: src/media_object.cpp:910
+#: src/media_object.cpp:911
 msgid "codec not supported"
 msgstr ""
 
-#: src/media_object.cpp:920
+#: src/media_object.cpp:921
 #, c-format
 msgid "%s video stream %d: Invalid frame size."
 msgstr ""
 
-#: src/media_object.cpp:964
+#: src/media_object.cpp:965
 #, c-format
 msgid "%s video stream %d: Cannot initialize conversion context."
 msgstr ""
 
-#: src/media_object.cpp:1027
+#: src/media_object.cpp:1028
 #, c-format
 msgid "Video stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:1031
+#: src/media_object.cpp:1032
 #, c-format
 msgid "Using up to %d threads for decoding."
 msgstr ""
 
-#: src/media_object.cpp:1036
+#: src/media_object.cpp:1037
 #, c-format
 msgid "Audio stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:1043
+#: src/media_object.cpp:1044
 #, c-format
 msgid "Subtitle stream %d: %s / %s, %g seconds"
 msgstr ""
 
-#: src/media_object.cpp:1050
+#: src/media_object.cpp:1051
 msgid "No usable streams."
 msgstr ""
 
-#: src/media_object.cpp:1331 src/media_object.cpp:1361
-#: src/media_object.cpp:1391
+#: src/media_object.cpp:1338 src/media_object.cpp:1368
+#: src/media_object.cpp:1398
 #, c-format
 msgid "%s: Cannot duplicate packet."
 msgstr ""
 
-#: src/media_object.cpp:1484
+#: src/media_object.cpp:1491
 #, c-format
 msgid "%s video stream %d: Dropping %dx%d frame"
 msgstr ""
 
-#: src/media_object.cpp:1972
+#: src/media_object.cpp:1979
 #, c-format
 msgid "%s: Seeking failed."
 msgstr ""
