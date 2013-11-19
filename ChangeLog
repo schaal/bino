@@ -1,3 +1,25 @@
+commit 0716d8b316ef0799976375c9a52632ecb89e9ab5
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2013-11-18 19:42:07 +0100
+
+    Bump version to 1.4.4.
+
+ AUTHORS      | 2 +-
+ configure.ac | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 0b89600080b1b84a454a50749a7c8cf2e33555a2
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2013-11-18 19:39:16 +0100
+
+    Fix size of audio buffers for decoding.
+    
+    This patch fixes bug 40596. The wrong audio buffer size was introduced in
+    bcba7045c99fdb1e496429efd002556216edb0a7.  Sorry about that.
+
+ src/media_object.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 381a8c2cff519b459d20f0cb10f587582f02ce70
 Author: Martin Lambers <marlam@marlam.de>
 Date:   2013-11-11 20:59:31 +0100
