@@ -7,26 +7,38 @@ Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
 License: GPL-3.0+
 
 Files: aclocal.m4
-Copyright: 1996-2011 Free Software Foundation, Inc.
+Copyright: 1996-2013 Free Software Foundation, Inc.
 License: m4
 
 Files: build-aux/*
-Copyright: 2011, 2012 Free Software Foundation, Inc.
+Copyright: 1992-2013 Free Software Foundation, Inc.
 License: GPL-2+
 
 Files: configure.ac
-Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
-           2012 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-           2012 Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
+           Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+           Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
 License: GPL-3.0+
 
 Files: INSTALL
-Copyright: 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc
+Copyright: 1994-1996, 1999-2002, 2004-2013 Free Software Foundation, Inc
 License: liberal
-    Copying and distribution of this file, with or without modification,
+ Copying and distribution of this file, with or without modification,
  are permitted in any medium without royalty provided the copyright
  notice and this notice are preserved.  This file is offered as-is,
  without warranty of any kind.
+
+Files: Makefile.in doc/Makefile.in src/Makefile.in src/base/Makefile.in
+Copyright: 1994-2013 Free Software Foundation, Inc.
+License: liberal
+ This Makefile.in is free software; the Free Software Foundation
+ gives unlimited permission to copy and/or distribute it,
+ with or without modifications, as long as this notice is preserved.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+ even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.
 
 Files: Makefile.am
 Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
@@ -34,7 +46,7 @@ Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
 License: BSD-2-clause-like
 
 Files: debian/*
-Copyright: 2011-2012 Daniel Schaal <farbing@web.de>
+Copyright: 2011-2013 Daniel Schaal <farbing@web.de>
 License: GPL-3.0+
 
 Files: src/icons/*
@@ -79,13 +91,13 @@ License: other
  SUCH DAMAGE.
 
 Files: src/audio_output.h
-Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
            Gabriele Greco <gabrielegreco@gmail.com>
            Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 License: GPL-3.0+
 
 Files: src/*
-Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
            Joe <cuchac@email.cz>
            Daniel Schaal <farbing@web.de>
            Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
@@ -96,20 +108,9 @@ Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
 License: GPL-3.0+
 
 Files: doc/*
-Copyright: 2011-2012 Martin Lambers <marlam@marlam.de>
-           2011 Stefan Eilemann <eile@eyescale.ch>
-           2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: BSD-2-clause-like
-
-Files: doc/bino.1
-Copyright: 2010-2012 Martin Lambers <marlam@marlam.de>
-           2010-2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: BSD-2-clause-like
-
-Files: doc/bino.texi doc/bino.info
-Copyright: 2011-2012 Martin Lambers <marlam@marlam.de>
-           2011 Stefan Eilemann <eile@eyescale.ch>
-           2011 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
+           2010-2013 Stefan Eilemann <eile@eyescale.ch>
+           2010-2013 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 License: BSD-2-clause-like
 
 Files: doc/audio-video-sync.mp4
@@ -142,6 +143,10 @@ License: GPL-3.0+
 
 Files: po/ru.po
 Copyright: 2011-2012 Alexey Osipov <simba@lerlan.ru>
+License: GPL-3.0+
+
+Files: po/zh_cn.po
+Copyright: 2013 Frank Hill <hxf.prc@gmail.com>
 License: GPL-3.0+
 
 Files: po/Makefile.in.in
