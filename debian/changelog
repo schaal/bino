@@ -1,3 +1,13 @@
+bino (1.4.4-1) unstable; urgency=low
+
+  * Imported Upstream version 1.4.4
+  * Update to Standards-Version 3.9.5, no changes needed
+  * Add patch to share images between bino.info and html doc
+  * Add patch to include-binaries to avoid "unwanted binaries" error
+  * Add signature check for upstream tarball when using uscan
+
+ -- Daniel Schaal <farbing@web.de>  Thu, 26 Dec 2013 09:52:26 +0100
+
 bino (1.4.2-1) unstable; urgency=low
 
   * Imported Upstream version 1.4.2
