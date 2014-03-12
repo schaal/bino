@@ -1,3 +1,9 @@
+bino (1.4.4-2) unstable; urgency=medium
+
+  * Add patch to fix FTBFS with libav10 (Closes: #739214).
+
+ -- Daniel Schaal <farbing@web.de>  Fri, 21 Feb 2014 07:31:03 +0100
+
 bino (1.4.4-1) unstable; urgency=low
 
   * Imported Upstream version 1.4.4
