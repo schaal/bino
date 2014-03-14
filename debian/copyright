@@ -46,7 +46,11 @@ Copyright: 2010-2011 Martin Lambers <marlam@marlam.de>
 License: BSD-2-clause-like
 
 Files: debian/*
-Copyright: 2011-2013 Daniel Schaal <farbing@web.de>
+Copyright: 2011-2014 Daniel Schaal <farbing@web.de>
+License: GPL-3.0+
+
+Files: debian/patches/fix-ftbfs-with-libav10.patch
+Copyright: 2013 Vittorio Giovara <vittorio.giovara@gmail.com>
 License: GPL-3.0+
 
 Files: src/icons/*
