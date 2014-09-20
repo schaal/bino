@@ -3,7 +3,7 @@ Upstream-Name: bino
 Source: http://bino3d.org/download.html
 
 Files: *
-Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
+Copyright: 2010-2014 Martin Lambers <marlam@marlam.de>
 License: GPL-3.0+
 
 Files: aclocal.m4
@@ -11,11 +11,11 @@ Copyright: 1996-2013 Free Software Foundation, Inc.
 License: m4
 
 Files: build-aux/*
-Copyright: 1992-2013 Free Software Foundation, Inc.
+Copyright: 1992-2014 Free Software Foundation, Inc.
 License: GPL-2+
 
 Files: configure.ac
-Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
+Copyright: 2010-2014 Martin Lambers <marlam@marlam.de>
            Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
            Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
 License: GPL-3.0+
@@ -49,8 +49,16 @@ Files: debian/*
 Copyright: 2011-2014 Daniel Schaal <farbing@web.de>
 License: GPL-3.0+
 
-Files: debian/patches/fix-ftbfs-with-libav10.patch
-Copyright: 2013 Vittorio Giovara <vittorio.giovara@gmail.com>
+Files: src/*
+Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
+           Joe <cuchac@email.cz>
+           Daniel Schaal <farbing@web.de>
+           Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+           D. Matz <bandregent@yahoo.de>
+           Stefan Eilemann <eile@eyescale.ch>
+           Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
+           Alexey Osipov <lion-simba@pridelands.ru>
+           Frédéric Bour <frederic.bour@lakaban.net>
 License: GPL-3.0+
 
 Files: src/icons/*
@@ -100,21 +108,10 @@ Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
            Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 License: GPL-3.0+
 
-Files: src/*
-Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
-           Joe <cuchac@email.cz>
-           Daniel Schaal <farbing@web.de>
-           Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-           D. Matz <bandregent@yahoo.de>
-           Stefan Eilemann <eile@eyescale.ch>
-           Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
-           Alexey Osipov <lion-simba@pridelands.ru>
-License: GPL-3.0+
-
 Files: doc/*
-Copyright: 2010-2013 Martin Lambers <marlam@marlam.de>
-           2010-2013 Stefan Eilemann <eile@eyescale.ch>
-           2010-2013 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+Copyright: 2010-2014 Martin Lambers <marlam@marlam.de>
+           2010-2014 Stefan Eilemann <eile@eyescale.ch>
+           2010-2014 Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 License: BSD-2-clause-like
 
 Files: doc/audio-video-sync.mp4
@@ -150,7 +147,7 @@ Copyright: 2011-2012 Alexey Osipov <simba@lerlan.ru>
 License: GPL-3.0+
 
 Files: po/zh_cn.po
-Copyright: 2013 Frank Hill <hxf.prc@gmail.com>
+Copyright: 2014 Frank Hill <hxf.prc@gmail.com>
 License: GPL-3.0+
 
 Files: po/Makefile.in.in
@@ -164,10 +161,6 @@ License: other
  functionality.
  Please note that the actual code of GNU gettext is covered by the GNU
  General Public License and is *not* in the public domain.
-
-Files: m4/*
-Copyright: 1995-2010 Free Software Foundation, Inc.
-License: m4
 
 License: BSD-2-clause-like
  Copying and distribution of this file, with or without modification, are
