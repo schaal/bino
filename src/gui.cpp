@@ -1,13 +1,14 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012, 2013
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
  * Daniel Schaal <farbing@web.de>
  * D. Matz <bandregent@yahoo.de>
  * Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
+ * Frédéric Bour <frederic.bour@lakaban.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,14 +69,17 @@
 #include <QSettings>
 #include <QGroupBox>
 #include <QStackedWidget>
+#include <QMimeData>
 
 #include "gettext.h"
-#define _(string) gettext(string)
+// Qt requires strings from gettext to be in UTF-8 encoding.
+#define _(string) (str::convert(gettext(string), str::localcharset(), "UTF-8").c_str())
 
 #include "gui.h"
 #include "lib_versions.h"
 #include "audio_output.h"
 #include "media_input.h"
+#include "video_output_qt.h"
 
 #include "dbg.h"
 #include "msg.h"
@@ -1175,7 +1179,7 @@ fullscreen_dialog::fullscreen_dialog(QWidget* parent) : QDialog(parent)
     _flip_right_box->setChecked(dispatch::parameters().fullscreen_flip_right());
     _flop_right_box->setChecked(dispatch::parameters().fullscreen_flop_right());
     _3d_ready_sync_box->setChecked(dispatch::parameters().fullscreen_3d_ready_sync());
-#if defined(Q_WS_X11) || defined(Q_WS_MAC)
+#ifndef Q_OS_WIN
     _inhibit_screensaver_box->setChecked(dispatch::parameters().fullscreen_inhibit_screensaver());
 #else
     _inhibit_screensaver_box->setChecked(false);
@@ -1200,7 +1204,7 @@ void fullscreen_dialog::closeEvent(QCloseEvent* e)
         int fss = 0;
         QStringList screens = _multi_edt->text().split(',', QString::SkipEmptyParts);
         for (int i = 0; i < screens.size(); i++) {
-            int s = str::to<int>(screens[i].toAscii().data());
+            int s = str::to<int>(screens[i].toLatin1().data());
             if (s >= 1 && s <= 16)
                 fss |= (1 << (s - 1));
         }
@@ -1958,6 +1962,23 @@ video_dialog::video_dialog(QWidget *parent) : QDialog(parent), _lock(false)
     _crop_ar_combobox->addItem("1:1");
     connect(_crop_ar_combobox, SIGNAL(currentIndexChanged(int)), this, SLOT(crop_ar_changed()));
 
+    QLabel *source_ar_label = new QLabel(_("Force source aspect ratio:"));
+    source_ar_label->setToolTip(_("<p>Force the aspect ratio of video source.</p>"));
+    _source_ar_combobox = new QComboBox();
+    _source_ar_combobox->setToolTip(source_ar_label->toolTip());
+    _source_ar_combobox->addItem(_("Do not force"));
+    _source_ar_combobox->addItem("16:10");
+    _source_ar_combobox->addItem("16:9");
+    _source_ar_combobox->addItem("1.85:1");
+    _source_ar_combobox->addItem("2.21:1");
+    _source_ar_combobox->addItem("2.35:1");
+    _source_ar_combobox->addItem("2.39:1");
+    _source_ar_combobox->addItem("5:3");
+    _source_ar_combobox->addItem("4:3");
+    _source_ar_combobox->addItem("5:4");
+    _source_ar_combobox->addItem("1:1");
+    connect(_source_ar_combobox, SIGNAL(currentIndexChanged(int)), this, SLOT(source_ar_changed()));
+
     QLabel *p_label = new QLabel(_("Parallax:"));
     p_label->setToolTip(_("<p>Adjust parallax, from -1 to +1. This changes the separation of left and right view, "
                 "and thus the perceived distance of the scene.</p>"));
@@ -2007,16 +2028,18 @@ video_dialog::video_dialog(QWidget *parent) : QDialog(parent), _lock(false)
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(crop_ar_label, 0, 0);
     layout->addWidget(_crop_ar_combobox, 0, 1, 1, 2);
-    layout->addWidget(p_label, 1, 0);
-    layout->addWidget(_p_slider, 1, 1);
-    layout->addWidget(_p_spinbox, 1, 2);
-    layout->addWidget(sp_label, 2, 0);
-    layout->addWidget(_sp_slider, 2, 1);
-    layout->addWidget(_sp_spinbox, 2, 2);
-    layout->addWidget(g_label, 3, 0);
-    layout->addWidget(_g_slider, 3, 1);
-    layout->addWidget(_g_spinbox, 3, 2);
-    layout->addWidget(ok_button, 4, 0, 1, 3);
+    layout->addWidget(source_ar_label, 1, 0);
+    layout->addWidget(_source_ar_combobox, 1, 1, 1, 2);
+    layout->addWidget(p_label, 2, 0);
+    layout->addWidget(_p_slider, 2, 1);
+    layout->addWidget(_p_spinbox, 2, 2);
+    layout->addWidget(sp_label, 3, 0);
+    layout->addWidget(_sp_slider, 3, 1);
+    layout->addWidget(_sp_spinbox, 3, 2);
+    layout->addWidget(g_label, 4, 0);
+    layout->addWidget(_g_slider, 4, 1);
+    layout->addWidget(_g_spinbox, 4, 2);
+    layout->addWidget(ok_button, 5, 0, 1, 3);
     setLayout(layout);
 
     update();
@@ -2072,6 +2095,43 @@ void video_dialog::crop_ar_changed()
     }
 }
 
+void video_dialog::set_source_ar(float value)
+{
+    _source_ar_combobox->setCurrentIndex(
+              ( std::abs(value - 16.0f / 10.0f) < 0.01f ? 1
+              : std::abs(value - 16.0f / 9.0f)  < 0.01f ? 2
+              : std::abs(value - 1.85f)         < 0.01f ? 3
+              : std::abs(value - 2.21f)         < 0.01f ? 4
+              : std::abs(value - 2.35f)         < 0.01f ? 5
+              : std::abs(value - 2.39f)         < 0.01f ? 6
+              : std::abs(value - 5.0f / 3.0f)   < 0.01f ? 7
+              : std::abs(value - 4.0f / 3.0f)   < 0.01f ? 8
+              : std::abs(value - 5.0f / 4.0f)   < 0.01f ? 9
+              : std::abs(value - 1.0f)          < 0.01f ? 10
+              : 0));
+}
+
+void video_dialog::source_ar_changed()
+{
+    if (!_lock)
+    {
+        int i = _source_ar_combobox->currentIndex();
+        float ar =
+              i == 1 ? 16.0f / 10.0f
+            : i == 2 ? 16.0f / 9.0f
+            : i == 3 ? 1.85f
+            : i == 4 ? 2.21f
+            : i == 5 ? 2.35f
+            : i == 6 ? 2.39f
+            : i == 7 ? 5.0f / 3.0f
+            : i == 8 ? 4.0f / 3.0f
+            : i == 9 ? 5.0f / 4.0f
+            : i == 10 ? 1.0f
+            : 0.0f;
+        send_cmd(command::set_source_aspect_ratio, ar);
+    }
+}
+
 void video_dialog::p_slider_changed(int val)
 {
     if (!_lock)
@@ -2113,6 +2173,7 @@ void video_dialog::receive_notification(const notification &note)
     switch (note.type)
     {
     case notification::crop_aspect_ratio:
+    case notification::source_aspect_ratio:
     case notification::parallax:
     case notification::subtitle_parallax:
     case notification::ghostbust:
@@ -3016,7 +3077,7 @@ main_window::main_window(QSettings *settings) :
 
     file_menu->addSeparator();
     QAction *file_quit_act = new QAction(_("&Quit"), this);
-    file_quit_act->setShortcut(QKeySequence::Quit);
+    file_quit_act->setShortcut(tr("Ctrl+Q")); // QKeySequence::Quit is not reliable
     file_quit_act->setMenuRole(QAction::QuitRole);
     file_quit_act->setIcon(get_icon("application-exit"));
     connect(file_quit_act, SIGNAL(triggered()), this, SLOT(close()));
@@ -3090,7 +3151,7 @@ main_window::main_window(QSettings *settings) :
     restoreState(_settings->value("windowstate").toByteArray());
     _settings->endGroup();
 
-    // Work around a Qt/X11 problem: if the GL thread is running and a QComboBox
+    // Work around a Qt/X11 problem with Qt4: if the GL thread is running and a QComboBox
     // shows its popup for the first time, then the application sometimes hangs
     // and sometimes aborts with the message "Unknown request in queue while dequeuing".
     // So we briefly show a QComboBox popup before doing anything else.
@@ -3106,7 +3167,7 @@ main_window::main_window(QSettings *settings) :
     }
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     // Since this is a single-window app, don't let the user close the main window on OS X
     setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
 #endif
@@ -3364,6 +3425,8 @@ void main_window::open(QStringList filenames,
             input_data.params.set_stereo_layout_swap(initial_params.stereo_layout_swap());
         if (initial_params.crop_aspect_ratio_is_set())
             input_data.params.set_crop_aspect_ratio(initial_params.crop_aspect_ratio());
+        if (initial_params.source_aspect_ratio_is_set())
+            input_data.params.set_source_aspect_ratio(initial_params.source_aspect_ratio());
         if (initial_params.parallax_is_set())
             input_data.params.set_parallax(initial_params.parallax());
         if (initial_params.ghostbust_is_set())
@@ -3736,7 +3799,7 @@ void main_window::help_about()
         about_text->setOpenExternalLinks(true);
         about_text->setText(str::asprintf(_(
                         "<p>%s version %s.</p>"
-                        "<p>Copyright (C) 2013 the Bino developers.</p>"
+                        "<p>Copyright (C) 2014 the Bino developers.</p>"
                         "<p>This is free software. You may redistribute copies of it "
                         "under the terms of the <a href=\"http://www.gnu.org/licenses/gpl.html\">"
                         "GNU General Public License</a>. "

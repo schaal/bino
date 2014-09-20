@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012, 2013
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014
  * Martin Lambers <marlam@marlam.de>
  * Stefan Eilemann <eile@eyescale.ch>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
@@ -43,9 +43,6 @@
 #include <QApplication>
 #include <QtGlobal>
 #include <QTextCodec>
-#ifdef Q_WS_X11
-# include <X11/Xlib.h>
-#endif
 
 #include "gettext.h"
 #define _(string) gettext(string)
@@ -138,22 +135,31 @@ static const char *localedir()
 #endif
 }
 
+#if QT_VERSION < 0x050000
 static void qt_msg_handler(QtMsgType type, const char *msg)
+#else
+static void qt_msg_handler(QtMsgType type, const QMessageLogContext&, const QString& msg)
+#endif
 {
+#if QT_VERSION < 0x050000
+    std::string s = msg;
+#else
+    std::string s = qPrintable(msg);
+#endif
     switch (type)
     {
     case QtDebugMsg:
-        msg::dbg(str::sanitize(msg));
+        msg::dbg(str::sanitize(s));
         break;
     case QtWarningMsg:
-        msg::wrn(str::sanitize(msg));
+        msg::wrn(str::sanitize(s));
         break;
     case QtCriticalMsg:
-        msg::err(str::sanitize(msg));
+        msg::err(str::sanitize(s));
         break;
     case QtFatalMsg:
     default:
-        msg::err(str::sanitize(msg));
+        msg::err(str::sanitize(s));
         std::exit(1);
     }
 }
@@ -194,18 +200,26 @@ int main(int argc, char *argv[])
     dbg::init_crashhandler();
 
     /* Initialization: Qt */
+    QCoreApplication::setAttribute(Qt::AA_X11InitThreads);
 #ifdef Q_WS_X11
+    // This only works with Qt4; Qt5 ignores the 'have_display' flag.
     const char *display = getenv("DISPLAY");
     bool have_display = (display && display[0] != '\0');
-    if (have_display) {
-        XInitThreads();
-    }
 #else
     bool have_display = true;
 #endif
+#if QT_VERSION < 0x050000
     qInstallMsgHandler(qt_msg_handler);
+#else
+    qInstallMessageHandler(qt_msg_handler);
+#endif
     QApplication *qt_app = new QApplication(argc, argv, have_display);
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale()); // necessary for i18n via gettext
+#if QT_VERSION < 0x050000
+    // Make Qt4 behave like Qt5: always interpret all C strings as UTF-8.
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
+    // Qt resets locale information in the QApplication constructor. Repair that.
+    setlocale(LC_ALL, "");
     QCoreApplication::setOrganizationName("Bino");
     QCoreApplication::setOrganizationDomain("bino3d.org");
     QCoreApplication::setApplicationName(PACKAGE_NAME);
@@ -342,16 +356,30 @@ int main(int argc, char *argv[])
     options.push_back(&sdi_output_format);
 #endif // HAVE_LIBXNVCTRL
     // Accept some Equalizer options. These are passed to Equalizer for interpretation.
+    opt::flag eq_help("eq-help", '\0', opt::optional);
+    options.push_back(&eq_help);
+    opt::val<std::string> eq_layout("eq-layout", '\0', opt::optional);
+    options.push_back(&eq_layout);
+    opt::val<std::string> eq_gpufilter("eq-gpufilter", '\0', opt::optional);
+    options.push_back(&eq_gpufilter);
+    opt::val<std::string> eq_modelunit("eq-modelunit", '\0', opt::optional);
+    options.push_back(&eq_modelunit);
+    opt::val<std::string> eq_logfile("eq-logfile", '\0', opt::optional);
+    options.push_back(&eq_logfile);
     opt::val<std::string> eq_server("eq-server", '\0', opt::optional);
     options.push_back(&eq_server);
     opt::val<std::string> eq_config("eq-config", '\0', opt::optional);
     options.push_back(&eq_config);
-    opt::val<std::string> eq_listen("eq-listen", '\0', opt::optional);
-    options.push_back(&eq_listen);
-    opt::val<std::string> eq_logfile("eq-logfile", '\0', opt::optional);
-    options.push_back(&eq_logfile);
+    opt::val<std::string> eq_config_flags("eq-config-flags", '\0', opt::optional);
+    options.push_back(&eq_config_flags);
+    opt::val<std::string> eq_config_prefixes("eq-config-prefixes", '\0', opt::optional);
+    options.push_back(&eq_config_prefixes);
     opt::val<std::string> eq_render_client("eq-render-client", '\0', opt::optional);
     options.push_back(&eq_render_client);
+    opt::val<std::string> eq_listen("eq-listen", '\0', opt::optional);
+    options.push_back(&eq_listen);
+    opt::val<std::string> co_listen("co-listen", '\0', opt::optional);
+    options.push_back(&co_listen);
 
     std::vector<std::string> arguments;
 #ifdef __APPLE__
@@ -384,7 +412,7 @@ int main(int argc, char *argv[])
         if (msg::file() == stderr)
             msg::set_file(stdout);
         msg::req(_("%s version %s"), PACKAGE_NAME, VERSION);
-        msg::req(4, _("Copyright (C) 2013 the Bino developers."));
+        msg::req(4, _("Copyright (C) 2014 the Bino developers."));
         msg::req_txt(4, _("This is free software. You may redistribute copies of it "
                     "under the terms of the GNU General Public License. "
                     "There is NO WARRANTY, to the extent permitted by law."));

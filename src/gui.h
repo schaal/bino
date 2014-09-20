@@ -1,12 +1,13 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012
+ * Copyright (C) 2010, 2011, 2012, 2013
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
  * Daniel Schaal <farbing@web.de>
  * Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
+ * Frédéric Bour <frederic.bour@lakaban.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +33,6 @@
 #include <QDialog>
 
 #include "dispatch.h"
-#include "video_output_qt.h"
 
 class QLabel;
 class QComboBox;
@@ -48,6 +48,8 @@ class QRadioButton;
 class QLineEdit;
 class QStackedWidget;
 class QTimer;
+
+class video_container_widget;
 
 class in_out_widget : public QWidget, public controller
 {
@@ -316,6 +318,7 @@ class video_dialog : public QDialog, public controller
 private:
     bool _lock;
     QComboBox *_crop_ar_combobox;
+    QComboBox *_source_ar_combobox;
     QDoubleSpinBox *_p_spinbox;
     QSlider *_p_slider;
     QDoubleSpinBox *_sp_spinbox;
@@ -324,9 +327,11 @@ private:
     QSlider *_g_slider;
 
     void set_crop_ar(float val);
+    void set_source_ar(float val);
 
 private slots:
     void crop_ar_changed();
+    void source_ar_changed();
     void p_slider_changed(int val);
     void p_spinbox_changed(double val);
     void sp_slider_changed(int val);
