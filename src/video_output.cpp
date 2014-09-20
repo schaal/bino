@@ -1,11 +1,12 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012
+ * Copyright (C) 2010, 2011, 2012, 2013
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <frederic.devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
  * Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
+ * Frédéric Bour <frederic.bour@lakaban.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1088,6 +1089,8 @@ void video_output::reshape(int w, int h, const parameters& params)
             src_ar /= 2.0f;
             crop_ar /= 2.0f;
         }
+        if (params.source_aspect_ratio_is_set() && params.source_aspect_ratio() > 0.0f)
+            src_ar = params.source_aspect_ratio();
         compute_viewport_and_tex_coords(_viewport[0], _tex_coords[0], src_ar,
                 w / 2, h, dst_w, dst_h, dst_ar,
                 crop_ar, params.zoom(), need_even_width, need_even_height);
@@ -1105,6 +1108,8 @@ void video_output::reshape(int w, int h, const parameters& params)
             src_ar *= 2.0f;
             crop_ar *= 2.0f;
         }
+        if (params.source_aspect_ratio_is_set() && params.source_aspect_ratio() > 0.0f)
+            src_ar = params.source_aspect_ratio();
         compute_viewport_and_tex_coords(_viewport[0], _tex_coords[0], src_ar,
                 w, h / 2, dst_w, dst_h, dst_ar,
                 crop_ar, params.zoom(), need_even_width, need_even_height);
@@ -1124,6 +1129,8 @@ void video_output::reshape(int w, int h, const parameters& params)
         float dst_h = (h - blank_lines) / 2;
         float dst_ar = dst_w * screen_pixel_aspect_ratio() / dst_h;
         float src_ar = _frame[_active_index].aspect_ratio;
+        if (params.source_aspect_ratio_is_set() && params.source_aspect_ratio() > 0.0f)
+            src_ar = params.source_aspect_ratio();
         compute_viewport_and_tex_coords(_viewport[0], _tex_coords[0], src_ar,
                 w, (h - blank_lines) / 2, dst_w, dst_h, dst_ar,
                 params.crop_aspect_ratio(), params.zoom(), need_even_width, need_even_height);
@@ -1135,6 +1142,8 @@ void video_output::reshape(int w, int h, const parameters& params)
         float dst_h = h;
         float dst_ar = dst_w * screen_pixel_aspect_ratio() / dst_h;
         float src_ar = _frame[_active_index].aspect_ratio;
+        if (params.source_aspect_ratio_is_set() && params.source_aspect_ratio() > 0.0f)
+            src_ar = params.source_aspect_ratio();
         compute_viewport_and_tex_coords(_viewport[0], _tex_coords[0], src_ar,
                 w, h, dst_w, dst_h, dst_ar,
                 params.crop_aspect_ratio(), params.zoom(), need_even_width, need_even_height);
@@ -1183,6 +1192,8 @@ void video_output::display_current_frame(
                 || _render_last_params.stereo_mode() != _render_params.stereo_mode()
                 || _render_last_params.crop_aspect_ratio() < _render_params.crop_aspect_ratio()
                 || _render_last_params.crop_aspect_ratio() > _render_params.crop_aspect_ratio()
+                || _render_last_params.source_aspect_ratio() < _render_params.source_aspect_ratio()
+                || _render_last_params.source_aspect_ratio() > _render_params.source_aspect_ratio()
                 || _render_last_params.zoom() < _render_params.zoom()
                 || _render_last_params.zoom() > _render_params.zoom()
                 || full_display_width() != dst_width

@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014
  * Martin Lambers <marlam@marlam.de>
  * Frédéric Devernay <frederic.devernay@inrialpes.fr>
  * Joe <cuchac@email.cz>
@@ -45,9 +45,11 @@
 #ifdef Q_WS_X11
 # include <QX11Info>
 # include <X11/Xlib.h>
+#endif
+#if HAVE_X11
 # include <GL/glxew.h>
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #include <AvailabilityMacros.h>
 #endif
@@ -78,7 +80,7 @@ gl_thread::gl_thread(video_output_qt* vo_qt, video_output_qt_widget* vo_qt_widge
 {
 }
 
-#ifdef Q_WS_X11
+#if HAVE_X11
 GLXEWContext* gl_thread::glxewGetContext() const
 {
     return _vo_qt->glxewGetContext();
@@ -137,7 +139,7 @@ void gl_thread::run()
         _vo_qt_widget->makeCurrent();
         assert(QGLContext::currentContext() == _vo_qt_widget->context());
         while (_render) {
-#ifdef Q_WS_X11
+#if HAVE_X11
             GLuint counter;
             if (GLXEW_SGI_video_sync && glXGetVideoSyncSGI(&counter) == 0)
                 _display_frameno = counter;
@@ -209,20 +211,7 @@ void gl_thread::run()
                 _vo_qt->sdi_output(_display_frameno);
 #endif // HAVE_LIBXNVCTRL
                 _vo_qt->display_current_frame(_display_frameno);
-                // Swap buffers. To avoid problems with the NVIDIA 304.x driver
-                // series on GNU/Linux, we first release the GL context and re-grab
-                // it after the swap. Not sure why that would be necessary, but it
-                // fixes a problem where swapBuffers() does not return and the
-                // application blocks.
-                // However, this breaks video playback on Windows, so only do it on
-                // X11 systems.
-#ifdef Q_WS_X11
-                _vo_qt_widget->doneCurrent();
-#endif
                 _vo_qt_widget->swapBuffers();
-#ifdef Q_WS_X11
-                _vo_qt_widget->makeCurrent();
-#endif
             } else if (!dispatch::parameters().benchmark()) {
                 // do not busy loop
                 usleep(1000);
@@ -244,6 +233,9 @@ void gl_thread::run()
     }
     _wait_mutex.unlock();
     _vo_qt_widget->doneCurrent();
+#if QT_VERSION >= 0x050000
+    _vo_qt_widget->context()->moveToThread(QCoreApplication::instance()->thread());
+#endif
 }
 
 int64_t gl_thread::time_to_next_frame_presentation()
@@ -303,6 +295,9 @@ void video_output_qt_widget::check_gl_thread()
 
 void video_output_qt_widget::start_rendering()
 {
+#if QT_VERSION >= 0x050000
+    context()->moveToThread(&_gl_thread);
+#endif
     _gl_thread.set_render(true);
     _gl_thread.start();
     _timer.start(0);
@@ -486,7 +481,11 @@ void video_output_qt_widget::keyPressEvent(QKeyEvent *event)
 
 void video_output_qt_widget::mouseReleaseEvent(QMouseEvent *event)
 {
+#if QT_VERSION < 0x050000
     _vo->mouse_set_pos(std::max(std::min(static_cast<float>(event->posF().x()) / this->width(), 1.0f), 0.0f));
+#else
+    _vo->mouse_set_pos(std::max(std::min(static_cast<float>(event->localPos().x()) / this->width(), 1.0f), 0.0f));
+#endif
 }
 
 void video_output_qt_widget::mouseDoubleClickEvent(QMouseEvent *)
@@ -626,7 +625,7 @@ void video_output_qt::init()
         set_opengl_versions();
         glewExperimental = GL_TRUE;
         GLenum err = glewInit();
-#ifdef Q_WS_X11
+#if HAVE_X11
         if (err == GLEW_OK)
         {
             err = glxewInit();
@@ -782,7 +781,7 @@ void video_output_qt::create_widget()
     process_events();
 }
 
-#ifdef Q_WS_X11
+#if HAVE_X11
 GLXEWContext* video_output_qt::glxewGetContext() const
 {
     return const_cast<GLXEWContext*>(&_glxew_context);
@@ -846,15 +845,9 @@ void video_output_qt::mouse_toggle_fullscreen()
 
 void video_output_qt::suspend_screensaver()
 {
-#if defined(Q_WS_X11)
-    _widget->stop_rendering();
-    if (QProcess::execute(QString("xdg-screensaver suspend ")
-                + str::from(_container_widget->winId()).c_str()) != 0)
-        msg::wrn(_("Cannot suspend screensaver."));
-    _widget->start_rendering();
-#elif defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
     /* TODO */
-#elif defined(Q_WS_MAC)
+#elif defined(Q_OS_MAC)
 # if defined (MAC_OS_X_VERSION_10_6) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
     // API introduced in 10.6
     IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep, kIOPMAssertionLevelOn, CFSTR ("Bino"), &_disableDisplaySleepAssertion);
@@ -862,21 +855,27 @@ void video_output_qt::suspend_screensaver()
     // API introduced in OSX 10.5, deprecated in 10.6
     IOPMAssertionCreate(kIOPMAssertionTypeNoDisplaySleep, kIOPMAssertionLevelOn, &_disableDisplaySleepAssertion);
 # endif
+#elif defined(Q_OS_UNIX)
+    _widget->stop_rendering();
+    if (QProcess::execute(QString("xdg-screensaver suspend ")
+                + str::from(_container_widget->winId()).c_str()) != 0)
+        msg::wrn(_("Cannot suspend screensaver."));
+    _widget->start_rendering();
 #endif
 }
 
 void video_output_qt::resume_screensaver()
 {
-#if defined(Q_WS_X11)
+#if defined(Q_OS_WIN)
+    /* TODO */
+#elif defined(Q_OS_MAC)
+    IOPMAssertionRelease(_disableDisplaySleepAssertion);
+#elif defined(Q_OS_UNIX)
     _widget->stop_rendering();
     if (QProcess::execute(QString("xdg-screensaver resume ")
                 + str::from(_container_widget->winId()).c_str()) != 0)
         msg::wrn(_("Cannot resume screensaver."));
     _widget->start_rendering();
-#elif defined(Q_WS_WIN)
-    /* TODO */
-#elif defined(Q_WS_MAC)
-    IOPMAssertionRelease(_disableDisplaySleepAssertion);
 #endif
 }
 
@@ -944,7 +943,7 @@ void video_output_qt::center()
 void video_output_qt::enter_fullscreen()
 {
     if (!_fullscreen) {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         _widget->stop_rendering();
 #endif
         // If the container is a window, we save its geometry here so that
@@ -996,6 +995,8 @@ void video_output_qt::enter_fullscreen()
          * does not work for me (Ubuntu 11.04 Gnome-2D desktop). This is a workaround. */
         /* Note that using X11 functions directly means that we have to link with libX11
          * explicitly; see configure.ac. */
+        /* In the hope that this crap is not necessary anymore with Qt5, we continue to test
+         * for Q_WS_X11, which is never defined with Qt5. */
         if (new_window_flags & Qt::X11BypassWindowManagerHint) {
             QApplication::syncX();      // just for safety; not sure if it is necessary
             XSetInputFocus(QX11Info::display(), _container_widget->winId(), RevertToParent, CurrentTime);
@@ -1010,7 +1011,7 @@ void video_output_qt::enter_fullscreen()
             _screensaver_inhibited = true;
         }
         _fullscreen = true;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         _widget->start_rendering();
 #endif
     }
@@ -1019,7 +1020,7 @@ void video_output_qt::enter_fullscreen()
 void video_output_qt::exit_fullscreen()
 {
     if (_fullscreen) {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         _widget->stop_rendering();
 #endif
         // Resume the screensaver before disabling fullscreen, so that our window ID
@@ -1043,7 +1044,7 @@ void video_output_qt::exit_fullscreen()
         _container_widget->raise();
         _container_widget->grab_focus();
         _fullscreen = false;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         _widget->start_rendering();
 #endif
     }

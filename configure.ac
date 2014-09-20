@@ -4,7 +4,7 @@ dnl configure.ac
 dnl
 dnl This file is part of bino, a 3D video player.
 dnl
-dnl Copyright (C) 2010, 2011, 2012, 2013
+dnl Copyright (C) 2010, 2011, 2012, 2013, 2014
 dnl Martin Lambers <marlam@marlam.de>
 dnl Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 dnl Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
@@ -24,7 +24,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
 AC_PREREQ([2.63])
-AC_INIT([Bino], [1.4.4], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
+AC_INIT([Bino], [1.6.0], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -40,6 +40,16 @@ AC_PROG_RANLIB
 AC_PROG_LN_S
 AC_LANG([C++])
 AC_C_BIGENDIAN
+
+dnl Check if the C++ compiler works. Autoconf will not do that for us!?
+AC_MSG_CHECKING([whether the C++ compiler works])
+AC_LINK_IFELSE([AC_LANG_PROGRAM([[]], [[]])], [COMPILER_WORKS=1], [COMPILER_WORKS=0])
+if test "$COMPILER_WORKS" = "1"; then
+    AC_MSG_RESULT([yes])
+else
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR([The C++ compiler was not found or does not work.])
+fi
 
 dnl Useful definitions
 AC_DEFINE_UNQUOTED([PLATFORM], ["${target}"], [Platform triplet])
@@ -77,7 +87,24 @@ if test "$ndebug" = "1"; then
     AC_DEFINE_UNQUOTED([NDEBUG], [1], [Define to 1 to disable assertions and other debugging checks.])
 fi
 
-dnl Feature checks needed by the base module
+dnl Feature checks needed by the base modules
+AC_LANG_PUSH([C])
+dnl - dbg
+AC_CHECK_FUNCS([backtrace sigaction])
+dnl - endianness
+dnl AC_C_BIGENDIAN
+dnl - fio
+dnl case "${target}" in *-*-mingw*) LIBS="$LIBS -lshlwapi" ;; esac
+dnl AC_CHECK_FUNCS([fdatasync fnmatch fseeko ftello getpwuid link mmap posix_fadvise readdir_r symlink])
+dnl - opt
+case "${target}" in *-*-mingw*) CPPFLAGS="$CPPFLAGS -D_BSD_SOURCE" ;; esac
+AC_CHECK_DECLS([optreset], [], [], [#include <getopt.h>])
+dnl - str
+AM_ICONV([])
+AC_CHECK_FUNCS([nl_langinfo vasprintf wcswidth])
+dnl - sys
+dnl AC_CHECK_FUNCS([nanosleep sysconf sched_yield])
+dnl - thread
 AC_MSG_CHECKING([for GCC atomic builtins])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]],
     [[int b, x = 0; b = __sync_bool_compare_and_swap(&x, 0, 1);]])],
@@ -88,15 +115,16 @@ else
     AC_MSG_RESULT([no])
     AC_MSG_ERROR([GCC atomic builtins not found. Please use a newer compiler.])
 fi
-AC_CHECK_DECLS([optreset], [#include <getopt.h>])
-AC_SEARCH_LIBS([clock_gettime], [rt])
 AC_SEARCH_LIBS([pthread_create], [pthread])
-AC_CHECK_FUNCS([backtrace clock_gettime fdatasync fnmatch fseeko ftello getpwuid link mmap nl_langinfo posix_fadvise readdir_r sigaction symlink sysconf vasprintf wcswidth])
 CPPFLAGS_bak="$CPPFLAGS"
 LDFLAGS_bak="$LDFLAGS"
 CPPFLAGS="-pthread $CPPFLAGS"
 LDFLAGS="-pthread $LDFLAGS"
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])], [], [CPPFLAGS="$CPPFLAGS_bak"; LDFLAGS="$LDFLAGS_bak"])
+dnl - timer
+AC_SEARCH_LIBS([clock_gettime], [rt])
+AC_CHECK_FUNCS([clock_gettime])
+AC_LANG_POP([C])
 
 dnl Gettext
 AC_LANG_PUSH([C])
@@ -162,41 +190,47 @@ else
 fi
 
 dnl Qt
+qt_version=""
+AC_ARG_WITH([qt-version],
+    [AS_HELP_STRING([--with-qt-version], [Choose Qt version. Currently 4 or 5; 4 is the default.])],
+    [qt_version="$withval"], [qt_version="4"])
+if test "$qt_version" != "4" -a "$qt_version" != "5"; then
+    AC_MSG_WARN([unknown Qt version requested, falling back to Qt 4.])
+    qt_version="4"
+fi
 AC_ARG_VAR([RCC], [rcc command])
 AC_ARG_VAR([MOC], [moc command])
-PKG_CHECK_MODULES([libqtopengl], [QtOpenGL >= 4.6], [HAVE_LIBQTOPENGL=1], [HAVE_LIBQTOPENGL=0])
-if test "$HAVE_LIBQTOPENGL" != "1"; then
-    AC_MSG_WARN([required library QtOpenGL not found:])
-    AC_MSG_WARN([$libqtopengl_PKG_ERRORS])
-    AC_MSG_WARN([QtOpenGL is provided by Qt; Debian package: libqt4-opengl-dev])
-else
-    if test -z "$RCC"; then
-        AC_CHECK_TOOLS([RCC], [rcc-qt4 rcc])
+if test "$qt_version" = "4"; then
+    PKG_CHECK_MODULES([libqtopengl], [QtOpenGL >= 4.6], [HAVE_LIBQTOPENGL=1], [HAVE_LIBQTOPENGL=0])
+    if test "$HAVE_LIBQTOPENGL" != "1"; then
+        AC_MSG_WARN([required library QtOpenGL not found:])
+        AC_MSG_WARN([$libqtopengl_PKG_ERRORS])
+        AC_MSG_WARN([QtOpenGL is provided by Qt])
+    else
+        if test -z "$RCC"; then
+            AC_CHECK_TOOLS([RCC], [rcc-qt4 rcc])
+        fi
+        if test -z "$MOC"; then
+            AC_CHECK_TOOLS([MOC], [moc-qt4 moc])
+        fi
     fi
-    if test -z "$MOC"; then
-        AC_CHECK_TOOLS([MOC], [moc-qt4 moc])
-    fi
-    if test -z "$RCC" -o -z "$MOC"; then
-        AC_MSG_WARN([required tools rcc and/or moc not found; QtOpenGL not usable])
-        HAVE_LIBQTOPENGL="0"
-    fi
-fi
-if test "$HAVE_LIBQTOPENGL" = "1"; then
-    dnl When running on X11, we need to link with -lX11 explicitly since we use X functions directly
-    AC_MSG_CHECKING([whether we need to link with X11])
+    dnl Check if we are running on X11. Needed for GLXEW.
+    AC_MSG_CHECKING([whether Qt uses X11])
     CPPFLAGS_BAK="$CPPFLAGS"
     CPPFLAGS="$CPPFLAGS $libqtopengl_CFLAGS"
     AC_COMPILE_IFELSE(
         [AC_LANG_PROGRAM([[
-	 #include <QGLWidget>
-	 #ifndef Q_WS_X11
-	  error: No X11
-	 #endif]],
-	[[int x = 0;]])],
-	[NEED_LIBX11="yes"],[NEED_LIBX11="no"])
+         #include <QGLWidget>
+         #ifndef Q_WS_X11
+          error: No X11
+         #endif]],
+        [[int x = 0;]])],
+        [NEED_LIBX11="yes"],[NEED_LIBX11="no"])
     CPPFLAGS="$CPPFLAGS_BAK"
     AC_MSG_RESULT([$NEED_LIBX11])
+    dnl With Qt4, we use X11 functions directly, and thus need to link with -lX11
     if test "$NEED_LIBX11" = "yes"; then
+        AC_DEFINE([HAVE_X11], [1], [Whether we are running on X11])
         PKG_CHECK_MODULES([libX11], [x11 >= 0.0], [HAVE_LIBX11=1], [HAVE_LIBX11=0])
         if test "$HAVE_LIBX11" != "1"; then
             AC_MSG_WARN([required library libX11 not found:])
@@ -205,6 +239,41 @@ if test "$HAVE_LIBQTOPENGL" = "1"; then
             libqtopengl_CFLAGS="$libqtopengl_CFLAGS $libX11_CFLAGS"
             libqtopengl_LIBS="$libqtopengl_LIBS $libX11_LIBS"
         fi
+    else
+        AC_DEFINE([HAVE_X11], [0], [Whether we are running on X11])
+    fi
+else
+    PKG_CHECK_MODULES([libqtopengl], [Qt5OpenGL >= 5.1], [HAVE_LIBQTOPENGL=1], [HAVE_LIBQTOPENGL=0])
+    if test -z "$RCC"; then
+        AC_CHECK_TOOLS([RCC], [rcc-qt5 rcc])
+    fi
+    if test -z "$MOC"; then
+        AC_CHECK_TOOLS([MOC], [moc-qt5 moc])
+    fi
+    dnl Qt5 on Linux requires -fPIE / -pie with gcc, but does not record this fact
+    dnl in the pkg-config files (which is a bug in my opinion). Work around that.
+    AC_MSG_CHECKING([whether Qt needs -fPIE and -pie])
+    if test -n "`$PKG_CONFIG --variable=qt_config Qt5Core | $GREP reduce_relocations`"; then
+        AC_MSG_RESULT([yes])
+        CXXFLAGS="$CXXFLAGS -fPIE"
+        LDFLAGS="$LDFLAGS -pie"
+    else
+        AC_MSG_RESULT([no])
+    fi
+    dnl Check if we are running on X11. Needed for GLXEW.
+    AC_MSG_CHECKING([whether Qt uses X11])
+    if test -n "`$PKG_CONFIG --variable=qt_config Qt5Core | $GREP xcb`"; then
+        AC_DEFINE([HAVE_X11], [1], [Whether we are running on X11])
+        AC_MSG_RESULT([yes])
+    else
+        AC_DEFINE([HAVE_X11], [0], [Whether we are running on X11])
+        AC_MSG_RESULT([no])
+    fi
+fi
+if test "$HAVE_LIBQTOPENGL" = "1"; then
+    if test -z "$RCC" -o -z "$MOC"; then
+        AC_MSG_WARN([required tools rcc and/or moc not found; Qt not usable])
+        HAVE_LIBQTOPENGL="0"
     fi
 fi
 
