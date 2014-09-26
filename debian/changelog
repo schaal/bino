@@ -1,3 +1,12 @@
+bino (1.6.0-1) unstable; urgency=medium
+
+  * Imported Upstream version 1.6.0 (Closes: #757280).
+  * Remove libav10 ftbfs patch, applied upstream
+  * Switch to qt5
+  * Update copyright file for 1.6.0
+
+ -- Daniel Schaal <farbing@web.de>  Sat, 20 Sep 2014 09:42:32 +0200
+
 bino (1.4.4-2) unstable; urgency=medium
 
   * Add patch to fix FTBFS with libav10 (Closes: #739214).
