@@ -1,3 +1,22 @@
+commit 8f72c57cd7e3e4ac7f42c31139e7ea20943f9bfb
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2014-10-13 13:19:20 +0200
+
+    Bump version to 1.6.1.
+
+ AUTHORS      | 3 ++-
+ configure.ac | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 3ec9fc31a4e67a8f7d72155d6743fc9f48bd5b55
+Author: Alexey Osipov <public@alexey.osipov.name>
+Date:   2014-09-23 07:13:06 +0200
+
+    Update ru.po
+
+ po/ru.po | 837 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------------
+ 1 file changed, 426 insertions(+), 411 deletions(-)
+
 commit 8476381a9817c51f7c535463111db1eb1f6272c3
 Author: Martin Lambers <marlam@marlam.de>
 Date:   2014-09-19 19:53:18 +0200

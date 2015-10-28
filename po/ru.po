@@ -1,14 +1,14 @@
 # Copyright (C) 2014 The Bino developers
 # This file is distributed under the same license as the Bino package.
-# Alexey Osipov <simba@lerlan.ru>, 2011.
+# Alexey Osipov <public@alexey.osipov.name>, 2011-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2014-09-11 19:49+0200\n"
-"PO-Revision-Date: 2012-06-18 21:29+0600\n"
-"Last-Translator: Alexey Osipov <simba@lerlan.ru>\n"
+"POT-Creation-Date: 2014-10-13 13:20+0200\n"
+"PO-Revision-Date: 2014-09-22 00:59+0600\n"
+"Last-Translator: Alexey Osipov <public@alexey.osipov.name>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -95,9 +95,9 @@ msgstr "Невозможно преобразовать строку в %s."
 
 #: src/base/str.cpp:517 src/base/str.cpp:536 src/base/str.cpp:547
 #: src/base/str.cpp:559
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot convert %s to %s: %s"
-msgstr "Невозможно преобразовать %s в %s."
+msgstr "Невозможно преобразовать %s в %s: %s"
 
 #: src/base/str.cpp:565
 #, c-format
@@ -803,28 +803,23 @@ msgstr "Обрезать под соотношение сторон:"
 msgid ""
 "<p>Set the real aspect ratio of the video, so that borders can be cropped.</"
 "p>"
-msgstr ""
-"<p>Укажите настоящее соотношение сторон (для обрезки лишних границ).</p>"
+msgstr "<p>Обрезать видео до указанных пропорций.</p>"
 
 #: src/gui.cpp:1952
 msgid "Do not crop"
 msgstr "Не обрезать"
 
 #: src/gui.cpp:1965
-#, fuzzy
 msgid "Force source aspect ratio:"
-msgstr "Обрезать под соотношение сторон:"
+msgstr "Изменить соотношение сторон:"
 
 #: src/gui.cpp:1966
-#, fuzzy
 msgid "<p>Force the aspect ratio of video source.</p>"
-msgstr ""
-"<p>Укажите настоящее соотношение сторон (для обрезки лишних границ).</p>"
+msgstr "<p>Растянуть или сжать видео до указанных пропорций.</p>"
 
 #: src/gui.cpp:1969
-#, fuzzy
 msgid "Do not force"
-msgstr "Не обрезать"
+msgstr "Не изменять"
 
 #: src/gui.cpp:1982
 msgid "Parallax:"
