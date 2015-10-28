@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 9),
                libswscale-dev (>= 4:0.7),
                pkg-config,
                texinfo
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: http://bino3d.org/
 Vcs-Git: git://github.com/schaal/bino.git
 Vcs-Browser: https://github.com/schaal/bino
