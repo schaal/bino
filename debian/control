@@ -1,7 +1,7 @@
 Source: bino
 Section: video
 Priority: extra
-Maintainer: Daniel Schaal <farbing@web.de>
+Maintainer: Daniel Schaal <daniel@schaal.email>
 Build-Depends: debhelper (>= 9),
                dh-autoreconf,
                libass-dev (>= 0.10.0-2),
