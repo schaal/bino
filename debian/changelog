@@ -1,3 +1,18 @@
+bino (1.6.1-1) unstable; urgency=medium
+
+  * Imported Upstream version 1.6.1
+  * Update gbp.conf to match new gbp config style
+  * Add patch to compile with -fPIC instead of -fPIE when necessary.
+    (Closes: #802374)
+  * Update standards-version to 3.9.6
+  * Update copyright for new upstream version
+  * Update my email address
+  * Don't install bino.info anymore, it prevents reproducible builds.
+  * Add patch to fix compilation with ffmpeg 2.9 (Closes: #803802)
+    Thanks to Andreas Cadhalpun for the patch.
+
+ -- Daniel Schaal <daniel@schaal.email>  Wed, 28 Oct 2015 17:45:23 +0100
+
 bino (1.6.0-1) unstable; urgency=medium
 
   * Imported Upstream version 1.6.0 (Closes: #757280).
