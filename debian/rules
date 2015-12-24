@@ -14,9 +14,6 @@ override_dh_auto_configure:
 			     --disable-silent-rules \
 			     --with-qt-version=5
 
-override_dh_strip:
-	dh_strip --dbg-package=bino-dbg
-
 override_dh_install:
 	rm -f debian/tmp/usr/share/info/bino.info
 	dh_install --list-missing
