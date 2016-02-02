@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.0\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2014-10-13 13:20+0200\n"
+"POT-Creation-Date: 2016-02-01 19:39+0100\n"
 "PO-Revision-Date: 2012-10-13 00:33+0200\n"
 "Last-Translator: Krasimir S. Stefanov <lokiisyourmaster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,31 +90,31 @@ msgstr "Прекалено малко аргументи."
 msgid "Too many arguments."
 msgstr "Прекалено много аргументи."
 
-#: src/base/str.cpp:269
+#: src/base/str.cpp:452
 #, c-format
 msgid "Cannot convert string to %s."
 msgstr "Не може да се конвертира низ в %s."
 
-#: src/base/str.cpp:517 src/base/str.cpp:536 src/base/str.cpp:547
-#: src/base/str.cpp:559
-#, fuzzy, c-format
+#: src/base/str.cpp:986 src/base/str.cpp:1005 src/base/str.cpp:1016
+#: src/base/str.cpp:1028
+#, c-format
 msgid "Cannot convert %s to %s: %s"
-msgstr "Не може да се конвертира %s в %s."
+msgstr "Не може да се конвертира %s в %s: %s"
 
-#: src/base/str.cpp:565
+#: src/base/str.cpp:1034
 #, c-format
 msgid "Cannot convert %s to %s."
 msgstr "Не може да се конвертира %s в %s."
 
-#: src/base/thread.cpp:38 src/base/thread.cpp:48 src/base/thread.cpp:61
-#: src/base/thread.cpp:74 src/base/thread.cpp:85 src/base/thread.cpp:95
-#: src/base/thread.cpp:108 src/base/thread.cpp:116 src/base/thread.cpp:124
-#: src/base/thread.cpp:204 src/base/thread.cpp:211 src/base/thread.cpp:225
-#: src/base/thread.cpp:245
+#: src/base/pth.cpp:38 src/base/pth.cpp:48 src/base/pth.cpp:61
+#: src/base/pth.cpp:74 src/base/pth.cpp:85 src/base/pth.cpp:95
+#: src/base/pth.cpp:108 src/base/pth.cpp:116 src/base/pth.cpp:124
+#: src/base/pth.cpp:204 src/base/pth.cpp:211 src/base/pth.cpp:225
+#: src/base/pth.cpp:245
 msgid "System function failed: "
 msgstr "Системната функция не можа да бъде изпълнена:"
 
-#: src/base/timer.cpp:63 src/base/timer.cpp:72 src/base/timer.cpp:81
+#: src/base/tmr.cpp:63 src/base/tmr.cpp:72 src/base/tmr.cpp:81
 msgid "Cannot get time."
 msgstr "Времето не може да бъде установено."
 
@@ -241,1036 +241,6 @@ msgstr "Потокът със субтитри %d не бе намерен."
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "Тази версия на Bino е компилирана без поддръжка на Еквилайзер."
 
-#: src/gui.cpp:111
-msgid "Video:"
-msgstr "Видео:"
-
-#: src/gui.cpp:112
-msgid "<p>Select the video stream.</p>"
-msgstr "<p>Избор на видео поток.</p>"
-
-#: src/gui.cpp:118
-msgid "Audio:"
-msgstr "Аудио:"
-
-#: src/gui.cpp:119
-msgid "<p>Select the audio stream.</p>"
-msgstr "<p>Избор на аудио поток.</p>"
-
-#: src/gui.cpp:125
-msgid "Subtitle:"
-msgstr "Субтитри:"
-
-#: src/gui.cpp:126
-msgid "<p>Select the subtitle stream.</p>"
-msgstr "<p>Избор на субтитри.</p>"
-
-#: src/gui.cpp:137 src/media_input.cpp:276
-msgid "Input:"
-msgstr "Вход:"
-
-#: src/gui.cpp:138
-msgid "<p>Set the 3D layout of the video stream.</p>"
-msgstr "<p>Избор на 3D разположение на видеото.</p>"
-
-#: src/gui.cpp:142 src/main.cpp:459
-msgid "2D"
-msgstr "2D"
-
-#: src/gui.cpp:143 src/main.cpp:460
-msgid "Separate streams, left first"
-msgstr "Отделни потоци, първо левия"
-
-#: src/gui.cpp:144 src/main.cpp:461
-msgid "Separate streams, right first"
-msgstr "Отделни потоци, първо десния"
-
-#: src/gui.cpp:145 src/main.cpp:462
-msgid "Alternating, left first"
-msgstr "Редуващи се, първо лява половина"
-
-#: src/gui.cpp:146 src/main.cpp:463
-msgid "Alternating, right first"
-msgstr "Редуващи се, първо дясна половина"
-
-#: src/gui.cpp:147 src/gui.cpp:171 src/gui.cpp:2212 src/gui.cpp:2241
-#: src/main.cpp:464 src/main.cpp:479
-msgid "Top/bottom"
-msgstr "Горе/Долу"
-
-#: src/gui.cpp:148 src/gui.cpp:172 src/gui.cpp:2213 src/gui.cpp:2242
-#: src/main.cpp:465 src/main.cpp:480
-msgid "Top/bottom, half height"
-msgstr "Горе/Долу, половин височина"
-
-#: src/gui.cpp:149 src/main.cpp:466
-msgid "Bottom/top"
-msgstr "Долу/Горе"
-
-#: src/gui.cpp:150 src/main.cpp:467
-msgid "Bottom/top, half height"
-msgstr "Долу/Горе, половин височина"
-
-#: src/gui.cpp:151 src/gui.cpp:173 src/gui.cpp:2214 src/gui.cpp:2243
-#: src/main.cpp:468 src/main.cpp:481
-msgid "Left/right"
-msgstr "Ляво/Дясно"
-
-#: src/gui.cpp:152 src/gui.cpp:174 src/gui.cpp:2215 src/gui.cpp:2244
-#: src/main.cpp:469 src/main.cpp:482
-msgid "Left/right, half width"
-msgstr "Ляво/Дясно, половин ширина"
-
-#: src/gui.cpp:153 src/main.cpp:470
-msgid "Right/left"
-msgstr "Дясно/Ляво"
-
-#: src/gui.cpp:154 src/main.cpp:471
-msgid "Right/left, half width"
-msgstr "Дясно/Ляво, половин ширина"
-
-#: src/gui.cpp:155 src/gui.cpp:175 src/gui.cpp:2216 src/gui.cpp:2245
-#: src/main.cpp:472 src/main.cpp:483
-msgid "Even/odd rows"
-msgstr "Четни/Нечетни редове"
-
-#: src/gui.cpp:156 src/main.cpp:473
-msgid "Odd/even rows"
-msgstr "Нечетни/Четни редове"
-
-#: src/gui.cpp:162
-msgid "Output:"
-msgstr "Изход:"
-
-#: src/gui.cpp:163
-msgid "<p>Set the 3D output type for your display.</p>"
-msgstr "<p>Избор на 3D типа на дисплея.</p>"
-
-#: src/gui.cpp:167 src/gui.cpp:2210 src/gui.cpp:2239 src/main.cpp:477
-msgid "Left view"
-msgstr "Лява половина"
-
-#: src/gui.cpp:168 src/gui.cpp:2211 src/gui.cpp:2240 src/main.cpp:478
-msgid "Right view"
-msgstr "Дясна половина"
-
-#: src/gui.cpp:169 src/main.cpp:475
-msgid "OpenGL stereo"
-msgstr "OpenGL стерео"
-
-#: src/gui.cpp:170 src/main.cpp:476
-msgid "Left/right alternating"
-msgstr "Редуващи се, Лява/Дясна"
-
-#: src/gui.cpp:176 src/gui.cpp:2217 src/gui.cpp:2246 src/main.cpp:484
-msgid "Even/odd columns"
-msgstr "Четни/Нечетни колони"
-
-#: src/gui.cpp:177 src/gui.cpp:2218 src/gui.cpp:2247 src/main.cpp:485
-msgid "Checkerboard pattern"
-msgstr "Шахматно"
-
-#: src/gui.cpp:178 src/main.cpp:486
-msgid "HDMI frame packing mode"
-msgstr "HDMI пакетиране на кадри"
-
-#: src/gui.cpp:179 src/gui.cpp:2219 src/gui.cpp:2248 src/main.cpp:487
-msgid "Red/cyan glasses, monochrome"
-msgstr "Червени/Циан очила, монохром"
-
-#: src/gui.cpp:180 src/gui.cpp:2220 src/gui.cpp:2249 src/main.cpp:488
-msgid "Red/cyan glasses, half color"
-msgstr "Червени/Циан очила, половин цветност"
-
-#: src/gui.cpp:181 src/gui.cpp:2221 src/gui.cpp:2250 src/main.cpp:489
-msgid "Red/cyan glasses, full color"
-msgstr "Червени/Циан очила, пълни цветове"
-
-#: src/gui.cpp:182 src/gui.cpp:2222 src/gui.cpp:2251 src/main.cpp:490
-msgid "Red/cyan glasses, Dubois"
-msgstr "Червени/Циан очила, Дюбоа"
-
-#: src/gui.cpp:183 src/gui.cpp:2223 src/gui.cpp:2252 src/main.cpp:491
-msgid "Green/magenta glasses, monochrome"
-msgstr "Зелено/Пурпурни очила, монохром"
-
-#: src/gui.cpp:184 src/gui.cpp:2224 src/gui.cpp:2253 src/main.cpp:492
-msgid "Green/magenta glasses, half color"
-msgstr "Зелено/Пурпурни очила, половин цветност"
-
-#: src/gui.cpp:185 src/gui.cpp:2225 src/gui.cpp:2254 src/main.cpp:493
-msgid "Green/magenta glasses, full color"
-msgstr "Зелено/Пурпурни очила, пълни цветове"
-
-#: src/gui.cpp:186 src/gui.cpp:2226 src/gui.cpp:2255 src/main.cpp:494
-msgid "Green/magenta glasses, Dubois"
-msgstr "Зелено/Пурпурни очила, Дюбоа"
-
-#: src/gui.cpp:187 src/gui.cpp:2227 src/gui.cpp:2256 src/main.cpp:495
-msgid "Amber/blue glasses, monochrome"
-msgstr "Кехлибар/Сини очила, монохром"
-
-#: src/gui.cpp:188 src/gui.cpp:2228 src/gui.cpp:2257 src/main.cpp:496
-msgid "Amber/blue glasses, half color"
-msgstr "Кехлибар/Сини очила, половин цветност"
-
-#: src/gui.cpp:189 src/gui.cpp:2229 src/gui.cpp:2258 src/main.cpp:497
-msgid "Amber/blue glasses, full color"
-msgstr "Кехлибар/Сини очила, пълни цветове"
-
-#: src/gui.cpp:190 src/gui.cpp:2230 src/gui.cpp:2259 src/main.cpp:498
-msgid "Amber/blue glasses, Dubois"
-msgstr "Кехлибар/Сини очила, Дюбоа"
-
-#: src/gui.cpp:191 src/gui.cpp:2231 src/gui.cpp:2260 src/main.cpp:499
-msgid "Red/green glasses, monochrome"
-msgstr "Червени/Зелени очила, монохромно"
-
-#: src/gui.cpp:192 src/gui.cpp:2232 src/gui.cpp:2261 src/main.cpp:500
-msgid "Red/blue glasses, monochrome"
-msgstr "Червени/Сини очила, монохромно"
-
-#: src/gui.cpp:196
-msgid "Swap left/right"
-msgstr "Размяна на ляво/дясно"
-
-#: src/gui.cpp:197
-msgid ""
-"<p>Swap the left and right view. Use this if the 3D effect seems wrong.</p>"
-msgstr "<p>Размяна на левия и десния изглед.</p>"
-
-#: src/gui.cpp:475 src/gui.cpp:1736
-msgid "Off"
-msgstr "Изключено"
-
-#: src/gui.cpp:706
-msgid ""
-"<p>This slider shows the progress during video playback, and can be used to "
-"seek in the video.</p>"
-msgstr ""
-"<p>Този плъзгач показва докъде е стигнало възпроизвеждането, и може да се "
-"използва за превъртане.</p>"
-
-#: src/gui.cpp:713
-msgid "<p>Elapsed / total time.</p>"
-msgstr "<p>Изминало / Общо време.</p>"
-
-#: src/gui.cpp:720
-msgid "<p>Toggle audio mute.</p>"
-msgstr "<p>Заглушаване на звука.</p>"
-
-#: src/gui.cpp:725
-msgid "<p>Adjust audio volume.</p>"
-msgstr "<p>Задаване нивото на звука.</p>"
-
-#: src/gui.cpp:737
-msgid "<p>Play.</p>"
-msgstr "<p>Изпълняване.</p>"
-
-#: src/gui.cpp:741
-msgid "<p>Pause.</p>"
-msgstr "<p>Пауза.</p>"
-
-#: src/gui.cpp:745
-msgid "<p>Stop.</p>"
-msgstr "<p>Стоп.</p>"
-
-#: src/gui.cpp:750
-msgid "<p>Toggle loop mode.</p>"
-msgstr "<p>(Де)Активиране на повторение.</p>"
-
-#: src/gui.cpp:757
-msgid ""
-"<p>Switch to fullscreen mode. You can leave fullscreen mode by pressing the "
-"f key.</p>"
-msgstr ""
-"<p>Превключване на пълноекранен режим. Можете да го напуснете чрез натискане "
-"на клавиш f.</p>"
-
-#: src/gui.cpp:763
-msgid "<p>Center the video area on your screen.</p>"
-msgstr "<p>Центриране на видеото в екрана.</p>"
-
-#: src/gui.cpp:770
-msgid "<p>Seek backward 10 minutes.</p>"
-msgstr "<p>Назад 10 минути.</p>"
-
-#: src/gui.cpp:775
-msgid "<p>Seek backward 1 minute.</p>"
-msgstr "<p>Назад 1 минута.</p>"
-
-#: src/gui.cpp:781
-msgid "<p>Seek backward 10 seconds.</p>"
-msgstr "<p>Назад 10 секунди.</p>"
-
-#: src/gui.cpp:787
-msgid "<p>Seek forward 10 seconds.</p>"
-msgstr "<p>Напред 10 секунди.</p>"
-
-#: src/gui.cpp:792
-msgid "<p>Seek forward 1 minute.</p>"
-msgstr "<p>Напред 1 минута.</p>"
-
-#: src/gui.cpp:798
-msgid "<p>Seek forward 10 minutes.</p>"
-msgstr "<p>Напред 10 минути.</p>"
-
-#: src/gui.cpp:1059
-msgid "Fullscreen/Multiscreen Settings"
-msgstr "Настройки на пълен екран/много екрани"
-
-#: src/gui.cpp:1061
-msgid "Configure fullscreen mode:"
-msgstr "Конфигуриране на пълноекранния режим:"
-
-#: src/gui.cpp:1062
-msgid "<p>Select the screens to use in fullscreen mode.</p>"
-msgstr "<p>Избор на екрани, които ще се използват в пълноекранен режим.</p>"
-
-#: src/gui.cpp:1064
-msgid "Single screen:"
-msgstr "Единичен екран:"
-
-#: src/gui.cpp:1065
-msgid "<p>Use a single screen for fullscreen mode.</p>"
-msgstr "<p>Използване на един екран за пълноекранния режим.</p>"
-
-#: src/gui.cpp:1068
-msgid "Primary screen"
-msgstr "Основен екран"
-
-#: src/gui.cpp:1071 src/gui.cpp:1082 src/gui.cpp:1083
-#, c-format
-msgid "Screen %d"
-msgstr "Екран %d"
-
-#: src/gui.cpp:1074
-msgid "Dual screen:"
-msgstr "Два екрана:"
-
-#: src/gui.cpp:1075
-msgid "<p>Use two screens for fullscreen mode.</p>"
-msgstr "<p>Използване на два екрана за пълноекранния режим.</p>"
-
-#: src/gui.cpp:1087
-msgid "Multi screen:"
-msgstr "Много екрани:"
-
-#: src/gui.cpp:1088
-msgid "<p>Use multiple screens for fullscreen mode.</p>"
-msgstr "<p>Използване на множество екрани за пълноекранния режим.</p>"
-
-#: src/gui.cpp:1090
-msgid "<p>Comma-separated list of screens to use for fullscreen mode.</p>"
-msgstr ""
-"<p>Отделени със запетайка екрани, които да се използват в пълноекранния "
-"режим.</p>"
-
-#: src/gui.cpp:1093
-msgid "When in fullscreen mode,"
-msgstr "Когато е пълноекранен режим,"
-
-#: src/gui.cpp:1094
-msgid "<p>Set special left/right view handling for fullscreen mode.</p>"
-msgstr "<p>Настройка на специален ляв/десен изглед при пълноекранен режим.</p>"
-
-#: src/gui.cpp:1096
-msgid "flip left view vertically."
-msgstr "обръщане на левия изглед вертикално."
-
-#: src/gui.cpp:1098
-msgid "flop left view horizontally."
-msgstr "обръщане на левия изглед хоризонтално."
-
-#: src/gui.cpp:1100
-msgid "flip right view vertically."
-msgstr "обръщане на десния изглед вертикално."
-
-#: src/gui.cpp:1102
-msgid "flop right view horizontally."
-msgstr "обръщане на десния изглед хоризонтално."
-
-#: src/gui.cpp:1105
-msgid "use DLP(R) 3-D Ready Sync"
-msgstr "използване на DLP(R) 3-D Ready синхронизация"
-
-#: src/gui.cpp:1106
-msgid "<p>Use DLP&reg; 3-D Ready Sync for supported output modes.</p>"
-msgstr ""
-"<p>използване на DLP&reg; 3-D Ready синхронизация за поддържаните изходни "
-"режими.</p>"
-
-#: src/gui.cpp:1108
-msgid "inhibit the screensaver"
-msgstr "подтискане на предпазителя на екрана"
-
-#: src/gui.cpp:1109
-msgid "<p>Inhibit the screensaver during fullscreen playback.</p>"
-msgstr ""
-"<p>Подтиска задействането на екранния предпазител по време на пълноекранно "
-"възпроизвеждане.</p>"
-
-#: src/gui.cpp:1111 src/gui.cpp:1277 src/gui.cpp:1412 src/gui.cpp:1473
-#: src/gui.cpp:1538 src/gui.cpp:1616 src/gui.cpp:1740 src/gui.cpp:2025
-#: src/gui.cpp:2264 src/gui.cpp:2750 src/gui.cpp:3477 src/gui.cpp:3524
-#: src/gui.cpp:3841
-msgid "OK"
-msgstr "Добре"
-
-#: src/gui.cpp:1230
-msgid "Display Color Adjustments"
-msgstr "Настройки на цветовете"
-
-#: src/gui.cpp:1232
-msgid "Contrast:"
-msgstr "Контраст:"
-
-#: src/gui.cpp:1243
-msgid "Brightness:"
-msgstr "Яркост:"
-
-#: src/gui.cpp:1254
-msgid "Hue:"
-msgstr "Оттенък:"
-
-#: src/gui.cpp:1265
-msgid "Saturation:"
-msgstr "Наситеност:"
-
-#: src/gui.cpp:1383
-msgid "Display Crosstalk Calibration"
-msgstr "Калибриране на Crosstalk"
-
-#. TRANSLATORS: Please keep the lines short using <br> where necessary.
-#: src/gui.cpp:1386
-msgid ""
-"<p>Please read the manual to find out<br>how to measure the crosstalk "
-"levels<br>of your display.</p>"
-msgstr ""
-"<p>Моля прочетете ръководството<br>за да разберете как да откриете нивата на "
-"crosstalk<br>за вашия дисплей.</p>"
-
-#: src/gui.cpp:1390
-msgid "Red:"
-msgstr "Червено:"
-
-#: src/gui.cpp:1397
-msgid "Green:"
-msgstr "Зелено:"
-
-#: src/gui.cpp:1404
-msgid "Blue:"
-msgstr "Синьо:"
-
-#: src/gui.cpp:1460
-msgid "Rendering Quality Adjustments"
-msgstr "Настройки на качеството на рендериране"
-
-#: src/gui.cpp:1462
-msgid "Rendering Quality:"
-msgstr "Качество на рендериране:"
-
-#: src/gui.cpp:1516
-msgid "Zoom for wide videos"
-msgstr "Увеличаване при широко видео"
-
-#: src/gui.cpp:1519
-msgid ""
-"<p>Set zoom level for videos that<br>are wider than the screen:<br>0: Show "
-"full video width.<br>1: Use full screen height.</p>"
-msgstr ""
-"<p>Задава нивото на увеличаване когато<br>видеото е по-широко от екрана:"
-"<br>0: показване на пълната ширина на видеото.<br>1: използване на "
-"пълноекранната височина.</p>"
-
-#: src/gui.cpp:1523
-msgid "Zoom:"
-msgstr "Увеличаване:"
-
-#: src/gui.cpp:1524
-msgid "<p>Set the zoom level for videos that are wider than the screen.</p>"
-msgstr ""
-"<p>Задава нивото на увеличаване когато видеото е по-широко от екрана.</p>"
-
-#: src/gui.cpp:1582
-msgid "Audio Settings"
-msgstr "Звукови настройки"
-
-#: src/gui.cpp:1584
-msgid "Audio device:"
-msgstr "Звуково устройство:"
-
-#: src/gui.cpp:1585
-msgid ""
-"<p>Select the audio device.<br>This will take effect for the next started "
-"video.</p>"
-msgstr ""
-"<p>Избор на звуково устройство.<br>Ще влезе в ефект при следващото "
-"стартиране на видеото.</p>"
-
-#: src/gui.cpp:1589 src/gui.cpp:2680
-msgid "Default"
-msgstr "По подразбиране"
-
-#: src/gui.cpp:1606
-msgid "Audio delay (ms):"
-msgstr "Закъснение на звука (мсек)"
-
-#: src/gui.cpp:1607
-msgid ""
-"<p>Set an audio delay, in milliseconds.<br>This is useful if audio and video "
-"are not in sync.</p>"
-msgstr ""
-"<p>Настройва закъснението на звука.<br>Използва се когато звука и видеото не "
-"са синхронизирани.</p>"
-
-#: src/gui.cpp:1664
-msgid "Subtitle Settings"
-msgstr "Настройки на субтитрите"
-
-#: src/gui.cpp:1667
-msgid ""
-"<p>These settings apply only to soft subtitles, not to bitmaps.<br>Some "
-"changes require a restart of the video to take effect.</p>"
-msgstr ""
-"<p>Тези настройки се отнасят само за текстови субтитри.<br>Някои от "
-"настройките изискват рестартиране на видеото за да влязат в сила.</p>"
-
-#: src/gui.cpp:1670
-msgid "Encoding:"
-msgstr "Кодировка:"
-
-#: src/gui.cpp:1671
-msgid "<p>Set the subtitle character set encoding.</p>"
-msgstr "<p>Кодировка на субтитрите.</p>"
-
-#: src/gui.cpp:1686
-msgid "Override font:"
-msgstr "Шрифт:"
-
-#: src/gui.cpp:1687
-msgid "<p>Override the subtitle font family.</p>"
-msgstr "<p>Шрифт на субтитрите.</p>"
-
-#: src/gui.cpp:1696
-msgid "Override font size:"
-msgstr "Размер на шрифта:"
-
-#: src/gui.cpp:1697
-msgid "<p>Override the subtitle font size.</p>"
-msgstr "<p>Размер на шрифта на субтитрите.</p>"
-
-#: src/gui.cpp:1707
-msgid "Override scale factor:"
-msgstr "Коефициент на уголемяване:"
-
-#: src/gui.cpp:1708
-msgid "<p>Override the subtitle scale factor.</p>"
-msgstr "<p>Коефициент на уголемяване на субтитрите.</p>"
-
-#: src/gui.cpp:1719
-msgid "Override color:"
-msgstr "Цвят на шрифта:"
-
-#: src/gui.cpp:1720
-msgid "<p>Override the subtitle color.</p>"
-msgstr "<p>Цвят на субтитрите.</p>"
-
-#: src/gui.cpp:1729
-msgid "Override shadow:"
-msgstr "Сянка на шрифта:"
-
-#: src/gui.cpp:1730
-msgid "<p>Override the subtitle shadow.</p>"
-msgstr "<p>Сянка на субтитрите.</p>"
-
-#: src/gui.cpp:1735
-msgid "On"
-msgstr "Включване"
-
-#: src/gui.cpp:1946
-msgid "Video Settings"
-msgstr "Видео настройки"
-
-#: src/gui.cpp:1948
-msgid "Crop to aspect ratio:"
-msgstr "Изрязване до съотношение:"
-
-#: src/gui.cpp:1949
-msgid ""
-"<p>Set the real aspect ratio of the video, so that borders can be cropped.</"
-"p>"
-msgstr ""
-"<p>Задаване на реалното съотношение на видеото, така че рамките да могат да "
-"бъдат изрязани.</p>"
-
-#: src/gui.cpp:1952
-msgid "Do not crop"
-msgstr "Без изрязване"
-
-#: src/gui.cpp:1965
-#, fuzzy
-msgid "Force source aspect ratio:"
-msgstr "Изрязване до съотношение:"
-
-#: src/gui.cpp:1966
-#, fuzzy
-msgid "<p>Force the aspect ratio of video source.</p>"
-msgstr ""
-"<p>Задаване на реалното съотношение на видеото, така че рамките да могат да "
-"бъдат изрязани.</p>"
-
-#: src/gui.cpp:1969
-#, fuzzy
-msgid "Do not force"
-msgstr "Без изрязване"
-
-#: src/gui.cpp:1982
-msgid "Parallax:"
-msgstr "Паралакс:"
-
-#: src/gui.cpp:1983
-msgid ""
-"<p>Adjust parallax, from -1 to +1. This changes the separation of left and "
-"right view, and thus the perceived distance of the scene.</p>"
-msgstr ""
-"<p>Настройка на паралакса, от -1 до +1. Тази настройка определя "
-"раздалечаването между левия и десния изглед, т.е. дълбочината на сцената.</p>"
-
-#: src/gui.cpp:1996
-msgid "Subtitle parallax:"
-msgstr "Паралакс на субтитрите:"
-
-#: src/gui.cpp:1997
-msgid ""
-"<p>Adjust subtitle parallax, from -1 to +1. This changes the perceived "
-"distance of the subtitles.</p>"
-msgstr ""
-"<p>Настройка на паралакса на субтитрите, от -1 до +1. Тази настройка "
-"определя дълбочината на субтитрите.</p>"
-
-#: src/gui.cpp:2010
-msgid "Ghostbusting:"
-msgstr "Подтискане на смесването:"
-
-#: src/gui.cpp:2011
-msgid ""
-"<p>Set the amount of crosstalk ghostbusting, from 0 to 1. You need to set "
-"the crosstalk levels of your display first. Note that crosstalk ghostbusting "
-"does not work with anaglyph glasses.</p>"
-msgstr ""
-"<p>Задава нивото на подтискане на смесването между левия и десния изглед, от "
-"0 до 1. Трябва да настроите първо нивата на подтискане на дисплея. Тази "
-"опция не работи с анаглифни очила.</p>"
-
-#: src/gui.cpp:2195
-msgid "SDI Output Settings"
-msgstr "Настройки на SDI изход"
-
-#: src/gui.cpp:2197
-msgid "SDI Output Format:"
-msgstr "SDI изходен формат:"
-
-#: src/gui.cpp:2198
-msgid "<p>Select output format used for SDI output.</p>"
-msgstr "<p>Избор на формат за SDI изхода.</p>"
-
-#: src/gui.cpp:2206
-msgid "Left stereo mode:"
-msgstr "Ляв стерео режим:"
-
-#: src/gui.cpp:2207
-msgid "<p>Select stereo mode used for left SDI output.</p>"
-msgstr "<p>Избор на стерео режим за левия SDI изход.</p>"
-
-#: src/gui.cpp:2235
-msgid "Right stereo mode:"
-msgstr "Десен стерео режим:"
-
-#: src/gui.cpp:2236
-msgid "<p>Select stereo mode used for right SDI output.</p>"
-msgstr "<p>Избор на стерео режим за десния SDI изход.</p>"
-
-#: src/gui.cpp:2676
-msgid "Open device(s)"
-msgstr "Отваряне на устройство"
-
-#: src/gui.cpp:2679
-msgid "<p>Choose a device type.</p>"
-msgstr "<p>Избор на типа на устройството.</p>"
-
-#: src/gui.cpp:2681 src/media_object.cpp:831
-msgid "Firewire"
-msgstr "Firewire"
-
-#: src/gui.cpp:2682 src/media_object.cpp:832
-msgid "X11"
-msgstr "X11"
-
-#: src/gui.cpp:2685 src/gui.cpp:2688
-msgid "<p>Choose a device.</p>"
-msgstr "<p>Избор на устройство.</p>"
-
-#: src/gui.cpp:2691
-msgid "<p>Set the X11 device string. Refer to the manual for details.</p>"
-msgstr ""
-"<p>Задаване на X11 низ на устройството. Вижте ръководството за повече "
-"информация.</p>"
-
-#: src/gui.cpp:2715
-msgid "First device:"
-msgstr "Първо устройство:"
-
-#: src/gui.cpp:2716
-msgid "Second device:"
-msgstr "Второ устройство:"
-
-#: src/gui.cpp:2720
-msgid "Request frame size"
-msgstr "Изискване на размер на кадъра"
-
-#: src/gui.cpp:2721
-msgid ""
-"<p>Request a specific frame size from the device, e.g. 640x480. The device "
-"must support this frame size. Some devices require a frame size to be "
-"selected.</p>"
-msgstr ""
-"<p>Изискване на специфичен размер на кадъра от устройството, например "
-"640x480. Устройството трябва да поддържа този размер. Някои устройства "
-"изискват размера на кадъра да бъде зададен.</p>"
-
-#: src/gui.cpp:2732
-msgid "Request frame rate"
-msgstr "Изискване на кадрова честота"
-
-#: src/gui.cpp:2733
-msgid ""
-"<p>Request a specific frame rate from the device, e.g. 25/1. The device must "
-"support this frame rate. Some devices require a frame rate to be selected.</"
-"p>"
-msgstr ""
-"<p>Изискване на специфична кадрова честота от устройството, например 25/1. "
-"Устройството трябва да поддържа тази честота. Някои устройства изискват "
-"честотата да бъде зададена.</p>"
-
-#: src/gui.cpp:2744
-msgid "Request MJPEG format"
-msgstr "Изискване на MJPEG формат"
-
-#: src/gui.cpp:2745
-msgid ""
-"<p>Request MJPEG data from the input device. The device may ignore this "
-"request.</p>"
-msgstr ""
-"<p>Изискване на MJPEG данни от устройството. Някои устройства може да "
-"игнорират тази заявка.</p>"
-
-#: src/gui.cpp:2748 src/gui.cpp:3523
-msgid "Cancel"
-msgstr "Отказ"
-
-#: src/gui.cpp:3046
-msgid "&File"
-msgstr "Файл"
-
-#: src/gui.cpp:3047
-msgid "&Open file(s)..."
-msgstr "Отваряне на файл(ове)"
-
-#: src/gui.cpp:3052
-msgid "Open &URL(s)..."
-msgstr "Отваряне на адрес(и)"
-
-#: src/gui.cpp:3056
-msgid "Open &device(s)..."
-msgstr "Отваряне на устройство"
-
-#: src/gui.cpp:3071
-msgid "&Clear recent files"
-msgstr "Изчистване на историята"
-
-#: src/gui.cpp:3079
-msgid "&Quit"
-msgstr "Изход"
-
-#: src/gui.cpp:3085
-msgid "&Preferences"
-msgstr "Предпочитания"
-
-#: src/gui.cpp:3088
-msgid "&Fullscreen Settings..."
-msgstr "Настройки за пълен екран"
-
-#: src/gui.cpp:3091
-msgid "Display &Color Adjustments..."
-msgstr "Настройки на цветовете"
-
-#: src/gui.cpp:3094
-msgid "Display Cross&talk Calibration..."
-msgstr "Калибриране на Crosstalk"
-
-#: src/gui.cpp:3098
-msgid "Quality Adjustments..."
-msgstr "Настройки на качеството"
-
-#: src/gui.cpp:3102
-msgid "&Zoom for wide videos..."
-msgstr "Увеличаване при широко видео..."
-
-#: src/gui.cpp:3106
-msgid "&Audio Settings..."
-msgstr "Настройки на звука"
-
-#: src/gui.cpp:3110
-msgid "&Subtitle Settings..."
-msgstr "Настройки на субтитрите"
-
-#: src/gui.cpp:3114
-msgid "Current &Video Settings..."
-msgstr "Настройки на текущото видео"
-
-#: src/gui.cpp:3119
-msgid "SDI &Output Settings..."
-msgstr "Настройки на SDI изход..."
-
-#: src/gui.cpp:3123
-msgid "&Help"
-msgstr "Помощ"
-
-#: src/gui.cpp:3124
-msgid "&Manual..."
-msgstr "Ръководство"
-
-#: src/gui.cpp:3129
-msgid "&Website..."
-msgstr "Интернет страница"
-
-#: src/gui.cpp:3133
-msgid "&Keyboard Shortcuts"
-msgstr "Бързи клавиши"
-
-#: src/gui.cpp:3137
-msgid "&About"
-msgstr "Относно"
-
-#: src/gui.cpp:3470
-msgid "Tip"
-msgstr "Съвет"
-
-#: src/gui.cpp:3473
-msgid ""
-"<p>You can select and open multiple files at once.</p><p>This is useful for "
-"example if you have extra subtitle files,<br>or if left and right view are "
-"stored in separate files.</p>"
-msgstr ""
-"<p>Може да избирате и да отваряте множество файлове.</p><p>Това е полезно "
-"например когато имате субтитри в отделен файл,<br>или левия и десния канал "
-"са в отделни файлове</p>"
-
-#: src/gui.cpp:3476
-msgid "Do not show this message again."
-msgstr "Да не се показва повече."
-
-#: src/gui.cpp:3493
-msgid "Open files"
-msgstr "Отваряне на файлове"
-
-#: src/gui.cpp:3517
-msgid "Open URL(s)"
-msgstr "Отваряне на адрес(и)"
-
-#: src/gui.cpp:3518
-msgid "URL(s):"
-msgstr "Адрес(и)"
-
-#: src/gui.cpp:3519
-msgid "<p>Enter one or more space separated URLs.</p>"
-msgstr "<p>Въведете един или повече адреси, разделени с интервал.</p>"
-
-#: src/gui.cpp:3732 src/gui.cpp:3740 src/video_output_qt.cpp:291
-#: src/video_output_qt.cpp:534 src/video_output_qt.cpp:731
-#: src/video_output_qt.cpp:743 src/video_output_qt.cpp:764
-msgid "Error"
-msgstr "Грешка"
-
-#: src/gui.cpp:3732
-msgid "Cannot open manual."
-msgstr "Ръководството не може да бъде отворено."
-
-#: src/gui.cpp:3740
-msgid "Cannot open website."
-msgstr "Интернет страницата не може да бъде отворена."
-
-#: src/gui.cpp:3748
-msgid "Keyboard Shortcuts"
-msgstr "Бързи клавиши"
-
-#: src/gui.cpp:3751
-msgid "Keyboard control:"
-msgstr "Контролиране с клавиатура:"
-
-#: src/gui.cpp:3753 src/main.cpp:534
-msgid "ESC"
-msgstr "ESC"
-
-#: src/gui.cpp:3753
-msgid "Stop"
-msgstr "Спиране"
-
-#: src/gui.cpp:3754 src/main.cpp:536
-msgid "SPACE"
-msgstr "SPACE"
-
-#: src/gui.cpp:3754 src/main.cpp:536
-msgid "Pause / unpause"
-msgstr "Пауза / Пускане"
-
-#: src/gui.cpp:3755 src/main.cpp:537
-msgid "Toggle fullscreen"
-msgstr "Превключване на пълен екран"
-
-#: src/gui.cpp:3756 src/main.cpp:538
-msgid "Center window"
-msgstr "Центриране на прозореца"
-
-#: src/gui.cpp:3757 src/main.cpp:539
-msgid "Swap left/right eye"
-msgstr "Размяна ляво/дясно"
-
-#: src/gui.cpp:3758 src/main.cpp:540
-msgid "Cycle through available video streams"
-msgstr "Превключване между наличните видео потоци"
-
-#: src/gui.cpp:3759 src/main.cpp:541
-msgid "Cycle through available audio streams"
-msgstr "Превключване между наличните аудио потоци"
-
-#: src/gui.cpp:3760 src/main.cpp:542
-msgid "Cycle through available subtitle streams"
-msgstr "Превключване между наличните субтитри"
-
-#: src/gui.cpp:3761 src/main.cpp:543
-msgid "Adjust contrast"
-msgstr "Настройка на контраста"
-
-#: src/gui.cpp:3762 src/main.cpp:544
-msgid "Adjust brightness"
-msgstr "Настройка на яркостта"
-
-#: src/gui.cpp:3763 src/main.cpp:545
-msgid "Adjust hue"
-msgstr "Настройка на оттенъка"
-
-#: src/gui.cpp:3764 src/main.cpp:546
-msgid "Adjust saturation"
-msgstr "Настройка на наситеността"
-
-#: src/gui.cpp:3765 src/main.cpp:547
-msgid "Adjust parallax"
-msgstr "Настройка на паралакса"
-
-#: src/gui.cpp:3766 src/main.cpp:548
-msgid "Adjust ghostbusting"
-msgstr "Настройка на подтискането на смесване между изгледите"
-
-#: src/gui.cpp:3767 src/main.cpp:549
-msgid "Adjust zoom for wide videos"
-msgstr "Настройка на увеличението за широко видео"
-
-#: src/gui.cpp:3768 src/main.cpp:550
-msgid "Adjust audio volume"
-msgstr "Настройка на нивото на звука"
-
-#: src/gui.cpp:3769 src/main.cpp:551
-msgid "Toggle audio mute"
-msgstr "Заглушаване на звука"
-
-#: src/gui.cpp:3770 src/main.cpp:552
-msgid "Step a single video frame forward"
-msgstr "Преминаване един кадър напред"
-
-#: src/gui.cpp:3771 src/main.cpp:553
-msgid "left, right"
-msgstr "ляво, дясно"
-
-#: src/gui.cpp:3771 src/main.cpp:553
-msgid "Seek 10 seconds backward / forward"
-msgstr "Преминаване 10 секунди назад / напред"
-
-#: src/gui.cpp:3772 src/main.cpp:554
-msgid "down, up"
-msgstr "надолу, нагоре"
-
-#: src/gui.cpp:3772 src/main.cpp:554
-msgid "Seek 1 minute backward / forward"
-msgstr "Преминаване 1 минута назад / напред"
-
-#: src/gui.cpp:3773 src/main.cpp:555
-msgid "page down, page up"
-msgstr "страница надолу, страница нагоре"
-
-#: src/gui.cpp:3773 src/main.cpp:555
-msgid "Seek 10 minutes backward / forward"
-msgstr "Преминаване 10 минути назад / напред"
-
-#: src/gui.cpp:3774 src/main.cpp:557
-msgid "Media keys"
-msgstr "Мултимедийни клавиши"
-
-#: src/gui.cpp:3774 src/main.cpp:557
-msgid "Media keys should work as expected"
-msgstr "Мултимедийните клавиши трябва да работят нормално"
-
-#: src/gui.cpp:3790
-#, c-format
-msgid "About %s"
-msgstr "Относно %s"
-
-#: src/gui.cpp:3796
-#, c-format
-msgid "The %s 3D video player"
-msgstr "%s 3D видео плеър"
-
-#: src/gui.cpp:3801
-#, c-format
-msgid ""
-"<p>%s version %s.</p><p>Copyright (C) 2014 the Bino developers.</p><p>This "
-"is free software. You may redistribute copies of it under the terms of the "
-"<a href=\"http://www.gnu.org/licenses/gpl.html\">GNU General Public License</"
-"a>. There is NO WARRANTY, to the extent permitted by law.</p><p>See <a href="
-"\"%s\">%s</a> for more information on this software.</p>"
-msgstr ""
-"<p>%s версия %s.</p><p>Всички права запазени (C) 2014 от разработчиците на "
-"Bino.</p><p>Тази програма е свободен софтуер. Може да разпространявате нейни "
-"копия според условията на <a href=\"http://www.gnu.org/licenses/gpl.html"
-"\">GNU General Public License</a>. Програмата идва без НИКАКВА ГАРАНЦИЯ, "
-"доколкото това е позволено от закона.</p><p>Вижте <a href=\"%s\">%s</a> за "
-"повече информация.</p>"
-
-#: src/gui.cpp:3813 src/main.cpp:419
-msgid "Platform:"
-msgstr "Платформа:"
-
-#: src/gui.cpp:3814 src/main.cpp:421
-msgid "Libraries used:"
-msgstr "Използвани библиотеки:"
-
-#: src/gui.cpp:3836
-msgid "About"
-msgstr "Относно"
-
-#: src/gui.cpp:3837
-msgid "Libraries"
-msgstr "Библиотеки"
-
-#: src/gui.cpp:3838
-msgid "Team"
-msgstr "Екип"
-
-#: src/gui.cpp:3839
-msgid "License"
-msgstr "Лиценз"
-
 #: src/lib_versions.cpp:183 src/lib_versions.cpp:195
 msgid "not used"
 msgstr "не се използва"
@@ -1311,7 +281,8 @@ msgid "%s version %s"
 msgstr "%s версия %s"
 
 #: src/main.cpp:415
-msgid "Copyright (C) 2014 the Bino developers."
+#, fuzzy
+msgid "Copyright (C) 2016 the Bino developers."
 msgstr "Всички права запазени (C) 2014 от разработчиците на Bino."
 
 #: src/main.cpp:416
@@ -1323,6 +294,14 @@ msgstr ""
 "Тази програма е свободен софтуер. Може да разпространявате нейни копия "
 "според условията на GNU General Public License. Програмата идва без НИКАКВА "
 "ГАРАНЦИЯ, доколкото това е позволено от закона."
+
+#: src/main.cpp:419
+msgid "Platform:"
+msgstr "Платформа:"
+
+#: src/main.cpp:421
+msgid "Libraries used:"
+msgstr "Използвани библиотеки:"
 
 #. TRANSLATORS: This is the --help text. Please keep the line length limited.
 #. * The --help output should look good with a line width of 80 characters.
@@ -1423,9 +402,153 @@ msgstr "Избор на поток на субтитрите (1-n, зависи 
 msgid "Select input type (default autodetect):"
 msgstr "Избор на типа на входа (по подразбиране се засича автоматично)"
 
+#: src/main.cpp:459
+msgid "2D"
+msgstr "2D"
+
+#: src/main.cpp:460
+msgid "Separate streams, left first"
+msgstr "Отделни потоци, първо левия"
+
+#: src/main.cpp:461
+msgid "Separate streams, right first"
+msgstr "Отделни потоци, първо десния"
+
+#: src/main.cpp:462
+msgid "Alternating, left first"
+msgstr "Редуващи се, първо лява половина"
+
+#: src/main.cpp:463
+msgid "Alternating, right first"
+msgstr "Редуващи се, първо дясна половина"
+
+#: src/main.cpp:464 src/main.cpp:479
+msgid "Top/bottom"
+msgstr "Горе/Долу"
+
+#: src/main.cpp:465 src/main.cpp:480
+msgid "Top/bottom, half height"
+msgstr "Горе/Долу, половин височина"
+
+#: src/main.cpp:466
+msgid "Bottom/top"
+msgstr "Долу/Горе"
+
+#: src/main.cpp:467
+msgid "Bottom/top, half height"
+msgstr "Долу/Горе, половин височина"
+
+#: src/main.cpp:468 src/main.cpp:481
+msgid "Left/right"
+msgstr "Ляво/Дясно"
+
+#: src/main.cpp:469 src/main.cpp:482
+msgid "Left/right, half width"
+msgstr "Ляво/Дясно, половин ширина"
+
+#: src/main.cpp:470
+msgid "Right/left"
+msgstr "Дясно/Ляво"
+
+#: src/main.cpp:471
+msgid "Right/left, half width"
+msgstr "Дясно/Ляво, половин ширина"
+
+#: src/main.cpp:472 src/main.cpp:483
+msgid "Even/odd rows"
+msgstr "Четни/Нечетни редове"
+
+#: src/main.cpp:473
+msgid "Odd/even rows"
+msgstr "Нечетни/Четни редове"
+
 #: src/main.cpp:474
 msgid "Select output type:"
 msgstr "Избор на типа на изхода:"
+
+#: src/main.cpp:475
+msgid "OpenGL stereo"
+msgstr "OpenGL стерео"
+
+#: src/main.cpp:476
+msgid "Left/right alternating"
+msgstr "Редуващи се, Лява/Дясна"
+
+#: src/main.cpp:477
+msgid "Left view"
+msgstr "Лява половина"
+
+#: src/main.cpp:478
+msgid "Right view"
+msgstr "Дясна половина"
+
+#: src/main.cpp:484
+msgid "Even/odd columns"
+msgstr "Четни/Нечетни колони"
+
+#: src/main.cpp:485
+msgid "Checkerboard pattern"
+msgstr "Шахматно"
+
+#: src/main.cpp:486
+msgid "HDMI frame packing mode"
+msgstr "HDMI пакетиране на кадри"
+
+#: src/main.cpp:487
+msgid "Red/cyan glasses, monochrome"
+msgstr "Червени/Циан очила, монохром"
+
+#: src/main.cpp:488
+msgid "Red/cyan glasses, half color"
+msgstr "Червени/Циан очила, половин цветност"
+
+#: src/main.cpp:489
+msgid "Red/cyan glasses, full color"
+msgstr "Червени/Циан очила, пълни цветове"
+
+#: src/main.cpp:490
+msgid "Red/cyan glasses, Dubois"
+msgstr "Червени/Циан очила, Дюбоа"
+
+#: src/main.cpp:491
+msgid "Green/magenta glasses, monochrome"
+msgstr "Зелено/Пурпурни очила, монохром"
+
+#: src/main.cpp:492
+msgid "Green/magenta glasses, half color"
+msgstr "Зелено/Пурпурни очила, половин цветност"
+
+#: src/main.cpp:493
+msgid "Green/magenta glasses, full color"
+msgstr "Зелено/Пурпурни очила, пълни цветове"
+
+#: src/main.cpp:494
+msgid "Green/magenta glasses, Dubois"
+msgstr "Зелено/Пурпурни очила, Дюбоа"
+
+#: src/main.cpp:495
+msgid "Amber/blue glasses, monochrome"
+msgstr "Кехлибар/Сини очила, монохром"
+
+#: src/main.cpp:496
+msgid "Amber/blue glasses, half color"
+msgstr "Кехлибар/Сини очила, половин цветност"
+
+#: src/main.cpp:497
+msgid "Amber/blue glasses, full color"
+msgstr "Кехлибар/Сини очила, пълни цветове"
+
+#: src/main.cpp:498
+msgid "Amber/blue glasses, Dubois"
+msgstr "Кехлибар/Сини очила, Дюбоа"
+
+#: src/main.cpp:499
+msgid "Red/green glasses, monochrome"
+msgstr "Червени/Зелени очила, монохромно"
+
+#: src/main.cpp:500
+msgid "Red/blue glasses, monochrome"
+msgstr "Червени/Сини очила, монохромно"
 
 #: src/main.cpp:501
 msgid "Multi-display via Equalizer (2D setup)"
@@ -1556,12 +679,112 @@ msgid "Interactive control:"
 msgstr "Интерактивен контрол:"
 
 #: src/main.cpp:534
+msgid "ESC"
+msgstr "ESC"
+
+#: src/main.cpp:534
 msgid "Leave fullscreen mode, or quit"
 msgstr "Напускане на пълноекранния режим или изход"
 
 #: src/main.cpp:535
 msgid "Quit"
 msgstr "Изход"
+
+#: src/main.cpp:536
+msgid "SPACE"
+msgstr "SPACE"
+
+#: src/main.cpp:536
+msgid "Pause / unpause"
+msgstr "Пауза / Пускане"
+
+#: src/main.cpp:537
+msgid "Toggle fullscreen"
+msgstr "Превключване на пълен екран"
+
+#: src/main.cpp:538
+msgid "Center window"
+msgstr "Центриране на прозореца"
+
+#: src/main.cpp:539
+msgid "Swap left/right eye"
+msgstr "Размяна ляво/дясно"
+
+#: src/main.cpp:540
+msgid "Cycle through available video streams"
+msgstr "Превключване между наличните видео потоци"
+
+#: src/main.cpp:541
+msgid "Cycle through available audio streams"
+msgstr "Превключване между наличните аудио потоци"
+
+#: src/main.cpp:542
+msgid "Cycle through available subtitle streams"
+msgstr "Превключване между наличните субтитри"
+
+#: src/main.cpp:543
+msgid "Adjust contrast"
+msgstr "Настройка на контраста"
+
+#: src/main.cpp:544
+msgid "Adjust brightness"
+msgstr "Настройка на яркостта"
+
+#: src/main.cpp:545
+msgid "Adjust hue"
+msgstr "Настройка на оттенъка"
+
+#: src/main.cpp:546
+msgid "Adjust saturation"
+msgstr "Настройка на наситеността"
+
+#: src/main.cpp:547
+msgid "Adjust parallax"
+msgstr "Настройка на паралакса"
+
+#: src/main.cpp:548
+msgid "Adjust ghostbusting"
+msgstr "Настройка на подтискането на смесване между изгледите"
+
+#: src/main.cpp:549
+msgid "Adjust zoom for wide videos"
+msgstr "Настройка на увеличението за широко видео"
+
+#: src/main.cpp:550
+msgid "Adjust audio volume"
+msgstr "Настройка на нивото на звука"
+
+#: src/main.cpp:551
+msgid "Toggle audio mute"
+msgstr "Заглушаване на звука"
+
+#: src/main.cpp:552
+msgid "Step a single video frame forward"
+msgstr "Преминаване един кадър напред"
+
+#: src/main.cpp:553
+msgid "left, right"
+msgstr "ляво, дясно"
+
+#: src/main.cpp:553
+msgid "Seek 10 seconds backward / forward"
+msgstr "Преминаване 10 секунди назад / напред"
+
+#: src/main.cpp:554
+msgid "down, up"
+msgstr "надолу, нагоре"
+
+#: src/main.cpp:554
+msgid "Seek 1 minute backward / forward"
+msgstr "Преминаване 1 минута назад / напред"
+
+#: src/main.cpp:555
+msgid "page down, page up"
+msgstr "страница надолу, страница нагоре"
+
+#: src/main.cpp:555
+msgid "Seek 10 minutes backward / forward"
+msgstr "Преминаване 10 минути назад / напред"
 
 #: src/main.cpp:556
 msgid "Mouse click"
@@ -1570,6 +793,14 @@ msgstr "Щракане с мишката"
 #: src/main.cpp:556
 msgid "Seek according to horizontal click position"
 msgstr "Превъртане според хоризонталната позиция на щракването"
+
+#: src/main.cpp:557
+msgid "Media keys"
+msgstr "Мултимедийни клавиши"
+
+#: src/main.cpp:557
+msgid "Media keys should work as expected"
+msgstr "Мултимедийните клавиши трябва да работят нормално"
 
 #: src/main.cpp:626
 msgid "No audio devices known."
@@ -1599,6 +830,10 @@ msgstr "%dx%d, %.3g:1"
 #, c-format
 msgid "%s, %d ch., %g kHz, %d bit"
 msgstr "%s, %d канал(а)., %g kHz, %d бита"
+
+#: src/media_input.cpp:276
+msgid "Input:"
+msgstr "Вход:"
 
 #: src/media_input.cpp:281
 #, c-format
@@ -1657,6 +892,14 @@ msgstr ""
 #, c-format
 msgid "No support available for %s device."
 msgstr "Няма поддръжка за устройство %s."
+
+#: src/media_object.cpp:831
+msgid "Firewire"
+msgstr "Firewire"
+
+#: src/media_object.cpp:832
+msgid "X11"
+msgstr "X11"
 
 #: src/media_object.cpp:833
 msgid "default"
@@ -1864,6 +1107,12 @@ msgstr "OpenGL program '%s': свързването се провали."
 msgid "Cannot create a PBO buffer."
 msgstr "Не може да се създаде PBO буфер."
 
+#: src/video_output_qt.cpp:291 src/video_output_qt.cpp:534
+#: src/video_output_qt.cpp:731 src/video_output_qt.cpp:743
+#: src/video_output_qt.cpp:764
+msgid "Error"
+msgstr "Грешка"
+
 #: src/video_output_qt.cpp:636
 #, c-format
 msgid "Cannot initialize GLEW: %s"
@@ -1896,6 +1145,574 @@ msgstr "Предпазителя на екрана не може да бъде �
 #: src/video_output_qt.cpp:877
 msgid "Cannot resume screensaver."
 msgstr "Предпазителя на екрана не може да бъде активиран"
+
+#~ msgid "Video:"
+#~ msgstr "Видео:"
+
+#~ msgid "<p>Select the video stream.</p>"
+#~ msgstr "<p>Избор на видео поток.</p>"
+
+#~ msgid "Audio:"
+#~ msgstr "Аудио:"
+
+#~ msgid "<p>Select the audio stream.</p>"
+#~ msgstr "<p>Избор на аудио поток.</p>"
+
+#~ msgid "Subtitle:"
+#~ msgstr "Субтитри:"
+
+#~ msgid "<p>Select the subtitle stream.</p>"
+#~ msgstr "<p>Избор на субтитри.</p>"
+
+#~ msgid "<p>Set the 3D layout of the video stream.</p>"
+#~ msgstr "<p>Избор на 3D разположение на видеото.</p>"
+
+#~ msgid "Output:"
+#~ msgstr "Изход:"
+
+#~ msgid "<p>Set the 3D output type for your display.</p>"
+#~ msgstr "<p>Избор на 3D типа на дисплея.</p>"
+
+#~ msgid "Swap left/right"
+#~ msgstr "Размяна на ляво/дясно"
+
+#~ msgid ""
+#~ "<p>Swap the left and right view. Use this if the 3D effect seems wrong.</"
+#~ "p>"
+#~ msgstr "<p>Размяна на левия и десния изглед.</p>"
+
+#~ msgid "Off"
+#~ msgstr "Изключено"
+
+#~ msgid ""
+#~ "<p>This slider shows the progress during video playback, and can be used "
+#~ "to seek in the video.</p>"
+#~ msgstr ""
+#~ "<p>Този плъзгач показва докъде е стигнало възпроизвеждането, и може да се "
+#~ "използва за превъртане.</p>"
+
+#~ msgid "<p>Elapsed / total time.</p>"
+#~ msgstr "<p>Изминало / Общо време.</p>"
+
+#~ msgid "<p>Toggle audio mute.</p>"
+#~ msgstr "<p>Заглушаване на звука.</p>"
+
+#~ msgid "<p>Adjust audio volume.</p>"
+#~ msgstr "<p>Задаване нивото на звука.</p>"
+
+#~ msgid "<p>Play.</p>"
+#~ msgstr "<p>Изпълняване.</p>"
+
+#~ msgid "<p>Pause.</p>"
+#~ msgstr "<p>Пауза.</p>"
+
+#~ msgid "<p>Stop.</p>"
+#~ msgstr "<p>Стоп.</p>"
+
+#~ msgid "<p>Toggle loop mode.</p>"
+#~ msgstr "<p>(Де)Активиране на повторение.</p>"
+
+#~ msgid ""
+#~ "<p>Switch to fullscreen mode. You can leave fullscreen mode by pressing "
+#~ "the f key.</p>"
+#~ msgstr ""
+#~ "<p>Превключване на пълноекранен режим. Можете да го напуснете чрез "
+#~ "натискане на клавиш f.</p>"
+
+#~ msgid "<p>Center the video area on your screen.</p>"
+#~ msgstr "<p>Центриране на видеото в екрана.</p>"
+
+#~ msgid "<p>Seek backward 10 minutes.</p>"
+#~ msgstr "<p>Назад 10 минути.</p>"
+
+#~ msgid "<p>Seek backward 1 minute.</p>"
+#~ msgstr "<p>Назад 1 минута.</p>"
+
+#~ msgid "<p>Seek backward 10 seconds.</p>"
+#~ msgstr "<p>Назад 10 секунди.</p>"
+
+#~ msgid "<p>Seek forward 10 seconds.</p>"
+#~ msgstr "<p>Напред 10 секунди.</p>"
+
+#~ msgid "<p>Seek forward 1 minute.</p>"
+#~ msgstr "<p>Напред 1 минута.</p>"
+
+#~ msgid "<p>Seek forward 10 minutes.</p>"
+#~ msgstr "<p>Напред 10 минути.</p>"
+
+#~ msgid "Fullscreen/Multiscreen Settings"
+#~ msgstr "Настройки на пълен екран/много екрани"
+
+#~ msgid "Configure fullscreen mode:"
+#~ msgstr "Конфигуриране на пълноекранния режим:"
+
+#~ msgid "<p>Select the screens to use in fullscreen mode.</p>"
+#~ msgstr "<p>Избор на екрани, които ще се използват в пълноекранен режим.</p>"
+
+#~ msgid "Single screen:"
+#~ msgstr "Единичен екран:"
+
+#~ msgid "<p>Use a single screen for fullscreen mode.</p>"
+#~ msgstr "<p>Използване на един екран за пълноекранния режим.</p>"
+
+#~ msgid "Primary screen"
+#~ msgstr "Основен екран"
+
+#~ msgid "Screen %d"
+#~ msgstr "Екран %d"
+
+#~ msgid "Dual screen:"
+#~ msgstr "Два екрана:"
+
+#~ msgid "<p>Use two screens for fullscreen mode.</p>"
+#~ msgstr "<p>Използване на два екрана за пълноекранния режим.</p>"
+
+#~ msgid "Multi screen:"
+#~ msgstr "Много екрани:"
+
+#~ msgid "<p>Use multiple screens for fullscreen mode.</p>"
+#~ msgstr "<p>Използване на множество екрани за пълноекранния режим.</p>"
+
+#~ msgid "<p>Comma-separated list of screens to use for fullscreen mode.</p>"
+#~ msgstr ""
+#~ "<p>Отделени със запетайка екрани, които да се използват в пълноекранния "
+#~ "режим.</p>"
+
+#~ msgid "When in fullscreen mode,"
+#~ msgstr "Когато е пълноекранен режим,"
+
+#~ msgid "<p>Set special left/right view handling for fullscreen mode.</p>"
+#~ msgstr ""
+#~ "<p>Настройка на специален ляв/десен изглед при пълноекранен режим.</p>"
+
+#~ msgid "flip left view vertically."
+#~ msgstr "обръщане на левия изглед вертикално."
+
+#~ msgid "flop left view horizontally."
+#~ msgstr "обръщане на левия изглед хоризонтално."
+
+#~ msgid "flip right view vertically."
+#~ msgstr "обръщане на десния изглед вертикално."
+
+#~ msgid "flop right view horizontally."
+#~ msgstr "обръщане на десния изглед хоризонтално."
+
+#~ msgid "use DLP(R) 3-D Ready Sync"
+#~ msgstr "използване на DLP(R) 3-D Ready синхронизация"
+
+#~ msgid "<p>Use DLP&reg; 3-D Ready Sync for supported output modes.</p>"
+#~ msgstr ""
+#~ "<p>използване на DLP&reg; 3-D Ready синхронизация за поддържаните изходни "
+#~ "режими.</p>"
+
+#~ msgid "inhibit the screensaver"
+#~ msgstr "подтискане на предпазителя на екрана"
+
+#~ msgid "<p>Inhibit the screensaver during fullscreen playback.</p>"
+#~ msgstr ""
+#~ "<p>Подтиска задействането на екранния предпазител по време на "
+#~ "пълноекранно възпроизвеждане.</p>"
+
+#~ msgid "OK"
+#~ msgstr "Добре"
+
+#~ msgid "Display Color Adjustments"
+#~ msgstr "Настройки на цветовете"
+
+#~ msgid "Contrast:"
+#~ msgstr "Контраст:"
+
+#~ msgid "Brightness:"
+#~ msgstr "Яркост:"
+
+#~ msgid "Hue:"
+#~ msgstr "Оттенък:"
+
+#~ msgid "Saturation:"
+#~ msgstr "Наситеност:"
+
+#~ msgid "Display Crosstalk Calibration"
+#~ msgstr "Калибриране на Crosstalk"
+
+#~ msgid ""
+#~ "<p>Please read the manual to find out<br>how to measure the crosstalk "
+#~ "levels<br>of your display.</p>"
+#~ msgstr ""
+#~ "<p>Моля прочетете ръководството<br>за да разберете как да откриете нивата "
+#~ "на crosstalk<br>за вашия дисплей.</p>"
+
+#~ msgid "Red:"
+#~ msgstr "Червено:"
+
+#~ msgid "Green:"
+#~ msgstr "Зелено:"
+
+#~ msgid "Blue:"
+#~ msgstr "Синьо:"
+
+#~ msgid "Rendering Quality Adjustments"
+#~ msgstr "Настройки на качеството на рендериране"
+
+#~ msgid "Rendering Quality:"
+#~ msgstr "Качество на рендериране:"
+
+#~ msgid "Zoom for wide videos"
+#~ msgstr "Увеличаване при широко видео"
+
+#~ msgid ""
+#~ "<p>Set zoom level for videos that<br>are wider than the screen:<br>0: "
+#~ "Show full video width.<br>1: Use full screen height.</p>"
+#~ msgstr ""
+#~ "<p>Задава нивото на увеличаване когато<br>видеото е по-широко от екрана:"
+#~ "<br>0: показване на пълната ширина на видеото.<br>1: използване на "
+#~ "пълноекранната височина.</p>"
+
+#~ msgid "Zoom:"
+#~ msgstr "Увеличаване:"
+
+#~ msgid "<p>Set the zoom level for videos that are wider than the screen.</p>"
+#~ msgstr ""
+#~ "<p>Задава нивото на увеличаване когато видеото е по-широко от екрана.</p>"
+
+#~ msgid "Audio Settings"
+#~ msgstr "Звукови настройки"
+
+#~ msgid "Audio device:"
+#~ msgstr "Звуково устройство:"
+
+#~ msgid ""
+#~ "<p>Select the audio device.<br>This will take effect for the next started "
+#~ "video.</p>"
+#~ msgstr ""
+#~ "<p>Избор на звуково устройство.<br>Ще влезе в ефект при следващото "
+#~ "стартиране на видеото.</p>"
+
+#~ msgid "Default"
+#~ msgstr "По подразбиране"
+
+#~ msgid "Audio delay (ms):"
+#~ msgstr "Закъснение на звука (мсек)"
+
+#~ msgid ""
+#~ "<p>Set an audio delay, in milliseconds.<br>This is useful if audio and "
+#~ "video are not in sync.</p>"
+#~ msgstr ""
+#~ "<p>Настройва закъснението на звука.<br>Използва се когато звука и видеото "
+#~ "не са синхронизирани.</p>"
+
+#~ msgid "Subtitle Settings"
+#~ msgstr "Настройки на субтитрите"
+
+#~ msgid ""
+#~ "<p>These settings apply only to soft subtitles, not to bitmaps.<br>Some "
+#~ "changes require a restart of the video to take effect.</p>"
+#~ msgstr ""
+#~ "<p>Тези настройки се отнасят само за текстови субтитри.<br>Някои от "
+#~ "настройките изискват рестартиране на видеото за да влязат в сила.</p>"
+
+#~ msgid "Encoding:"
+#~ msgstr "Кодировка:"
+
+#~ msgid "<p>Set the subtitle character set encoding.</p>"
+#~ msgstr "<p>Кодировка на субтитрите.</p>"
+
+#~ msgid "Override font:"
+#~ msgstr "Шрифт:"
+
+#~ msgid "<p>Override the subtitle font family.</p>"
+#~ msgstr "<p>Шрифт на субтитрите.</p>"
+
+#~ msgid "Override font size:"
+#~ msgstr "Размер на шрифта:"
+
+#~ msgid "<p>Override the subtitle font size.</p>"
+#~ msgstr "<p>Размер на шрифта на субтитрите.</p>"
+
+#~ msgid "Override scale factor:"
+#~ msgstr "Коефициент на уголемяване:"
+
+#~ msgid "<p>Override the subtitle scale factor.</p>"
+#~ msgstr "<p>Коефициент на уголемяване на субтитрите.</p>"
+
+#~ msgid "Override color:"
+#~ msgstr "Цвят на шрифта:"
+
+#~ msgid "<p>Override the subtitle color.</p>"
+#~ msgstr "<p>Цвят на субтитрите.</p>"
+
+#~ msgid "Override shadow:"
+#~ msgstr "Сянка на шрифта:"
+
+#~ msgid "<p>Override the subtitle shadow.</p>"
+#~ msgstr "<p>Сянка на субтитрите.</p>"
+
+#~ msgid "On"
+#~ msgstr "Включване"
+
+#~ msgid "Video Settings"
+#~ msgstr "Видео настройки"
+
+#~ msgid "Crop to aspect ratio:"
+#~ msgstr "Изрязване до съотношение:"
+
+#~ msgid ""
+#~ "<p>Set the real aspect ratio of the video, so that borders can be cropped."
+#~ "</p>"
+#~ msgstr ""
+#~ "<p>Задаване на реалното съотношение на видеото, така че рамките да могат "
+#~ "да бъдат изрязани.</p>"
+
+#~ msgid "Do not crop"
+#~ msgstr "Без изрязване"
+
+#~ msgid "Parallax:"
+#~ msgstr "Паралакс:"
+
+#~ msgid ""
+#~ "<p>Adjust parallax, from -1 to +1. This changes the separation of left "
+#~ "and right view, and thus the perceived distance of the scene.</p>"
+#~ msgstr ""
+#~ "<p>Настройка на паралакса, от -1 до +1. Тази настройка определя "
+#~ "раздалечаването между левия и десния изглед, т.е. дълбочината на сцената."
+#~ "</p>"
+
+#~ msgid "Subtitle parallax:"
+#~ msgstr "Паралакс на субтитрите:"
+
+#~ msgid ""
+#~ "<p>Adjust subtitle parallax, from -1 to +1. This changes the perceived "
+#~ "distance of the subtitles.</p>"
+#~ msgstr ""
+#~ "<p>Настройка на паралакса на субтитрите, от -1 до +1. Тази настройка "
+#~ "определя дълбочината на субтитрите.</p>"
+
+#~ msgid "Ghostbusting:"
+#~ msgstr "Подтискане на смесването:"
+
+#~ msgid ""
+#~ "<p>Set the amount of crosstalk ghostbusting, from 0 to 1. You need to set "
+#~ "the crosstalk levels of your display first. Note that crosstalk "
+#~ "ghostbusting does not work with anaglyph glasses.</p>"
+#~ msgstr ""
+#~ "<p>Задава нивото на подтискане на смесването между левия и десния изглед, "
+#~ "от 0 до 1. Трябва да настроите първо нивата на подтискане на дисплея. "
+#~ "Тази опция не работи с анаглифни очила.</p>"
+
+#~ msgid "SDI Output Settings"
+#~ msgstr "Настройки на SDI изход"
+
+#~ msgid "SDI Output Format:"
+#~ msgstr "SDI изходен формат:"
+
+#~ msgid "<p>Select output format used for SDI output.</p>"
+#~ msgstr "<p>Избор на формат за SDI изхода.</p>"
+
+#~ msgid "Left stereo mode:"
+#~ msgstr "Ляв стерео режим:"
+
+#~ msgid "<p>Select stereo mode used for left SDI output.</p>"
+#~ msgstr "<p>Избор на стерео режим за левия SDI изход.</p>"
+
+#~ msgid "Right stereo mode:"
+#~ msgstr "Десен стерео режим:"
+
+#~ msgid "<p>Select stereo mode used for right SDI output.</p>"
+#~ msgstr "<p>Избор на стерео режим за десния SDI изход.</p>"
+
+#~ msgid "Open device(s)"
+#~ msgstr "Отваряне на устройство"
+
+#~ msgid "<p>Choose a device type.</p>"
+#~ msgstr "<p>Избор на типа на устройството.</p>"
+
+#~ msgid "<p>Choose a device.</p>"
+#~ msgstr "<p>Избор на устройство.</p>"
+
+#~ msgid "<p>Set the X11 device string. Refer to the manual for details.</p>"
+#~ msgstr ""
+#~ "<p>Задаване на X11 низ на устройството. Вижте ръководството за повече "
+#~ "информация.</p>"
+
+#~ msgid "First device:"
+#~ msgstr "Първо устройство:"
+
+#~ msgid "Second device:"
+#~ msgstr "Второ устройство:"
+
+#~ msgid "Request frame size"
+#~ msgstr "Изискване на размер на кадъра"
+
+#~ msgid ""
+#~ "<p>Request a specific frame size from the device, e.g. 640x480. The "
+#~ "device must support this frame size. Some devices require a frame size to "
+#~ "be selected.</p>"
+#~ msgstr ""
+#~ "<p>Изискване на специфичен размер на кадъра от устройството, например "
+#~ "640x480. Устройството трябва да поддържа този размер. Някои устройства "
+#~ "изискват размера на кадъра да бъде зададен.</p>"
+
+#~ msgid "Request frame rate"
+#~ msgstr "Изискване на кадрова честота"
+
+#~ msgid ""
+#~ "<p>Request a specific frame rate from the device, e.g. 25/1. The device "
+#~ "must support this frame rate. Some devices require a frame rate to be "
+#~ "selected.</p>"
+#~ msgstr ""
+#~ "<p>Изискване на специфична кадрова честота от устройството, например "
+#~ "25/1. Устройството трябва да поддържа тази честота. Някои устройства "
+#~ "изискват честотата да бъде зададена.</p>"
+
+#~ msgid "Request MJPEG format"
+#~ msgstr "Изискване на MJPEG формат"
+
+#~ msgid ""
+#~ "<p>Request MJPEG data from the input device. The device may ignore this "
+#~ "request.</p>"
+#~ msgstr ""
+#~ "<p>Изискване на MJPEG данни от устройството. Някои устройства може да "
+#~ "игнорират тази заявка.</p>"
+
+#~ msgid "Cancel"
+#~ msgstr "Отказ"
+
+#~ msgid "&File"
+#~ msgstr "Файл"
+
+#~ msgid "&Open file(s)..."
+#~ msgstr "Отваряне на файл(ове)"
+
+#~ msgid "Open &URL(s)..."
+#~ msgstr "Отваряне на адрес(и)"
+
+#~ msgid "Open &device(s)..."
+#~ msgstr "Отваряне на устройство"
+
+#~ msgid "&Clear recent files"
+#~ msgstr "Изчистване на историята"
+
+#~ msgid "&Quit"
+#~ msgstr "Изход"
+
+#~ msgid "&Preferences"
+#~ msgstr "Предпочитания"
+
+#~ msgid "&Fullscreen Settings..."
+#~ msgstr "Настройки за пълен екран"
+
+#~ msgid "Display &Color Adjustments..."
+#~ msgstr "Настройки на цветовете"
+
+#~ msgid "Display Cross&talk Calibration..."
+#~ msgstr "Калибриране на Crosstalk"
+
+#~ msgid "Quality Adjustments..."
+#~ msgstr "Настройки на качеството"
+
+#~ msgid "&Zoom for wide videos..."
+#~ msgstr "Увеличаване при широко видео..."
+
+#~ msgid "&Audio Settings..."
+#~ msgstr "Настройки на звука"
+
+#~ msgid "&Subtitle Settings..."
+#~ msgstr "Настройки на субтитрите"
+
+#~ msgid "Current &Video Settings..."
+#~ msgstr "Настройки на текущото видео"
+
+#~ msgid "SDI &Output Settings..."
+#~ msgstr "Настройки на SDI изход..."
+
+#~ msgid "&Help"
+#~ msgstr "Помощ"
+
+#~ msgid "&Manual..."
+#~ msgstr "Ръководство"
+
+#~ msgid "&Website..."
+#~ msgstr "Интернет страница"
+
+#~ msgid "&Keyboard Shortcuts"
+#~ msgstr "Бързи клавиши"
+
+#~ msgid "&About"
+#~ msgstr "Относно"
+
+#~ msgid "Tip"
+#~ msgstr "Съвет"
+
+#~ msgid ""
+#~ "<p>You can select and open multiple files at once.</p><p>This is useful "
+#~ "for example if you have extra subtitle files,<br>or if left and right "
+#~ "view are stored in separate files.</p>"
+#~ msgstr ""
+#~ "<p>Може да избирате и да отваряте множество файлове.</p><p>Това е полезно "
+#~ "например когато имате субтитри в отделен файл,<br>или левия и десния "
+#~ "канал са в отделни файлове</p>"
+
+#~ msgid "Do not show this message again."
+#~ msgstr "Да не се показва повече."
+
+#~ msgid "Open files"
+#~ msgstr "Отваряне на файлове"
+
+#~ msgid "Open URL(s)"
+#~ msgstr "Отваряне на адрес(и)"
+
+#~ msgid "URL(s):"
+#~ msgstr "Адрес(и)"
+
+#~ msgid "<p>Enter one or more space separated URLs.</p>"
+#~ msgstr "<p>Въведете един или повече адреси, разделени с интервал.</p>"
+
+#~ msgid "Cannot open manual."
+#~ msgstr "Ръководството не може да бъде отворено."
+
+#~ msgid "Cannot open website."
+#~ msgstr "Интернет страницата не може да бъде отворена."
+
+#~ msgid "Keyboard Shortcuts"
+#~ msgstr "Бързи клавиши"
+
+#~ msgid "Keyboard control:"
+#~ msgstr "Контролиране с клавиатура:"
+
+#~ msgid "Stop"
+#~ msgstr "Спиране"
+
+#~ msgid "About %s"
+#~ msgstr "Относно %s"
+
+#~ msgid "The %s 3D video player"
+#~ msgstr "%s 3D видео плеър"
+
+#~ msgid ""
+#~ "<p>%s version %s.</p><p>Copyright (C) 2014 the Bino developers.</"
+#~ "p><p>This is free software. You may redistribute copies of it under the "
+#~ "terms of the <a href=\"http://www.gnu.org/licenses/gpl.html\">GNU General "
+#~ "Public License</a>. There is NO WARRANTY, to the extent permitted by law."
+#~ "</p><p>See <a href=\"%s\">%s</a> for more information on this software.</"
+#~ "p>"
+#~ msgstr ""
+#~ "<p>%s версия %s.</p><p>Всички права запазени (C) 2014 от разработчиците "
+#~ "на Bino.</p><p>Тази програма е свободен софтуер. Може да разпространявате "
+#~ "нейни копия според условията на <a href=\"http://www.gnu.org/licenses/gpl."
+#~ "html\">GNU General Public License</a>. Програмата идва без НИКАКВА "
+#~ "ГАРАНЦИЯ, доколкото това е позволено от закона.</p><p>Вижте <a href=\"%s"
+#~ "\">%s</a> за повече информация.</p>"
+
+#~ msgid "About"
+#~ msgstr "Относно"
+
+#~ msgid "Libraries"
+#~ msgstr "Библиотеки"
+
+#~ msgid "Team"
+#~ msgstr "Екип"
+
+#~ msgid "License"
+#~ msgstr "Лиценз"
 
 #~ msgid "Need at least OpenGL 2.1."
 #~ msgstr "Изисква се поне OpenGL 2.1"

@@ -21,6 +21,19 @@ bino_SOURCES = \
 	subtitle_renderer.h subtitle_renderer.cpp \
 	audio_output.h audio_output.cpp \
 	player.h player.cpp \
+	mainwindow.h mainwindow.cpp \
+	inoutwidget.h inoutwidget.cpp \
+	controlswidget.h controlswidget.cpp \
+	crosstalkdialog.h crosstalkdialog.cpp \
+	fullscreendialog.h fullscreendialog.cpp \
+	audiodialog.h audiodialog.cpp \
+	opendevicedialog.h opendevicedialog.cpp \
+	qualitydialog.h qualitydialog.cpp \
+	subtitledialog.h subtitledialog.cpp \
+	videodialog.h videodialog.cpp \
+	zoomdialog.h zoomdialog.cpp \
+	colordialog.h colordialog.cpp \
+	preferences.h preferences.cpp \
 	gui.h gui.cpp \
 	lib_versions.h lib_versions.cpp \
 	main.cpp
@@ -110,7 +123,19 @@ qt_resources-rcc.cpp: $(filter %.png,$(EXTRA_DIST)) ../AUTHORS ../COPYING
 nodist_bino_SOURCES = \
 	qt_resources.qrc \
 	qt_resources-rcc.cpp \
-	gui-moc.cpp \
+	colordialog-moc.cpp \
+	inoutwidget-moc.cpp \
+	controlswidget-moc.cpp \
+	crosstalkdialog-moc.cpp \
+	fullscreendialog-moc.cpp \
+	audiodialog-moc.cpp \
+	zoomdialog-moc.cpp \
+	opendevicedialog-moc.cpp \
+	qualitydialog-moc.cpp \
+	videodialog-moc.cpp \
+	subtitledialog-moc.cpp \
+	mainwindow-moc.cpp \
+	preferences-moc.cpp \
 	video_output_qt-moc.cpp \
 	video_output_color.fs.glsl.h \
 	video_output_render.fs.glsl.h
@@ -121,7 +146,7 @@ CLEANFILES = $(BUILT_SOURCES)
 
 DEFS += -DHTMLDIR=\"$(htmldir)\" -DLOCALEDIR=\"$(localedir)\"
 
-AM_CPPFLAGS = -I$(top_srcdir)/src/base \
+AM_CPPFLAGS = \
 	$(libavformat_CFLAGS) $(libavdevice_CFLAGS) $(libswscale_CFLAGS) $(libass_CFLAGS) \
 	$(libopenal_CFLAGS) $(libgl_CFLAGS) $(libglewmx_CFLAGS) $(libqtopengl_CFLAGS)
 

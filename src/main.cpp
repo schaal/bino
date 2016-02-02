@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016
  * Martin Lambers <marlam@marlam.de>
  * Stefan Eilemann <eile@eyescale.ch>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
@@ -44,13 +44,13 @@
 #include <QtGlobal>
 #include <QTextCodec>
 
-#include "gettext.h"
-#define _(string) gettext(string)
+#include "base/dbg.h"
+#include "base/msg.h"
+#include "base/str.h"
+#include "base/opt.h"
 
-#include "dbg.h"
-#include "msg.h"
-#include "str.h"
-#include "opt.h"
+#include "base/gettext.h"
+#define _(string) gettext(string)
 
 #include "dispatch.h"
 #include "audio_output.h"
@@ -165,12 +165,12 @@ static void qt_msg_handler(QtMsgType type, const QMessageLogContext&, const QStr
 }
 
 // Handle a log file that may be set via the --log-file option; see below
-static FILE *logf = NULL;
+static FILE *logfile = NULL;
 static void close_log_file(void)
 {
-    if (logf)
+    if (logfile)
     {
-        (void)std::fclose(logf);
+        (void)std::fclose(logfile);
     }
 }
 
@@ -396,14 +396,14 @@ int main(int argc, char *argv[])
     }
     if (!log_file.value().empty())
     {
-        logf = std::fopen(log_file.value().c_str(), "a");
-        if (!logf)
+        logfile = std::fopen(log_file.value().c_str(), "a");
+        if (!logfile)
         {
             msg::err(_("%s: %s"), log_file.value().c_str(), std::strerror(errno));
             return 1;
         }
         std::atexit(close_log_file);
-        msg::set_file(logf);
+        msg::set_file(logfile);
         msg::set_columns(80);
     }
 
@@ -412,7 +412,7 @@ int main(int argc, char *argv[])
         if (msg::file() == stderr)
             msg::set_file(stdout);
         msg::req(_("%s version %s"), PACKAGE_NAME, VERSION);
-        msg::req(4, _("Copyright (C) 2014 the Bino developers."));
+        msg::req(4, _("Copyright (C) 2016 the Bino developers."));
         msg::req_txt(4, _("This is free software. You may redistribute copies of it "
                     "under the terms of the GNU General Public License. "
                     "There is NO WARRANTY, to the extent permitted by law."));
