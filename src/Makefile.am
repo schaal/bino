@@ -22,6 +22,7 @@ bino_SOURCES = \
 	audio_output.h audio_output.cpp \
 	player.h player.cpp \
 	mainwindow.h mainwindow.cpp \
+	gui_common.h \
 	inoutwidget.h inoutwidget.cpp \
 	controlswidget.h controlswidget.cpp \
 	crosstalkdialog.h crosstalkdialog.cpp \
@@ -160,10 +161,10 @@ AM_CPPFLAGS += $(libEqualizer_CFLAGS)
 bino_LDADD += $(libEqualizer_LIBS)
 endif
 
-if HAVE_LIBLIRCCLIENT
+if HAVE_LIRC
 bino_SOURCES += lirc.h lirc.cpp
-AM_CPPFLAGS += $(liblircclient_CFLAGS)
-bino_LDADD += $(liblircclient_LIBS)
+AM_CPPFLAGS += $(lirc_CFLAGS)
+bino_LDADD += $(lirc_LIBS)
 endif
 
 if W32

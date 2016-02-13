@@ -1,3 +1,24 @@
+commit 1aaa6dc242a0d5c3daaf238b597bc7f105aa9938
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-02-11 20:53:17 +0100
+
+    Add forgotten file gui_common.h
+
+ src/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 2ea5315b4b660c2d80e448474c1a901c32e2e11b
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-02-08 08:49:38 +0100
+
+    Fix detection of LIRC for newer LIRC versions, and adjust library version reporting accordingly.
+
+ configure.ac         | 37 +++++++++++++++++++++----------------
+ src/Makefile.am      |  6 +++---
+ src/lib_versions.cpp | 28 ++++++++++++++--------------
+ src/main.cpp         |  6 +++---
+ 4 files changed, 41 insertions(+), 36 deletions(-)
+
 commit 3bc1b366c15e50b7c26eeea1833045b52d8d6c54
 Author: Martin Lambers <marlam@marlam.de>
 Date:   2016-02-01 19:37:56 +0100

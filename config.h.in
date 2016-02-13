@@ -47,11 +47,11 @@
 /* Have Equalizer? */
 #undef HAVE_LIBEQUALIZER
 
-/* Have liblircclient? */
-#undef HAVE_LIBLIRCCLIENT
-
 /* Have NVIDIA libXNVCtrl for Quadro SDI output? */
 #undef HAVE_LIBXNVCTRL
+
+/* Have lirc? */
+#undef HAVE_LIRC
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
@@ -119,8 +119,8 @@
 /* libass version */
 #undef LIBASS_PKGCONFIG_VERSION
 
-/* liblircclient version */
-#undef LIBLIRCCLIENT_PKGCONFIG_VERSION
+/* lirc version */
+#undef LIRC_PKGCONFIG_VERSION
 
 /* Define to 1 to disable assertions and other debugging checks. */
 #undef NDEBUG
