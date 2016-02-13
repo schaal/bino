@@ -101,9 +101,9 @@ bin_PROGRAMS = bino$(EXEEXT)
 @HAVE_LIBEQUALIZER_TRUE@am__append_1 = player_equalizer.h player_equalizer.cpp
 @HAVE_LIBEQUALIZER_TRUE@am__append_2 = $(libEqualizer_CFLAGS)
 @HAVE_LIBEQUALIZER_TRUE@am__append_3 = $(libEqualizer_LIBS)
-@HAVE_LIBLIRCCLIENT_TRUE@am__append_4 = lirc.h lirc.cpp
-@HAVE_LIBLIRCCLIENT_TRUE@am__append_5 = $(liblircclient_CFLAGS)
-@HAVE_LIBLIRCCLIENT_TRUE@am__append_6 = $(liblircclient_LIBS)
+@HAVE_LIRC_TRUE@am__append_4 = lirc.h lirc.cpp
+@HAVE_LIRC_TRUE@am__append_5 = $(lirc_CFLAGS)
+@HAVE_LIRC_TRUE@am__append_6 = $(lirc_LIBS)
 @W32_TRUE@am__append_7 = logo/bino_logo.ico
 @HAVE_LIBXNVCTRL_TRUE@am__append_8 = NvSDIout.cpp NvSDIout.h NvSDIutils.cpp NvSDIutils.h
 @HAVE_LIBXNVCTRL_TRUE@am__append_9 = $(xnvctrl_CFLAGS)
@@ -131,20 +131,20 @@ am__bino_SOURCES_DIST = media_data.h media_data.cpp media_object.h \
 	color_matrix.cpp video_output.h video_output.cpp \
 	video_output_qt.h video_output_qt.cpp subtitle_renderer.h \
 	subtitle_renderer.cpp audio_output.h audio_output.cpp player.h \
-	player.cpp mainwindow.h mainwindow.cpp inoutwidget.h \
-	inoutwidget.cpp controlswidget.h controlswidget.cpp \
-	crosstalkdialog.h crosstalkdialog.cpp fullscreendialog.h \
-	fullscreendialog.cpp audiodialog.h audiodialog.cpp \
-	opendevicedialog.h opendevicedialog.cpp qualitydialog.h \
-	qualitydialog.cpp subtitledialog.h subtitledialog.cpp \
-	videodialog.h videodialog.cpp zoomdialog.h zoomdialog.cpp \
-	colordialog.h colordialog.cpp preferences.h preferences.cpp \
-	gui.h gui.cpp lib_versions.h lib_versions.cpp main.cpp \
-	player_equalizer.h player_equalizer.cpp lirc.h lirc.cpp \
-	logo/bino_logo.ico NvSDIout.cpp NvSDIout.h NvSDIutils.cpp \
-	NvSDIutils.h
+	player.cpp mainwindow.h mainwindow.cpp gui_common.h \
+	inoutwidget.h inoutwidget.cpp controlswidget.h \
+	controlswidget.cpp crosstalkdialog.h crosstalkdialog.cpp \
+	fullscreendialog.h fullscreendialog.cpp audiodialog.h \
+	audiodialog.cpp opendevicedialog.h opendevicedialog.cpp \
+	qualitydialog.h qualitydialog.cpp subtitledialog.h \
+	subtitledialog.cpp videodialog.h videodialog.cpp zoomdialog.h \
+	zoomdialog.cpp colordialog.h colordialog.cpp preferences.h \
+	preferences.cpp gui.h gui.cpp lib_versions.h lib_versions.cpp \
+	main.cpp player_equalizer.h player_equalizer.cpp lirc.h \
+	lirc.cpp logo/bino_logo.ico NvSDIout.cpp NvSDIout.h \
+	NvSDIutils.cpp NvSDIutils.h
 @HAVE_LIBEQUALIZER_TRUE@am__objects_1 = player_equalizer.$(OBJEXT)
-@HAVE_LIBLIRCCLIENT_TRUE@am__objects_2 = lirc.$(OBJEXT)
+@HAVE_LIRC_TRUE@am__objects_2 = lirc.$(OBJEXT)
 am__dirstamp = $(am__leading_dot)dirstamp
 @W32_TRUE@am__objects_3 = logo/bino_logo.$(OBJEXT)
 @HAVE_LIBXNVCTRL_TRUE@am__objects_4 = NvSDIout.$(OBJEXT) \
@@ -174,7 +174,7 @@ nodist_bino_OBJECTS = qt_resources-rcc.$(OBJEXT) \
 bino_OBJECTS = $(am_bino_OBJECTS) $(nodist_bino_OBJECTS)
 am__DEPENDENCIES_1 =
 @HAVE_LIBEQUALIZER_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-@HAVE_LIBLIRCCLIENT_TRUE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
+@HAVE_LIRC_TRUE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
 @HAVE_LIBXNVCTRL_TRUE@am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
 bino_DEPENDENCIES = $(top_builddir)/src/base/libbase.a \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -456,14 +456,14 @@ libgl_CFLAGS = @libgl_CFLAGS@
 libgl_LIBS = @libgl_LIBS@
 libglewmx_CFLAGS = @libglewmx_CFLAGS@
 libglewmx_LIBS = @libglewmx_LIBS@
-liblircclient_CFLAGS = @liblircclient_CFLAGS@
-liblircclient_LIBS = @liblircclient_LIBS@
 libopenal_CFLAGS = @libopenal_CFLAGS@
 libopenal_LIBS = @libopenal_LIBS@
 libqtopengl_CFLAGS = @libqtopengl_CFLAGS@
 libqtopengl_LIBS = @libqtopengl_LIBS@
 libswscale_CFLAGS = @libswscale_CFLAGS@
 libswscale_LIBS = @libswscale_LIBS@
+lirc_CFLAGS = @lirc_CFLAGS@
+lirc_LIBS = @lirc_LIBS@
 localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
@@ -495,16 +495,16 @@ bino_SOURCES = media_data.h media_data.cpp media_object.h \
 	color_matrix.cpp video_output.h video_output.cpp \
 	video_output_qt.h video_output_qt.cpp subtitle_renderer.h \
 	subtitle_renderer.cpp audio_output.h audio_output.cpp player.h \
-	player.cpp mainwindow.h mainwindow.cpp inoutwidget.h \
-	inoutwidget.cpp controlswidget.h controlswidget.cpp \
-	crosstalkdialog.h crosstalkdialog.cpp fullscreendialog.h \
-	fullscreendialog.cpp audiodialog.h audiodialog.cpp \
-	opendevicedialog.h opendevicedialog.cpp qualitydialog.h \
-	qualitydialog.cpp subtitledialog.h subtitledialog.cpp \
-	videodialog.h videodialog.cpp zoomdialog.h zoomdialog.cpp \
-	colordialog.h colordialog.cpp preferences.h preferences.cpp \
-	gui.h gui.cpp lib_versions.h lib_versions.cpp main.cpp \
-	$(am__append_1) $(am__append_4) $(am__append_7) \
+	player.cpp mainwindow.h mainwindow.cpp gui_common.h \
+	inoutwidget.h inoutwidget.cpp controlswidget.h \
+	controlswidget.cpp crosstalkdialog.h crosstalkdialog.cpp \
+	fullscreendialog.h fullscreendialog.cpp audiodialog.h \
+	audiodialog.cpp opendevicedialog.h opendevicedialog.cpp \
+	qualitydialog.h qualitydialog.cpp subtitledialog.h \
+	subtitledialog.cpp videodialog.h videodialog.cpp zoomdialog.h \
+	zoomdialog.cpp colordialog.h colordialog.cpp preferences.h \
+	preferences.cpp gui.h gui.cpp lib_versions.h lib_versions.cpp \
+	main.cpp $(am__append_1) $(am__append_4) $(am__append_7) \
 	$(am__append_8)
 ICONS_LOCAL_IPE = \
 	icons-local/input-layout-mono.ipe \
