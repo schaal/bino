@@ -18,7 +18,7 @@ Build-Depends: debhelper (>= 9),
                texinfo
 Standards-Version: 3.9.6
 Homepage: http://bino3d.org/
-Vcs-Git: git://github.com/schaal/bino.git
+Vcs-Git: https://github.com/schaal/bino.git
 Vcs-Browser: https://github.com/schaal/bino
 
 Package: bino
