@@ -1,3 +1,16 @@
+bino (1.6.3-1) unstable; urgency=medium
+
+  * Remove bino-dbg package, rely on automatic dbgsym package
+  * Imported Upstream version 1.6.2
+  * Imported Upstream version 1.6.3
+    * fixes compilation with g++-6 (Closes: #811630)
+  * Remove use-fPIC.patch, merged upstream
+  * Always use debian/tmp
+  * Use https url for Vcs-Git
+  * Update standards-version, no changes needed
+
+ -- Daniel Schaal <daniel@schaal.email>  Mon, 15 Feb 2016 05:41:22 +0100
+
 bino (1.6.1-1) unstable; urgency=medium
 
   * Imported Upstream version 1.6.1
