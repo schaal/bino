@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.4\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-02-11 20:55+0100\n"
+"POT-Creation-Date: 2016-11-30 20:32+0100\n"
 "PO-Revision-Date: 2014-09-16 17:16+0800\n"
 "Last-Translator: Frank Hill <hxf.prc@gmail.com>\n"
 "Language-Team: Simplified Chinese\n"
@@ -238,7 +238,7 @@ msgstr "音轨 %d 未找到。"
 msgid "Subtitle stream %d not found."
 msgstr "字幕轨 %d 未找到。"
 
-#: src/dispatch.cpp:559 src/main.cpp:795
+#: src/dispatch.cpp:559 src/main.cpp:796
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "此 Bino 版本编译时未加入 Equalizer 支持。"
 
@@ -801,20 +801,20 @@ msgstr "媒体键"
 msgid "Media keys should work as expected"
 msgstr "媒体键应该可以用"
 
-#: src/main.cpp:626
+#: src/main.cpp:627
 msgid "No audio devices known."
 msgstr "无已知音频设备。"
 
-#: src/main.cpp:641
+#: src/main.cpp:642
 msgid "Benchmark mode: audio and time synchronization disabled."
 msgstr "性能测试模式：禁用音频和时间同步"
 
-#: src/main.cpp:655
+#: src/main.cpp:656
 #, c-format
 msgid "Unknown mode %s."
 msgstr "未知模式 %s。"
 
-#: src/main.cpp:787
+#: src/main.cpp:788
 msgid "This version of Bino was compiled without support for LIRC."
 msgstr "此 Bino 版本编译时启用了 LIRC 支持。"
 

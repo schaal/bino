@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-02-11 20:55+0100\n"
+"POT-Creation-Date: 2016-11-30 20:32+0100\n"
 "PO-Revision-Date: 2011-04-10 17:23+0200\n"
 "Last-Translator: Joe <cuchac@email.cz>\n"
 "Language-Team: none\n"
@@ -238,7 +238,7 @@ msgstr "Zvuková stopa %d nebyla nalezena."
 msgid "Subtitle stream %d not found."
 msgstr "Stopa titulků %d nebyla nalezena."
 
-#: src/dispatch.cpp:559 src/main.cpp:795
+#: src/dispatch.cpp:559 src/main.cpp:796
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "Tato verze Bina byla zkompilována bez podpory knihovny Equalizer."
 
@@ -803,20 +803,20 @@ msgstr "Multimediální klávesy"
 msgid "Media keys should work as expected"
 msgstr "Multimediální klávesy by měly fungovat dle očekávání"
 
-#: src/main.cpp:626
+#: src/main.cpp:627
 msgid "No audio devices known."
 msgstr "Není známé žádné zvukové zařízení."
 
-#: src/main.cpp:641
+#: src/main.cpp:642
 msgid "Benchmark mode: audio and time synchronization disabled."
 msgstr "Měření výkonu, synchronizace zvuku a času je vypnuta."
 
-#: src/main.cpp:655
+#: src/main.cpp:656
 #, c-format
 msgid "Unknown mode %s."
 msgstr "Neznámý režim: %s."
 
-#: src/main.cpp:787
+#: src/main.cpp:788
 msgid "This version of Bino was compiled without support for LIRC."
 msgstr "Tato verze Bina byla zkompilována bez podpory knihovny LIRC."
 

@@ -38,9 +38,6 @@
 /* Define if you have the iconv() function and it works. */
 #undef HAVE_ICONV
 
-/* Define to 1 if the system has the type `int128_t'. */
-#undef HAVE_INT128_T
-
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
@@ -59,11 +56,11 @@
 /* Define to 1 if you have the `nl_langinfo' function. */
 #undef HAVE_NL_LANGINFO
 
-/* Define to 1 if you have the <NVCtrlLib.h> header file. */
-#undef HAVE_NVCTRLLIB_H
+/* Define to 1 if you have the <NVCtrl/NVCtrlLib.h> header file. */
+#undef HAVE_NVCTRL_NVCTRLLIB_H
 
-/* Define to 1 if you have the <NVCtrl.h> header file. */
-#undef HAVE_NVCTRL_H
+/* Define to 1 if you have the <NVCtrl/NVCtrl.h> header file. */
+#undef HAVE_NVCTRL_NVCTRL_H
 
 /* Define to 1 if you have the `sigaction' function. */
 #undef HAVE_SIGACTION
@@ -89,14 +86,8 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
 
-/* Define to 1 if the system has the type `uint128_t'. */
-#undef HAVE_UINT128_T
-
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
-
-/* Define to 1 if the system has the type `unsigned __int128'. */
-#undef HAVE_UNSIGNED___INT128
 
 /* Define to 1 if you have the `vasprintf' function. */
 #undef HAVE_VASPRINTF
@@ -106,12 +97,6 @@
 
 /* Whether we are running on X11 */
 #undef HAVE_X11
-
-/* Define to 1 if the system has the type `__float128'. */
-#undef HAVE___FLOAT128
-
-/* Define to 1 if the system has the type `__int128'. */
-#undef HAVE___INT128
 
 /* Define as const if the declaration of iconv() needs const. */
 #undef ICONV_CONST

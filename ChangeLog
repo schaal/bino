@@ -1,3 +1,116 @@
+commit 3dbdf2347faf55f21765468f4b68c02e195ea2d6
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 20:23:51 +0100
+
+    Bump version to 1.6.4.
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 69ca1a55235adfe73c7aeb32c2ccba577124d0ad
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 20:23:29 +0100
+
+    Update NEWS, AUTHORS.
+
+ AUTHORS | 10 +++++++++-
+ NEWS    | 10 ++++++++++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+
+commit 032cd3f600a0035a585be55d64f8919ee6148c35
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 19:10:41 +0100
+
+    Work around Qt 5.7 problem: disable "OpenGL stereo" support for Qt >= 5.7.
+    
+    This workaround can hopefully be removed later.
+
+ src/video_output_qt.cpp | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 55bc95cc25c4ec1939e7b31f40ce5c3f43e09fb5
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 19:02:49 +0100
+
+    Fix usage of setlocale()
+
+ src/base/str.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 546085961bc48cd55f31d054189cd6c522f3f599
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 18:44:52 +0100
+
+    Fix valgrind warnings about uninitialized value.
+
+ src/controlswidget.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit c2f99d8b62e60d6fb760c327c4e18d7f5f5be633
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 18:35:04 +0100
+
+    Fix segfault with --version due to missing Qt cleanup.
+
+ src/main.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 6e6b2d13172aa062c5d155abc436250702a46f88
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-11-30 18:34:52 +0100
+
+    Fix building with latest FFmpeg
+
+ src/media_object.cpp | 50 +++++++++++++++++++++++++-------------------------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
+
+commit a3960e4b8291694fc64996748156ce6a9a00f767
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-03-21 09:17:16 +0100
+
+    Remove libquadmath stuff, Bino does not use it.
+
+ configure.ac | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit d7b9a8f5f7fd8959bfee46a82075334fe1768fe9
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-03-21 09:14:07 +0100
+
+    Fix building with libxnvctrl on current Debian.
+
+ configure.ac            |  6 +++---
+ src/Makefile.am         |  2 +-
+ src/NvSDIout.cpp        | 18 ++++++++++++++----
+ src/NvSDIout.h          |  3 +++
+ src/NvSDIutils.cpp      |  4 ++--
+ src/gui.cpp             |  2 +-
+ src/main.cpp            |  8 ++++----
+ src/mainwindow.cpp      |  2 +-
+ src/media_data.cpp      |  2 +-
+ src/sdioutputdialog.cpp |  3 +--
+ 10 files changed, 31 insertions(+), 19 deletions(-)
+
+commit 95c9cb00c69b6c7bcf73316642e983c404d38eea
+Author: Phobos Kappa <phobosk>
+Date:   2016-03-21 08:45:13 +0100
+
+    Fix building with libxnvctrl.
+
+ src/Makefile.am         |  3 ++-
+ src/sdioutputdialog.cpp | 10 ++++++++++
+ src/sdioutputdialog.h   |  2 ++
+ 3 files changed, 14 insertions(+), 1 deletion(-)
+
+commit 89c0054c642376db72bf8fc0a981c47e73575db7
+Author: Martin Lambers <marlam@marlam.de>
+Date:   2016-03-21 09:19:57 +0100
+
+    Bump version to 1.6.3.
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit 1aaa6dc242a0d5c3daaf238b597bc7f105aa9938
 Author: Martin Lambers <marlam@marlam.de>
 Date:   2016-02-11 20:53:17 +0100
@@ -55,8 +168,8 @@ Date:   2016-02-01 19:31:32 +0100
 
     Update bg.po, fr.po
 
- po/bg.po | 2289 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------
- po/fr.po | 2279 ++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------------------
+ po/bg.po | 2289 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
+ po/fr.po | 2279 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------
  2 files changed, 2120 insertions(+), 2448 deletions(-)
 
 commit 42657f780ae528153071b308416f195b983328a2
@@ -106,63 +219,55 @@ Date:   2015-01-09 19:42:49 +0100
 
     Update base modules, to fix some build problems for MXE targets.
 
- configure.ac              |  21 ++--
- po/POTFILES.in            |   6 +-
- src/Makefile.am           |   2 +-
- src/NvSDIout.cpp          |  10 +-
- src/NvSDIutils.cpp        |   6 +-
- src/audio_output.cpp      |  24 ++--
- src/base/Makefile.am      |  13 +-
- src/base/blb.h            | 188 +++++++++++++++++++++++++++++
- src/base/blob.h           | 179 ----------------------------
- src/base/chk.h            | 250 +++++++++++++++++++++++++++++++++++++++
- src/base/dbg.cpp          |  10 +-
- src/base/dbg.h            |   6 +-
- src/base/exc.cpp          |  10 +-
- src/base/exc.h            |   2 +-
- src/base/gettext.h        |   6 +
- src/base/intcheck.h       | 224 -----------------------------------
- src/base/msg.cpp          |   8 +-
- src/base/msg.h            |   2 +-
- src/base/opt.cpp          |  14 +--
- src/base/opt.h            |   2 +-
- src/base/pth.cpp          | 300 ++++++++++++++++++++++++++++++++++++++++++++++
- src/base/pth.h            | 226 +++++++++++++++++++++++++++++++++++
- src/base/s11n.cpp         | 649 ----------------------------------------------------------------------------------------------------
- src/base/s11n.h           | 250 ---------------------------------------
- src/base/ser.cpp          | 649 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/base/ser.h            | 246 ++++++++++++++++++++++++++++++++++++++
- src/base/str.cpp          | 629 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------
- src/base/str.h            |  46 ++++++--
- src/base/thread.cpp       | 300 ----------------------------------------------
- src/base/thread.h         | 226 -----------------------------------
- src/base/timer.cpp        |  85 -------------
- src/base/timer.h          |  43 -------
- src/base/tmr.cpp          |  85 +++++++++++++
- src/base/tmr.h            |  49 ++++++++
- src/command_file.cpp      |  16 +--
- src/dispatch.cpp          |  18 +--
- src/dispatch.h            |   6 +-
- src/fullscreendialog.cpp  |   6 +-
- src/gui_common.h          |   6 +-
- src/lib_versions.cpp      |   8 +-
- src/lirc.cpp              |  12 +-
- src/main.cpp              |  14 +--
- src/mainwindow.cpp        |  16 +--
- src/media_data.cpp        |  14 +--
- src/media_data.h          |   6 +-
- src/media_input.cpp       |  14 +--
- src/media_object.cpp      |  18 +--
- src/player.cpp            |  30 ++---
- src/player.h              |   6 +-
- src/player_equalizer.cpp  |  12 +-
- src/subtitle_renderer.cpp |  22 ++--
- src/subtitle_renderer.h   |   4 +-
- src/video_output.cpp      |  18 +--
- src/video_output.h        |   4 +-
- src/video_output_qt.cpp   |  20 ++--
- src/video_output_qt.h     |   4 +-
- 56 files changed, 2794 insertions(+), 2246 deletions(-)
+ configure.ac                     |  21 ++--
+ po/POTFILES.in                   |   6 +-
+ src/Makefile.am                  |   2 +-
+ src/NvSDIout.cpp                 |  10 +-
+ src/NvSDIutils.cpp               |   6 +-
+ src/audio_output.cpp             |  24 ++--
+ src/base/Makefile.am             |  13 +-
+ src/base/{blob.h => blb.h}       |  43 ++++---
+ src/base/{intcheck.h => chk.h}   | 106 ++++++++++------
+ src/base/dbg.cpp                 |  10 +-
+ src/base/dbg.h                   |   6 +-
+ src/base/exc.cpp                 |  10 +-
+ src/base/exc.h                   |   2 +-
+ src/base/gettext.h               |   6 +
+ src/base/msg.cpp                 |   8 +-
+ src/base/msg.h                   |   2 +-
+ src/base/opt.cpp                 |  14 +--
+ src/base/opt.h                   |   2 +-
+ src/base/{thread.cpp => pth.cpp} |  10 +-
+ src/base/{thread.h => pth.h}     |  10 +-
+ src/base/{s11n.cpp => ser.cpp}   |   6 +-
+ src/base/{s11n.h => ser.h}       |  16 +--
+ src/base/str.cpp                 | 629 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------
+ src/base/str.h                   |  46 +++++--
+ src/base/{timer.cpp => tmr.cpp}  |  22 ++--
+ src/base/{timer.h => tmr.h}      |  20 +--
+ src/command_file.cpp             |  16 +--
+ src/dispatch.cpp                 |  18 +--
+ src/dispatch.h                   |   6 +-
+ src/fullscreendialog.cpp         |   6 +-
+ src/gui_common.h                 |   6 +-
+ src/lib_versions.cpp             |   8 +-
+ src/lirc.cpp                     |  12 +-
+ src/main.cpp                     |  14 +--
+ src/mainwindow.cpp               |  16 +--
+ src/media_data.cpp               |  14 +--
+ src/media_data.h                 |   6 +-
+ src/media_input.cpp              |  14 +--
+ src/media_object.cpp             |  18 +--
+ src/player.cpp                   |  30 ++---
+ src/player.h                     |   6 +-
+ src/player_equalizer.cpp         |  12 +-
+ src/subtitle_renderer.cpp        |  22 ++--
+ src/subtitle_renderer.h          |   4 +-
+ src/video_output.cpp             |  18 +--
+ src/video_output.h               |   4 +-
+ src/video_output_qt.cpp          |  20 +--
+ src/video_output_qt.h            |   4 +-
+ 48 files changed, 936 insertions(+), 388 deletions(-)
 
 commit 8cd03de77069ed11b5e0275491819406f860df0c
 Author: Martin Lambers <marlam@marlam.de>
@@ -189,7 +294,7 @@ Date:   2014-12-18 11:25:56 +0100
     Reenable Czech translation
 
  po/LINGUAS |    2 +-
- po/cs.po   | 2238 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
+ po/cs.po   | 2238 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
  2 files changed, 1200 insertions(+), 1040 deletions(-)
 
 commit dc8b9036149b9b7b449ea67647d2c0ab3026af48
@@ -220,8 +325,8 @@ Date:   2014-10-03 12:17:38 +0200
  src/crosstalkdialog.h    |   6 ++--
  src/fullscreendialog.cpp |  10 +------
  src/fullscreendialog.h   |   6 ++--
- src/mainwindow.cpp       | 162 +++++++----------------------------------------------------------------------------------------------
- src/mainwindow.h         |  34 ++-------------------
+ src/mainwindow.cpp       | 162 +++++++-----------------------------------------------------------------------------------------------
+ src/mainwindow.h         |  34 ++--------------------
  src/preferences.cpp      |  94 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/preferences.h        |  54 ++++++++++++++++++++++++++++++++++
  src/qualitydialog.cpp    |  10 +------
@@ -255,12 +360,12 @@ Date:   2014-10-03 11:10:59 +0200
  src/crosstalkdialog.h    |   55 ++
  src/fullscreendialog.cpp |  219 ++++++
  src/fullscreendialog.h   |   63 ++
- src/gui.cpp              | 3818 ----------------------------------------------------------------------------------------------------
+ src/gui.cpp              | 3818 -----------------------------------------------------------------------------------------------------
  src/gui.h                |  446 +-----------
  src/gui_common.h         |   10 +
  src/inoutwidget.cpp      |  633 +++++++++++++++++
  src/inoutwidget.h        |   78 +++
- src/mainwindow.cpp       | 1153 ++++++++++++++++++++++++++++++
+ src/mainwindow.cpp       | 1153 +++++++++++++++++++++++++++++++
  src/mainwindow.h         |  144 ++++
  src/opendevicedialog.cpp |  198 ++++++
  src/opendevicedialog.h   |   70 ++
@@ -292,7 +397,7 @@ Date:   2014-09-23 07:13:06 +0200
 
     Update ru.po
 
- po/ru.po | 837 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ po/ru.po | 837 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
  1 file changed, 426 insertions(+), 411 deletions(-)
 
 commit 8476381a9817c51f7c535463111db1eb1f6272c3
@@ -337,7 +442,7 @@ Date:   2014-09-11 19:57:00 +0200
 
     Update de.po.
 
- po/de.po | 831 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ po/de.po | 831 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
  1 file changed, 425 insertions(+), 406 deletions(-)
 
 commit 6758337bd133f4a7f5be8d20850d3c3186ee84d1
@@ -346,7 +451,7 @@ Date:   2014-09-11 19:46:00 +0200
 
     Update gettext files to 0.19.x.
 
- build-aux/config.rpath | 120 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------
+ build-aux/config.rpath | 120 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
  po/Makefile.in.in      |  53 ++++++++++++++++++++++++++++++++++++----------
  po/Rules-quot          |  15 +++++++++++--
  3 files changed, 121 insertions(+), 67 deletions(-)
@@ -416,7 +521,7 @@ Date:   2014-01-16 18:00:53 +0100
 
     Update Simplified Chinese translation.
 
- po/zh_cn.po | 843 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
+ po/zh_cn.po | 843 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
  1 file changed, 431 insertions(+), 412 deletions(-)
 
 commit 14a170787be2f7c6980828ef480d0401379b0b76
@@ -541,11 +646,11 @@ Date:   2013-10-01 21:50:37 +0200
     Add Simplified Chinese translation.
     
     Conflicts:
-    	AUTHORS
+            AUTHORS
 
  AUTHORS     |    4 +-
  po/LINGUAS  |    2 +-
- po/zh_cn.po | 1876 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
+ po/zh_cn.po | 1876 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
  3 files changed, 956 insertions(+), 926 deletions(-)
 
 commit 37cb50eae797c2ad3aacbf82fd35859274b5f2aa
@@ -715,7 +820,7 @@ Date:   2013-02-10 13:13:32 +0100
 
     Remove INSTALL; this is generated by autoconf
 
- INSTALL | 370 ----------------------------------------------------------------------------------------------------------------------
+ INSTALL | 370 -----------------------------------------------------------------------------------------------------------------------
  1 file changed, 370 deletions(-)
 
 commit 1496d94dd32871e40738bf330cc33622f84a2cf5
@@ -916,7 +1021,7 @@ Date:   2012-10-13 06:27:02 +0200
 
  AUTHORS    |    3 +-
  po/LINGUAS |    1 +
- po/bg.po   | 1880 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/bg.po   | 1880 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 1883 insertions(+), 1 deletion(-)
 
 commit 194b2d4a7c3284ac5f5d2138b7fef30485ab7543
@@ -977,13 +1082,13 @@ Date:   2012-08-24 19:18:55 +0200
 
  .gitignore             |    6 +
  Makefile.am            |    2 -
- build-aux/config.guess | 1530 ----------------------------------------------------------------------------------------
- build-aux/config.sub   | 1773 ------------------------------------------------------------------------------------------------------
+ build-aux/config.guess | 1530 -----------------------------------------------------------------------------------------
+ build-aux/config.sub   | 1773 -------------------------------------------------------------------------------------------------------
  build-aux/depcomp      |  688 ----------------------------------------
  build-aux/install-sh   |  527 -------------------------------
  build-aux/mdate-sh     |  225 -------------
- build-aux/missing      |  331 -------------------
- m4/gettext.m4          |  383 ----------------------
+ build-aux/missing      |  331 --------------------
+ m4/gettext.m4          |  383 -----------------------
  m4/iconv.m4            |  214 -------------
  m4/lib-ld.m4           |  110 -------
  m4/lib-link.m4         |  774 ---------------------------------------------
@@ -1122,7 +1227,7 @@ Date:   2012-06-18 20:02:08 +0200
 
     Update ru.po.
 
- po/ru.po | 438 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ po/ru.po | 438 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
  1 file changed, 226 insertions(+), 212 deletions(-)
 
 commit 101fdd6b29eafc6a6346fcf6a50511e2cd793c7f
@@ -1152,7 +1257,7 @@ Date:   2012-06-17 17:47:34 +0200
 
     Update fr.po.
 
- po/fr.po | 402 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
+ po/fr.po | 402 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
  1 file changed, 187 insertions(+), 215 deletions(-)
 
 commit 5c5bdd269b2d514cba2031e34d6c86197f08099d
@@ -1184,7 +1289,7 @@ Date:   2012-06-17 16:04:49 +0200
 
     Update de.po.
 
- po/de.po | 404 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
+ po/de.po | 404 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
  1 file changed, 188 insertions(+), 216 deletions(-)
 
 commit 9b1b5deeecd9c4573b53893051d3746803635ad2
@@ -1239,7 +1344,7 @@ Date:   2012-06-17 14:59:16 +0200
     Update ru.po.
 
  AUTHORS  |    1 +
- po/ru.po | 2676 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
+ po/ru.po | 2676 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
  2 files changed, 1675 insertions(+), 1002 deletions(-)
 
 commit c00de8fc2b2b28e7bee1a74ee902bf81056c4b40
@@ -1265,7 +1370,7 @@ Date:   2012-06-05 20:37:42 +0200
 
     Update fr.po.
 
- po/fr.po | 2665 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
+ po/fr.po | 2665 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
  1 file changed, 1499 insertions(+), 1166 deletions(-)
 
 commit 6a88eb976bd6c5961650fc19e339a99344e1bf46
@@ -1322,7 +1427,7 @@ Date:   2012-05-17 16:53:07 +0200
 
     Update de.po.
 
- po/de.po | 2424 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ po/de.po | 2424 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------
  1 file changed, 1397 insertions(+), 1027 deletions(-)
 
 commit a5cbe318aa5d6215af85c61edef567ebecfb0306
@@ -1332,7 +1437,7 @@ Date:   2012-05-17 16:52:03 +0200
     Tweak translatable strings to reduce translation burden.
 
  src/gui.cpp  |  76 ++++++++++++++++++-------------------
- src/main.cpp | 234 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ src/main.cpp | 234 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
  2 files changed, 155 insertions(+), 155 deletions(-)
 
 commit cfa298e66a8c00bd5d0171f20f36807a66a54749
@@ -1693,7 +1798,7 @@ Date:   2012-05-01 12:13:58 +0200
  src/dispatch.h          |   2 ++
  src/gui.cpp             |   5 +++++
  src/gui.h               |   1 +
- src/video_output_qt.cpp | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
+ src/video_output_qt.cpp | 105 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
  src/video_output_qt.h   |   6 +++++-
  6 files changed, 99 insertions(+), 23 deletions(-)
 
@@ -1847,7 +1952,7 @@ Date:   2012-04-16 21:12:14 +0200
 
     Video output: cleanup.
 
- src/video_output.cpp | 1443 ++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
+ src/video_output.cpp | 1443 +++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
  src/video_output.h   |   21 +-
  2 files changed, 677 insertions(+), 787 deletions(-)
 
@@ -1869,7 +1974,7 @@ Date:   2012-04-16 16:50:41 +0200
     Now that color space conversion is done in prepare_next_frame(), there is no
     need to keep two sets of input textures for the original video data.
 
- src/video_output.cpp | 129 ++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------------
+ src/video_output.cpp | 129 +++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------------
  src/video_output.h   |  12 +++++-----
  2 files changed, 68 insertions(+), 73 deletions(-)
 
@@ -1894,7 +1999,7 @@ Date:   2012-04-16 13:20:35 +0200
     When performing color conversion in the preparation step, we need two sets
     of textures for the output, just like for the other preparation tasks.
 
- src/video_output.cpp | 141 ++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
+ src/video_output.cpp | 141 +++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
  src/video_output.h   |  15 ++++++------
  2 files changed, 78 insertions(+), 78 deletions(-)
 
@@ -1940,9 +2045,9 @@ Date:   2012-04-16 07:13:06 +0200
     
     The color adjustment code is too expensive and needs to be replaced later.
 
- src/video_output.cpp            | 197 +++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
+ src/video_output.cpp            | 197 +++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
  src/video_output_color.fs.glsl  |  58 ++++++----------------------
- src/video_output_render.fs.glsl |  55 +++++++++++++++++++++++++-
+ src/video_output_render.fs.glsl |  55 ++++++++++++++++++++++++++-
  3 files changed, 163 insertions(+), 147 deletions(-)
 
 commit 990f334493cec2ccfb2859fdd7d728608064c415
@@ -2023,18 +2128,18 @@ Date:   2012-04-14 19:08:31 +0200
 
  NEWS                     |   3 +-
  doc/bino.1               |   2 +
- doc/bino.texi            | 213 ++++++++++++++++++++++++++++++++++++++++++--------
+ doc/bino.texi            | 213 ++++++++++++++++++++++++++++++++++++++++++---------
  src/Makefile.am          |   1 +
  src/base/str.cpp         |  31 ++++++++
  src/base/str.h           |   4 +
  src/command_file.cpp     | 148 +++++++++++++++++++++++++++++++++++
  src/command_file.h       |  58 ++++++++++++++
- src/dispatch.cpp         | 429 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ src/dispatch.cpp         | 429 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
  src/dispatch.h           |  39 ++++++----
  src/lirc.cpp             | 122 +----------------------------
  src/lirc.h               |   3 -
  src/main.cpp             |  58 +++++---------
- src/media_data.cpp       | 141 ++++++++++++++++++++-------------
+ src/media_data.cpp       | 141 +++++++++++++++++++++-------------
  src/media_data.h         |   2 +
  src/player.h             |   2 +-
  src/player_equalizer.cpp |  58 ++++++++++----
@@ -2051,19 +2156,19 @@ Date:   2012-04-10 22:04:19 +0200
  README.Linux             |   7 ++
  configure.ac             |  44 ++++++++-
  src/Makefile.am          |   6 ++
- src/NvSDIout.cpp         | 309 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/NvSDIout.cpp         | 309 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/NvSDIout.h           | 100 ++++++++++++++++++++
- src/NvSDIutils.cpp       | 461 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/NvSDIutils.cpp       | 461 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/NvSDIutils.h         |  53 +++++++++++
  src/dispatch.cpp         |  15 +++
  src/dispatch.h           |  11 +++
- src/gui.cpp              | 516 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/gui.cpp              | 516 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/gui.h                |  37 +++++++-
  src/main.cpp             |  16 ++++
  src/media_data.cpp       |  56 +++++++++++
  src/media_data.h         |   6 ++
  src/player_equalizer.cpp |   2 +-
- src/video_output.cpp     |  67 ++++++++++++-
+ src/video_output.cpp     |  67 +++++++++++++-
  src/video_output.h       |  26 +++++-
  src/video_output_qt.cpp  |   6 ++
  20 files changed, 1728 insertions(+), 12 deletions(-)
@@ -2091,7 +2196,7 @@ Date:   2012-04-08 14:02:44 +0200
 
  src/gui.cpp               |   4 ++-
  src/subtitle_renderer.cpp |   2 +-
- src/video_output.cpp      | 141 ++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
+ src/video_output.cpp      | 141 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
  src/video_output.h        |   7 ++---
  4 files changed, 81 insertions(+), 73 deletions(-)
 
@@ -2148,7 +2253,7 @@ Date:   2012-04-07 11:57:52 +0200
  src/media_data.h          |  13 ++--
  src/subtitle_renderer.cpp |  17 +++--
  src/subtitle_renderer.h   |  10 +--
- src/video_output.cpp      | 352 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
+ src/video_output.cpp      | 352 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
  src/video_output.h        |  21 +++---
  5 files changed, 266 insertions(+), 147 deletions(-)
 
@@ -2162,7 +2267,7 @@ Date:   2012-04-06 23:52:13 +0200
  doc/bino.texi             |   2 ++
  src/dispatch.cpp          |   4 ++++
  src/dispatch.h            |   2 ++
- src/gui.cpp               | 105 +++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ src/gui.cpp               | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
  src/gui.h                 |   3 +++
  src/main.cpp              |   5 +++++
  src/media_data.cpp        |  11 +++++++++++
@@ -2257,7 +2362,7 @@ Date:   2012-03-24 18:41:16 +0100
     Add simplified chinese translation (incomplete).
 
  po/LINGUAS  |    1 +
- po/zh_cn.po | 1812 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/zh_cn.po | 1812 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  2 files changed, 1813 insertions(+)
 
 commit 2f3cbf224b1dd203ef5a4cb129f80eb8583839fd
@@ -2332,7 +2437,7 @@ Date:   2012-03-16 19:25:06 +0100
 
     GUI: make About dialog non-modal.
 
- src/gui.cpp | 147 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
+ src/gui.cpp | 147 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
  1 file changed, 75 insertions(+), 72 deletions(-)
 
 commit 9f40859d3f7078789bc4c22b2b8492014b6ec0e3
@@ -2500,9 +2605,9 @@ Date:   2012-03-14 09:35:57 +0100
 
     Fix and simplify fullscreen mode and settings dialog.
 
- src/gui.cpp             | 106 ++++++++++++++++++++++++++++--------------------------------------------------------------------------
+ src/gui.cpp             | 106 ++++++++++++++++++++++++++++---------------------------------------------------------------------------
  src/gui.h               |  15 +--------------
- src/video_output_qt.cpp | 104 ++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
+ src/video_output_qt.cpp | 104 +++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
  3 files changed, 74 insertions(+), 151 deletions(-)
 
 commit 36bafd06135c347f23287c8ce5ee5e0f42bcda4f
@@ -2645,9 +2750,9 @@ Date:   2012-03-09 23:10:01 +0100
  doc/bino.1                                  |   8 ++-
  doc/bino.texi                               |   9 ++-
  src/Makefile.am                             |   5 +-
- src/gui.cpp                                 |  98 ++++++++++++++++--------------
+ src/gui.cpp                                 |  98 +++++++++++++++++--------------
  src/icons-local/README                      |   2 +-
- src/icons-local/output-type-alternating.ipe | 266 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-alternating.ipe | 266 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-alternating.png | Bin 0 -> 473 bytes
  src/main.cpp                                |   6 +-
  src/media_data.cpp                          |   5 ++
@@ -2781,7 +2886,7 @@ Date:   2012-03-07 22:22:31 +0100
 
     Fix parameter initalization on open/play/stop.
 
- src/dispatch.cpp | 136 +++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
+ src/dispatch.cpp | 136 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
  1 file changed, 69 insertions(+), 67 deletions(-)
 
 commit 70a0c32d7d60a0e405659a305821cc348b9dcf6d
@@ -2833,7 +2938,7 @@ Date:   2012-03-07 13:04:51 +0100
  src/video_output.h       |  17 +++++
  src/video_output_qt.cpp  |  12 ++--
  src/video_output_qt.h    |   3 +
- src/xgl.cpp              | 389 -----------------------------------------------------------------------------------------------------
+ src/xgl.cpp              | 389 ------------------------------------------------------------------------------------------------------
  src/xgl.h                | 145 --------------------------------------
  9 files changed, 246 insertions(+), 575 deletions(-)
 
@@ -2950,7 +3055,7 @@ Date:   2012-03-05 21:58:08 +0100
 
  src/dispatch.cpp |  30 ++++++++++++++++++++----
  src/dispatch.h   |   2 +-
- src/gui.cpp      | 137 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ src/gui.cpp      | 137 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
  src/gui.h        |   4 +++-
  src/main.cpp     |  10 +-------
  5 files changed, 106 insertions(+), 77 deletions(-)
@@ -2961,8 +3066,8 @@ Date:   2012-03-05 21:24:43 +0100
 
     GUI: make fullscreen dialog non-blocking.
 
- src/gui.cpp | 399 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
- src/gui.h   |  60 +++++++++++++----
+ src/gui.cpp | 399 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
+ src/gui.h   |  60 ++++++++++++++----
  2 files changed, 261 insertions(+), 198 deletions(-)
 
 commit 7cd95313a76fe1155b5512bff43a49b43c559425
@@ -3088,7 +3193,7 @@ Date:   2012-03-04 15:34:50 +0100
  src/dispatch.h           |  11 +++-
  src/main.cpp             |  17 +++---
  src/player.h             |  22 +++++---
- src/player_equalizer.cpp | 294 +++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------
+ src/player_equalizer.cpp | 294 +++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
  src/player_equalizer.h   |  15 +++---
  6 files changed, 203 insertions(+), 210 deletions(-)
 
@@ -3100,10 +3205,10 @@ Date:   2012-03-03 17:09:29 +0100
     
     This fixes GUI mode to work with the new structure.
 
- src/dispatch.cpp        | 128 ++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------
+ src/dispatch.cpp        | 128 +++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------
  src/dispatch.h          |   1 +
- src/gui.cpp             |  88 +++++++++++++++++++++++++++++++++++++++++-----------------------------
- src/video_output_qt.cpp |  58 +++++++++++++++++++++++-----------------------
+ src/gui.cpp             |  88 ++++++++++++++++++++++++++++++++++++++++++-----------------------------
+ src/video_output_qt.cpp |  58 +++++++++++++++++++++++------------------------
  src/video_output_qt.h   |  23 ++++++++++++++-----
  5 files changed, 161 insertions(+), 137 deletions(-)
 
@@ -3125,7 +3230,7 @@ Date:   2012-03-03 11:18:11 +0100
  src/main.cpp            |   6 ++++
  src/video_output.cpp    |  26 ++++++--------
  src/video_output.h      |   5 ++-
- src/video_output_qt.cpp | 201 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------
+ src/video_output_qt.cpp | 201 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------
  src/video_output_qt.h   |  63 +++++++++++++++++++++++++++++---
  6 files changed, 271 insertions(+), 68 deletions(-)
 
@@ -3138,25 +3243,22 @@ Date:   2012-02-26 22:50:14 +0100
     This moves the management of media input, audio and video output, and player
     objects to the central dispatch.
 
- src/Makefile.am         |    6 +-
- src/audio_output.h      |    3 +-
- src/controller.cpp      |  584 ------------------
- src/controller.h        |  300 ----------
- src/dispatch.cpp        |  739 +++++++++++++++++++++++
- src/dispatch.h          |  350 +++++++++++
- src/gui.cpp             | 3073 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/gui.h               |  403 +++++++++++++
- src/lirc.h              |    2 +-
- src/main.cpp            |  144 ++---
- src/player.cpp          |  413 +++----------
- src/player.h            |  105 +---
- src/player_qt.cpp       | 3246 -----------------------------------------------------------------------------------------------------
- src/player_qt.h         |  434 --------------
- src/video_output.cpp    |   29 +-
- src/video_output.h      |    5 +-
- src/video_output_qt.cpp |   61 +-
- src/video_output_qt.h   |   28 +-
- 18 files changed, 4782 insertions(+), 5143 deletions(-)
+ src/Makefile.am                  |   6 +-
+ src/audio_output.h               |   3 +-
+ src/controller.cpp               | 584 --------------------------------------------------------------------------
+ src/dispatch.cpp                 | 739 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/{controller.h => dispatch.h} |  96 ++++++++++---
+ src/{player_qt.cpp => gui.cpp}   | 413 ++++++++++++++++------------------------------------
+ src/{player_qt.h => gui.h}       |  59 ++------
+ src/lirc.h                       |   2 +-
+ src/main.cpp                     | 144 ++++++++-----------
+ src/player.cpp                   | 413 ++++++++++++----------------------------------------
+ src/player.h                     | 105 ++------------
+ src/video_output.cpp             |  29 +---
+ src/video_output.h               |   5 +-
+ src/video_output_qt.cpp          |  61 ++++----
+ src/video_output_qt.h            |  28 ++--
+ 15 files changed, 1163 insertions(+), 1524 deletions(-)
 
 commit 5e05468c6656dce8775816bbc2bf5a9584ce4cf8
 Author: Martin Lambers <marlam@marlam.de>
@@ -3173,14 +3275,14 @@ Date:   2012-02-26 12:01:36 +0100
  src/base/opt.h           |   13 +-
  src/base/s11n.h          |   18 ++
  src/controller.cpp       |  500 +++++++++++++++++++++++++++++++++++++++++++-----
- src/controller.h         |  303 ++++++++++++++---------------
+ src/controller.h         |  303 ++++++++++++++----------------
  src/lirc.cpp             |   33 +---
  src/lirc.h               |    9 +-
  src/main.cpp             |  268 +++++++++++---------------
- src/player.cpp           |  599 ++++++++++-----------------------------------------------
+ src/player.cpp           |  599 ++++++++++------------------------------------------------
  src/player.h             |   26 ++-
  src/player_equalizer.cpp |    2 +-
- src/player_qt.cpp        | 1044 +++++++++++++++++++++++++++++-----------------------------------------------------------------------
+ src/player_qt.cpp        | 1044 +++++++++++++++++++++++++++++------------------------------------------------------------------------
  src/player_qt.h          |   40 ++--
  src/video_output.cpp     |    2 +-
  src/video_output.h       |    9 +-
@@ -3321,7 +3423,7 @@ Date:   2012-02-07 19:53:10 +0100
 
     Translations: break the "--help" string into smaller segments.
 
- src/main.cpp | 239 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ src/main.cpp | 239 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
  1 file changed, 118 insertions(+), 121 deletions(-)
 
 commit 5d60a1ea7b47f1b3792753b8b1bb3d256d7c6a6d
@@ -3408,9 +3510,9 @@ Date:   2012-02-05 13:56:22 +0100
 
     Make the new parameter load/save scheme compatible to Bino <= 1.2.x.
 
- src/media_data.cpp | 138 ++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ src/media_data.cpp | 138 ++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------
  src/media_data.h   |  12 ++++-----
- src/player_qt.cpp  | 155 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/player_qt.cpp  | 155 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 227 insertions(+), 78 deletions(-)
 
 commit 8f1bb9250fc88a846f2fe8b598cd0e031f0a8cb7
@@ -3422,7 +3524,7 @@ Date:   2012-02-04 16:05:47 +0100
     Also update all callers.
 
  src/main.cpp             |  106 +++---
- src/media_data.cpp       | 1899 ++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
+ src/media_data.cpp       | 1899 +++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
  src/media_data.h         |  289 ++++++++--------
  src/media_input.cpp      |   26 +-
  src/media_input.h        |    6 +-
@@ -3444,12 +3546,12 @@ Date:   2012-02-04 13:24:35 +0100
  src/audio_output.cpp      |   4 +-
  src/controller.h          |  18 +--
  src/main.cpp              | 114 +++++++++++-------
- src/media_data.cpp        | 662 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
- src/media_data.h          | 114 ++++++++++++------
- src/player.cpp            | 273 ++++++++++++++++++++++-------------------
+ src/media_data.cpp        | 662 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------
+ src/media_data.h          | 114 +++++++++++-------
+ src/player.cpp            | 273 ++++++++++++++++++++++--------------------
  src/player_equalizer.cpp  |   4 +-
- src/player_qt.cpp         | 462 ++++++++++++++++++++++++++++++++++------------------------------------
- src/subtitle_renderer.cpp |  20 +--
+ src/player_qt.cpp         | 462 +++++++++++++++++++++++++++++++++++-----------------------------------
+ src/subtitle_renderer.cpp |  20 ++--
  src/video_output.cpp      | 228 +++++++++++++++++------------------
  10 files changed, 1043 insertions(+), 856 deletions(-)
 
@@ -3540,7 +3642,7 @@ Date:   2012-02-01 07:58:03 +0100
  doc/bino.texi     |   4 +--
  src/main.cpp      |   2 +-
  src/player.cpp    |   4 +--
- src/player_qt.cpp | 170 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------
+ src/player_qt.cpp | 170 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------
  src/player_qt.h   |  26 ++++++++++++++---
  6 files changed, 139 insertions(+), 71 deletions(-)
 
@@ -3741,8 +3843,8 @@ Date:   2012-01-28 18:35:23 +0100
 
     GUI: integrate zoom preferences into video preferences.
 
- src/player_qt.cpp | 277 ++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------
- src/player_qt.h   |  36 ++++----------
+ src/player_qt.cpp | 277 ++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
+ src/player_qt.h   |  36 ++++-----------
  2 files changed, 126 insertions(+), 187 deletions(-)
 
 commit eedaa6443e7c2aff4613a103f0e68e1a50a1176c
@@ -3797,17 +3899,17 @@ Date:   2012-01-28 10:53:11 +0100
 
  AUTHORS                                                 |   1 +
  src/Makefile.am                                         |   4 +-
- src/icons-local/input-layout-alternating-left-right.ipe | 260 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-alternating-left-right.ipe | 260 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-alternating-left-right.png | Bin 0 -> 861 bytes
- src/icons-local/input-layout-alternating-right-left.ipe | 260 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-alternating-right-left.ipe | 260 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-alternating-right-left.png | Bin 0 -> 872 bytes
  src/main.cpp                                            |   6 +-
  src/media_data.cpp                                      |  18 ++++-
  src/media_data.h                                        |   4 +-
  src/media_input.cpp                                     |  18 +++--
- src/media_object.cpp                                    | 232 +++++++++++++++++++++++++++++++++++++++-----------------------
+ src/media_object.cpp                                    | 232 ++++++++++++++++++++++++++++++++++++++++-----------------------
  src/media_object.h                                      |   8 ++-
- src/player_qt.cpp                                       |  44 ++++++++----
+ src/player_qt.cpp                                       |  44 +++++++-----
  13 files changed, 742 insertions(+), 113 deletions(-)
 
 commit 4fe593c1918edfacf5914c4b0d2777514ad4ef78
@@ -3859,12 +3961,12 @@ Date:   2011-12-05 21:37:37 +0100
  src/base/msg.h      |  20 +++-
  src/base/opt.cpp    |   4 +-
  src/base/opt.h      |   4 +-
- src/base/s11n.cpp   | 566 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------
+ src/base/s11n.cpp   | 566 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------
  src/base/s11n.h     | 179 ++++++++++++++++++++++++----------
  src/base/str.cpp    |  46 ++++++++-
  src/base/str.h      |   7 +-
  src/base/thread.cpp | 132 ++++++++++++++++++-------
- src/base/thread.h   |  86 +++++++++++-----
+ src/base/thread.h   |  86 ++++++++++++-----
  src/base/timer.cpp  |  42 +++-----
  src/base/timer.h    |   9 +-
  src/media_data.h    |   8 +-
@@ -3967,7 +4069,7 @@ Date:   2011-11-12 12:39:10 +0100
 
     Update autotools files.
 
- build-aux/config.guess | 360 +++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
+ build-aux/config.guess | 360 ++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
  build-aux/config.sub   | 181 +++++++++++++++++++++++++++++++++++-----------------
  2 files changed, 296 insertions(+), 245 deletions(-)
 
@@ -4136,7 +4238,7 @@ Date:   2011-10-08 19:00:53 +0200
 
     GUI: Fix all preferences dialogs to work when no video is opened.
 
- src/player_qt.cpp | 145 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
+ src/player_qt.cpp | 145 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------
  src/player_qt.h   |  11 ++++++---
  2 files changed, 105 insertions(+), 51 deletions(-)
 
@@ -4151,13 +4253,13 @@ Date:   2011-10-08 18:44:55 +0200
  src/controller.h         |   3 ++
  src/lirc.cpp             |   4 +++
  src/main.cpp             |   7 +++-
- src/media_data.cpp       |   9 ++++-
+ src/media_data.cpp       |   9 +++++-
  src/media_data.h         |   1 +
  src/player.cpp           |  14 ++++++++
- src/player_equalizer.cpp | 181 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
- src/player_qt.cpp        |  97 +++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ src/player_equalizer.cpp | 181 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
+ src/player_qt.cpp        |  97 ++++++++++++++++++++++++++++++++++++++++++++++++++++++-
  src/player_qt.h          |  21 ++++++++++++
- src/video_output.cpp     | 155 ++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------
+ src/video_output.cpp     | 155 ++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------
  src/video_output.h       |   8 +++--
  src/video_output_qt.cpp  |  10 ++++--
  14 files changed, 381 insertions(+), 146 deletions(-)
@@ -4213,7 +4315,7 @@ Date:   2011-09-21 06:41:36 +0200
     Update cs.po.
 
  po/LINGUAS |   2 +-
- po/cs.po   | 790 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------
+ po/cs.po   | 790 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
  2 files changed, 522 insertions(+), 270 deletions(-)
 
 commit 62c315157cfff5c0c39701f54dcf3256bda578b8
@@ -4287,22 +4389,17 @@ Date:   2011-09-08 06:50:30 +0200
     
     This uses the freedesktop.org standards.
 
- configure.ac                       |    8 +
- src/Makefile.am                    |   31 ++-
- src/bino.desktop                   |   11 +
- src/logo/16x16/bino.png            |  Bin 0 -> 714 bytes
- src/logo/32x32/bino.png            |  Bin 0 -> 1698 bytes
- src/logo/48x48/bino.png            |  Bin 0 -> 2554 bytes
- src/logo/64x64/bino.png            |  Bin 0 -> 3914 bytes
- src/logo/bino_logo_small.svg       | 1011 ------------------------------------------------------------------------------------------
- src/logo/bino_logo_small_16x16.png |  Bin 714 -> 0 bytes
- src/logo/bino_logo_small_32x32.png |  Bin 1698 -> 0 bytes
- src/logo/bino_logo_small_48x48.png |  Bin 2554 -> 0 bytes
- src/logo/bino_logo_small_64x64.png |  Bin 3914 -> 0 bytes
- src/logo/scalable/bino.svg         | 1011 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/player_qt.cpp                  |    2 +-
- src/video_output_qt.cpp            |    2 +-
- 15 files changed, 1056 insertions(+), 1020 deletions(-)
+ configure.ac                                           |   8 ++++++++
+ src/Makefile.am                                        |  31 ++++++++++++++++++++++++-------
+ src/bino.desktop                                       |  11 +++++++++++
+ src/logo/{bino_logo_small_16x16.png => 16x16/bino.png} | Bin
+ src/logo/{bino_logo_small_32x32.png => 32x32/bino.png} | Bin
+ src/logo/{bino_logo_small_48x48.png => 48x48/bino.png} | Bin
+ src/logo/{bino_logo_small_64x64.png => 64x64/bino.png} | Bin
+ src/logo/{bino_logo_small.svg => scalable/bino.svg}    |   0
+ src/player_qt.cpp                                      |   2 +-
+ src/video_output_qt.cpp                                |   2 +-
+ 10 files changed, 45 insertions(+), 9 deletions(-)
 
 commit f87b79ee7fa4482f38b794ed098cdd4047f8a0ce
 Author: Martin Lambers <marlam@marlam.de>
@@ -4443,7 +4540,7 @@ Date:   2011-08-31 21:18:40 +0200
 
     Manual: some tweaks and improvements.
 
- doc/bino.texi | 171 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
+ doc/bino.texi | 171 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------
  1 file changed, 86 insertions(+), 85 deletions(-)
 
 commit d59ae1dce114e758d617bd5e315b9685c0e4dfad
@@ -4462,7 +4559,7 @@ Date:   2011-08-31 13:13:34 +0200
     Update pl.po.
 
  AUTHORS  |   1 +
- po/pl.po | 819 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
+ po/pl.po | 819 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
  2 files changed, 538 insertions(+), 282 deletions(-)
 
 commit 68f3f8d35be69b2915eed2877302b6cdda48c9f0
@@ -4500,7 +4597,7 @@ Date:   2011-08-28 18:46:29 +0200
 
     Update fr.po.
 
- po/fr.po | 802 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
+ po/fr.po | 802 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
  1 file changed, 528 insertions(+), 274 deletions(-)
 
 commit c5d5d82639348e77ef2b776407e80a0d9cf0454a
@@ -4518,7 +4615,7 @@ Date:   2011-08-28 14:18:16 +0200
 
     Update ru.po.
 
- po/ru.po | 812 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
+ po/ru.po | 812 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
  1 file changed, 531 insertions(+), 281 deletions(-)
 
 commit 3411dab55e1a0dc2d6867e028877ce23812991a5
@@ -4645,7 +4742,7 @@ Date:   2011-08-13 22:51:01 +0200
 
     Update de.po.
 
- po/de.po | 449 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
+ po/de.po | 449 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------------
  1 file changed, 227 insertions(+), 222 deletions(-)
 
 commit f7e233001b4f84864d2ce55ede83defa7e8b65ab
@@ -4793,7 +4890,7 @@ Date:   2011-08-13 19:22:46 +0200
     Manual: add images and explanations, and restructure some sections.
 
  doc/Makefile.am                          |  34 ++++-
- doc/bino.texi                            | 604 ++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
+ doc/bino.texi                            | 604 +++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
  doc/input-layout-bottom-top-half.png     |   1 +
  doc/input-layout-bottom-top.png          |   1 +
  doc/input-layout-even-odd-rows.png       |   1 +
@@ -4833,51 +4930,51 @@ Date:   2011-08-13 19:22:08 +0200
 
  src/Makefile.am                                      |  38 ++++-
  src/icons-local/README                               |  21 +++
- src/icons-local/input-layout-bottom-top-half.ipe     | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-bottom-top-half.ipe     | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-bottom-top-half.png     | Bin 0 -> 468 bytes
- src/icons-local/input-layout-bottom-top.ipe          | 260 +++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-bottom-top.ipe          | 260 ++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-bottom-top.png          | Bin 0 -> 645 bytes
  src/icons-local/input-layout-even-odd-rows.ipe       | 279 ++++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-even-odd-rows.png       | Bin 0 -> 339 bytes
- src/icons-local/input-layout-left-right-half.ipe     | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-left-right-half.ipe     | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-left-right-half.png     | Bin 0 -> 433 bytes
- src/icons-local/input-layout-left-right.ipe          | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-left-right.ipe          | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-left-right.png          | Bin 0 -> 562 bytes
- src/icons-local/input-layout-mono.ipe                | 245 +++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-mono.ipe                | 245 ++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-mono.png                | Bin 0 -> 569 bytes
  src/icons-local/input-layout-odd-even-rows.ipe       | 279 ++++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-odd-even-rows.png       | Bin 0 -> 335 bytes
- src/icons-local/input-layout-right-left-half.ipe     | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-right-left-half.ipe     | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-right-left-half.png     | Bin 0 -> 444 bytes
- src/icons-local/input-layout-right-left.ipe          | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-right-left.ipe          | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-right-left.png          | Bin 0 -> 551 bytes
- src/icons-local/input-layout-separate-left-right.ipe | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-separate-left-right.ipe | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-separate-left-right.png | Bin 0 -> 597 bytes
- src/icons-local/input-layout-separate-right-left.ipe | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-separate-right-left.ipe | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-separate-right-left.png | Bin 0 -> 595 bytes
- src/icons-local/input-layout-top-bottom-half.ipe     | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-top-bottom-half.ipe     | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-top-bottom-half.png     | Bin 0 -> 471 bytes
- src/icons-local/input-layout-top-bottom.ipe          | 260 +++++++++++++++++++++++++++++++++
+ src/icons-local/input-layout-top-bottom.ipe          | 260 ++++++++++++++++++++++++++++++++++
  src/icons-local/input-layout-top-bottom.png          | Bin 0 -> 649 bytes
  src/icons-local/output-type-amber-blue.ipe           | 272 +++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-amber-blue.png           | Bin 0 -> 1945 bytes
- src/icons-local/output-type-checkerboard.ipe         | 573 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-checkerboard.ipe         | 573 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-checkerboard.png         | Bin 0 -> 501 bytes
- src/icons-local/output-type-even-odd-columns.ipe     | 293 +++++++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-even-odd-columns.ipe     | 293 ++++++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-even-odd-columns.png     | Bin 0 -> 365 bytes
  src/icons-local/output-type-even-odd-rows.ipe        | 279 ++++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-even-odd-rows.png        | Bin 0 -> 339 bytes
  src/icons-local/output-type-green-magenta.ipe        | 272 +++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-green-magenta.png        | Bin 0 -> 1954 bytes
- src/icons-local/output-type-hdmi-frame-pack.ipe      | 245 +++++++++++++++++++++++++++++++
+ src/icons-local/output-type-hdmi-frame-pack.ipe      | 245 ++++++++++++++++++++++++++++++++
  src/icons-local/output-type-hdmi-frame-pack.png      | Bin 0 -> 1211 bytes
- src/icons-local/output-type-left-right-half.ipe      | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-left-right-half.ipe      | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/output-type-left-right-half.png      | Bin 0 -> 433 bytes
- src/icons-local/output-type-left-right.ipe           | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-left-right.ipe           | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/output-type-left-right.png           | Bin 0 -> 562 bytes
- src/icons-local/output-type-mono-left.ipe            | 245 +++++++++++++++++++++++++++++++
+ src/icons-local/output-type-mono-left.ipe            | 245 ++++++++++++++++++++++++++++++++
  src/icons-local/output-type-mono-left.png            | Bin 0 -> 324 bytes
- src/icons-local/output-type-mono-right.ipe           | 245 +++++++++++++++++++++++++++++++
+ src/icons-local/output-type-mono-right.ipe           | 245 ++++++++++++++++++++++++++++++++
  src/icons-local/output-type-mono-right.png           | Bin 0 -> 372 bytes
  src/icons-local/output-type-red-blue.ipe             | 272 +++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-red-blue.png             | Bin 0 -> 1898 bytes
@@ -4885,11 +4982,11 @@ Date:   2011-08-13 19:22:08 +0200
  src/icons-local/output-type-red-cyan.png             | Bin 0 -> 1943 bytes
  src/icons-local/output-type-red-green.ipe            | 272 +++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-red-green.png            | Bin 0 -> 1891 bytes
- src/icons-local/output-type-stereo.ipe               | 245 +++++++++++++++++++++++++++++++
+ src/icons-local/output-type-stereo.ipe               | 245 ++++++++++++++++++++++++++++++++
  src/icons-local/output-type-stereo.png               | Bin 0 -> 885 bytes
- src/icons-local/output-type-top-bottom-half.ipe      | 253 ++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-top-bottom-half.ipe      | 253 +++++++++++++++++++++++++++++++++
  src/icons-local/output-type-top-bottom-half.png      | Bin 0 -> 471 bytes
- src/icons-local/output-type-top-bottom.ipe           | 260 +++++++++++++++++++++++++++++++++
+ src/icons-local/output-type-top-bottom.ipe           | 260 ++++++++++++++++++++++++++++++++++
  src/icons-local/output-type-top-bottom.png           | Bin 0 -> 649 bytes
  src/player_qt.cpp                                    |  76 +++++-----
  61 files changed, 7946 insertions(+), 40 deletions(-)
@@ -4962,7 +5059,7 @@ Date:   2011-08-07 11:31:55 +0200
 
     Subtitle renderer: minor cleanup.
 
- src/subtitle_renderer.cpp | 149 +++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------------
+ src/subtitle_renderer.cpp | 149 +++++++++++++++++++++++++++++++++++++++++------------------------------------------------------------
  src/subtitle_renderer.h   |   4 +--
  2 files changed, 63 insertions(+), 90 deletions(-)
 
@@ -5078,7 +5175,7 @@ Date:   2011-08-04 21:29:03 +0200
 
     Update de.po.
 
- po/de.po | 698 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
+ po/de.po | 698 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
  1 file changed, 440 insertions(+), 258 deletions(-)
 
 commit 762c7a9296fca91387f14d57638fe1a4327b7ab3
@@ -5260,14 +5357,14 @@ Date:   2011-05-17 19:56:27 +0200
 
  NEWS                            |   2 +-
  doc/bino.1                      |  15 ++++--
- doc/bino.texi                   |  29 +++++++----
+ doc/bino.texi                   |  29 ++++++++----
  src/controller.h                |  12 ++++-
- src/main.cpp                    |  50 ++++++++++++++++---
+ src/main.cpp                    |  50 +++++++++++++++++---
  src/media_data.cpp              |  38 +++++++++++++--
  src/media_data.h                |   6 ++-
  src/player.cpp                  |  47 +++++++++++++++---
  src/player_equalizer.cpp        |   1 +
- src/player_qt.cpp               | 246 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------
+ src/player_qt.cpp               | 246 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------
  src/video_output.cpp            |  99 +++++++++++++++++++++++++++-----------
  src/video_output.h              |   1 +
  src/video_output_qt.cpp         |  78 +++++++++++++++++++++++++-----
@@ -5392,7 +5489,7 @@ Date:   2011-05-14 09:22:13 +0200
  src/Makefile.am      |   6 +++
  src/controller.h     |   6 +++
  src/lib_versions.cpp |  25 ++++++++++++
- src/lirc.cpp         | 221 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/lirc.cpp         | 221 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/lirc.h           |  56 +++++++++++++++++++++++++++
  src/main.cpp         |  28 ++++++++++++++
  src/player.cpp       |   2 +
@@ -5412,9 +5509,9 @@ Date:   2011-05-14 07:20:44 +0200
 
  src/audio_output.cpp     |   4 +---
  src/audio_output.h       |   2 +-
- src/controller.cpp       | 118 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
- src/controller.h         |  40 +++++++++++++++++++++++++---------
- src/player.cpp           | 103 ++++++++++++++++++++++++++++++++++++----------------------------------------------------
+ src/controller.cpp       | 118 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ src/controller.h         |  40 ++++++++++++++++++++++++++---------
+ src/player.cpp           | 103 ++++++++++++++++++++++++++++++++++++-----------------------------------------------------
  src/player.h             |   9 --------
  src/player_equalizer.cpp |   4 ++--
  src/player_qt.cpp        |   4 ++--
@@ -5599,7 +5696,7 @@ Date:   2011-05-08 14:26:21 +0200
  doc/bino.texi        |   2 ++
  src/main.cpp         |  23 +++++++++++--
  src/media_data.h     |   3 +-
- src/media_object.cpp | 193 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
+ src/media_object.cpp | 193 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
  src/player_qt.cpp    | 101 +++++++++++++++++++++++++++++++++++++++++--------------
  src/player_qt.h      |  10 ++++--
  7 files changed, 215 insertions(+), 119 deletions(-)
@@ -5621,8 +5718,8 @@ Date:   2011-05-08 12:29:56 +0200
  src/media_object.h   |   2 +-
  src/player.cpp       |   8 +++---
  src/player.h         |   2 +-
- src/player_qt.cpp    | 148 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
- src/player_qt.h      |  24 ++++++++++++++++-
+ src/player_qt.cpp    | 148 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
+ src/player_qt.h      |  24 +++++++++++++++++-
  13 files changed, 258 insertions(+), 48 deletions(-)
 
 commit e83b858eaad24e611fe2918b1d5ce1e2005f3a8c
@@ -5749,7 +5846,7 @@ Date:   2011-05-05 21:54:52 +0200
     
     Also clear all members on closing, not just the FFmpeg stuff.
 
- src/media_object.cpp | 172 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
+ src/media_object.cpp | 172 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
  1 file changed, 89 insertions(+), 83 deletions(-)
 
 commit aac1aa089008a843559f38e6f657d58e72994119
@@ -5807,10 +5904,10 @@ Date:   2011-04-28 11:05:20 +0200
 
     Update *.po.
 
- po/cs.po | 323 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------------
- po/de.po | 317 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
- po/fr.po | 257 ++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
- po/pl.po | 257 ++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
+ po/cs.po | 323 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------------
+ po/de.po | 317 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ po/fr.po | 257 +++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
+ po/pl.po | 257 +++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
  po/ru.po | 265 ++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
  5 files changed, 707 insertions(+), 712 deletions(-)
 
@@ -5908,26 +6005,26 @@ Date:   2011-04-23 17:40:41 +0200
     <http://lists.nongnu.org/archive/html/bino-list/2011-04/msg00082.html>.
 
  src/Makefile.am                            |  45 ++++++---
- src/icons/COPYING                          | 215 ++++++++++++++++++++++++++++++++++++++++++
+ src/icons/COPYING                          | 215 +++++++++++++++++++++++++++++++++++++++++++
  src/icons/README                           |  18 +---
  src/icons/application-exit.png             | Bin 0 -> 3017 bytes
  src/icons/applications-internet.png        | Bin 0 -> 5158 bytes
- src/icons/b.ipe                            | 402 -------------------------------------------------------------------------------
+ src/icons/b.ipe                            | 402 --------------------------------------------------------------------------------
  src/icons/b.png                            | Bin 579 -> 0 bytes
- src/icons/bb.ipe                           | 408 --------------------------------------------------------------------------------
+ src/icons/bb.ipe                           | 408 ---------------------------------------------------------------------------------
  src/icons/bb.png                           | Bin 826 -> 0 bytes
- src/icons/bbb.ipe                          | 414 ---------------------------------------------------------------------------------
+ src/icons/bbb.ipe                          | 414 ----------------------------------------------------------------------------------
  src/icons/bbb.png                          | Bin 1066 -> 0 bytes
- src/icons/center.ipe                       | 420 -----------------------------------------------------------------------------------
+ src/icons/center.ipe                       | 420 ------------------------------------------------------------------------------------
  src/icons/center.png                       | Bin 1335 -> 0 bytes
  src/icons/document-open.png                | Bin 0 -> 1616 bytes
- src/icons/f.ipe                            | 402 -------------------------------------------------------------------------------
+ src/icons/f.ipe                            | 402 --------------------------------------------------------------------------------
  src/icons/f.png                            | Bin 583 -> 0 bytes
- src/icons/ff.ipe                           | 408 --------------------------------------------------------------------------------
+ src/icons/ff.ipe                           | 408 ---------------------------------------------------------------------------------
  src/icons/ff.png                           | Bin 814 -> 0 bytes
- src/icons/fff.ipe                          | 414 ---------------------------------------------------------------------------------
+ src/icons/fff.ipe                          | 414 ----------------------------------------------------------------------------------
  src/icons/fff.png                          | Bin 1024 -> 0 bytes
- src/icons/fullscreen.ipe                   | 419 ----------------------------------------------------------------------------------
+ src/icons/fullscreen.ipe                   | 419 -----------------------------------------------------------------------------------
  src/icons/fullscreen.png                   | Bin 1109 -> 0 bytes
  src/icons/help-about.png                   | Bin 0 -> 2261 bytes
  src/icons/help-contents.png                | Bin 0 -> 2795 bytes
@@ -5936,12 +6033,12 @@ Date:   2011-04-23 17:40:41 +0200
  src/icons/media-playback-stop.png          | Bin 0 -> 1891 bytes
  src/icons/media-seek-backward.png          | Bin 0 -> 1964 bytes
  src/icons/media-seek-forward.png           | Bin 0 -> 1962 bytes
- src/icons/pause.ipe                        | 410 ---------------------------------------------------------------------------------
+ src/icons/pause.ipe                        | 410 ----------------------------------------------------------------------------------
  src/icons/pause.png                        | Bin 571 -> 0 bytes
- src/icons/play.ipe                         | 402 -------------------------------------------------------------------------------
+ src/icons/play.ipe                         | 402 --------------------------------------------------------------------------------
  src/icons/play.png                         | Bin 709 -> 0 bytes
  src/icons/preferences-desktop-keyboard.png | Bin 0 -> 1414 bytes
- src/icons/stop.ipe                         | 403 -------------------------------------------------------------------------------
+ src/icons/stop.ipe                         | 403 --------------------------------------------------------------------------------
  src/icons/stop.png                         | Bin 417 -> 0 bytes
  src/icons/view-fullscreen.png              | Bin 0 -> 883 bytes
  src/icons/view-restore.png                 | Bin 0 -> 899 bytes
@@ -5994,7 +6091,7 @@ Date:   2011-04-22 16:07:20 +0200
 
  pkg/w32/bino.nsi |   17 +-
  po/LINGUAS       |    1 +
- po/fr.po         | 1323 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/fr.po         | 1323 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 1334 insertions(+), 7 deletions(-)
 
 commit a8a90d5355e3751a98b053ad2906e1cf72ce437f
@@ -6086,7 +6183,7 @@ Date:   2011-04-20 11:48:02 +0200
  AUTHORS          |    1 +
  pkg/w32/bino.nsi |    6 +
  po/LINGUAS       |    3 +-
- po/pl.po         | 1310 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/pl.po         | 1310 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  4 files changed, 1319 insertions(+), 1 deletion(-)
 
 commit 9843961076f65c8b947df4f34ccfd265e48d989a
@@ -6104,7 +6201,7 @@ Date:   2011-04-19 07:02:38 +0200
 
     Update ru.po.
 
- po/ru.po | 181 +++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------------------
+ po/ru.po | 181 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------------
  1 file changed, 85 insertions(+), 96 deletions(-)
 
 commit 949dde274f45f0bd17d56366edaf80d22e1f8691
@@ -6200,7 +6297,7 @@ Date:   2011-04-18 21:27:08 +0200
 
  pkg/w32/bino.nsi |    6 +
  po/LINGUAS       |    1 +
- po/ru.po         | 1317 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/ru.po         | 1317 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 1324 insertions(+)
 
 commit 66993854b13c0039d98ce3e7b3e2ec8856236c98
@@ -6247,7 +6344,7 @@ Date:   2011-04-16 12:40:57 +0200
     Add czech translation.
 
  po/LINGUAS |    1 +
- po/cs.po   | 1302 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/cs.po   | 1302 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  2 files changed, 1303 insertions(+)
 
 commit 6a861d3642b7a38c07ec9fa09d8e582d1c6064c7
@@ -6348,7 +6445,7 @@ Date:   2011-04-12 21:14:35 +0200
 
     Update de.po.
 
- po/de.po | 261 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
+ po/de.po | 261 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------------
  1 file changed, 140 insertions(+), 121 deletions(-)
 
 commit 882cd1fd34a48acdb905614ccd720fd3507e087b
@@ -6373,7 +6470,7 @@ Date:   2011-04-12 07:13:38 +0200
 
     base/msg: add message functions with indentation level.
 
- src/base/msg.cpp | 334 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
+ src/base/msg.cpp | 334 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
  src/base/msg.h   |  30 ++++++++++
  2 files changed, 337 insertions(+), 27 deletions(-)
 
@@ -6432,10 +6529,10 @@ Date:   2011-04-11 06:57:18 +0200
  m4/gettext.m4             |  383 ++++++++++++++++++++++++++++++
  m4/iconv.m4               |  214 +++++++++++++++++
  m4/lib-ld.m4              |  110 +++++++++
- m4/lib-link.m4            |  774 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ m4/lib-link.m4            |  774 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  m4/lib-prefix.m4          |  224 ++++++++++++++++++
  m4/nls.m4                 |   32 +++
- m4/po.m4                  |  449 +++++++++++++++++++++++++++++++++++
+ m4/po.m4                  |  449 ++++++++++++++++++++++++++++++++++++
  m4/progtest.m4            |   92 ++++++++
  po/LINGUAS                |    2 +
  po/Makefile.in.in         |  444 +++++++++++++++++++++++++++++++++++
@@ -6443,7 +6540,7 @@ Date:   2011-04-11 06:57:18 +0200
  po/POTFILES.in            |   24 ++
  po/Rules-quot             |   47 ++++
  po/boldquot.sed           |   10 +
- po/de.po                  | 1267 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/de.po                  | 1267 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  po/en@boldquot.header     |   25 ++
  po/en@quot.header         |   22 ++
  po/insert-header.sin      |   23 ++
@@ -6614,10 +6711,10 @@ Date:   2011-04-09 15:40:51 +0200
     Add subtitle character set conversion support.
 
  src/controller.h          |   2 ++
- src/media_data.cpp        |   7 ++++++
+ src/media_data.cpp        |   7 +++++++
  src/media_data.h          |   1 +
  src/player.cpp            |   8 +++++++
- src/player_qt.cpp         | 116 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ src/player_qt.cpp         | 116 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
  src/player_qt.h           |   5 +++++
  src/subtitle_renderer.cpp |  17 +++++++++++++--
  src/video_output.cpp      |   1 +
@@ -6676,7 +6773,7 @@ Date:   2011-04-09 10:08:42 +0200
  src/media_data.h          |   5 ++
  src/player.cpp            |  65 ++++++++++++++++----
  src/player.h              |   1 +
- src/player_qt.cpp         | 326 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ src/player_qt.cpp         | 326 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
  src/player_qt.h           |  38 ++++++++++++
  src/subtitle_renderer.cpp |  52 +++++++++++++---
  src/subtitle_renderer.h   |  12 +++-
@@ -6762,7 +6859,7 @@ Date:   2011-04-08 13:53:44 +0200
     This is because some virtual functions can really only be implemented on
     channel level (e.g. screen_pixel_aspect_ratio, video_display_width, ...).
 
- src/player_equalizer.cpp | 112 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------
+ src/player_equalizer.cpp | 112 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
  src/video_output.cpp     |   4 ++--
  src/video_output.h       |  12 +++++------
  3 files changed, 73 insertions(+), 55 deletions(-)
@@ -6815,7 +6912,7 @@ Date:   2011-04-07 17:44:52 +0200
     the current subtitle to the texture, which should be much faster in the common
     case because subtitles fill only a small part of the screen.
 
- src/subtitle_renderer.cpp | 218 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------
+ src/subtitle_renderer.cpp | 218 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------
  src/subtitle_renderer.h   |  45 +++++++++++++++++----
  src/video_output.cpp      |  64 +++++++++++++++++++-----------
  src/video_output.h        |   1 +
@@ -6843,10 +6940,10 @@ Date:   2011-04-07 07:03:52 +0200
     
     These are mainly found on DVD video.
 
- src/media_data.cpp        |   9 +++++++-
- src/media_data.h          |  26 ++++++++++++++++-------
+ src/media_data.cpp        |   9 ++++++++-
+ src/media_data.h          |  26 +++++++++++++++++-------
  src/media_object.cpp      |  20 ++++++++++++------
- src/subtitle_renderer.cpp | 112 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------
+ src/subtitle_renderer.cpp | 112 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------
  src/subtitle_renderer.h   |   7 ++++++-
  src/video_output.cpp      |  19 ++++++++++++-----
  src/video_output.h        |   2 +-
@@ -6879,12 +6976,12 @@ Date:   2011-04-05 21:30:35 +0200
       resulted in wrong color and alpha values.
 
  src/Makefile.am                   |   2 --
- src/subtitle_renderer.cpp         |  44 +++++++++++++-------------
+ src/subtitle_renderer.cpp         |  44 +++++++++++++--------------
  src/subtitle_renderer.h           |  10 +++---
- src/video_output.cpp              | 155 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------
+ src/video_output.cpp              | 155 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------
  src/video_output.h                |  14 ++++++++-
  src/video_output_render.fs.glsl   |  36 +++++++++++++++++-----
- src/video_output_subtitle.fs.glsl |  49 -----------------------------
+ src/video_output_subtitle.fs.glsl |  49 ------------------------------
  7 files changed, 166 insertions(+), 144 deletions(-)
 
 commit 06cc1e308aaffad984f854ccf30a2a4d660eb930
@@ -7054,7 +7151,7 @@ Date:   2011-04-03 18:03:50 +0200
  src/main.cpp         |   8 ++-
  src/media_input.cpp  | 139 +++++++++++++++++++++++++++++++++++-
  src/media_input.h    |  38 +++++++++-
- src/media_object.cpp | 413 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
+ src/media_object.cpp | 413 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
  src/media_object.h   |  34 ++++++---
  8 files changed, 594 insertions(+), 50 deletions(-)
 
@@ -7077,7 +7174,7 @@ Date:   2011-04-03 17:58:36 +0200
  configure.ac              |   9 +++++
  src/Makefile.am           |   5 ++-
  src/lib_versions.cpp      |  24 ++++++++++++
- src/subtitle_renderer.cpp | 201 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/subtitle_renderer.cpp | 201 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/subtitle_renderer.h   |  55 ++++++++++++++++++++++++++++
  5 files changed, 292 insertions(+), 2 deletions(-)
 
@@ -7136,7 +7233,7 @@ Date:   2011-03-21 21:00:37 +0100
     between the two views.
 
  src/player_equalizer.cpp |   6 +++-
- src/video_output.cpp     | 164 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
+ src/video_output.cpp     | 164 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------
  src/video_output.h       |   6 ++--
  3 files changed, 106 insertions(+), 70 deletions(-)
 
@@ -7551,8 +7648,8 @@ Date:   2011-02-26 14:31:13 +0100
  src/logo/README                    |   17 ++
  src/logo/bino_logo.ico             |  Bin 0 -> 32038 bytes
  src/logo/bino_logo.png             |  Bin 0 -> 23017 bytes
- src/logo/bino_logo.svg             | 1081 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/logo/bino_logo_small.svg       | 1011 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/logo/bino_logo.svg             | 1081 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/logo/bino_logo_small.svg       | 1011 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/logo/bino_logo_small_16x16.png |  Bin 0 -> 714 bytes
  src/logo/bino_logo_small_32x32.png |  Bin 0 -> 1698 bytes
  src/logo/bino_logo_small_48x48.png |  Bin 0 -> 2554 bytes
@@ -7645,7 +7742,7 @@ Date:   2011-02-21 13:20:55 +0100
 
     Minor improvement of the base thread module.
 
- src/base/thread.cpp | 148 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
+ src/base/thread.cpp | 148 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------
  src/base/thread.h   |  17 +++++++------
  2 files changed, 91 insertions(+), 74 deletions(-)
 
@@ -7701,10 +7798,10 @@ Date:   2011-02-20 12:38:44 +0100
  src/audio_output.h   |  26 +++---
  src/base/Makefile.am |   3 +-
  src/base/thread.cpp  | 151 ++++++++++++++++++++++++++++++
- src/base/thread.h    | 152 ++++++++++++++++++++++++++++++
+ src/base/thread.h    | 152 +++++++++++++++++++++++++++++++
  src/media_input.cpp  | 110 ++++++++++++++++------
  src/media_input.h    |   3 +
- src/media_object.cpp | 531 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------
+ src/media_object.cpp | 531 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
  src/media_object.h   |  11 +--
  src/player.cpp       |  95 ++++++++++++-------
  src/player.h         |   8 +-
@@ -8017,8 +8114,8 @@ Date:   2011-02-14 13:33:33 +0100
 
     Player: clean up and add comments.
 
- src/player.cpp |  17 +++++++------
- src/player.h   | 145 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
+ src/player.cpp |  17 ++++++++------
+ src/player.h   | 145 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
  2 files changed, 94 insertions(+), 68 deletions(-)
 
 commit 8e07b3c8450b14a1f45acbf1a732a0e604433a4c
@@ -8066,11 +8163,11 @@ Date:   2011-02-13 21:57:30 +0100
 
  doc/bino.1                      |  25 +++++++++++------
  doc/bino.texi                   |  24 ++++++++++------
- src/main.cpp                    | 145 +++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------
- src/media_data.cpp              |  67 ++++++++++++++++++++++++++++++++-----------
+ src/main.cpp                    | 145 ++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------
+ src/media_data.cpp              |  67 +++++++++++++++++++++++++++++++++-----------
  src/media_data.h                |  13 ++++++---
  src/player.cpp                  |   2 +-
- src/player_qt.cpp               |  91 +++++++++++++++++++++++++++++++++++++++++------------------
+ src/player_qt.cpp               |  91 ++++++++++++++++++++++++++++++++++++++++-------------------
  src/video_output.cpp            |  39 ++++++++++++++++++--------
  src/video_output_render.fs.glsl |  39 ++++++++++++++++++--------
  9 files changed, 287 insertions(+), 158 deletions(-)
@@ -8121,9 +8218,9 @@ Date:   2011-02-13 12:41:18 +0100
 
  src/media_data.cpp       |  32 ++++++++
  src/media_data.h         |   8 +-
- src/player.cpp           |  90 ++++++++++++++++----
+ src/player.cpp           |  90 ++++++++++++++++-----
  src/player.h             |  19 ++++-
- src/player_equalizer.cpp | 451 +++++++++++++++++++++++++++++++++++------------------------------------------------------------------
+ src/player_equalizer.cpp | 451 +++++++++++++++++++++++++++++++++++-------------------------------------------------------------------
  5 files changed, 279 insertions(+), 321 deletions(-)
 
 commit 050be237112189a6298dee8745343be1197e7876
@@ -8141,9 +8238,9 @@ Date:   2011-02-13 10:42:51 +0100
 
     End all messages with '.' consistently.
 
- src/audio_output.cpp    |  32 +++++++++++++--------------
- src/main.cpp            | 120 +++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
- src/media_object.cpp    |  38 ++++++++++++++++----------------
+ src/audio_output.cpp    |  32 ++++++++++++++--------------
+ src/main.cpp            | 120 +++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------
+ src/media_object.cpp    |  38 ++++++++++++++++-----------------
  src/player.cpp          |  14 ++++++------
  src/video_output_qt.cpp |   6 +++---
  src/xgl.cpp             |  12 +++++------
@@ -8173,7 +8270,7 @@ Date:   2011-02-12 17:49:41 +0100
 
     Improve library version listing.
 
- src/lib_versions.cpp | 121 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------
+ src/lib_versions.cpp | 121 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------
  src/player_qt.cpp    |   8 +++----
  2 files changed, 80 insertions(+), 49 deletions(-)
 
@@ -8197,11 +8294,11 @@ Date:   2011-02-12 17:02:17 +0100
 
  src/controller.h        |  26 ++++++++++++++++
  src/main.cpp            |   4 +++
- src/media_input.cpp     |  23 ++++++++++++--
+ src/media_input.cpp     |  23 +++++++++++++--
  src/media_input.h       |  12 ++++++++
  src/player.cpp          |  94 ++++++++++++++++++++++++++++++++++++++++++++++++++++------
  src/player.h            |   3 ++
- src/player_qt.cpp       | 166 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
+ src/player_qt.cpp       | 166 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
  src/player_qt.h         |   8 +++--
  src/video_output_qt.cpp |   6 ++++
  9 files changed, 294 insertions(+), 48 deletions(-)
@@ -8232,9 +8329,9 @@ Date:   2011-02-12 16:43:09 +0100
 
     Add forgotten GUI icons.
 
- src/icons/center.ipe     | 420 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/center.ipe     | 420 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/center.png     | Bin 0 -> 1335 bytes
- src/icons/fullscreen.ipe | 419 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/fullscreen.ipe | 419 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/fullscreen.png | Bin 0 -> 1109 bytes
  4 files changed, 839 insertions(+)
 
@@ -8259,7 +8356,7 @@ Date:   2011-02-12 14:59:19 +0100
  src/controller.h     |   6 +
  src/player.cpp       | 103 +++++++++++--
  src/player.h         |   1 +
- src/player_qt.cpp    | 867 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------
+ src/player_qt.cpp    | 867 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------
  src/player_qt.h      | 117 ++++++++++++---
  src/qt_resources.qrc |   2 +
  7 files changed, 820 insertions(+), 278 deletions(-)
@@ -8337,7 +8434,7 @@ Date:   2011-02-11 21:34:16 +0100
     generic parameters to commands and notifications.
 
  src/base/Makefile.am |   5 +----
- src/controller.h     | 128 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
+ src/controller.h     | 128 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------
  2 files changed, 75 insertions(+), 58 deletions(-)
 
 commit 7b43e08d99756f0276866e6ac1737d21bb4d7094
@@ -8372,8 +8469,8 @@ Date:   2011-02-08 22:05:28 +0100
     Also, improve parameters handling and storing of settings.
 
  src/main.cpp            |   6 ++--
- src/media_data.cpp      |  37 ++++++++++----------
- src/player_qt.cpp       | 188 +++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
+ src/media_data.cpp      |  37 +++++++++++----------
+ src/player_qt.cpp       | 188 +++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
  src/player_qt.h         |   3 +-
  src/video_output_qt.cpp |  20 +++++++----
  5 files changed, 128 insertions(+), 126 deletions(-)
@@ -8438,9 +8535,9 @@ Date:   2011-02-07 06:33:07 +0100
     Cleanup the player class.
 
  src/main.cpp      |   2 +-
- src/player.cpp    | 192 +++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
+ src/player.cpp    | 192 ++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------------
  src/player.h      |  33 +++++++------------
- src/player_qt.cpp |  54 +++++++++----------------------
+ src/player_qt.cpp |  54 ++++++++++---------------------
  src/player_qt.h   |   9 ++++--
  5 files changed, 126 insertions(+), 164 deletions(-)
 
@@ -8480,16 +8577,16 @@ Date:   2011-02-06 16:16:17 +0100
  src/Makefile.am         |    5 +-
  src/decoder.cpp         |  157 ---------------
  src/decoder.h           |  201 -------------------
- src/decoder_ffmpeg.cpp  |  917 -------------------------------------------------------------------------------------
- src/decoder_ffmpeg.h    |   86 --------
- src/input.cpp           |  518 ------------------------------------------------
+ src/decoder_ffmpeg.cpp  |  917 --------------------------------------------------------------------------------------
+ src/decoder_ffmpeg.h    |   86 ---------
+ src/input.cpp           |  518 -------------------------------------------------
  src/input.h             |  196 -------------------
  src/media_data.cpp      |   59 +++++-
  src/media_data.h        |   26 ++-
  src/media_input.cpp     |  458 +++++++++++++++++++++++++++++++++++++++++++
  src/media_input.h       |  146 ++++++++++++++
- src/media_object.cpp    | 1081 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/media_object.h      |  118 +++++++++++
+ src/media_object.cpp    | 1081 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/media_object.h      |  118 ++++++++++++
  src/player.cpp          |  293 +++++++---------------------
  src/player.h            |   14 +-
  src/player_qt.cpp       |   38 ++--
@@ -8505,30 +8602,27 @@ Date:   2011-02-05 11:24:15 +0100
 
     Rewrite video data handling.
 
- src/Makefile.am                        |  13 +-
- src/controller.h                       |   4 +-
- src/input.cpp                          | 109 +----------
- src/input.h                            |   7 +-
- src/main.cpp                           |  85 ++++----
- src/media_data.cpp                     | 441 ++++++++++++++++++++++++++++++++++++++++++
- src/media_data.h                       | 128 ++++++++++++
- src/player.cpp                         | 252 ++++++++++++++++--------
- src/player.h                           |  34 ++--
- src/player_qt.cpp                      | 229 +++++++++++-----------
- src/player_qt.h                        |  17 +-
- src/video_output.cpp                   | 925 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
- src/video_output.h                     | 200 +++++++++++--------
- src/video_output_color.fs.glsl         | 131 +++++++++++++
- src/video_output_opengl.cpp            | 787 --------------------------------------------------------------------------
- src/video_output_opengl.h              | 168 ----------------
- src/video_output_opengl_color.fs.glsl  | 131 -------------
- src/video_output_opengl_qt.cpp         | 571 ------------------------------------------------------
- src/video_output_opengl_qt.h           | 134 -------------
- src/video_output_opengl_render.fs.glsl | 199 -------------------
- src/video_output_qt.cpp                | 494 ++++++++++++++++++++++++++++++++++++++++++++++
- src/video_output_qt.h                  | 141 ++++++++++++++
- src/video_output_render.fs.glsl        | 199 +++++++++++++++++++
- 23 files changed, 2856 insertions(+), 2543 deletions(-)
+ src/Makefile.am                                                         |  13 +-
+ src/controller.h                                                        |   4 +-
+ src/input.cpp                                                           | 109 +------
+ src/input.h                                                             |   7 +-
+ src/main.cpp                                                            |  85 ++---
+ src/media_data.cpp                                                      | 441 ++++++++++++++++++++++++++
+ src/media_data.h                                                        | 128 ++++++++
+ src/player.cpp                                                          | 252 ++++++++++-----
+ src/player.h                                                            |  34 +-
+ src/player_qt.cpp                                                       | 229 +++++++-------
+ src/player_qt.h                                                         |  17 +-
+ src/video_output.cpp                                                    | 925 +++++++++++++++++++++++++++++++++++++++++++++++++------
+ src/video_output.h                                                      | 200 +++++++-----
+ src/{video_output_opengl_color.fs.glsl => video_output_color.fs.glsl}   |   0
+ src/video_output_opengl.cpp                                             | 787 ----------------------------------------------
+ src/video_output_opengl.h                                               | 168 ----------
+ src/video_output_opengl_qt.cpp                                          | 571 ----------------------------------
+ src/video_output_qt.cpp                                                 | 494 +++++++++++++++++++++++++++++
+ src/{video_output_opengl_qt.h => video_output_qt.h}                     |  79 ++---
+ src/{video_output_opengl_render.fs.glsl => video_output_render.fs.glsl} |   0
+ 20 files changed, 2428 insertions(+), 2115 deletions(-)
 
 commit 70c0443cdb2649ef58914f52c15fdd89c7045300
 Author: Martin Lambers <marlam@marlam.de>
@@ -8546,7 +8640,7 @@ Date:   2011-01-24 06:51:17 +0100
     Improve library version handling.
 
  src/audio_output.cpp |   2 +
- src/lib_versions.cpp | 225 ++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------------------------------
+ src/lib_versions.cpp | 225 ++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------
  src/lib_versions.h   |   5 +++
  3 files changed, 122 insertions(+), 110 deletions(-)
 
@@ -8556,7 +8650,7 @@ Date:   2011-01-23 16:56:19 +0100
 
     Improve library version handling.
 
- src/lib_versions.cpp | 147 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------
+ src/lib_versions.cpp | 147 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------
  src/lib_versions.h   |   5 +++-
  2 files changed, 99 insertions(+), 53 deletions(-)
 
@@ -8579,7 +8673,7 @@ Date:   2011-01-15 17:34:38 +0100
  src/audio_output.h       |   5 +---
  src/decoder_ffmpeg.cpp   |  15 ----------
  src/decoder_ffmpeg.h     |   2 --
- src/lib_versions.cpp     | 155 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
+ src/lib_versions.cpp     | 155 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------
  src/lib_versions.h       |   6 ++--
  src/player_equalizer.cpp |  11 --------
  src/player_equalizer.h   |   2 --
@@ -8594,9 +8688,9 @@ Date:   2011-01-15 15:41:32 +0100
     Rewrite audio data handling.
 
  src/Makefile.am             |   2 +-
- src/audio_output.cpp        | 428 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- src/audio_output.h          |  71 +++++++++++-----
- src/audio_output_openal.cpp | 433 --------------------------------------------------------------------------------------------------
+ src/audio_output.cpp        | 428 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ src/audio_output.h          |  71 ++++++++++++-----
+ src/audio_output_openal.cpp | 433 ---------------------------------------------------------------------------------------------------
  src/audio_output_openal.h   |  77 ------------------
  src/lib_versions.cpp        |   6 +-
  src/media_data.cpp          |  78 ++++++++++++++++++
@@ -8708,21 +8802,19 @@ Date:   2011-01-12 12:41:23 +0100
 
     Improve the base/dbg module.
 
- configure.ac                |   6 +++++
- src/audio_output_openal.cpp |   2 +-
- src/base/Makefile.am        |   2 +-
- src/base/dbg.cpp            | 143 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/base/dbg.h              |  52 ++++++++++++++++++++++++++++++++++++
- src/base/debug.cpp          | 143 --------------------------------------------------------------------------------------------------
- src/base/debug.h            |  50 ----------------------------------
- src/base/str.cpp            |   2 +-
- src/decoder_ffmpeg.cpp      |   2 +-
- src/input.cpp               |   2 +-
- src/main.cpp                |   2 +-
- src/player_equalizer.cpp    |   2 +-
- src/video_output_opengl.cpp |   2 +-
- src/xgl.cpp                 |   2 +-
- 14 files changed, 210 insertions(+), 202 deletions(-)
+ configure.ac                    |  6 ++++++
+ src/audio_output_openal.cpp     |  2 +-
+ src/base/Makefile.am            |  2 +-
+ src/base/{debug.cpp => dbg.cpp} |  6 +++---
+ src/base/{debug.h => dbg.h}     | 32 +++++++++++++++++---------------
+ src/base/str.cpp                |  2 +-
+ src/decoder_ffmpeg.cpp          |  2 +-
+ src/input.cpp                   |  2 +-
+ src/main.cpp                    |  2 +-
+ src/player_equalizer.cpp        |  2 +-
+ src/video_output_opengl.cpp     |  2 +-
+ src/xgl.cpp                     |  2 +-
+ 12 files changed, 35 insertions(+), 27 deletions(-)
 
 commit 468758e8ad28fc9a59091b3cf893390177a4a500
 Author: Martin Lambers <marlam@marlam.de>
@@ -8861,7 +8953,7 @@ Date:   2011-01-09 15:58:04 +0100
 
     Manual: some tweaks.
 
- build-aux/texinfo.tex | 9291 -------------------------------------------------------------------------------------------------------
+ build-aux/texinfo.tex | 9291 --------------------------------------------------------------------------------------------------------
  configure.ac          |    2 +-
  doc/bino.texi         |  149 +-
  3 files changed, 78 insertions(+), 9364 deletions(-)
@@ -9091,7 +9183,7 @@ Date:   2011-01-07 12:51:27 +0100
 
  src/controller.h               |   7 ++++--
  src/player.cpp                 |  10 ++++++++
- src/player_qt.cpp              | 131 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ src/player_qt.cpp              | 131 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
  src/player_qt.h                |   7 ++++++
  src/video_output_opengl_qt.cpp |   4 +++
  5 files changed, 148 insertions(+), 11 deletions(-)
@@ -9157,7 +9249,7 @@ Date:   2011-01-06 23:01:48 +0100
 
  .gitignore                     |    3 +
  build-aux/mdate-sh             |  205 +++
- build-aux/texinfo.tex          | 9291 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ build-aux/texinfo.tex          | 9291 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  doc/Makefile.am                |   20 +-
  doc/bino.1                     |   88 +-
  doc/bino.texi                  |  644 +++++++
@@ -9205,7 +9297,7 @@ Date:   2011-01-06 16:35:02 +0100
 
  doc/Makefile.am                        |   6 ++++-
  doc/bino.1                             |   6 +++++
- doc/crosstalk-ghostbusting.txt         |  43 ++++++++++++++++++++++++++++++++++
+ doc/crosstalk-ghostbusting.txt         |  43 +++++++++++++++++++++++++++++++++++
  doc/crosstalk-pattern-l.png            | Bin 0 -> 19148 bytes
  doc/crosstalk-pattern-r.png            | Bin 0 -> 19159 bytes
  doc/gamma-pattern.png                  | Bin 0 -> 14653 bytes
@@ -9213,7 +9305,7 @@ Date:   2011-01-06 16:35:02 +0100
  src/video_output.cpp                   |   1 +
  src/video_output.h                     |   5 ++++
  src/video_output_opengl.cpp            |  54 ++++++++++++++++++++-----------------------
- src/video_output_opengl_render.fs.glsl | 110 +++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
+ src/video_output_opengl_render.fs.glsl | 110 +++++++++++++++++++++++++++++++++++++++++++---------------------------------------------
  11 files changed, 155 insertions(+), 86 deletions(-)
 
 commit 2a417da0c1db55b5ab668fc820bb51834f306af3
@@ -9229,7 +9321,7 @@ Date:   2011-01-06 14:25:37 +0100
  README.MacOSX            |   2 +
  configure.ac             |   1 +
  pkg/macosx/Bino.icns     | Bin 0 -> 29307 bytes
- pkg/macosx/Info.plist.in | 356 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ pkg/macosx/Info.plist.in | 356 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  pkg/macosx/README        |   8 +++
  6 files changed, 382 insertions(+)
 
@@ -9274,9 +9366,9 @@ Date:   2011-01-05 11:53:36 +0100
     This is now documented in README.Windows.
 
  Makefile.am           |  16 +++++++++++++
- README.Windows        |  22 ++++++++++++++---
+ README.Windows        |  22 +++++++++++++++---
  configure.ac          |  17 ++++++++++++++
- pkg/w32/bino.nsi      | 134 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ pkg/w32/bino.nsi      | 134 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  pkg/w32/notes.txt     |  18 ++++++++++++++
  src/Makefile.am       |   6 +++++
  src/icons/appicon.ico | Bin 0 -> 1078 bytes
@@ -9441,16 +9533,16 @@ Date:   2011-01-02 21:55:25 +0100
 
     Use a more flexible description of the video frame format.
 
- src/decoder.cpp                       | 91 +++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
- src/decoder.h                         | 84 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
- src/decoder_ffmpeg.cpp                | 94 +++++++++++++++++++++++++++++++++++++++++++----------------------------------------------
+ src/decoder.cpp                       | 91 +++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
+ src/decoder.h                         | 84 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
+ src/decoder_ffmpeg.cpp                | 94 +++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------
  src/decoder_ffmpeg.h                  |  2 +-
- src/input.cpp                         | 34 ++++++++++++++------------------
+ src/input.cpp                         | 34 ++++++++++++++-------------------
  src/input.h                           |  6 +++---
  src/player.cpp                        |  4 ++--
- src/player_equalizer.cpp              | 16 +++++++--------
+ src/player_equalizer.cpp              | 16 ++++++++--------
  src/video_output.h                    |  2 +-
- src/video_output_opengl.cpp           | 70 +++++++++++++++++++++++++++++++++---------------------------------
+ src/video_output_opengl.cpp           | 70 +++++++++++++++++++++++++++++++++----------------------------------
  src/video_output_opengl.h             |  6 +++---
  src/video_output_opengl_color.fs.glsl | 40 +++++++++++++++++++-------------------
  src/video_output_opengl_qt.cpp        |  2 +-
@@ -9478,11 +9570,11 @@ Date:   2011-01-01 22:34:27 +0100
 
  src/decoder.cpp                       |  52 ++++++++++++++++++----
  src/decoder.h                         |  26 ++++++++---
- src/decoder_ffmpeg.cpp                | 150 +++++++++++++++++++++++++++++++++++++++++++++-----------------
+ src/decoder_ffmpeg.cpp                | 150 +++++++++++++++++++++++++++++++++++++++++++++------------------
  src/decoder_ffmpeg.h                  |   3 +-
  src/input.cpp                         |  43 ++++++++++++++----
  src/player_equalizer.cpp              |   4 +-
- src/video_output_opengl.cpp           | 211 +++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
+ src/video_output_opengl.cpp           | 211 +++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------
  src/video_output_opengl.h             |   8 ++--
  src/video_output_opengl_color.fs.glsl |  31 ++++++++-----
  9 files changed, 365 insertions(+), 163 deletions(-)
@@ -9790,15 +9882,15 @@ Date:   2010-12-19 15:40:10 +0100
 
  src/decoder.cpp             |  13 +++++++++
  src/decoder.h               |   1 +
- src/input.cpp               | 147 +++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ src/input.cpp               | 147 +++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------
  src/input.h                 |  13 ++++++---
  src/player.cpp              |  16 ++++++++---
  src/player.h                |   4 +--
  src/player_equalizer.cpp    |   2 +-
  src/player_qt.cpp           |   2 +-
- src/video_output.h          |  12 +++++---
- src/video_output_opengl.cpp | 138 +++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
- src/video_output_opengl.h   |   6 ++--
+ src/video_output.h          |  12 ++++++---
+ src/video_output_opengl.cpp | 138 +++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------
+ src/video_output_opengl.h   |   6 ++---
  11 files changed, 195 insertions(+), 159 deletions(-)
 
 commit a7956ce741144b1bb007109487eca86da5e01e49
@@ -10105,7 +10197,7 @@ Date:   2010-12-14 06:52:50 +0100
 
     Improve man page.
 
- doc/bino.1 | 139 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------
+ doc/bino.1 | 139 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------------------------
  1 file changed, 84 insertions(+), 55 deletions(-)
 
 commit 89122297e6cfd3d458306b3c92739bac8acd8964
@@ -10128,7 +10220,7 @@ Date:   2010-12-13 22:03:26 +0100
 
  src/decoder.h        |   3 ++-
  src/decoder_ffmpeg.h |   5 ++++
- src/input.cpp        | 147 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------
+ src/input.cpp        | 147 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------
  3 files changed, 121 insertions(+), 34 deletions(-)
 
 commit fe7181288edfca857e318b49e0d5a55bce15b118
@@ -10243,7 +10335,7 @@ Date:   2010-12-11 17:43:39 +0100
 
  src/Makefile.am                        |   6 +-
  src/player_equalizer.cpp               |   2 -
- src/video_output_opengl.cpp            | 479 ++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------
+ src/video_output_opengl.cpp            | 479 ++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------
  src/video_output_opengl.fs.glsl        | 236 -------------------------------------------
  src/video_output_opengl.h              |  44 +++++---
  src/video_output_opengl_color.fs.glsl  |  92 +++++++++++++++++
@@ -10269,7 +10361,7 @@ Date:   2010-12-10 06:36:20 +0100
     minimum requirements.
 
  src/player_equalizer.cpp       |  23 +++--
- src/video_output_opengl.cpp    | 451 ++++++++++++++++++++++++++---------------------------------------------------------------------
+ src/video_output_opengl.cpp    | 451 ++++++++++++++++++++++++++----------------------------------------------------------------------
  src/video_output_opengl.h      |  23 +++--
  src/video_output_opengl_qt.cpp |  12 +--
  4 files changed, 152 insertions(+), 357 deletions(-)
@@ -10373,7 +10465,7 @@ Date:   2010-12-08 21:32:52 +0100
 
  src/player_qt.cpp              |  39 +++++++++++++++++++------------------
  src/player_qt.h                |   3 ++-
- src/video_output_opengl_qt.cpp | 101 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------
+ src/video_output_opengl_qt.cpp | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------
  src/video_output_opengl_qt.h   |  42 ++++++++++++++++++++++++++++++++--------
  4 files changed, 119 insertions(+), 66 deletions(-)
 
@@ -10569,9 +10661,9 @@ Date:   2010-12-07 09:41:23 +0100
     
     This simplifies things, avoids several ugly hacks, and fixes fullscreen mode on Windows.
 
- src/player_qt.cpp              |  30 ++++++++++++---------------
+ src/player_qt.cpp              |  30 ++++++++++++----------------
  src/player_qt.h                |   4 +---
- src/video_output_opengl_qt.cpp | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
+ src/video_output_opengl_qt.cpp | 105 +++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------
  src/video_output_opengl_qt.h   |  11 ++++++----
  4 files changed, 79 insertions(+), 71 deletions(-)
 
@@ -10706,7 +10798,7 @@ Date:   2010-12-04 16:30:03 +0100
 
  doc/Makefile.am               |   2 +-
  doc/multi-display-rotated.jpg | Bin 0 -> 24928 bytes
- doc/multi-display.txt         | 113 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ doc/multi-display.txt         | 113 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/player_equalizer.cpp      |   8 +++++++
  4 files changed, 122 insertions(+), 1 deletion(-)
 
@@ -10740,7 +10832,7 @@ Date:   2010-12-02 11:40:09 +0100
 
     document equalizer-3d mode
 
- doc/multi-display.txt    | 117 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ doc/multi-display.txt    | 117 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/player_equalizer.cpp |   8 +++++++
  2 files changed, 125 insertions(+)
 
@@ -10775,8 +10867,8 @@ Date:   2010-12-01 21:32:22 +0100
 
  doc/bino.1               |   4 ++-
  doc/multi-display.txt    |   8 +++++
- src/main.cpp             |  19 ++++++++---
- src/player_equalizer.cpp | 174 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------
+ src/main.cpp             |  19 +++++++++---
+ src/player_equalizer.cpp | 174 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------
  src/player_equalizer.h   |  24 +++++++++++++-
  5 files changed, 190 insertions(+), 39 deletions(-)
 
@@ -10865,7 +10957,7 @@ Date:   2010-11-24 17:06:47 +0100
     Merge branch 'master' of git://git.savannah.nongnu.org/bino
     
     Conflicts:
-    	src/video_output_opengl_qt.cpp
+            src/video_output_opengl_qt.cpp
 
 commit a5319c19718b35c6e61b06b84b84c8060c10ee4d
 Author: Stefan Eilemann <eilemann@gmail.com>
@@ -11154,7 +11246,7 @@ Date:   2010-11-17 23:04:00 +0100
  configure.ac          |   2 +-
  doc/Makefile.am       |   1 +
  doc/bino.1            |  27 ++++++++++++++++-
- doc/multi-display.txt | 170 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ doc/multi-display.txt | 170 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  4 files changed, 198 insertions(+), 2 deletions(-)
 
 commit c201c0b871e09c2fabbbe37f465d2f05e0996b0f
@@ -11217,10 +11309,10 @@ Date:   2010-11-12 10:22:17 +0100
 
  src/input.cpp        |  82 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/input.h          |   2 ++
- src/main.cpp         | 104 +++++++++++++++--------------------------------------------------------------------
- src/player_qt.cpp    |  23 +++++++++++--------
- src/video_output.cpp | 131 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- src/video_output.h   |   5 +++-
+ src/main.cpp         | 104 +++++++++++++++---------------------------------------------------------------------
+ src/player_qt.cpp    |  23 ++++++++++---------
+ src/video_output.cpp | 131 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/video_output.h   |   5 ++++-
  6 files changed, 250 insertions(+), 97 deletions(-)
 
 commit e49fcea4a714adb6ed8dcc78daf9f99882a12335
@@ -11240,7 +11332,7 @@ Date:   2010-11-12 09:09:55 +0100
     
     Remember the last video directory and the last 2D and 3D output modes.
 
- src/player_qt.cpp | 124 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------
+ src/player_qt.cpp | 124 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------
  src/player_qt.h   |  26 ++++++++++++++++-------
  2 files changed, 109 insertions(+), 41 deletions(-)
 
@@ -11259,7 +11351,7 @@ Date:   2010-11-12 07:24:44 +0100
 
     Equalizer: various cleanups.
 
- src/player_equalizer.cpp | 245 ++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------------------------------------
+ src/player_equalizer.cpp | 245 ++++++++++++++++++++++++++++++++++++++++++++++++++++--------------------------------------------------
  src/player_equalizer.h   |   2 -
  2 files changed, 126 insertions(+), 121 deletions(-)
 
@@ -11304,21 +11396,21 @@ Date:   2010-11-11 13:31:51 +0100
     
     For even-odd-rows:    [0 1 0]
                           [0 2 0]
-    		      [0 1 0]
+                          [0 1 0]
     
     For even-odd-columns: [0 0 0]
                           [1 2 1]
-    		      [0 0 0]
+                          [0 0 0]
     
     For checkerboard:     [0 1 0]
                           [1 4 1]
-    		      [0 1 0]
+                          [0 1 0]
     
     As a side effect, the masking modes now work again with the free ATI drivers on
     Linux.
 
- src/video_output_opengl.cpp     | 143 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------
- src/video_output_opengl.fs.glsl | 141 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------
+ src/video_output_opengl.cpp     | 143 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------
+ src/video_output_opengl.fs.glsl | 141 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------
  src/video_output_opengl.h       |   1 +
  3 files changed, 221 insertions(+), 64 deletions(-)
 
@@ -11412,7 +11504,7 @@ Date:   2010-11-07 17:49:32 +0100
 
  src/player.cpp           |  40 +++++++++++++++++++-----------------
  src/player.h             |   5 +++--
- src/player_equalizer.cpp | 113 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ src/player_equalizer.cpp | 113 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
  src/player_qt.cpp        |   3 ++-
  4 files changed, 135 insertions(+), 26 deletions(-)
 
@@ -11576,7 +11668,7 @@ Date:   2010-11-06 10:24:26 +0100
     The idea came from http://stereogl.sourceforge.net/ via Frédéric Devernay.
 
  src/player_equalizer.cpp       |   2 +
- src/video_output_opengl.cpp    | 191 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------
+ src/video_output_opengl.cpp    | 191 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------------
  src/video_output_opengl.h      |   3 ++
  src/video_output_opengl_qt.cpp |  35 ++++++++++++------
  src/video_output_opengl_qt.h   |   5 +++
@@ -11989,45 +12081,44 @@ Date:   2010-10-31 16:25:20 +0100
     This required some structural changes all over the place.
 
  doc/bino.1                     |  11 +-
- src/Makefile.am                |  16 +-
- src/appicon.png                | Bin 3657 -> 0 bytes
+ src/Makefile.am                |  16 ++-
  src/controller.cpp             |  14 ++
  src/controller.h               |  14 +-
- src/gui.cpp                    | 210 --------------------------
- src/gui.h                      |  88 -----------
+ src/gui.cpp                    | 210 ---------------------------
+ src/gui.h                      |  88 ------------
  src/icons/README               |  14 ++
- src/icons/appicon.png          | Bin 0 -> 3657 bytes
- src/icons/b.ipe                | 402 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/{ => icons}/appicon.png    | Bin
+ src/icons/b.ipe                | 402 +++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/b.png                | Bin 0 -> 579 bytes
- src/icons/bb.ipe               | 408 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/bb.ipe               | 408 ++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/bb.png               | Bin 0 -> 826 bytes
  src/icons/bbb.ipe              | 414 ++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/bbb.png              | Bin 0 -> 1066 bytes
- src/icons/f.ipe                | 402 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/f.ipe                | 402 +++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/f.png                | Bin 0 -> 583 bytes
- src/icons/ff.ipe               | 408 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/ff.ipe               | 408 ++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/ff.png               | Bin 0 -> 814 bytes
  src/icons/fff.ipe              | 414 ++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/fff.png              | Bin 0 -> 1024 bytes
- src/icons/pause.ipe            | 410 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/pause.ipe            | 410 ++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/pause.png            | Bin 0 -> 571 bytes
- src/icons/play.ipe             | 402 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/play.ipe             | 402 +++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/play.png             | Bin 0 -> 709 bytes
- src/icons/stop.ipe             | 403 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/icons/stop.ipe             | 403 +++++++++++++++++++++++++++++++++++++++++++++++++++
  src/icons/stop.png             | Bin 0 -> 417 bytes
- src/main.cpp                   |  17 ++-
+ src/main.cpp                   |  17 +--
  src/player.cpp                 |  77 +++++++---
- src/player.h                   |  24 ++-
+ src/player.h                   |  24 +++-
  src/player_equalizer.cpp       |   4 +-
- src/player_qt.cpp              | 760 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/player_qt.cpp              | 760 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/player_qt.h                | 173 ++++++++++++++++++++++
  src/qt_resources.qrc           |  11 +-
  src/video_output.h             |   3 +
  src/video_output_opengl.cpp    |  82 ++++++-----
  src/video_output_opengl.h      |  23 ++-
- src/video_output_opengl_qt.cpp |  97 ++++++++++--
+ src/video_output_opengl_qt.cpp |  97 ++++++++++---
  src/video_output_opengl_qt.h   |  20 ++-
- 39 files changed, 4913 insertions(+), 408 deletions(-)
+ 38 files changed, 4913 insertions(+), 408 deletions(-)
 
 commit 7741c5a76e78060a6f7d84a7876166a264e6be54
 Author: Martin Lambers <marlam@marlam.de>
@@ -12037,7 +12128,7 @@ Date:   2010-10-24 13:49:09 +0200
 
  src/Makefile.am                |   5 +++
  src/appicon.png                | Bin 0 -> 3657 bytes
- src/gui.cpp                    | 210 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/gui.cpp                    | 210 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/gui.h                      |  88 ++++++++++++++++++++++++++++++++++++++++
  src/main.cpp                   |  11 ++++-
  src/qt_app.cpp                 |   9 +++++
@@ -12082,7 +12173,7 @@ Date:   2010-10-23 00:13:35 +0200
  src/input.cpp                   |   2 +-
  src/player_equalizer.cpp        |   8 ++--
  src/video_frame_format.h        |   2 +-
- src/video_output_opengl.cpp     | 229 ++++++++++++++++++++++++++++++++++++++++++----------------------------------------------------
+ src/video_output_opengl.cpp     | 229 ++++++++++++++++++++++++++++++++++++++++++-----------------------------------------------------
  src/video_output_opengl.fs.glsl |  10 ++---
  src/video_output_opengl.h       |   3 +-
  src/video_output_opengl_qt.cpp  |   1 +
@@ -12103,7 +12194,7 @@ Date:   2010-10-22 17:31:34 +0200
 
     Remove the unused freeglut implementation of video_output_opengl.
 
- src/video_output_opengl_freeglut.cpp | 345 -----------------------------------------------------------------------------------------
+ src/video_output_opengl_freeglut.cpp | 345 ------------------------------------------------------------------------------------------
  src/video_output_opengl_freeglut.h   |  62 ----------------
  2 files changed, 407 deletions(-)
 
@@ -12119,7 +12210,7 @@ Date:   2010-10-22 17:30:22 +0200
  src/video_output_opengl.cpp          |  54 +++++++++++++--
  src/video_output_opengl.h            |   8 ++-
  src/video_output_opengl_freeglut.cpp |  63 ++----------------
- src/video_output_opengl_qt.cpp       | 322 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/video_output_opengl_qt.cpp       | 322 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/video_output_opengl_qt.h         |  83 +++++++++++++++++++++++
  8 files changed, 507 insertions(+), 91 deletions(-)
 
@@ -12145,19 +12236,19 @@ Date:   2010-10-22 10:34:24 +0200
  configure.ac                         |  36 +++--
  src/Makefile.am                      |   7 +
  src/base/Makefile.am                 |   4 +
- src/base/s11n.cpp                    | 235 +++++++++++++++++++++++++++++
+ src/base/s11n.cpp                    | 235 ++++++++++++++++++++++++++++++
  src/base/s11n.h                      | 152 +++++++++++++++++++
  src/input.h                          |   5 +
- src/main.cpp                         | 397 ++++++++++++++++++++-----------------------------
- src/player.cpp                       | 571 ++++++++++++++++++++++++++++++++++++++++++++++++-----------------------
+ src/main.cpp                         | 397 ++++++++++++++++++++------------------------------
+ src/player.cpp                       | 571 +++++++++++++++++++++++++++++++++++++++++++++++++-----------------------
  src/player.h                         |  77 ++++++++--
- src/player_equalizer.cpp             | 715 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/player_equalizer.cpp             | 715 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  src/player_equalizer.h               |  23 +++
  src/video_output.cpp                 |  11 ++
  src/video_output.h                   |  28 ++--
  src/video_output_opengl.cpp          | 423 +++++++----------------------------------------------
  src/video_output_opengl.h            |  58 +++++---
- src/video_output_opengl_freeglut.cpp | 398 +++++++++++++++++++++++++++++++++++++++++++++++++
+ src/video_output_opengl_freeglut.cpp | 398 ++++++++++++++++++++++++++++++++++++++++++++++++++
  src/video_output_opengl_freeglut.h   |  62 ++++++++
  src/xgl.h                            |   2 +-
  18 files changed, 2363 insertions(+), 841 deletions(-)
@@ -12306,7 +12397,7 @@ Date:   2010-10-02 09:12:36 +0200
 
     Support OpenGL implementations that do not support non-power-of-two textures.
 
- src/video_output_opengl.cpp | 150 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++----------------------
+ src/video_output_opengl.cpp | 150 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------
  src/video_output_opengl.h   |   4 +++
  2 files changed, 120 insertions(+), 34 deletions(-)
 
@@ -12396,14 +12487,14 @@ Date:   2010-10-01 07:44:50 +0200
  src/decoder.h                   |  23 +++---
  src/decoder_ffmpeg.cpp          |  54 +++++++++----
  src/decoder_ffmpeg.h            |   6 +-
- src/input.cpp                   | 183 +++++++++++++++++++++++-------------------
+ src/input.cpp                   | 183 ++++++++++++++++++++++++-------------------
  src/input.h                     |  14 +++-
  src/main.cpp                    |   1 +
  src/player.cpp                  |  43 ++++------
  src/video_frame_format.h        |  29 +++++++
  src/video_output.h              |   9 ++-
- src/video_output_opengl.cpp     | 407 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
- src/video_output_opengl.fs.glsl | 278 +++++++++++++++++++++++++++++-----------------------------------
+ src/video_output_opengl.cpp     | 407 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------------------------
+ src/video_output_opengl.fs.glsl | 278 +++++++++++++++++++++++++++++------------------------------------
  src/video_output_opengl.h       |  16 +++-
  13 files changed, 618 insertions(+), 446 deletions(-)
 
@@ -12433,15 +12524,15 @@ Date:   2010-09-29 06:51:17 +0200
 
  .gitignore                      |    7 +
  AUTHORS                         |    1 +
- COPYING                         |  674 +++++++++++++++++++++++++++++++++++++
+ COPYING                         |  674 ++++++++++++++++++++++++++++++++++++++
  ChangeLog                       |    3 +
- INSTALL                         |  365 ++++++++++++++++++++
+ INSTALL                         |  365 +++++++++++++++++++++
  Makefile.am                     |   19 ++
  NEWS                            |    0
  README                          |    0
- build-aux/config.guess          | 1533 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ build-aux/config.guess          | 1533 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  build-aux/config.rpath          |  672 +++++++++++++++++++++++++++++++++++++
- build-aux/config.sub            | 1693 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ build-aux/config.sub            | 1693 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  build-aux/depcomp               |  630 +++++++++++++++++++++++++++++++++++
  build-aux/install-sh            |  520 +++++++++++++++++++++++++++++
  build-aux/missing               |  376 +++++++++++++++++++++
@@ -12451,7 +12542,7 @@ Date:   2010-09-29 06:51:17 +0200
  src/Makefile.am                 |   54 +++
  src/audio_output.cpp            |   31 ++
  src/audio_output.h              |   67 ++++
- src/audio_output_openal.cpp     |  311 +++++++++++++++++
+ src/audio_output_openal.cpp     |  311 ++++++++++++++++++
  src/audio_output_openal.h       |   71 ++++
  src/base/Makefile.am            |   16 +
  src/base/blob.h                 |  167 ++++++++++
@@ -12473,15 +12564,15 @@ Date:   2010-09-29 06:51:17 +0200
  src/decoder.cpp                 |   57 ++++
  src/decoder.h                   |  120 +++++++
  src/decoder_ffmpeg.cpp          |  744 +++++++++++++++++++++++++++++++++++++++++
- src/decoder_ffmpeg.h            |   73 ++++
+ src/decoder_ffmpeg.h            |   73 +++++
  src/input.cpp                   |  391 ++++++++++++++++++++++
  src/input.h                     |  140 ++++++++
- src/main.cpp                    |  421 +++++++++++++++++++++++
+ src/main.cpp                    |  421 ++++++++++++++++++++++++
  src/player.cpp                  |  355 ++++++++++++++++++++
- src/player.h                    |   73 ++++
+ src/player.h                    |   73 +++++
  src/video_output.cpp            |   31 ++
  src/video_output.h              |   89 +++++
- src/video_output_opengl.cpp     |  753 +++++++++++++++++++++++++++++++++++++++++
+ src/video_output_opengl.cpp     |  753 ++++++++++++++++++++++++++++++++++++++++++
  src/video_output_opengl.fs.glsl |  192 +++++++++++
  src/video_output_opengl.h       |   84 +++++
  src/xgl.cpp                     |  412 +++++++++++++++++++++++

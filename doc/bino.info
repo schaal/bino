@@ -1,6 +1,6 @@
-This is bino.info, produced by makeinfo version 6.0 from bino.texi.
+This is bino.info, produced by makeinfo version 6.3 from bino.texi.
 
-This manual was last updated 11 September 2014 for version 1.6.3 of
+This manual was last updated 11 September 2014 for version 1.6.4 of
 Bino.
 
    Copyright © 2011, 2012, 2013, 2014 Martin Lambers
@@ -22,7 +22,7 @@ File: bino.info,  Node: Top,  Next: Introduction,  Up: (dir)
 Bino
 ****
 
-This manual was last updated 11 September 2014 for version 1.6.3 of
+This manual was last updated 11 September 2014 for version 1.6.4 of
 Bino.
 
    Copyright © 2011, 2012, 2013, 2014 Martin Lambers
@@ -78,7 +78,7 @@ File: bino.info,  Node: Invocation,  Next: Input Layouts,  Prev: Introduction,  
 
 This section describes the command line interface of Bino.
 
-   Synopsis: ‘bino [OPTION…] [FILE…]’
+   Synopsis: ‘bino [OPTION...] [FILE...]’
 
    Bino combines all input files into one media source which is then
 played.  This means you can have video, audio, and subtitle streams in
@@ -150,8 +150,8 @@ supported.
 ‘-f’
 ‘--fullscreen’
      Fullscreen.
-‘--fullscreen-screens=[S0[,S1[,…]]]’
-     Use the listed screens S0, …, SN in fullscreen mode.  Screen
+‘--fullscreen-screens=[S0[,S1[,...]]]’
+     Use the listed screens S0, ..., SN in fullscreen mode.  Screen
      numbers start with 1.  If the list is empty, the primary screen
      will be used (this is the default).
 ‘--fullscreen-flip-left’
@@ -1005,7 +1005,7 @@ lines starting with the ‘#’ character are comment lines and define the
      number of seconds, before processing more commands from this file,
      script, or FIFO.
      (This command is not available for LIRC remote controls.)
-‘open [OPTION…] FILE…’
+‘open [OPTION...] FILE...’
      Open the given files.
      You can use percent-encoding to encode special characters.  See
      <http://en.wikipedia.org/wiki/Percent_encoding>.  Use this if the

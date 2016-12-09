@@ -24,7 +24,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
 AC_PREREQ([2.63])
-AC_INIT([Bino], [1.6.3], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
+AC_INIT([Bino], [1.6.4], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -119,11 +119,6 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([])], [], [CPPFLAGS="$CPPFLAGS_bak"; LDFLAGS=
 dnl - str
 AM_ICONV([])
 AC_CHECK_FUNCS([nl_langinfo vasprintf wcswidth])
-AC_CHECK_TYPES([int128_t, uint128_t], [], [], [[#include <cstdint>]])
-AC_CHECK_TYPES([__int128, unsigned __int128])
-AC_CHECK_TYPES([__float128])
-AC_SEARCH_LIBS([strtoflt128], [quadmath])
-dnl TODO: define LONG_DOUBLE_IS_IEEE_754_QUAD on systems where this is true
 dnl - sys
 dnl AC_CHECK_FUNCS([nanosleep sysconf sched_yield])
 dnl - tmr
@@ -318,7 +313,7 @@ if test "$xnvctrl" = "yes"; then
     CPPFLAGS_BAK="$CPPFLAGS"
     CPPFLAGS="$CPPFLAGS $libX11_CFLAGS $xnvctrl_CFLAGS"
     AC_SUBST([xnvctrl_CFLAGS])
-    AC_CHECK_HEADERS([NVCtrl.h NVCtrlLib.h],
+    AC_CHECK_HEADERS([NVCtrl/NVCtrl.h NVCtrl/NVCtrlLib.h],
                      [HAVE_LIBXNVCTRL=1],
                      [HAVE_LIBXNVCTRL=0],
                      [#include <GL/glx.h>])
@@ -330,13 +325,13 @@ if test "$xnvctrl" = "yes"; then
                      [XNVCTRLQueryAttribute],
                      [HAVE_LIBXNVCTRL=1],
                      [HAVE_LIBXNVCTRL=0],
-                     [$libX11_LIBS -lXext])
+                     [-lX11 -lXext])
         LDFLAGS="$LDFLAGS_BAK"
     fi
     CPPFLAGS="$CPPFLAGS_BAK"
     if test "$HAVE_LIBXNVCTRL" != "1"; then
         AC_MSG_WARN([optional library libXNVCtrl not found])
-        AC_MSG_WARN([libXNVCtrl is provided by NVIDIA; Ubuntu package: nvidia-settings])
+        AC_MSG_WARN([libXNVCtrl is provided by NVIDIA; Debian package: libxnvctrl-dev])
         xnvctrl="no"
     fi
 else
