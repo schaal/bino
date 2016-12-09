@@ -105,9 +105,10 @@ bin_PROGRAMS = bino$(EXEEXT)
 @HAVE_LIRC_TRUE@am__append_5 = $(lirc_CFLAGS)
 @HAVE_LIRC_TRUE@am__append_6 = $(lirc_LIBS)
 @W32_TRUE@am__append_7 = logo/bino_logo.ico
-@HAVE_LIBXNVCTRL_TRUE@am__append_8 = NvSDIout.cpp NvSDIout.h NvSDIutils.cpp NvSDIutils.h
+@HAVE_LIBXNVCTRL_TRUE@am__append_8 = NvSDIout.cpp NvSDIout.h NvSDIutils.cpp NvSDIutils.h sdioutputdialog.cpp sdioutputdialog.h
 @HAVE_LIBXNVCTRL_TRUE@am__append_9 = $(xnvctrl_CFLAGS)
-@HAVE_LIBXNVCTRL_TRUE@am__append_10 = $(xnvctrl_LDFLAGS) -lXNVCtrl
+@HAVE_LIBXNVCTRL_TRUE@am__append_10 = $(xnvctrl_LDFLAGS) -lXNVCtrl -lX11
+@HAVE_LIBXNVCTRL_TRUE@am__append_11 = sdioutputdialog-moc.cpp
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -142,13 +143,15 @@ am__bino_SOURCES_DIST = media_data.h media_data.cpp media_object.h \
 	preferences.cpp gui.h gui.cpp lib_versions.h lib_versions.cpp \
 	main.cpp player_equalizer.h player_equalizer.cpp lirc.h \
 	lirc.cpp logo/bino_logo.ico NvSDIout.cpp NvSDIout.h \
-	NvSDIutils.cpp NvSDIutils.h
+	NvSDIutils.cpp NvSDIutils.h sdioutputdialog.cpp \
+	sdioutputdialog.h
 @HAVE_LIBEQUALIZER_TRUE@am__objects_1 = player_equalizer.$(OBJEXT)
 @HAVE_LIRC_TRUE@am__objects_2 = lirc.$(OBJEXT)
 am__dirstamp = $(am__leading_dot)dirstamp
 @W32_TRUE@am__objects_3 = logo/bino_logo.$(OBJEXT)
 @HAVE_LIBXNVCTRL_TRUE@am__objects_4 = NvSDIout.$(OBJEXT) \
-@HAVE_LIBXNVCTRL_TRUE@	NvSDIutils.$(OBJEXT)
+@HAVE_LIBXNVCTRL_TRUE@	NvSDIutils.$(OBJEXT) \
+@HAVE_LIBXNVCTRL_TRUE@	sdioutputdialog.$(OBJEXT)
 am_bino_OBJECTS = media_data.$(OBJEXT) media_object.$(OBJEXT) \
 	media_input.$(OBJEXT) dispatch.$(OBJEXT) \
 	command_file.$(OBJEXT) color_matrix.$(OBJEXT) \
@@ -163,6 +166,7 @@ am_bino_OBJECTS = media_data.$(OBJEXT) media_object.$(OBJEXT) \
 	preferences.$(OBJEXT) gui.$(OBJEXT) lib_versions.$(OBJEXT) \
 	main.$(OBJEXT) $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
+@HAVE_LIBXNVCTRL_TRUE@am__objects_5 = sdioutputdialog-moc.$(OBJEXT)
 nodist_bino_OBJECTS = qt_resources-rcc.$(OBJEXT) \
 	colordialog-moc.$(OBJEXT) inoutwidget-moc.$(OBJEXT) \
 	controlswidget-moc.$(OBJEXT) crosstalkdialog-moc.$(OBJEXT) \
@@ -170,7 +174,8 @@ nodist_bino_OBJECTS = qt_resources-rcc.$(OBJEXT) \
 	zoomdialog-moc.$(OBJEXT) opendevicedialog-moc.$(OBJEXT) \
 	qualitydialog-moc.$(OBJEXT) videodialog-moc.$(OBJEXT) \
 	subtitledialog-moc.$(OBJEXT) mainwindow-moc.$(OBJEXT) \
-	preferences-moc.$(OBJEXT) video_output_qt-moc.$(OBJEXT)
+	preferences-moc.$(OBJEXT) video_output_qt-moc.$(OBJEXT) \
+	$(am__objects_5)
 bino_OBJECTS = $(am_bino_OBJECTS) $(nodist_bino_OBJECTS)
 am__DEPENDENCIES_1 =
 @HAVE_LIBEQUALIZER_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
@@ -575,26 +580,15 @@ EXTRA_DIST = \
 	icons-local/README \
 	$(ICONS) $(ICONS_LOCAL_IPE)
 
-nodist_bino_SOURCES = \
-	qt_resources.qrc \
-	qt_resources-rcc.cpp \
-	colordialog-moc.cpp \
-	inoutwidget-moc.cpp \
-	controlswidget-moc.cpp \
-	crosstalkdialog-moc.cpp \
-	fullscreendialog-moc.cpp \
-	audiodialog-moc.cpp \
-	zoomdialog-moc.cpp \
-	opendevicedialog-moc.cpp \
-	qualitydialog-moc.cpp \
-	videodialog-moc.cpp \
-	subtitledialog-moc.cpp \
-	mainwindow-moc.cpp \
-	preferences-moc.cpp \
-	video_output_qt-moc.cpp \
-	video_output_color.fs.glsl.h \
-	video_output_render.fs.glsl.h
-
+nodist_bino_SOURCES = qt_resources.qrc qt_resources-rcc.cpp \
+	colordialog-moc.cpp inoutwidget-moc.cpp controlswidget-moc.cpp \
+	crosstalkdialog-moc.cpp fullscreendialog-moc.cpp \
+	audiodialog-moc.cpp zoomdialog-moc.cpp \
+	opendevicedialog-moc.cpp qualitydialog-moc.cpp \
+	videodialog-moc.cpp subtitledialog-moc.cpp mainwindow-moc.cpp \
+	preferences-moc.cpp video_output_qt-moc.cpp \
+	video_output_color.fs.glsl.h video_output_render.fs.glsl.h \
+	$(am__append_11)
 BUILT_SOURCES = $(nodist_bino_SOURCES)
 CLEANFILES = $(BUILT_SOURCES)
 AM_CPPFLAGS = $(libavformat_CFLAGS) $(libavdevice_CFLAGS) \
@@ -757,6 +751,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qt_resources-rcc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qualitydialog-moc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qualitydialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sdioutputdialog-moc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sdioutputdialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/subtitle_renderer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/subtitledialog-moc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/subtitledialog.Po@am__quote@

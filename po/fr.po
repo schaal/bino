@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-02-11 20:55+0100\n"
+"POT-Creation-Date: 2016-11-30 20:32+0100\n"
 "PO-Revision-Date: 2012-06-05 10:45+0200\n"
 "Last-Translator: Frédéric Devernay <>\n"
 "Language-Team: French\n"
@@ -238,7 +238,7 @@ msgstr "Flux audio %d non trouvé."
 msgid "Subtitle stream %d not found."
 msgstr "Flux de sous-titres %d non trouvé."
 
-#: src/dispatch.cpp:559 src/main.cpp:795
+#: src/dispatch.cpp:559 src/main.cpp:796
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "Cette version de Bino a été compilée sans le support Equalizer."
 
@@ -802,20 +802,20 @@ msgstr "Touches multimédia"
 msgid "Media keys should work as expected"
 msgstr "Les touches multimédia devraient fonctionner comme on s'y attend"
 
-#: src/main.cpp:626
+#: src/main.cpp:627
 msgid "No audio devices known."
 msgstr "Pas de périphérique audio connu."
 
-#: src/main.cpp:641
+#: src/main.cpp:642
 msgid "Benchmark mode: audio and time synchronization disabled."
 msgstr "Mode banc d'essai: audio et synchronisation temporelle désactivés."
 
-#: src/main.cpp:655
+#: src/main.cpp:656
 #, c-format
 msgid "Unknown mode %s."
 msgstr "Mode %s inconnu."
 
-#: src/main.cpp:787
+#: src/main.cpp:788
 msgid "This version of Bino was compiled without support for LIRC."
 msgstr "Cette version de Bino a été compilée sans le support LIRC."
 

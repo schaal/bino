@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.0\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-02-11 20:55+0100\n"
+"POT-Creation-Date: 2016-11-30 20:32+0100\n"
 "PO-Revision-Date: 2012-10-13 00:33+0200\n"
 "Last-Translator: Krasimir S. Stefanov <lokiisyourmaster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,7 +237,7 @@ msgstr "Аудио потокът %d не бе намерен."
 msgid "Subtitle stream %d not found."
 msgstr "Потокът със субтитри %d не бе намерен."
 
-#: src/dispatch.cpp:559 src/main.cpp:795
+#: src/dispatch.cpp:559 src/main.cpp:796
 msgid "This version of Bino was compiled without support for Equalizer."
 msgstr "Тази версия на Bino е компилирана без поддръжка на Еквилайзер."
 
@@ -802,20 +802,20 @@ msgstr "Мултимедийни клавиши"
 msgid "Media keys should work as expected"
 msgstr "Мултимедийните клавиши трябва да работят нормално"
 
-#: src/main.cpp:626
+#: src/main.cpp:627
 msgid "No audio devices known."
 msgstr "Няма познати аудио устройства."
 
-#: src/main.cpp:641
+#: src/main.cpp:642
 msgid "Benchmark mode: audio and time synchronization disabled."
 msgstr "Режим на тестване: синхронизацията на звук и време е изключена."
 
-#: src/main.cpp:655
+#: src/main.cpp:656
 #, c-format
 msgid "Unknown mode %s."
 msgstr "Непознат режим %s."
 
-#: src/main.cpp:787
+#: src/main.cpp:788
 msgid "This version of Bino was compiled without support for LIRC."
 msgstr "Тази версия на Bino е компилирана без поддръжка на LIRC."
 
