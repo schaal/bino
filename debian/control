@@ -1,28 +1,29 @@
 Source: bino
+Maintainer: Daniel Schaal <daniel@schaal.email>
 Section: video
 Priority: extra
-Maintainer: Daniel Schaal <daniel@schaal.email>
 Build-Depends: debhelper (>= 10),
-               libass-dev (>= 0.10.0-2),
-               libavcodec-dev (>= 4:0.7),
-               libavdevice-dev (>= 4:0.7),
-               libavformat-dev (>= 4:0.7),
+               libass-dev,
+               libavcodec-dev,
+               libavdevice-dev,
+               libavformat-dev,
                libglewmx-dev,
                liblircclient-dev,
                libopenal-dev,
                libqt5opengl5-dev,
                qtbase5-dev-tools,
-               libswscale-dev (>= 4:0.7),
+               libswscale-dev,
                pkg-config,
                texinfo
-Standards-Version: 3.9.7
-Homepage: http://bino3d.org/
-Vcs-Git: https://github.com/schaal/bino.git
+Standards-Version: 3.9.8
 Vcs-Browser: https://github.com/schaal/bino
+Vcs-Git: https://github.com/schaal/bino.git
+Homepage: http://bino3d.org/
 
 Package: bino
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
 Description: 3D video player
  Bino is a video player with support for a wide variety
  of stereoscopic video layouts and formats.
