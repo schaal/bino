@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.4\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-11-30 20:32+0100\n"
+"POT-Creation-Date: 2016-12-16 09:10+0100\n"
 "PO-Revision-Date: 2014-09-16 17:16+0800\n"
 "Last-Translator: Frank Hill <hxf.prc@gmail.com>\n"
 "Language-Team: Simplified Chinese\n"
@@ -91,18 +91,18 @@ msgstr "参数太少。"
 msgid "Too many arguments."
 msgstr "参数太多。"
 
-#: src/base/str.cpp:452
+#: src/base/str.cpp:459
 #, c-format
 msgid "Cannot convert string to %s."
 msgstr "无法转换字符串为 %s。"
 
-#: src/base/str.cpp:986 src/base/str.cpp:1005 src/base/str.cpp:1016
-#: src/base/str.cpp:1028
+#: src/base/str.cpp:993 src/base/str.cpp:1012 src/base/str.cpp:1023
+#: src/base/str.cpp:1035
 #, c-format
 msgid "Cannot convert %s to %s: %s"
 msgstr "无法转换 %s 为 %s：%s"
 
-#: src/base/str.cpp:1034
+#: src/base/str.cpp:1041
 #, c-format
 msgid "Cannot convert %s to %s."
 msgstr "无法转换 %s 为 %s。"

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: bino 1.6.4\n"
+"Project-Id-Version: bino 1.6.5\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-11-30 20:32+0100\n"
+"POT-Creation-Date: 2016-12-16 09:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,18 +90,18 @@ msgstr ""
 msgid "Too many arguments."
 msgstr ""
 
-#: src/base/str.cpp:452
+#: src/base/str.cpp:459
 #, c-format
 msgid "Cannot convert string to %s."
 msgstr ""
 
-#: src/base/str.cpp:986 src/base/str.cpp:1005 src/base/str.cpp:1016
-#: src/base/str.cpp:1028
+#: src/base/str.cpp:993 src/base/str.cpp:1012 src/base/str.cpp:1023
+#: src/base/str.cpp:1035
 #, c-format
 msgid "Cannot convert %s to %s: %s"
 msgstr ""
 
-#: src/base/str.cpp:1034
+#: src/base/str.cpp:1041
 #, c-format
 msgid "Cannot convert %s to %s."
 msgstr ""

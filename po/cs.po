@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 0.9.2\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-11-30 20:32+0100\n"
+"POT-Creation-Date: 2016-12-16 09:10+0100\n"
 "PO-Revision-Date: 2011-04-10 17:23+0200\n"
 "Last-Translator: Joe <cuchac@email.cz>\n"
 "Language-Team: none\n"
@@ -91,18 +91,18 @@ msgstr "Příliš málo parametrů."
 msgid "Too many arguments."
 msgstr "Příliš mnoho parametrů."
 
-#: src/base/str.cpp:452
+#: src/base/str.cpp:459
 #, c-format
 msgid "Cannot convert string to %s."
 msgstr "Nelze převést text do %s."
 
-#: src/base/str.cpp:986 src/base/str.cpp:1005 src/base/str.cpp:1016
-#: src/base/str.cpp:1028
+#: src/base/str.cpp:993 src/base/str.cpp:1012 src/base/str.cpp:1023
+#: src/base/str.cpp:1035
 #, c-format
 msgid "Cannot convert %s to %s: %s"
 msgstr "Nelze převést %s to %s: %s"
 
-#: src/base/str.cpp:1034
+#: src/base/str.cpp:1041
 #, c-format
 msgid "Cannot convert %s to %s."
 msgstr "Nelze převést %s to %s."
