@@ -1,3 +1,15 @@
+bino (1.6.5-1) unstable; urgency=medium
+
+  * New upstream version 1.6.5 (Closes: #847550)
+  * Use dh compat 10
+  * Remove ffmpeg_2.9.patch, fixed upstream
+  * Use https for copyright Format link
+  * Remove versioned dependency to ffmpeg
+  * Update standards-version to 3.9.8
+  * Update copyright
+
+ -- Daniel Schaal <daniel@schaal.email>  Fri, 16 Dec 2016 20:43:03 +0100
+
 bino (1.6.3-1) unstable; urgency=medium
 
   * Remove bino-dbg package, rely on automatic dbgsym package
