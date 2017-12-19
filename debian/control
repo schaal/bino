@@ -1,7 +1,7 @@
 Source: bino
 Maintainer: Daniel Schaal <daniel@schaal.email>
 Section: video
-Priority: extra
+Priority: optional
 Build-Depends: debhelper (>= 10),
                libass-dev,
                libavcodec-dev,
