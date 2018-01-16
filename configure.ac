@@ -4,7 +4,7 @@ dnl configure.ac
 dnl
 dnl This file is part of bino, a 3D video player.
 dnl
-dnl Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016
+dnl Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018
 dnl Martin Lambers <marlam@marlam.de>
 dnl Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
 dnl Binocle <http://binocle.com> (author: Olivier Letz <oletz@binocle.com>)
@@ -24,7 +24,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
 AC_PREREQ([2.63])
-AC_INIT([Bino], [1.6.4], [bino-list@nongnu.org], [bino], [http://bino3d.org/])
+AC_INIT([Bino], [1.6.6], [bino-list@nongnu.org], [bino], [https://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -296,7 +296,9 @@ fi
 AC_DEFINE_UNQUOTED([HAVE_LIBEQUALIZER], [$HAVE_LIBEQUALIZER], [Have Equalizer?])
 AM_CONDITIONAL([HAVE_LIBEQUALIZER], [test "$HAVE_LIBEQUALIZER" = "1"])
 
-dnl glewmx
+dnl glew
+dnl With Equalizer, we need glewmx, since that is what Equalizer uses.
+dnl Without Equalizer, glew (without mx) is ok to use, too.
 PKG_CHECK_MODULES([libglewmx], [glewmx >= 1.6.0], [HAVE_LIBGLEWMX=1], [HAVE_LIBGLEWMX=0])
 if test "$HAVE_LIBGLEWMX" != "1"; then
     AC_MSG_WARN([required library libglewmx >= 1.6.0 not found:])
@@ -304,6 +306,15 @@ if test "$HAVE_LIBGLEWMX" != "1"; then
     AC_MSG_WARN([libglewmx is provided by glew; Debian package: libglewmx-dev])
 fi
 AM_CONDITIONAL([HAVE_LIBGLEWMX], [test "$HAVE_LIBGLEWMX" = "1"])
+if test "$HAVE_LIBGLEWMX" != "1" -a "$HAVE_LIBEQUALIZER" != "1"; then
+    AC_MSG_NOTICE([trying to use libglew instead of libglewmx])
+    PKG_CHECK_MODULES([libglew], [glew >= 1.6.0], [HAVE_LIBGLEW=1], [HAVE_LIBGLEW=0])
+    if test "$HAVE_LIBGLEW" != "1"; then
+        AC_MSG_WARN([required library libglew >= 1.6.0 not found:])
+        AC_MSG_WARN([$libglew_PKG_ERRORS])
+        AC_MSG_WARN([libglew is provided by glew; Debian package: libglew-dev])
+    fi
+fi
 
 dnl libXNVCtrl
 AC_ARG_WITH([xnvctrl],
@@ -390,7 +401,7 @@ if test "$am_cv_func_iconv" != "yes" \
     -o "$HAVE_LIBASS" != "1" \
     -o "$HAVE_LIBOPENAL" != "1" \
     -o "$HAVE_LIBQTOPENGL" != "1" \
-    -o "$HAVE_LIBGLEWMX" != "1" \
+    -o \( "$HAVE_LIBGLEWMX" != "1" -a "$HAVE_LIBGLEW" != "1" \) \
     -o \( "$equalizer" = "yes" -a "$HAVE_LIBEQUALIZER" != "1" \) \
     -o \( "$xnvctrl" = "yes" -a "$HAVE_LIBXNVCTRL" != "1" \) \
     -o \( "$lirc" = "yes" -a "$HAVE_LIRC" != "1" \) ; then
