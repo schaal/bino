@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: bino 1.6.5\n"
+"Project-Id-Version: bino 1.6.6\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-12-16 09:10+0100\n"
+"POT-Creation-Date: 2018-01-15 15:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,33 +245,33 @@ msgstr ""
 msgid "not used"
 msgstr ""
 
-#: src/lirc.cpp:61
+#: src/lirc.cpp:63
 msgid "Cannot initialize LIRC."
 msgstr ""
 
-#: src/lirc.cpp:67
+#: src/lirc.cpp:69
 msgid "Cannot set LIRC socket properties."
 msgstr ""
 
-#: src/lirc.cpp:74
+#: src/lirc.cpp:76
 msgid "Cannot read LIRC default configuration."
 msgstr ""
 
-#: src/lirc.cpp:89
+#: src/lirc.cpp:91
 #, c-format
 msgid "Cannot read LIRC configuration file %s."
 msgstr ""
 
-#: src/lirc.cpp:117
+#: src/lirc.cpp:119
 msgid "Cannot get LIRC event; disabling LIRC support."
 msgstr ""
 
-#: src/lirc.cpp:131
+#: src/lirc.cpp:133
 #, c-format
 msgid "Received invalid command '%s' from LIRC."
 msgstr ""
 
-#: src/lirc.cpp:141
+#: src/lirc.cpp:143
 msgid "Cannot get command for LIRC code."
 msgstr ""
 
@@ -281,7 +281,7 @@ msgid "%s version %s"
 msgstr ""
 
 #: src/main.cpp:415
-msgid "Copyright (C) 2016 the Bino developers."
+msgid "Copyright (C) 2018 the Bino developers."
 msgstr ""
 
 #: src/main.cpp:416
@@ -826,43 +826,43 @@ msgstr ""
 msgid "%s, %d ch., %g kHz, %d bit"
 msgstr ""
 
-#: src/media_input.cpp:276
+#: src/media_input.cpp:277
 msgid "Input:"
 msgstr ""
 
-#: src/media_input.cpp:281
+#: src/media_input.cpp:282
 #, c-format
 msgid "Video %s: %s"
 msgstr ""
 
-#: src/media_input.cpp:286
+#: src/media_input.cpp:287
 msgid "No video."
 msgstr ""
 
-#: src/media_input.cpp:292
+#: src/media_input.cpp:293
 #, c-format
 msgid "Audio %s: %s"
 msgstr ""
 
-#: src/media_input.cpp:297
+#: src/media_input.cpp:298
 msgid "No audio."
 msgstr ""
 
-#: src/media_input.cpp:303
+#: src/media_input.cpp:304
 #, c-format
 msgid "Subtitle %s: %s"
 msgstr ""
 
-#: src/media_input.cpp:308
+#: src/media_input.cpp:309
 msgid "No subtitle."
 msgstr ""
 
-#: src/media_input.cpp:310
+#: src/media_input.cpp:311
 #, c-format
 msgid "Duration: %g seconds"
 msgstr ""
 
-#: src/media_input.cpp:313
+#: src/media_input.cpp:314
 #, c-format
 msgid "Stereo layout: %s"
 msgstr ""
@@ -993,8 +993,8 @@ msgstr ""
 msgid "Reading input frame failed."
 msgstr ""
 
-#: src/player_equalizer.cpp:168 src/video_output_qt.cpp:685
-#: src/video_output_qt.cpp:692
+#: src/player_equalizer.cpp:168 src/video_output_qt.cpp:687
+#: src/video_output_qt.cpp:694
 msgid "Waiting for subtitle renderer initialization..."
 msgstr ""
 
@@ -1100,41 +1100,41 @@ msgstr ""
 msgid "Cannot create a PBO buffer."
 msgstr ""
 
-#: src/video_output_qt.cpp:291 src/video_output_qt.cpp:534
-#: src/video_output_qt.cpp:731 src/video_output_qt.cpp:743
-#: src/video_output_qt.cpp:764
+#: src/video_output_qt.cpp:293 src/video_output_qt.cpp:536
+#: src/video_output_qt.cpp:733 src/video_output_qt.cpp:745
+#: src/video_output_qt.cpp:766
 msgid "Error"
 msgstr ""
 
-#: src/video_output_qt.cpp:636
+#: src/video_output_qt.cpp:638
 #, c-format
 msgid "Cannot initialize GLEW: %s"
 msgstr ""
 
-#: src/video_output_qt.cpp:656
+#: src/video_output_qt.cpp:658
 msgid "This OpenGL implementation does not support required features."
 msgstr ""
 
-#: src/video_output_qt.cpp:683
+#: src/video_output_qt.cpp:685
 msgid "Please wait"
 msgstr ""
 
-#: src/video_output_qt.cpp:743
+#: src/video_output_qt.cpp:745
 msgid "Cannot get valid OpenGL context."
 msgstr ""
 
-#: src/video_output_qt.cpp:754
+#: src/video_output_qt.cpp:756
 msgid "The display does not support OpenGL stereo mode."
 msgstr ""
 
-#: src/video_output_qt.cpp:759
+#: src/video_output_qt.cpp:761
 msgid "Cannot set OpenGL context format."
 msgstr ""
 
-#: src/video_output_qt.cpp:862
+#: src/video_output_qt.cpp:865
 msgid "Cannot suspend screensaver."
 msgstr ""
 
-#: src/video_output_qt.cpp:877
+#: src/video_output_qt.cpp:880
 msgid "Cannot resume screensaver."
 msgstr ""

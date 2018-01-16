@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bino 1.4.4\n"
 "Report-Msgid-Bugs-To: bino-list@nongnu.org\n"
-"POT-Creation-Date: 2016-12-16 09:10+0100\n"
+"POT-Creation-Date: 2018-01-15 15:06+0100\n"
 "PO-Revision-Date: 2014-09-16 17:16+0800\n"
 "Last-Translator: Frank Hill <hxf.prc@gmail.com>\n"
 "Language-Team: Simplified Chinese\n"
@@ -246,33 +246,33 @@ msgstr "此 Bino 版本编译时未加入 Equalizer 支持。"
 msgid "not used"
 msgstr "未使用"
 
-#: src/lirc.cpp:61
+#: src/lirc.cpp:63
 msgid "Cannot initialize LIRC."
 msgstr "无法初始化 LIRC。"
 
-#: src/lirc.cpp:67
+#: src/lirc.cpp:69
 msgid "Cannot set LIRC socket properties."
 msgstr "无法设置 LIRC socket 属性。"
 
-#: src/lirc.cpp:74
+#: src/lirc.cpp:76
 msgid "Cannot read LIRC default configuration."
 msgstr "无法读取 LIRC 默认配置。"
 
-#: src/lirc.cpp:89
+#: src/lirc.cpp:91
 #, c-format
 msgid "Cannot read LIRC configuration file %s."
 msgstr "无法读取 LIRC 配置文件 %s。"
 
-#: src/lirc.cpp:117
+#: src/lirc.cpp:119
 msgid "Cannot get LIRC event; disabling LIRC support."
 msgstr "无法获取 LIRC 事件；禁用 LIRC 支持。"
 
-#: src/lirc.cpp:131
+#: src/lirc.cpp:133
 #, c-format
 msgid "Received invalid command '%s' from LIRC."
 msgstr "从 LIRC 接收到无效命令‘%s’。"
 
-#: src/lirc.cpp:141
+#: src/lirc.cpp:143
 msgid "Cannot get command for LIRC code."
 msgstr "无法从 LIRC 代码获取命令。"
 
@@ -282,9 +282,8 @@ msgid "%s version %s"
 msgstr "%s 版本 %s"
 
 #: src/main.cpp:415
-#, fuzzy
-msgid "Copyright (C) 2016 the Bino developers."
-msgstr "Bino 开发者版权所有 (C) 2014。"
+msgid "Copyright (C) 2018 the Bino developers."
+msgstr "Bino 开发者版权所有 (C) 2018。"
 
 #: src/main.cpp:416
 msgid ""
@@ -830,43 +829,43 @@ msgstr "%dx%d, %.3g:1"
 msgid "%s, %d ch., %g kHz, %d bit"
 msgstr "%s, %d ch., %g kHz, %d bit"
 
-#: src/media_input.cpp:276
+#: src/media_input.cpp:277
 msgid "Input:"
 msgstr "输入："
 
-#: src/media_input.cpp:281
+#: src/media_input.cpp:282
 #, c-format
 msgid "Video %s: %s"
 msgstr "视频 %s：%s"
 
-#: src/media_input.cpp:286
+#: src/media_input.cpp:287
 msgid "No video."
 msgstr "无视频。"
 
-#: src/media_input.cpp:292
+#: src/media_input.cpp:293
 #, c-format
 msgid "Audio %s: %s"
 msgstr "音频 %s：%s"
 
-#: src/media_input.cpp:297
+#: src/media_input.cpp:298
 msgid "No audio."
 msgstr "无音频"
 
-#: src/media_input.cpp:303
+#: src/media_input.cpp:304
 #, c-format
 msgid "Subtitle %s: %s"
 msgstr "字幕 %s：%s"
 
-#: src/media_input.cpp:308
+#: src/media_input.cpp:309
 msgid "No subtitle."
 msgstr "无字幕"
 
-#: src/media_input.cpp:310
+#: src/media_input.cpp:311
 #, c-format
 msgid "Duration: %g seconds"
 msgstr "时长：%g 秒"
 
-#: src/media_input.cpp:313
+#: src/media_input.cpp:314
 #, c-format
 msgid "Stereo layout: %s"
 msgstr "S3D 布局：%s"
@@ -997,8 +996,8 @@ msgstr "FPS: %.2f"
 msgid "Reading input frame failed."
 msgstr "读取输入帧失败。"
 
-#: src/player_equalizer.cpp:168 src/video_output_qt.cpp:685
-#: src/video_output_qt.cpp:692
+#: src/player_equalizer.cpp:168 src/video_output_qt.cpp:687
+#: src/video_output_qt.cpp:694
 msgid "Waiting for subtitle renderer initialization..."
 msgstr "等待字幕渲染器初始化…"
 
@@ -1104,42 +1103,42 @@ msgstr "OpenGL 程序‘%s’：链接失败。"
 msgid "Cannot create a PBO buffer."
 msgstr "无法创建一个 PBO 缓冲。"
 
-#: src/video_output_qt.cpp:291 src/video_output_qt.cpp:534
-#: src/video_output_qt.cpp:731 src/video_output_qt.cpp:743
-#: src/video_output_qt.cpp:764
+#: src/video_output_qt.cpp:293 src/video_output_qt.cpp:536
+#: src/video_output_qt.cpp:733 src/video_output_qt.cpp:745
+#: src/video_output_qt.cpp:766
 msgid "Error"
 msgstr "错误"
 
-#: src/video_output_qt.cpp:636
+#: src/video_output_qt.cpp:638
 #, c-format
 msgid "Cannot initialize GLEW: %s"
 msgstr "无法初始化 GLEW：%s"
 
-#: src/video_output_qt.cpp:656
+#: src/video_output_qt.cpp:658
 msgid "This OpenGL implementation does not support required features."
 msgstr "此 OpenGL 实现不支持所需的特性。"
 
-#: src/video_output_qt.cpp:683
+#: src/video_output_qt.cpp:685
 msgid "Please wait"
 msgstr "请稍候"
 
-#: src/video_output_qt.cpp:743
+#: src/video_output_qt.cpp:745
 msgid "Cannot get valid OpenGL context."
 msgstr "无法获取有效的 OpenGL context。"
 
-#: src/video_output_qt.cpp:754
+#: src/video_output_qt.cpp:756
 msgid "The display does not support OpenGL stereo mode."
 msgstr "此显示设备不支持 OpenGL 立体模式。"
 
-#: src/video_output_qt.cpp:759
+#: src/video_output_qt.cpp:761
 msgid "Cannot set OpenGL context format."
 msgstr "无法设置 OpenGL context 格式。"
 
-#: src/video_output_qt.cpp:862
+#: src/video_output_qt.cpp:865
 msgid "Cannot suspend screensaver."
 msgstr "无法停止屏幕保护程序。"
 
-#: src/video_output_qt.cpp:877
+#: src/video_output_qt.cpp:880
 msgid "Cannot resume screensaver."
 msgstr "无法恢复屏幕保护程序。"
 
