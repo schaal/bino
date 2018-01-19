@@ -8,62 +8,49 @@ License: GPL-3+
 
 Files: INSTALL
 Copyright: 1994-1996, 1999-2002, 2004-2013, Free Software Foundation
-License: Permissive
+License: FSFAP
 
 Files: Makefile.am
-Copyright: 2010-2015, Martin Lambers <marlam@marlam.de>
-License: Permissive
+Copyright: 2010-2015, 2018, Martin Lambers <marlam@marlam.de>
+License: FSFAP
 
 Files: Makefile.in
-Copyright: 1994-2014, Free Software Foundation, Inc.
-License: Permissive
+Copyright: 1994-2017, Free Software Foundation, Inc.
+License: FSFAP
 
 Files: aclocal.m4
-Copyright: 1996-2014, Free Software Foundation, Inc.
+Copyright: 1996-2017, Free Software Foundation, Inc.
 License: m4
 
 Files: build-aux/*
-Copyright: 1995-2014, Free Software Foundation, Inc.
-License: GPL-2+
-
-Files: build-aux/config.guess
-  build-aux/config.sub
-Copyright: 1992-2016, Free Software Foundation, Inc.
-License: GPL-3
-
-Files: build-aux/config.rpath
 Copyright: 1996-2014, Free Software Foundation, Inc.
 License: GPL-2+
 
-Files: build-aux/install-sh
-Copyright: 1994, X Consortium
-License: Expat
-
 Files: configure
 Copyright: 1992-1996, 1998-2012, Free Software Foundation, Inc.
-License: other
+License: FSFUL
   This configure script is free software; the Free Software Foundation
   gives unlimited permission to copy, distribute and modify it.
 
 Files: debian/*
-Copyright: 2011-2016 Daniel Schaal <daniel@schaal.email>
+Copyright: 2011-2016, Daniel Schaal <daniel@schaal.email>
 License: GPL-3.0+
 
 Files: doc/*
-Copyright: 2010-2015, Martin Lambers <marlam@marlam.de>
-License: Permissive
+Copyright: 2010-2015, 2018, Martin Lambers <marlam@marlam.de>
+License: FSFAP
 
 Files: doc/Makefile.in
-Copyright: 1994-2014, Free Software Foundation, Inc.
-License: Permissive
+Copyright: 1994-2017, Free Software Foundation, Inc.
+License: FSFAP
 
-Files: pkg/macosx/*
+Files: pkg/*
+Copyright: 2011, Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
+License: FSFAP
+
+Files: pkg/macosx/Info.plist.in
 Copyright: Copyright (C) 2011, Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
-License: Permissive
-
-Files: pkg/w32/bino.nsi
-Copyright: 2010-2015, Martin Lambers <marlam@marlam.de>
-License: Permissive
+License: FSFAP
 
 Files: po/*
 Copyright: 2014, The Bino developers
@@ -79,13 +66,21 @@ License: GPL
  Please note that the actual code of GNU gettext is covered by the GNU
  General Public License and is *not* in the public domain.
 
+Files: po/Makevars
+Copyright: for their translations to this person
+License: GPL-3.0+
+
+Files: src/*
+Copyright: 2006-2018, Martin Lambers <marlam@marlam.de>
+License: GPL-3+
+
 Files: src/Makefile.am
-Copyright: 2010-2015, Martin Lambers <marlam@marlam.de>
-License: Permissive
+Copyright: 2010-2015, 2018, Martin Lambers <marlam@marlam.de>
+License: FSFAP
 
 Files: src/Makefile.in
-Copyright: 1994-2014, Free Software Foundation, Inc.
-License: Permissive
+Copyright: 1994-2017, Free Software Foundation, Inc.
+License: FSFAP
 
 Files: src/NvSDIout.cpp
   src/NvSDIout.h
@@ -101,7 +96,7 @@ License: BSD-2-clause
   2. Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
-  .
+ .
   THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
   ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -115,25 +110,24 @@ License: BSD-2-clause
   SUCH DAMAGE.
 
 Files: src/base/Makefile.am
-Copyright: 2010-2015, Martin Lambers <marlam@marlam.de>
-License: Permissive
+Copyright: 2010-2015, 2018, Martin Lambers <marlam@marlam.de>
+License: FSFAP
 
 Files: src/base/Makefile.in
-Copyright: 1994-2014, Free Software Foundation, Inc.
-License: Permissive
+Copyright: 1994-2017, Free Software Foundation, Inc.
+License: FSFAP
 
 Files: src/base/gettext.h
 Copyright: 1995-1998, 2000-2002, 2004-2006, 2009, Free Software Foundation, Inc.
 License: GPL-3+
 
-Files: src/bino.desktop
-  src/gui_common.h
+Files: src/gui_common.h
 Copyright: 2006-2014, Martin Lambers <marlam@marlam.de>
 License: GPL-3+
 
 Files: src/icons-local/*
-Copyright: 2006-2014, Martin Lambers <marlam@marlam.de>
-License: GPL-3+
+Copyright: 2010-2015, 2018, Martin Lambers <marlam@marlam.de>
+License: FSFAP
 
 Files: src/icons/*
 Copyright: 2007, Riccardo Iaconelli <riccardo@oxygen-icons.org>
@@ -148,33 +142,11 @@ Files: src/logo/*
 Copyright: 2011, Tobias Lange <tobias@longly-home.de>
 License: GPL-3+
 
-License: Expat
- The MIT License
- .
- Permission is hereby granted, free of charge, to any person
- obtaining a copy of this software and associated
- documentation files (the "Software"), to deal in the Software
- without restriction, including without limitation the rights to
- use, copy, modify, merge, publish, distribute, sublicense,
- and/or sell copies of the Software, and to permit persons to
- whom the Software is furnished to do so, subject to the
- following conditions:
- .
- The above copyright notice and this permission notice shall
- be included in all copies or substantial portions of the
- Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
- WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
- INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- MERCHANTABILITY, FITNESS FOR A PARTICULAR
- PURPOSE AND NONINFRINGEMENT. IN NO EVENT
- SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- CONNECTION WITH THE SOFTWARE OR THE USE OR
- OTHER DEALINGS IN THE SOFTWARE.
+License: FSFAP
+ Copying and distribution of this file and the accompanying media
+ files, with or without modification, are permitted in any medium
+ without royalty provided the copyright notice and this notice are
+ preserved.  These files are offered as-is, without any warranty.
 
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
@@ -184,14 +156,6 @@ License: GPL-2+
  .
  On Debian systems, the complete text of version 2 of the GNU General
  Public License can be found in '/usr/share/common-licenses/GPL-2'.
-
-License: GPL-3
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; version 3 dated June, 2007.
- .
- On Debian systems, the complete text of version 3 of the GNU General
- Public License can be found in '/usr/share/common-licenses/GPL-3'.
 
 License: GPL-3+
  This program is free software; you can redistribute it and/or modify
@@ -241,9 +205,3 @@ License: m4
  by the GNU Library General Public License, and the rest of the GNU
  gettext package package is covered by the GNU General Public License.
  They are *not* in the public domain.
-
-License: Permissive
- Copying and distribution of this file and the accompanying media
- files, with or without modification, are permitted in any medium
- without royalty provided the copyright notice and this notice are
- preserved.  These files are offered as-is, without any warranty.
