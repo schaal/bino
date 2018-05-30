@@ -1,3 +1,10 @@
+bino (1.6.6-2) unstable; urgency=medium
+
+  * Fix FTBFS with FFmpeg 4.0.
+    Thanks to James Cowgill <jcowgill@debian.org> (Closes: #888358)
+
+ -- Daniel Schaal <daniel@schaal.email>  Wed, 30 May 2018 07:29:22 +0200
+
 bino (1.6.6-1) unstable; urgency=medium
 
   * Build-Depend on libqt5opengl5-desktop-dev to
