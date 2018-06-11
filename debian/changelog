@@ -1,3 +1,12 @@
+bino (1.6.6-3) unstable; urgency=medium
+
+  * Use https url in watch file
+  * Update Standards-Version to 4.1.4
+  * Remove --parallel argument, enabled by default now
+  * Enable all hardening options
+
+ -- Daniel Schaal <daniel@schaal.email>  Mon, 11 Jun 2018 06:55:20 +0200
+
 bino (1.6.6-2) unstable; urgency=medium
 
   * Fix FTBFS with FFmpeg 4.0.
