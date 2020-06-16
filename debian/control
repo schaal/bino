@@ -2,7 +2,7 @@ Source: bino
 Maintainer: Daniel Schaal <daniel@schaal.email>
 Section: video
 Priority: optional
-Build-Depends: debhelper (>= 11),
+Build-Depends: debhelper-compat (= 12),
                libass-dev,
                libavcodec-dev,
                libavdevice-dev,
