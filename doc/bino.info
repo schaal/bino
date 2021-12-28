@@ -1,10 +1,10 @@
-This is bino.info, produced by makeinfo version 6.5 from bino.texi.
+This is bino.info, produced by makeinfo version 6.8 from bino.texi.
 
-This manual was last updated 15 January 2018 for version 1.6.6 of Bino.
+This manual was last updated 4 November 2021 for version 1.6.8 of Bino.
 
-   Copyright © 2011, 2012, 2013, 2014, 2018 Martin Lambers
-(<marlam@marlam.de>), Stefan Eilemann (<eile@eyescale.ch>), Frédéric
-Devernay (<Frederic.Devernay@inrialpes.fr>)
+   Copyright © 2011, 2012, 2013, 2014, 2018, 2019, 2020, 2021 Martin
+Lambers (<marlam@marlam.de>), Stefan Eilemann (<eile@eyescale.ch>),
+Frédéric Devernay (<Frederic.Devernay@inrialpes.fr>)
 
      Copying and distribution of this file and the accompanying media
      files, with or without modification, are permitted in any medium
@@ -21,11 +21,11 @@ File: bino.info,  Node: Top,  Next: Introduction,  Up: (dir)
 Bino
 ****
 
-This manual was last updated 15 January 2018 for version 1.6.6 of Bino.
+This manual was last updated 4 November 2021 for version 1.6.8 of Bino.
 
-   Copyright © 2011, 2012, 2013, 2014, 2018 Martin Lambers
-(<marlam@marlam.de>), Stefan Eilemann (<eile@eyescale.ch>), Frédéric
-Devernay (<Frederic.Devernay@inrialpes.fr>)
+   Copyright © 2011, 2012, 2013, 2014, 2018, 2019, 2020, 2021 Martin
+Lambers (<marlam@marlam.de>), Stefan Eilemann (<eile@eyescale.ch>),
+Frédéric Devernay (<Frederic.Devernay@inrialpes.fr>)
 
      Copying and distribution of this file and the accompanying media
      files, with or without modification, are permitted in any medium
@@ -206,6 +206,10 @@ supported.
 ‘-l’
 ‘--loop’
      Loop the input media.
+‘--set-vertical-pixel-shift-left=L’
+     Set left vertical shift in input pixels.
+‘--set-vertical-pixel-shift-right=R’
+     Set right vertical shift in input pixels.
 
 
 File: bino.info,  Node: Input Layouts,  Next: Output Techniques,  Prev: Invocation,  Up: Top
@@ -1146,6 +1150,10 @@ lines starting with the ‘#’ character are comment lines and define the
      Adjust audio volume by adding DELTA, e.g.  -0.05 or +0.05.
 ‘toggle-audio-mute’
      Toggle audio mute.
+‘set-vertical-pixel-shift-left =L’
+     Set left vertical shift in input pixels.
+‘set-vertical-pixel-shift-right R’
+     Set right vertical shift in input pixels.
 
 
 File: bino.info,  Node: Camera Devices,  Next: Audio/Video Synchronization,  Prev: Scripting,  Up: Top
@@ -1225,23 +1233,23 @@ fast enough, or your graphics card cannot render the video fast enough.
 
 
 Tag Table:
-Node: Top748
-Node: Introduction1550
-Node: Invocation2579
-Node: Input Layouts7059
-Ref: Supported Input Layouts7969
-Ref: File Name Conventions10037
-Node: Output Techniques10949
-Ref: Supported Output Techniques13684
-Ref: Crosstalk Ghostbusting17617
-Ref: Basic Multi Display Support19621
-Ref: Advanced Multi Display Support20763
-Node: Interactive Control32081
-Node: Scripting34099
-Ref: Script Commands36083
-Node: Camera Devices42365
-Node: Audio/Video Synchronization43344
-Node: Performance Tweaking44511
+Node: Top766
+Node: Introduction1586
+Node: Invocation2615
+Node: Input Layouts7269
+Ref: Supported Input Layouts8179
+Ref: File Name Conventions10247
+Node: Output Techniques11159
+Ref: Supported Output Techniques13894
+Ref: Crosstalk Ghostbusting17827
+Ref: Basic Multi Display Support19831
+Ref: Advanced Multi Display Support20973
+Node: Interactive Control32291
+Node: Scripting34309
+Ref: Script Commands36293
+Node: Camera Devices42746
+Node: Audio/Video Synchronization43725
+Node: Performance Tweaking44892
 
 End Tag Table
 
