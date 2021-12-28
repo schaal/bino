@@ -1,3 +1,22 @@
+bino (1.6.8-1) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Drop custom source compression.
+  * Bump debhelper from old 11 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields:
+    Bug-Submit (from ./configure), Repository, Repository-Browse.
+
+  [ Daniel Schaal ]
+  * Orphan the package, set maintainer to Debian QA Group
+  * New upstream version 1.6.8 (Closes: #983990)
+  * Remove obsolete patch
+  * Update dh compat to 13
+  * Update Standards-Version to 4.6.0
+  * Update watch file (Closes: #997042)
+
+ -- Daniel Schaal <daniel@schaal.email>  Tue, 28 Dec 2021 07:35:13 +0100
+
 bino (1.6.6-3) unstable; urgency=medium
 
   * Use https url in watch file

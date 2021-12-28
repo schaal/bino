@@ -1,5 +1,5 @@
 Source: bino
-Maintainer: Daniel Schaal <daniel@schaal.email>
+Maintainer: Debian QA Group <packages@qa.debian.org>
 Section: video
 Priority: optional
 Build-Depends: debhelper-compat (= 13),
