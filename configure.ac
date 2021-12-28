@@ -24,7 +24,7 @@ dnl along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 dnl Autotools init stuff
 AC_PREREQ([2.63])
-AC_INIT([Bino], [1.6.6], [bino-list@nongnu.org], [bino], [https://bino3d.org/])
+AC_INIT([Bino], [1.6.8], [marlam@marlam.de], [bino], [https://bino3d.org/])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -268,6 +268,13 @@ else
     else
         AC_DEFINE([HAVE_X11], [0], [Whether we are running on X11])
         AC_MSG_RESULT([no])
+    fi
+    dnl For a static Windows build with MXE, we need to statically link QWindowsIntegrationPlugin
+    dnl and a lot of other crap too
+    if test "$w32" = "yes"; then
+        libqtopengl_plugin_L="`$PKG_CONFIG --libs-only-L Qt5Core | $SED -e 's/ //g'`/../plugins"
+        libqtopengl_LIBS="$libqtopengl_plugin_L/platforms -lqwindows -lQt5EventDispatcherSupport -lQt5FontDatabaseSupport -lQt5PlatformCompositorSupport -lQt5ThemeSupport -lQt5WindowsUIAutomationSupport -lwtsapi32 $libqtopengl_LIBS"
+        libqtopengl_CFLAGS="$libqtopengl_CFLAGS -DQT_STATICPLUGIN"
     fi
 fi
 if test "$HAVE_LIBQTOPENGL" = "1"; then

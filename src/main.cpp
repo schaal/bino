@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018
+ * Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018, 2019, 2020, 2021
  * Martin Lambers <marlam@marlam.de>
  * Stefan Eilemann <eile@eyescale.ch>
  * Frédéric Devernay <Frederic.Devernay@inrialpes.fr>
@@ -43,6 +43,7 @@
 # include <NVCtrl/NVCtrl.h>
 #endif // HAVE_LIBXNVCTRL
 
+#include <QtPlugin>
 #include <QCoreApplication>
 #include <QApplication>
 #include <QtGlobal>
@@ -134,6 +135,10 @@ static const char *localedir()
     return LOCALEDIR;
 #endif
 }
+
+#if (defined _WIN32 || defined __WIN32__) && !defined __CYGWIN__
+Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin);
+#endif
 
 #if QT_VERSION < 0x050000
 static void qt_msg_handler(QtMsgType type, const char *msg)
@@ -337,6 +342,10 @@ int main(int argc, char *argv[])
     options.push_back(&subtitle_shadow);
     opt::val<float> subtitle_parallax("subtitle-parallax", '\0', opt::optional, -1.0f, +1.0f);
     options.push_back(&subtitle_parallax);
+    opt::val<float> vertical_pixel_shift_left("vertical-pixel-shift-left", '\0', opt::optional, -99999.9f, +99999.9f, 0.0f);
+    options.push_back(&vertical_pixel_shift_left);
+    opt::val<float> vertical_pixel_shift_right("vertical-pixel-shift-right", '\0', opt::optional, -99999.9f, +99999.9f, 0.0f);
+    options.push_back(&vertical_pixel_shift_right);
     opt::val<float> parallax("parallax", 'P', opt::optional, -1.0f, +1.0f);
     options.push_back(&parallax);
     opt::tuple<float> crosstalk("crosstalk", '\0', opt::optional, 0.0f, 1.0f, std::vector<float>(), 3);
@@ -412,7 +421,7 @@ int main(int argc, char *argv[])
         if (msg::file() == stderr)
             msg::set_file(stdout);
         msg::req(_("%s version %s"), PACKAGE_NAME, VERSION);
-        msg::req(4, _("Copyright (C) 2018 the Bino developers."));
+        msg::req(4, _("Copyright (C) %d the Bino developers."), 2021);
         msg::req_txt(4, _("This is free software. You may redistribute copies of it "
                     "under the terms of the GNU General Public License. "
                     "There is NO WARRANTY, to the extent permitted by law."));
@@ -529,6 +538,8 @@ int main(int argc, char *argv[])
                 + "                           " + _("Default is 0 for benchmark mode, 1 otherwise") + '\n'
                 + "  -l|--loop                " + _("Loop the input media") + '\n'
                 + "  --sdi-output-format=F    " + _("Set SDI output format") + '\n'
+                + "  --set-vertical-pixel-shift-left=L  " + _("Set left vert. shift in input pixels") + '\n'
+                + "  --set-vertical-pixel-shift-right=R " + _("Set right vert. shift in input pixels") + '\n'
                 + '\n'
                 + _("Interactive control:") + '\n'
                 + "  " + lengthen(_("ESC"), 25) + _("Leave fullscreen mode, or quit") + '\n'
@@ -767,6 +778,10 @@ int main(int argc, char *argv[])
         input_data.params.set_ghostbust(ghostbust.value());
     if (subtitle_parallax.is_set())
         input_data.params.set_subtitle_parallax(subtitle_parallax.value());
+    if (vertical_pixel_shift_left.is_set())
+        input_data.params.set_vertical_pixel_shift_left(vertical_pixel_shift_left.value());
+    if (vertical_pixel_shift_right.is_set())
+        input_data.params.set_vertical_pixel_shift_right(vertical_pixel_shift_right.value());
 
     int retval = 0;
     std::vector<command_file*> command_files;

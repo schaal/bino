@@ -1,9 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual was last updated 15 January 2018 for version
-1.6.6 of Bino.
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This manual was last updated 4 November 2021 for version
+1.6.8 of Bino.
 
-Copyright (C) 2011, 2012, 2013, 2014, 2018
+Copyright (C) 2011, 2012, 2013, 2014, 2018, 2019, 2020, 2021
 Martin Lambers (marlam@marlam.de),
 Stefan Eilemann (eile@eyescale.ch),
 Frédéric Devernay (Frederic.Devernay@inrialpes.fr)
@@ -12,43 +15,34 @@ Copying and distribution of this file and the accompanying media files, with or
 without modification, are permitted in any medium without royalty provided the
 copyright notice and this notice are preserved. These files are offered as-is,
 without any warranty. -->
-<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Bino 1.6.6</title>
+<title>Bino 1.6.8</title>
 
-<meta name="description" content="Bino 1.6.6">
-<meta name="keywords" content="Bino 1.6.6">
+<meta name="description" content="Bino 1.6.8">
+<meta name="keywords" content="Bino 1.6.8">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <link href="#Top" rel="start" title="Top">
 <link href="#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="dir.html#Top" rel="up" title="(dir)">
+<link href="#Introduction" rel="next" title="Introduction">
 <style type="text/css">
 <!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
 a.summary-letter {text-decoration: none}
 blockquote.indentedblock {margin-right: 0em}
-blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
-blockquote.smallquotation {font-size: smaller}
 div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-div.lisp {margin-left: 3.2em}
-div.smalldisplay {margin-left: 3.2em}
-div.smallexample {margin-left: 3.2em}
-div.smalllisp {margin-left: 3.2em}
 kbd {font-style: oblique}
 pre.display {font-family: inherit}
 pre.format {font-family: inherit}
 pre.menu-comment {font-family: serif}
 pre.menu-preformatted {font-family: serif}
-pre.smalldisplay {font-family: inherit; font-size: smaller}
-pre.smallexample {font-size: smaller}
-pre.smallformat {font-family: inherit; font-size: smaller}
-pre.smalllisp {font-size: smaller}
 span.nolinebreak {white-space: nowrap}
 span.roman {font-family: initial; font-weight: normal}
 span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
 ul.no-bullet {list-style: none}
 -->
 </style>
@@ -57,23 +51,22 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<h1 class="settitle" align="center">Bino 1.6.6</h1>
+<h1 class="settitle" align="center">Bino 1.6.8</h1>
 
 
 
 
 
-<a name="Top"></a>
+<div class="top" id="Top">
 <div class="header">
 <p>
-Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a>, Up: <a href="dir.html#Top" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Introduction" accesskey="n" rel="next">Introduction</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Bino"></a>
-<h1 class="top">Bino</h1>
-<p>This manual was last updated 15 January 2018 for version
-1.6.6 of Bino.
+<span id="Bino"></span><h1 class="top">Bino</h1>
+<p>This manual was last updated 4 November 2021 for version
+1.6.8 of Bino.
 </p>
-<p>Copyright &copy; 2011, 2012, 2013, 2014, 2018
+<p>Copyright &copy; 2011, 2012, 2013, 2014, 2018, 2019, 2020, 2021
 Martin Lambers (<a href="mailto:marlam@marlam.de">marlam@marlam.de</a>),
 Stefan Eilemann (<a href="mailto:eile@eyescale.ch">eile@eyescale.ch</a>),
 Frédéric Devernay (<a href="mailto:Frederic.Devernay@inrialpes.fr">Frederic.Devernay@inrialpes.fr</a>)
@@ -85,79 +78,57 @@ copyright notice and this notice are preserved. These files are offered as-is,
 without any warranty.
 </p></blockquote>
 
-
 <p>Short Contents:
-</p><table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="#Introduction" accesskey="1">Introduction</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Invocation" accesskey="2">Invocation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Input-Layouts" accesskey="3">Input Layouts</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Output-Techniques" accesskey="4">Output Techniques</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Interactive-Control" accesskey="5">Interactive Control</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Scripting" accesskey="6">Scripting</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Camera-Devices" accesskey="7">Camera Devices</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Audio_002fVideo-Synchronization" accesskey="8">Audio/Video Synchronization</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Performance-Tweaking" accesskey="9">Performance Tweaking</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
-<a name="SEC_Contents"></a>
+</p>
+<div class="Contents_element" id="SEC_Contents">
 <h2 class="contents-heading">Table of Contents</h2>
 
 <div class="contents">
 
 <ul class="no-bullet">
-  <li><a name="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
-  <li><a name="toc-Invocation-1" href="#Invocation">2 Invocation</a></li>
-  <li><a name="toc-Input-Layouts-1" href="#Input-Layouts">3 Input Layouts</a>
+  <li><a id="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
+  <li><a id="toc-Invocation-1" href="#Invocation">2 Invocation</a></li>
+  <li><a id="toc-Input-Layouts-1" href="#Input-Layouts">3 Input Layouts</a>
   <ul class="no-bullet">
-    <li><a name="toc-Overview" href="#Overview">3.1 Overview</a></li>
-    <li><a name="toc-Supported-Input-Layouts-1" href="#Supported-Input-Layouts-1">3.2 Supported Input Layouts</a></li>
-    <li><a name="toc-File-Name-Conventions-1" href="#File-Name-Conventions-1">3.3 File Name Conventions</a></li>
+    <li><a id="toc-Overview" href="#Overview">3.1 Overview</a></li>
+    <li><a id="toc-Supported-Input-Layouts-1" href="#Supported-Input-Layouts-1">3.2 Supported Input Layouts</a></li>
+    <li><a id="toc-File-Name-Conventions-1" href="#File-Name-Conventions-1">3.3 File Name Conventions</a></li>
   </ul></li>
-  <li><a name="toc-Output-Techniques-1" href="#Output-Techniques">4 Output Techniques</a>
+  <li><a id="toc-Output-Techniques-1" href="#Output-Techniques">4 Output Techniques</a>
   <ul class="no-bullet">
-    <li><a name="toc-Overview-1" href="#Overview-1">4.1 Overview</a></li>
-    <li><a name="toc-Supported-Output-Techniques-1" href="#Supported-Output-Techniques-1">4.2 Supported Output Techniques</a></li>
-    <li><a name="toc-Crosstalk-Ghostbusting-1" href="#Crosstalk-Ghostbusting-1">4.3 Crosstalk Ghostbusting</a></li>
-    <li><a name="toc-Basic-Multi-Display-Support-1" href="#Basic-Multi-Display-Support-1">4.4 Basic Multi Display Support</a></li>
-    <li><a name="toc-Advanced-Multi-Display-Support-1" href="#Advanced-Multi-Display-Support-1">4.5 Advanced Multi Display Support</a>
+    <li><a id="toc-Overview-1" href="#Overview-1">4.1 Overview</a></li>
+    <li><a id="toc-Supported-Output-Techniques-1" href="#Supported-Output-Techniques-1">4.2 Supported Output Techniques</a></li>
+    <li><a id="toc-Crosstalk-Ghostbusting-1" href="#Crosstalk-Ghostbusting-1">4.3 Crosstalk Ghostbusting</a></li>
+    <li><a id="toc-Basic-Multi-Display-Support-1" href="#Basic-Multi-Display-Support-1">4.4 Basic Multi Display Support</a></li>
+    <li><a id="toc-Advanced-Multi-Display-Support-1" href="#Advanced-Multi-Display-Support-1">4.5 Advanced Multi Display Support</a>
     <ul class="no-bullet">
-      <li><a name="toc-Building-Bino-with-Equalizer-Support" href="#Building-Bino-with-Equalizer-Support">4.5.1 Building Bino with Equalizer Support</a></li>
-      <li><a name="toc-Configuring-Equalizer-and-Starting-Bino" href="#Configuring-Equalizer-and-Starting-Bino">4.5.2 Configuring Equalizer and Starting Bino</a></li>
-      <li><a name="toc-Example-Configurations" href="#Example-Configurations">4.5.3 Example Configurations</a></li>
+      <li><a id="toc-Building-Bino-with-Equalizer-Support" href="#Building-Bino-with-Equalizer-Support">4.5.1 Building Bino with Equalizer Support</a></li>
+      <li><a id="toc-Configuring-Equalizer-and-Starting-Bino" href="#Configuring-Equalizer-and-Starting-Bino">4.5.2 Configuring Equalizer and Starting Bino</a></li>
+      <li><a id="toc-Example-Configurations" href="#Example-Configurations">4.5.3 Example Configurations</a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-Interactive-Control-1" href="#Interactive-Control">5 Interactive Control</a>
+  <li><a id="toc-Interactive-Control-1" href="#Interactive-Control">5 Interactive Control</a>
   <ul class="no-bullet">
-    <li><a name="toc-Keyboard-Shortcuts" href="#Keyboard-Shortcuts">5.1 Keyboard Shortcuts</a></li>
-    <li><a name="toc-Remote-Controls" href="#Remote-Controls">5.2 Remote Controls</a></li>
+    <li><a id="toc-Keyboard-Shortcuts" href="#Keyboard-Shortcuts">5.1 Keyboard Shortcuts</a></li>
+    <li><a id="toc-Remote-Controls" href="#Remote-Controls">5.2 Remote Controls</a></li>
   </ul></li>
-  <li><a name="toc-Scripting-1" href="#Scripting">6 Scripting</a>
+  <li><a id="toc-Scripting-1" href="#Scripting">6 Scripting</a>
   <ul class="no-bullet">
-    <li><a name="toc-Script-Commands-1" href="#Script-Commands-1">6.1 Script Commands</a></li>
+    <li><a id="toc-Script-Commands-1" href="#Script-Commands-1">6.1 Script Commands</a></li>
   </ul></li>
-  <li><a name="toc-Camera-Devices-1" href="#Camera-Devices">7 Camera Devices</a></li>
-  <li><a name="toc-Audio_002fVideo-Synchronization-1" href="#Audio_002fVideo-Synchronization">8 Audio/Video Synchronization</a></li>
-  <li><a name="toc-Performance-Tweaking-1" href="#Performance-Tweaking">9 Performance Tweaking</a></li>
+  <li><a id="toc-Camera-Devices-1" href="#Camera-Devices">7 Camera Devices</a></li>
+  <li><a id="toc-Audio_002fVideo-Synchronization-1" href="#Audio_002fVideo-Synchronization">8 Audio/Video Synchronization</a></li>
+  <li><a id="toc-Performance-Tweaking-1" href="#Performance-Tweaking">9 Performance Tweaking</a></li>
 </ul>
 </div>
-
-
+</div>
 <hr>
-<a name="Introduction"></a>
+<div class="chapter" id="Introduction">
 <div class="header">
 <p>
-Next: <a href="#Invocation" accesskey="n" rel="next">Invocation</a>, Previous: <a href="#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Invocation" accesskey="n" rel="next">Invocation</a>, Previous: <a href="#Top" accesskey="p" rel="prev">Bino</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Introduction-1"></a>
-<h2 class="chapter">1 Introduction</h2>
+<span id="Introduction-1"></span><h2 class="chapter">1 Introduction</h2>
 
 <p>Bino is a 3D video player with multi-display support.
 </p>
@@ -178,13 +149,13 @@ achieve this separation of the two views. Bino supports a wide variety of such
 techniques. See <a href="#Output-Techniques">Output Techniques</a>.
 </p>
 <hr>
-<a name="Invocation"></a>
+</div>
+<div class="chapter" id="Invocation">
 <div class="header">
 <p>
-Next: <a href="#Input-Layouts" accesskey="n" rel="next">Input Layouts</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Input-Layouts" accesskey="n" rel="next">Input Layouts</a>, Previous: <a href="#Introduction" accesskey="p" rel="prev">Introduction</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Invocation-1"></a>
-<h2 class="chapter">2 Invocation</h2>
+<span id="Invocation-1"></span><h2 class="chapter">2 Invocation</h2>
 
 <p>This section describes the command line interface of Bino.
 </p>
@@ -197,182 +168,193 @@ files are decoded with the <a href="http://ffmpeg.org/">FFmpeg</a> libraries, so
 and other special constructs are supported.
 </p>
 <dl compact="compact">
-<dt>&lsquo;<samp>--help</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--help</samp>&rsquo;</span></dt>
 <dd><p>Print help.
 </p></dd>
-<dt>&lsquo;<samp>--version</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--version</samp>&rsquo;</span></dt>
 <dd><p>Print version.
 </p></dd>
-<dt>&lsquo;<samp>-n</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--no-gui</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-n</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--no-gui</samp>&rsquo;</span></dt>
 <dd><p>Do not use the GUI, just play the given input in a plain window using the
 parameters given on the command line.
 </p></dd>
-<dt>&lsquo;<samp>--log-file=<var>FILE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--log-file=<var>FILE</var></samp>&rsquo;</span></dt>
 <dd><p>Append all log messages to the given file.
 </p></dd>
-<dt>&lsquo;<samp>-L</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--log-level=<var>LEVEL</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-L</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--log-level=<var>LEVEL</var></samp>&rsquo;</span></dt>
 <dd><p>Select log level: <var>debug</var>, <var>info</var>, <var>warning</var>, <var>error</var>, or
 <var>quiet</var>.
 </p></dd>
-<dt>&lsquo;<samp>--list-audio-devices</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--list-audio-devices</samp>&rsquo;</span></dt>
 <dd><p>Print a list of known audio devices and exit.
 </p></dd>
-<dt>&lsquo;<samp>-A</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--audio-device=<var>N</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-A</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--audio-device=<var>N</var></samp>&rsquo;</span></dt>
 <dd><p>Use audio device number <var>N</var>. <var>N</var>=0 is the default device.
 </p></dd>
-<dt>&lsquo;<samp>D</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--audio-delay=<var>D</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>D</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--audio-delay=<var>D</var></samp>&rsquo;</span></dt>
 <dd><p>Delay audio by D milliseconds. Default is 0.
 </p></dd>
-<dt>&lsquo;<samp>-V</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--audio-volume=<var>V</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-V</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--audio-volume=<var>V</var></samp>&rsquo;</span></dt>
 <dd><p>Set audio volume (0 to 1). Default is 1.
 </p></dd>
-<dt>&lsquo;<samp>-m</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--audio-mute</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-m</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--audio-mute</samp>&rsquo;</span></dt>
 <dd><p>Mute audio.
 </p></dd>
-<dt>&lsquo;<samp>--device-type=<var>TYPE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--device-type=<var>TYPE</var></samp>&rsquo;</span></dt>
 <dd><p>Type of input device: <var>default</var>, <var>firewire</var>, or <var>x11</var>.
 </p></dd>
-<dt>&lsquo;<samp>--device-frame-size=<var>W</var>x<var>H</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--device-frame-size=<var>W</var>x<var>H</var></samp>&rsquo;</span></dt>
 <dd><p>If the input is a device, request the given frame size, e.g. 640x480.
 </p></dd>
-<dt>&lsquo;<samp>--device-frame-rate=<var>N</var>/<var>D</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--device-frame-rate=<var>N</var>/<var>D</var></samp>&rsquo;</span></dt>
 <dd><p>If the input is a device, request the given frame rate, e.g. 25/1.
 </p></dd>
-<dt>&lsquo;<samp>--device-format=<var>FORMAT</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--device-format=<var>FORMAT</var></samp>&rsquo;</span></dt>
 <dd><p>Request format <var>default</var> or <var>mjpeg</var> from device.
 </p></dd>
-<dt>&lsquo;<samp>--read-commands=<var>FILE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--read-commands=<var>FILE</var></samp>&rsquo;</span></dt>
 <dd><p>Read commands from file. See <a href="#Scripting">Scripting</a>.
 </p></dd>
-<dt>&lsquo;<samp>--lirc-config=<var>FILE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--lirc-config=<var>FILE</var></samp>&rsquo;</span></dt>
 <dd><p>Use the given LIRC configuration file. This option can be used more than once.
 </p></dd>
-<dt>&lsquo;<samp>--quality=<var>Q</var>&quot;</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--quality=<var>Q</var>&quot;</samp>&rsquo;</span></dt>
 <dd><p>Set rendering quality, from 0 (fastest) to 4 (best, default).
 </p></dd>
-<dt>&lsquo;<samp>-v</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--video=<var>STREAM</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-v</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--video=<var>STREAM</var></samp>&rsquo;</span></dt>
 <dd><p>Select video stream (1-n, depending on the input).
 </p></dd>
-<dt>&lsquo;<samp>-a</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--audio=<var>STREAM</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-a</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--audio=<var>STREAM</var></samp>&rsquo;</span></dt>
 <dd><p>Select audio stream (1-n, depending on the input).
 </p></dd>
-<dt>&lsquo;<samp>-s</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--subtitle=<var>STREAM</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-s</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--subtitle=<var>STREAM</var></samp>&rsquo;</span></dt>
 <dd><p>Select subtitle stream (1-n, depending on the input).
 </p></dd>
-<dt>&lsquo;<samp>-i</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--input=<var>TYPE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-i</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--input=<var>TYPE</var></samp>&rsquo;</span></dt>
 <dd><p>Select input layout. See <a href="#Input-Layouts">Input Layouts</a>.
 </p></dd>
-<dt>&lsquo;<samp>-o</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--output=<var>TYPE</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-o</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--output=<var>TYPE</var></samp>&rsquo;</span></dt>
 <dd><p>Select output technique. See <a href="#Output-Techniques">Output Techniques</a>.
 </p></dd>
-<dt>&lsquo;<samp>-S</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--swap-eyes</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-S</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--swap-eyes</samp>&rsquo;</span></dt>
 <dd><p>Swap left/right view.
 </p></dd>
-<dt>&lsquo;<samp>-f</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--fullscreen</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-f</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--fullscreen</samp>&rsquo;</span></dt>
 <dd><p>Fullscreen.
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-screens=[<var>S0</var>[,<var>S1</var>[,&hellip;]]]</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-screens=[<var>S0</var>[,<var>S1</var>[,&hellip;]]]</samp>&rsquo;</span></dt>
 <dd><p>Use the listed screens <var>S0</var>, &hellip;, <var>Sn</var> in fullscreen mode. Screen
 numbers start with 1. If the list is empty, the primary screen will be used
 (this is the default).
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-flip-left</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-flip-left</samp>&rsquo;</span></dt>
 <dd><p>Flip left view vertically when in fullscreen mode.
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-flop-left</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-flop-left</samp>&rsquo;</span></dt>
 <dd><p>Flop left view horizontally when in fullscreen mode.
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-flip-right</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-flip-right</samp>&rsquo;</span></dt>
 <dd><p>Flip right view vertically when in fullscreen mode.
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-flop-right</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-flop-right</samp>&rsquo;</span></dt>
 <dd><p>Flop right view horizontally when in fullscreen mode.
 </p></dd>
-<dt>&lsquo;<samp>--fullscreen-3dr-sync</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--fullscreen-3dr-sync</samp>&rsquo;</span></dt>
 <dd><p>Use DLP&reg; 3-D Ready Sync when in fullscreen mode.
 </p></dd>
-<dt>&lsquo;<samp>-z</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--zoom=<var>Z</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-z</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--zoom=<var>Z</var></samp>&rsquo;</span></dt>
 <dd><p>Set zoom for videos that are wider than the screen, from 0 (off; show full
 video width) to 1 (full; use full screen height). The default is 0.
 </p></dd>
-<dt>&lsquo;<samp>-C</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--crop=<var>W:H</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-C</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--crop=<var>W:H</var></samp>&rsquo;</span></dt>
 <dd><p>Crop the video to the given aspect ratio, to remove borders. 0:0 disables cropping.
 </p></dd>
-<dt>&lsquo;<samp>-c</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--center</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-c</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--center</samp>&rsquo;</span></dt>
 <dd><p>Center window on screen.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-encoding=<var>ENC</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-encoding=<var>ENC</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle encoding.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-font=<var>FONT</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-font=<var>FONT</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle font name.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-size=<var>N</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-size=<var>N</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle font size.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-scale=<var>S</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-scale=<var>S</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle scale factor.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-color=<var>COLOR</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-color=<var>COLOR</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle color, in [AA]RRGGBB format.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-shadow=<var>-1|0|1</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-shadow=<var>-1|0|1</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle shadow, -1=default, 0=off, 1=on.
 </p></dd>
-<dt>&lsquo;<samp>--subtitle-parallax=<var>VAL</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--subtitle-parallax=<var>VAL</var></samp>&rsquo;</span></dt>
 <dd><p>Subtitle parallax adjustment (-1 to +1).
 </p></dd>
-<dt>&lsquo;<samp>-P</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--parallax=<var>VAL</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-P</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--parallax=<var>VAL</var></samp>&rsquo;</span></dt>
 <dd><p>Parallax adjustment (-1 to +1).
 </p></dd>
-<dt>&lsquo;<samp>--crosstalk=<var>VAL</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--crosstalk=<var>VAL</var></samp>&rsquo;</span></dt>
 <dd><p>Crosstalk leak level (0 to 1). Comma-separated values for the R,G,B channels.
 </p></dd>
-<dt>&lsquo;<samp>--ghostbust=<var>VAL</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--ghostbust=<var>VAL</var></samp>&rsquo;</span></dt>
 <dd><p>Amount of crosstalk ghostbusting to apply (0 to 1).
 </p></dd>
-<dt>&lsquo;<samp>-b</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--benchmark</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-b</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--benchmark</samp>&rsquo;</span></dt>
 <dd><p>Benchmark mode: no audio, no time synchronization, output of frames-per-second
 measurements.
 </p></dd>
-<dt>&lsquo;<samp>--swap-interval=<var>D</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--swap-interval=<var>D</var></samp>&rsquo;</span></dt>
 <dd><p>Frame rate divisor relative to display refresh rate. The default is 0 for
 benchmark mode and 1 otherwise.
 </p></dd>
-<dt>&lsquo;<samp>-l</samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--loop</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>-l</samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--loop</samp>&rsquo;</span></dt>
 <dd><p>Loop the input media.
+</p></dd>
+<dt><span>&lsquo;<samp>--set-vertical-pixel-shift-left=<var>L</var></samp>&rsquo;</span></dt>
+<dd><p>Set left vertical shift in input pixels.
+</p></dd>
+<dt><span>&lsquo;<samp>--set-vertical-pixel-shift-right=<var>R</var></samp>&rsquo;</span></dt>
+<dd><p>Set right vertical shift in input pixels.
 </p></dd>
 </dl>
 
 <hr>
-<a name="Input-Layouts"></a>
+</div>
+<div class="chapter" id="Input-Layouts">
 <div class="header">
 <p>
-Next: <a href="#Output-Techniques" accesskey="n" rel="next">Output Techniques</a>, Previous: <a href="#Invocation" accesskey="p" rel="prev">Invocation</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Output-Techniques" accesskey="n" rel="next">Output Techniques</a>, Previous: <a href="#Invocation" accesskey="p" rel="prev">Invocation</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Input-Layouts-1"></a>
-<h2 class="chapter">3 Input Layouts</h2>
+<span id="Input-Layouts-1"></span><h2 class="chapter">3 Input Layouts</h2>
 
-<a name="Overview"></a>
+<ul class="section-toc">
+<li><a href="#Overview" accesskey="1">Overview</a></li>
+<li><a href="#Supported-Input-Layouts-1" accesskey="2">Supported Input Layouts</a></li>
+<li><a href="#File-Name-Conventions-1" accesskey="3">File Name Conventions</a></li>
+</ul>
+<div class="section" id="Overview">
 <h3 class="section">3.1 Overview</h3>
 
 <p>The left and right view of a stereoscopic video can be stored using different
@@ -388,137 +370,147 @@ If no meta data is available, Bino tries to autodetect the input layout based on
 the file name. See <a href="#File-Name-Conventions">File Name Conventions</a>. If that fails, too, Bino guesses
 based on the resolution of the input.
 </p>
-<a name="Supported-Input-Layouts-1"></a>
+</div>
+<div class="section" id="Supported-Input-Layouts-1">
 <h3 class="section">3.2 Supported Input Layouts</h3>
-<a name="Supported-Input-Layouts"></a>
+<span id="Supported-Input-Layouts"></span>
 <dl compact="compact">
-<dt><var>mono</var></dt>
+<dt><span><var>mono</var></span></dt>
 <dd><p>Single view (2D conventional video).<br>
 <img src="input-layout-mono.png" alt="input-layout-mono">
 </p></dd>
-<dt><var>separate-left-right</var></dt>
+<dt><span><var>separate-left-right</var></span></dt>
 <dd><p>Separate streams: left view first, right view second.<br>
 <img src="input-layout-separate-left-right.png" alt="input-layout-separate-left-right">
 </p></dd>
-<dt><var>separate-right-left</var></dt>
+<dt><span><var>separate-right-left</var></span></dt>
 <dd><p>Separate streams: right view first, left view second.<br>
 <img src="input-layout-separate-right-left.png" alt="input-layout-separate-right-left">
 </p></dd>
-<dt><var>alternating-left-right</var></dt>
+<dt><span><var>alternating-left-right</var></span></dt>
 <dd><p>Alternating frames: left view first, right view second.<br>
 <img src="input-layout-alternating-left-right.png" alt="input-layout-alternating-left-right">
 </p></dd>
-<dt><var>alternating-right-left</var></dt>
+<dt><span><var>alternating-right-left</var></span></dt>
 <dd><p>Alternating frames: right view first, left view second.<br>
 <img src="input-layout-alternating-right-left.png" alt="input-layout-alternating-right-left">
 </p></dd>
-<dt><var>top-bottom</var></dt>
+<dt><span><var>top-bottom</var></span></dt>
 <dd><p>Single stream: left view top, right view bottom.<br>
 <img src="input-layout-top-bottom.png" alt="input-layout-top-bottom">
 </p></dd>
-<dt><var>top-bottom-half</var></dt>
+<dt><span><var>top-bottom-half</var></span></dt>
 <dd><p>Single stream: left view top, right view bottom, both with half height.<br>
 <img src="input-layout-top-bottom-half.png" alt="input-layout-top-bottom-half">
 </p></dd>
-<dt><var>bottom-top</var></dt>
+<dt><span><var>bottom-top</var></span></dt>
 <dd><p>Single stream: right view top, left view bottom.<br>
 <img src="input-layout-bottom-top.png" alt="input-layout-bottom-top">
 </p></dd>
-<dt><var>bottom-top-half</var></dt>
+<dt><span><var>bottom-top-half</var></span></dt>
 <dd><p>Single stream: right view top, left view bottom, both with half height.<br>
 <img src="input-layout-bottom-top-half.png" alt="input-layout-bottom-top-half">
 </p></dd>
-<dt><var>left-right</var></dt>
+<dt><span><var>left-right</var></span></dt>
 <dd><p>Single stream: left view left, right view right.<br>
 <img src="input-layout-left-right.png" alt="input-layout-left-right">
 </p></dd>
-<dt><var>left-right-half</var></dt>
+<dt><span><var>left-right-half</var></span></dt>
 <dd><p>Single stream: left view left, right view right, both with half width.<br>
 <img src="input-layout-left-right-half.png" alt="input-layout-left-right-half">
 </p></dd>
-<dt><var>right-left</var></dt>
+<dt><span><var>right-left</var></span></dt>
 <dd><p>Single stream: right view left, left view right.<br>
 <img src="input-layout-right-left.png" alt="input-layout-right-left">
 </p></dd>
-<dt><var>right-left-half</var></dt>
+<dt><span><var>right-left-half</var></span></dt>
 <dd><p>Single stream: right view left, left view right, both with half width.<br>
 <img src="input-layout-right-left-half.png" alt="input-layout-right-left-half">
 </p></dd>
-<dt><var>even-odd-rows</var></dt>
+<dt><span><var>even-odd-rows</var></span></dt>
 <dd><p>Single stream: left view in even rows, right view in odd rows.<br>
 <img src="input-layout-even-odd-rows.png" alt="input-layout-even-odd-rows">
 </p></dd>
-<dt><var>odd-even-rows</var></dt>
+<dt><span><var>odd-even-rows</var></span></dt>
 <dd><p>Single stream: right view in even rows, left view in odd rows.<br>
 <img src="input-layout-odd-even-rows.png" alt="input-layout-odd-even-rows">
 </p></dd>
 </dl>
 
-<a name="File-Name-Conventions-1"></a>
+</div>
+<div class="section" id="File-Name-Conventions-1">
 <h3 class="section">3.3 File Name Conventions</h3>
-<a name="File-Name-Conventions"></a>
+<span id="File-Name-Conventions"></span>
 <p>If the meta data stored in a file does not indicate the input layout, Bino
 tries to guess it by looking at the last part of the file name before the file
 name extension (<samp>.ext</samp>).
 </p>
 <p>The following file name forms are recognized:
 </p><dl compact="compact">
-<dt><samp>*-lr.ext</samp></dt>
+<dt><span><samp>*-lr.ext</samp></span></dt>
 <dd><p>Input layout <var>left-right</var>.
 </p></dd>
-<dt><samp>*-lrh.ext</samp></dt>
-<dt><samp>*-lrq.ext</samp></dt>
+<dt><span><samp>*-lrh.ext</samp></span></dt>
+<dt><span><samp>*-lrq.ext</samp></span></dt>
 <dd><p>Input layout <var>left-right-half</var>.
 </p></dd>
-<dt><samp>*-rl.ext</samp></dt>
+<dt><span><samp>*-rl.ext</samp></span></dt>
 <dd><p>Input layout <var>right-left</var>.
 </p></dd>
-<dt><samp>*-rlh.ext</samp></dt>
-<dt><samp>*-rlq.ext</samp></dt>
+<dt><span><samp>*-rlh.ext</samp></span></dt>
+<dt><span><samp>*-rlq.ext</samp></span></dt>
 <dd><p>Input layout <var>right-left-half</var>.
 </p></dd>
-<dt><samp>*-tb.ext</samp></dt>
-<dt><samp>*-ab.ext</samp></dt>
+<dt><span><samp>*-tb.ext</samp></span></dt>
+<dt><span><samp>*-ab.ext</samp></span></dt>
 <dd><p>Input layout <var>top-bottom</var>.
 </p></dd>
-<dt><samp>*-tbh.ext</samp></dt>
-<dt><samp>*-abq.ext</samp></dt>
+<dt><span><samp>*-tbh.ext</samp></span></dt>
+<dt><span><samp>*-abq.ext</samp></span></dt>
 <dd><p>Input layout <var>top-bottom-half</var>.
 </p></dd>
-<dt><samp>*-bt.ext</samp></dt>
-<dt><samp>*-ba.ext</samp></dt>
+<dt><span><samp>*-bt.ext</samp></span></dt>
+<dt><span><samp>*-ba.ext</samp></span></dt>
 <dd><p>Input layout <var>bottom-top</var>.
 </p></dd>
-<dt><samp>*-bth.ext</samp></dt>
-<dt><samp>*-baq.ext</samp></dt>
+<dt><span><samp>*-bth.ext</samp></span></dt>
+<dt><span><samp>*-baq.ext</samp></span></dt>
 <dd><p>Input layout <var>bottom-top-half</var>.
 </p></dd>
-<dt><samp>*-eo.ext</samp></dt>
-<dt><samp>*-eoq.ext</samp></dt>
-<dt><samp>*-3dir.ext</samp></dt>
+<dt><span><samp>*-eo.ext</samp></span></dt>
+<dt><span><samp>*-eoq.ext</samp></span></dt>
+<dt><span><samp>*-3dir.ext</samp></span></dt>
 <dd><p>Input layout <var>even-odd-rows</var>.
 </p></dd>
-<dt><samp>*-oe.ext</samp></dt>
-<dt><samp>*-oeq.ext</samp></dt>
-<dt><samp>*-3di.ext</samp></dt>
+<dt><span><samp>*-oe.ext</samp></span></dt>
+<dt><span><samp>*-oeq.ext</samp></span></dt>
+<dt><span><samp>*-3di.ext</samp></span></dt>
 <dd><p>Input layout <var>odd-even-rows</var>.
 </p></dd>
-<dt><samp>*-2d.ext</samp></dt>
+<dt><span><samp>*-2d.ext</samp></span></dt>
 <dd><p>Input layout <var>mono</var>.
 </p></dd>
 </dl>
 
 
 <hr>
-<a name="Output-Techniques"></a>
+</div>
+</div>
+<div class="chapter" id="Output-Techniques">
 <div class="header">
 <p>
-Next: <a href="#Interactive-Control" accesskey="n" rel="next">Interactive Control</a>, Previous: <a href="#Input-Layouts" accesskey="p" rel="prev">Input Layouts</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Interactive-Control" accesskey="n" rel="next">Interactive Control</a>, Previous: <a href="#Input-Layouts" accesskey="p" rel="prev">Input Layouts</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Output-Techniques-1"></a>
-<h2 class="chapter">4 Output Techniques</h2>
+<span id="Output-Techniques-1"></span><h2 class="chapter">4 Output Techniques</h2>
 
-<a name="Overview-1"></a>
+<ul class="section-toc">
+<li><a href="#Overview-1" accesskey="1">Overview</a></li>
+<li><a href="#Supported-Output-Techniques-1" accesskey="2">Supported Output Techniques</a></li>
+<li><a href="#Crosstalk-Ghostbusting-1" accesskey="3">Crosstalk Ghostbusting</a></li>
+<li><a href="#Basic-Multi-Display-Support-1" accesskey="4">Basic Multi Display Support</a></li>
+<li><a href="#Advanced-Multi-Display-Support-1" accesskey="5">Advanced Multi Display Support</a></li>
+</ul>
+<div class="section" id="Overview-1">
 <h3 class="section">4.1 Overview</h3>
 
 <p>The left and right view of a stereoscopic video need to be displayed in a way
@@ -566,58 +558,59 @@ Equalizer. See <a href="#Advanced-Multi-Display-Support">Advanced Multi Display 
 <p>The default output technique for stereoscopic 3D input is OpenGL quad buffered
 stereo if the graphics card supports it, otherwise red/cyan anaglyph glasses.
 </p>
-<a name="Supported-Output-Techniques-1"></a>
+</div>
+<div class="section" id="Supported-Output-Techniques-1">
 <h3 class="section">4.2 Supported Output Techniques</h3>
-<a name="Supported-Output-Techniques"></a>
+<span id="Supported-Output-Techniques"></span>
 <dl compact="compact">
-<dt><var>stereo</var></dt>
+<dt><span><var>stereo</var></span></dt>
 <dd><p>OpenGL quad-buffer stereo.<br>
 <img src="output-type-stereo.png" alt="output-type-stereo">
 </p></dd>
-<dt><var>alternating</var></dt>
+<dt><span><var>alternating</var></span></dt>
 <dd><p>Left and right view alternating. This can be used for shutter glasses on systems that do not support
 OpenGL quad-buffer stereo, but note that this mode may be unreliable and may swap left/right eyes occasionally,
 depending on your system. In case of problems, disabling the fullscreen mode screensaver inhibition may help.
 <br>
 <img src="output-type-alternating.png" alt="output-type-alternating">
 </p></dd>
-<dt><var>mono-left</var></dt>
+<dt><span><var>mono-left</var></span></dt>
 <dd><p>Left view only.<br>
 <img src="output-type-mono-left.png" alt="output-type-mono-left">
 </p></dd>
-<dt><var>mono-right</var></dt>
+<dt><span><var>mono-right</var></span></dt>
 <dd><p>Right view only.<br>
 <img src="output-type-mono-right.png" alt="output-type-mono-right">
 </p></dd>
-<dt><var>top-bottom</var></dt>
+<dt><span><var>top-bottom</var></span></dt>
 <dd><p>Left view top, right view bottom.<br>
 <img src="output-type-top-bottom.png" alt="output-type-top-bottom">
 </p></dd>
-<dt><var>top-bottom-half</var></dt>
+<dt><span><var>top-bottom-half</var></span></dt>
 <dd><p>Left view top, right view bottom, both with half height.<br>
 <img src="output-type-top-bottom-half.png" alt="output-type-top-bottom-half">
 </p></dd>
-<dt><var>left-right</var></dt>
+<dt><span><var>left-right</var></span></dt>
 <dd><p>Left view left, right view right.<br>
 <img src="output-type-left-right.png" alt="output-type-left-right">
 </p></dd>
-<dt><var>left-right-half</var></dt>
+<dt><span><var>left-right-half</var></span></dt>
 <dd><p>Left view left, right view right, both with half width.<br>
 <img src="output-type-left-right-half.png" alt="output-type-left-right-half">
 </p></dd>
-<dt><var>even-odd-rows</var></dt>
+<dt><span><var>even-odd-rows</var></span></dt>
 <dd><p>Left view in even rows, right view in odd rows.<br>
 <img src="output-type-even-odd-rows.png" alt="output-type-even-odd-rows">
 </p></dd>
-<dt><var>even-odd-columns</var></dt>
+<dt><span><var>even-odd-columns</var></span></dt>
 <dd><p>Left view in even columns, right view in odd columns.<br>
 <img src="output-type-even-odd-columns.png" alt="output-type-even-odd-columns">
 </p></dd>
-<dt><var>checkerboard</var></dt>
+<dt><span><var>checkerboard</var></span></dt>
 <dd><p>Left and right view in a checkerboard pattern.<br>
 <img src="output-type-checkerboard.png" alt="output-type-checkerboard">
 </p></dd>
-<dt><var>hdmi-frame-pack</var></dt>
+<dt><span><var>hdmi-frame-pack</var></span></dt>
 <dd><p>HDMI frame packing mode (left top, right bottom, plus extra blank lines
 separating the two views). This mode is only necessary if you are forcing your
 display into the corresponding HDMI 3D mode. A description how to do this on
@@ -625,73 +618,74 @@ GNU/Linux can be found in
 <a href="http://lists.nongnu.org/archive/html/bino-list/2011-03/msg00033.html">this post to the Bino mailing list</a>.<br>
 <img src="output-type-hdmi-frame-pack.png" alt="output-type-hdmi-frame-pack">
 </p></dd>
-<dt><var>red-cyan-monochrome</var></dt>
+<dt><span><var>red-cyan-monochrome</var></span></dt>
 <dd><p>Red/cyan anaglyph glasses, monochrome method.<br>
 <img src="output-type-red-cyan.png" alt="output-type-red-cyan">
 </p></dd>
-<dt><var>red-cyan-half-color</var></dt>
+<dt><span><var>red-cyan-half-color</var></span></dt>
 <dd><p>Red/cyan anaglyph glasses, half color method.<br>
 <img src="output-type-red-cyan.png" alt="output-type-red-cyan">
 </p></dd>
-<dt><var>red-cyan-full-color</var></dt>
+<dt><span><var>red-cyan-full-color</var></span></dt>
 <dd><p>Red/cyan anaglyph glasses, full color method.<br>
 <img src="output-type-red-cyan.png" alt="output-type-red-cyan">
 </p></dd>
-<dt><var>red-cyan-dubois</var></dt>
+<dt><span><var>red-cyan-dubois</var></span></dt>
 <dd><p>Red/cyan anaglyph glasses, high-quality Dubois method.<br>
 <img src="output-type-red-cyan.png" alt="output-type-red-cyan">
 </p></dd>
-<dt><var>green-magenta-monochrome</var></dt>
+<dt><span><var>green-magenta-monochrome</var></span></dt>
 <dd><p>Green/magenta anaglyph glasses, monochrome method.<br>
 <img src="output-type-green-magenta.png" alt="output-type-green-magenta">
 </p></dd>
-<dt><var>green-magenta-half-color</var></dt>
+<dt><span><var>green-magenta-half-color</var></span></dt>
 <dd><p>Green/magenta anaglyph glasses, half color method.<br>
 <img src="output-type-green-magenta.png" alt="output-type-green-magenta">
 </p></dd>
-<dt><var>green-magenta-full-color</var></dt>
+<dt><span><var>green-magenta-full-color</var></span></dt>
 <dd><p>Green/magenta anaglyph glasses, full color method.<br>
 <img src="output-type-green-magenta.png" alt="output-type-green-magenta">
 </p></dd>
-<dt><var>green-magenta-dubois</var></dt>
+<dt><span><var>green-magenta-dubois</var></span></dt>
 <dd><p>Green/magenta anaglyph glasses, high-quality Dubois method.<br>
 <img src="output-type-green-magenta.png" alt="output-type-green-magenta">
 </p></dd>
-<dt><var>amber-blue-monochrome</var></dt>
+<dt><span><var>amber-blue-monochrome</var></span></dt>
 <dd><p>Amber/blue anaglyph glasses, monochrome method.<br>
 <img src="output-type-amber-blue.png" alt="output-type-amber-blue">
 </p></dd>
-<dt><var>amber-blue-half-color</var></dt>
+<dt><span><var>amber-blue-half-color</var></span></dt>
 <dd><p>Amber/blue anaglyph glasses, half color method.<br>
 <img src="output-type-amber-blue.png" alt="output-type-amber-blue">
 </p></dd>
-<dt><var>amber-blue-full-color</var></dt>
+<dt><span><var>amber-blue-full-color</var></span></dt>
 <dd><p>Amber/blue anaglyph glasses, full color method.<br>
 <img src="output-type-amber-blue.png" alt="output-type-amber-blue">
 </p></dd>
-<dt><var>amber-blue-dubois</var></dt>
+<dt><span><var>amber-blue-dubois</var></span></dt>
 <dd><p>Amber/blue anaglyph glasses, high-quality Dubois method.<br>
 <img src="output-type-amber-blue.png" alt="output-type-amber-blue">
 </p></dd>
-<dt><var>red-green-monochrome</var></dt>
+<dt><span><var>red-green-monochrome</var></span></dt>
 <dd><p>Red/green anaglyph glasses, monochrome method.<br>
 <img src="output-type-red-green.png" alt="output-type-red-green">
 </p></dd>
-<dt><var>red-blue-monochrome</var></dt>
+<dt><span><var>red-blue-monochrome</var></span></dt>
 <dd><p>Red/blue anaglyph glasses, monochrome method.<br>
 <img src="output-type-red-blue.png" alt="output-type-red-blue">
 </p></dd>
-<dt><var>equalizer</var></dt>
+<dt><span><var>equalizer</var></span></dt>
 <dd><p>Multi-display OpenGL via Equalizer with a 2D canvas setup.<br>
 </p></dd>
-<dt><var>equalizer-3d</var></dt>
+<dt><span><var>equalizer-3d</var></span></dt>
 <dd><p>Multi-display OpenGL via Equalizer with a 3D screen setup.<br>
 </p></dd>
 </dl>
 
-<a name="Crosstalk-Ghostbusting-1"></a>
+</div>
+<div class="section" id="Crosstalk-Ghostbusting-1">
 <h3 class="section">4.3 Crosstalk Ghostbusting</h3>
-<a name="Crosstalk-Ghostbusting"></a>
+<span id="Crosstalk-Ghostbusting"></span>
 <p>Many stereoscopic display devices suffer from crosstalk between the left and
 right view. This results in ghosting artifacts that can degrade the viewing
 quality, depending on the video content.
@@ -739,9 +733,10 @@ with full ghostbusting, like this:
 </pre></div>
 <p>The remaining crosstalk should optimally be 0%.
 </p>
-<a name="Basic-Multi-Display-Support-1"></a>
+</div>
+<div class="section" id="Basic-Multi-Display-Support-1">
 <h3 class="section">4.4 Basic Multi Display Support</h3>
-<a name="Basic-Multi-Display-Support"></a>
+<span id="Basic-Multi-Display-Support"></span>
 <p>For basic multi display support, Bino requires that all displays are connected
 to a single computer and are configured to display one large desktop.  For such
 a setup, you can configure which screens Bino should use in fullscreen mode.
@@ -762,14 +757,20 @@ use this with some other output technique, e.g. anaglyph glasses.
 cards or non-planar projection surfaces, you can use Bino&rsquo;s advanced multi
 display support via Equalizer.
 </p>
-<a name="Advanced-Multi-Display-Support-1"></a>
+</div>
+<div class="section" id="Advanced-Multi-Display-Support-1">
 <h3 class="section">4.5 Advanced Multi Display Support</h3>
-<a name="Advanced-Multi-Display-Support"></a>
+<span id="Advanced-Multi-Display-Support"></span>
 <p>Bino supports distributed multi-display output via the Equalizer framework.
 </p>
 <p>This is how it works:
 </p>
-<a name="Building-Bino-with-Equalizer-Support"></a>
+<ul class="section-toc">
+<li><a href="#Building-Bino-with-Equalizer-Support" accesskey="1">Building Bino with Equalizer Support</a></li>
+<li><a href="#Configuring-Equalizer-and-Starting-Bino" accesskey="2">Configuring Equalizer and Starting Bino</a></li>
+<li><a href="#Example-Configurations" accesskey="3">Example Configurations</a></li>
+</ul>
+<div class="subsection" id="Building-Bino-with-Equalizer-Support">
 <h4 class="subsection">4.5.1 Building Bino with Equalizer Support</h4>
 
 <p>First, install Equalizer 1.0 or later. See
@@ -784,7 +785,8 @@ the following line:
 
 <p>Now you need an Equalizer configuration file for your display setup.
 </p>
-<a name="Configuring-Equalizer-and-Starting-Bino"></a>
+</div>
+<div class="subsection" id="Configuring-Equalizer-and-Starting-Bino">
 <h4 class="subsection">4.5.2 Configuring Equalizer and Starting Bino</h4>
 
 <p>Bino needs a two-dimensional Equalizer canvas (= combined screen area),
@@ -833,11 +835,11 @@ the wall optimally. By configuring the output segments accordingly, various
 advanced display configurations can be used, e.g. displays rotated around the
 Z axis by an arbitrary angle or non-planar screens.
 </p>
-<a name="Example-Configurations"></a>
+</div>
+<div class="subsection" id="Example-Configurations">
 <h4 class="subsection">4.5.3 Example Configurations</h4>
 
-<a name="Simple-2D-video-output"></a>
-<h4 class="subheading">Simple 2D video output</h4>
+<span id="Simple-2D-video-output"></span><h4 class="subheading">Simple 2D video output</h4>
 
 <p>In this example, you have a 2m x 1m screen and two projectors: one for the
 left half of the screen, and one for the right half. The two projectors are
@@ -881,8 +883,7 @@ right channel. The resulting configuration looks like this:
 }
 </pre></div>
 
-<a name="g_t3D-video-output-across-multiple-systems"></a>
-<h4 class="subheading">3D video output across multiple systems</h4>
+<span id="g_t3D-video-output-across-multiple-systems"></span><h4 class="subheading">3D video output across multiple systems</h4>
 
 <p>In the following example, you have a 4m x 3m screen for 3D projection via
 passive stereo (e.g. polarization). You have two systems, &quot;render1&quot; and
@@ -950,8 +951,7 @@ window.
 }
 </pre></div>
 
-<a name="Non_002dplanar-Displays"></a>
-<h4 class="subheading">Non-planar Displays</h4>
+<span id="Non_002dplanar-Displays"></span><h4 class="subheading">Non-planar Displays</h4>
 
 <p>The <samp>-o equalizer-3d</samp> mode allows to set up arbitrary-oriented screens
 using either the wall-based or projection-based 3D frustum descriptions.
@@ -1071,98 +1071,105 @@ server
 
 
 <hr>
-<a name="Interactive-Control"></a>
+</div>
+</div>
+</div>
+<div class="chapter" id="Interactive-Control">
 <div class="header">
 <p>
-Next: <a href="#Scripting" accesskey="n" rel="next">Scripting</a>, Previous: <a href="#Output-Techniques" accesskey="p" rel="prev">Output Techniques</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Scripting" accesskey="n" rel="next">Scripting</a>, Previous: <a href="#Output-Techniques" accesskey="p" rel="prev">Output Techniques</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Interactive-Control-1"></a>
-<h2 class="chapter">5 Interactive Control</h2>
+<span id="Interactive-Control-1"></span><h2 class="chapter">5 Interactive Control</h2>
 
-<a name="Keyboard-Shortcuts"></a>
+<ul class="section-toc">
+<li><a href="#Keyboard-Shortcuts" accesskey="1">Keyboard Shortcuts</a></li>
+<li><a href="#Remote-Controls" accesskey="2">Remote Controls</a></li>
+</ul>
+<div class="section" id="Keyboard-Shortcuts">
 <h3 class="section">5.1 Keyboard Shortcuts</h3>
 
 <p>Bino reacts on a number of keyboard shortcuts during playback.
 </p>
 <p>The following shortcuts are recognized:
 </p><dl compact="compact">
-<dt><kbd>ESC</kbd></dt>
+<dt><span><kbd>ESC</kbd></span></dt>
 <dd><p>Leave fullscreen mode, or quit when in window mode.
 </p></dd>
-<dt><kbd>q</kbd></dt>
+<dt><span><kbd>q</kbd></span></dt>
 <dd><p>Quit.
 </p></dd>
-<dt><kbd>p</kbd></dt>
-<dt><kbd>SPACE</kbd></dt>
+<dt><span><kbd>p</kbd></span></dt>
+<dt><span><kbd>SPACE</kbd></span></dt>
 <dd><p>Pause / unpause.
 </p></dd>
-<dt><kbd>f</kbd></dt>
+<dt><span><kbd>f</kbd></span></dt>
 <dd><p>Toggle fullscreen.
 </p></dd>
-<dt><kbd>c</kbd></dt>
+<dt><span><kbd>c</kbd></span></dt>
 <dd><p>Center window.
 </p></dd>
-<dt><kbd>e</kbd></dt>
-<dt><kbd>F7</kbd></dt>
+<dt><span><kbd>e</kbd></span></dt>
+<dt><span><kbd>F7</kbd></span></dt>
 <dd><p>Swap left/right eye.
 </p></dd>
-<dt><kbd>v</kbd></dt>
+<dt><span><kbd>v</kbd></span></dt>
 <dd><p>Cycle through available video streams.
 </p></dd>
-<dt><kbd>a</kbd></dt>
+<dt><span><kbd>a</kbd></span></dt>
 <dd><p>Cycle through available audio streams.
 </p></dd>
-<dt><kbd>s</kbd></dt>
+<dt><span><kbd>s</kbd></span></dt>
 <dd><p>Cycle through available subtitle streams.
 </p></dd>
-<dt><kbd>1, 2</kbd></dt>
+<dt><span><kbd>1, 2</kbd></span></dt>
 <dd><p>Adjust contrast.
 </p></dd>
-<dt><kbd>3, 4</kbd></dt>
+<dt><span><kbd>3, 4</kbd></span></dt>
 <dd><p>Adjust brightness.
 </p></dd>
-<dt><kbd>5, 6</kbd></dt>
+<dt><span><kbd>5, 6</kbd></span></dt>
 <dd><p>Adjust hue.
 </p></dd>
-<dt><kbd>7, 8</kbd></dt>
+<dt><span><kbd>7, 8</kbd></span></dt>
 <dd><p>Adjust saturation.
 </p></dd>
-<dt><kbd>[, ]</kbd></dt>
+<dt><span><kbd>[, ]</kbd></span></dt>
 <dd><p>Adjust parallax.
 </p></dd>
-<dt><kbd>(, )</kbd></dt>
+<dt><span><kbd>(, )</kbd></span></dt>
 <dd><p>Adjust ghostbusting.
 </p></dd>
-<dt><kbd>&lt;, &gt;</kbd></dt>
+<dt><span><kbd>&lt;, &gt;</kbd></span></dt>
 <dd><p>Adjust zoom for videos that are wider than the screen.
 </p></dd>
-<dt><kbd>/, *</kbd></dt>
+<dt><span><kbd>/, *</kbd></span></dt>
 <dd><p>Adjust audio volume.
 </p></dd>
-<dt><kbd>m</kbd></dt>
+<dt><span><kbd>m</kbd></span></dt>
 <dd><p>Toggle audio mute.
 </p></dd>
-<dt><kbd>.</kbd></dt>
+<dt><span><kbd>.</kbd></span></dt>
 <dd><p>Step a single video frame forward.
 </p></dd>
-<dt><kbd>LEFT, RIGHT</kbd></dt>
+<dt><span><kbd>LEFT, RIGHT</kbd></span></dt>
 <dd><p>Seek 10 seconds backward / forward.
 </p></dd>
-<dt><kbd>DOWN, UP</kbd></dt>
+<dt><span><kbd>DOWN, UP</kbd></span></dt>
 <dd><p>Seek 1 minute backward / forward.
 </p></dd>
-<dt><kbd>PAGE DOWN, PAGE UP</kbd></dt>
+<dt><span><kbd>PAGE DOWN, PAGE UP</kbd></span></dt>
 <dd><p>Seek 10 minutes backward / forward.
 </p></dd>
-<dt><kbd>Mouse click</kbd></dt>
+<dt><span><kbd>Mouse click</kbd></span></dt>
 <dd><p>Seek according to the horizontal click position.
 </p></dd>
-<dt><kbd>&quot;Media Keys&quot;</kbd></dt>
+<dt><span><kbd>&quot;Media Keys&quot;</kbd></span></dt>
 <dd><p>Media keys (if available) should work as expected.
 </p></dd>
 </dl>
 
-<a name="Remote-Controls"></a>
+</div>
+<div class="section" id="Remote-Controls">
 <h3 class="section">5.2 Remote Controls</h3>
 
 <p>Bino supports remote controls via <a href="http://www.lirc.org/">LIRC</a>.
@@ -1187,13 +1194,14 @@ end
 
 
 <hr>
-<a name="Scripting"></a>
+</div>
+</div>
+<div class="chapter" id="Scripting">
 <div class="header">
 <p>
-Next: <a href="#Camera-Devices" accesskey="n" rel="next">Camera Devices</a>, Previous: <a href="#Interactive-Control" accesskey="p" rel="prev">Interactive Control</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Camera-Devices" accesskey="n" rel="next">Camera Devices</a>, Previous: <a href="#Interactive-Control" accesskey="p" rel="prev">Interactive Control</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Scripting-1"></a>
-<h2 class="chapter">6 Scripting</h2>
+<span id="Scripting-1"></span><h2 class="chapter">6 Scripting</h2>
 
 <p>Bino can read commands from one or multiple script files. Use the &lsquo;<samp>--read-commands</samp>&rsquo;
 option to specify script files.
@@ -1257,26 +1265,29 @@ setting in future sessions.
 <pre class="example">$ bino --read-commands /path/to/script.txt --no-gui
 </pre></div>
 
-<a name="Script-Commands-1"></a>
+<ul class="section-toc">
+<li><a href="#Script-Commands-1" accesskey="1">Script Commands</a></li>
+</ul>
+<div class="section" id="Script-Commands-1">
 <h3 class="section">6.1 Script Commands</h3>
-<a name="Script-Commands"></a>
+<span id="Script-Commands"></span>
 <p>One script line defines exactly one script command.  Empty lines or lines
 starting with the &lsquo;<samp>#</samp>&rsquo; character are comment lines and define the
 &lsquo;<samp>noop</samp>&rsquo; command, which has no effect.
 </p>
 <dl compact="compact">
-<dt>&lsquo;<samp>noop</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>noop</samp>&rsquo;</span></dt>
 <dd><p>This command has no effect.
 </p></dd>
-<dt>&lsquo;<samp>quit</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>quit</samp>&rsquo;</span></dt>
 <dd><p>Quit the application.
 </p></dd>
-<dt>&lsquo;<samp>wait <var>stop</var>|<var>seconds</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>wait <var>stop</var>|<var>seconds</var></samp>&rsquo;</span></dt>
 <dd><p>Wait until the currently playing video stops, or wait for the given number of seconds,
 before processing more commands from this file, script, or FIFO.<br>
 (This command is not available for LIRC remote controls.)
 </p></dd>
-<dt>&lsquo;<samp>open [<var>option</var>&hellip;] <var>file</var>&hellip;</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>open [<var>option</var>&hellip;] <var>file</var>&hellip;</samp>&rsquo;</span></dt>
 <dd><p>Open the given files.<br>
 You can use percent-encoding to encode special characters.
 See <a href="http://en.wikipedia.org/wiki/Percent_encoding">http://en.wikipedia.org/wiki/Percent_encoding</a>.
@@ -1284,209 +1295,216 @@ Use this if the file names contain whitespace.<br>
 To open devices, the following options are available, analogous to the command
 line options with the same name:
 	</p><dl compact="compact">
-<dt>&lsquo;<samp>--device-type=<var>none</var>|<var>default</var>|<var>firewire</var>|<var>x11</var></samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--device-frame-size=<var>W</var>x<var>H</var></samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--device-frame-rate=<var>N</var>/<var>D</var></samp>&rsquo;</dt>
-<dt>&lsquo;<samp>--device-format=<var>default</var>|<var>mjpeg</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>--device-type=<var>none</var>|<var>default</var>|<var>firewire</var>|<var>x11</var></samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--device-frame-size=<var>W</var>x<var>H</var></samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--device-frame-rate=<var>N</var>/<var>D</var></samp>&rsquo;</span></dt>
+<dt><span>&lsquo;<samp>--device-format=<var>default</var>|<var>mjpeg</var></samp>&rsquo;</span></dt>
 </dl>
 </dd>
-<dt>&lsquo;<samp>close</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>close</samp>&rsquo;</span></dt>
 <dd><p>Close the currently opened input.
 </p></dd>
-<dt>&lsquo;<samp>toggle-play</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>toggle-play</samp>&rsquo;</span></dt>
 <dd><p>Toggle playback.
 </p></dd>
-<dt>&lsquo;<samp>play</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>play</samp>&rsquo;</span></dt>
 <dd><p>Start playback, or exit pause mode.
 </p></dd>
-<dt>&lsquo;<samp>stop</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>stop</samp>&rsquo;</span></dt>
 <dd><p>Stop playback.
 </p></dd>
-<dt>&lsquo;<samp>toggle-pause</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>toggle-pause</samp>&rsquo;</span></dt>
 <dd><p>Toggle pause mode.
 </p></dd>
-<dt>&lsquo;<samp>pause</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>pause</samp>&rsquo;</span></dt>
 <dd><p>When playing, go into pause mode.
 </p></dd>
-<dt>&lsquo;<samp>step</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>step</samp>&rsquo;</span></dt>
 <dd><p>Single-step to the next video frame.
 </p></dd>
-<dt>&lsquo;<samp>seek <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>seek <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Seek by the given number of seconds relative to the current position.  For
 example -60.0 seeks backwards one minute, and +600.0 seeks forward ten minutes.
 </p></dd>
-<dt>&lsquo;<samp>set-pos <var>pos</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-pos <var>pos</var></samp>&rsquo;</span></dt>
 <dd><p>Seek by setting an absolute position in the stream, with <var>pos</var> between 0 and
 1. For example, to seek to the middle of the video, use 0.5.
 </p></dd>
-<dt>&lsquo;<samp>set-audio-device <var>dev</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-audio-device <var>dev</var></samp>&rsquo;</span></dt>
 <dd><p>Set the audio device to the one with the given index.
 </p></dd>
-<dt>&lsquo;<samp>set-quality <var>q</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-quality <var>q</var></samp>&rsquo;</span></dt>
 <dd><p>Set rendering quality, from 0 (fastest) to 4 (best, default).
 </p></dd>
-<dt>&lsquo;<samp>set-stereo-mode <var>mode</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-stereo-mode <var>mode</var></samp>&rsquo;</span></dt>
 <dd><p>Set the stereo mode. See <a href="#Supported-Output-Techniques">Supported Output Techniques</a>.
 </p></dd>
-<dt>&lsquo;<samp>set-stereo-mode-swap <var>swap</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-stereo-mode-swap <var>swap</var></samp>&rsquo;</span></dt>
 <dd><p>Set stereo mode left/right swap (on or off).
 </p></dd>
-<dt>&lsquo;<samp>toggle-stereo-mode-swap</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>toggle-stereo-mode-swap</samp>&rsquo;</span></dt>
 <dd><p>Toggle stereo mode left/right swap.
 </p></dd>
-<dt>&lsquo;<samp>set-crosstalk <var>cr</var> <var>cg</var> <var>cb</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-crosstalk <var>cr</var> <var>cg</var> <var>cb</var></samp>&rsquo;</span></dt>
 <dd><p>Set display crosstalk levels for red, green, and blue. Each value must be between 0 and 1.
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-screens <var>screens</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-screens <var>screens</var></samp>&rsquo;</span></dt>
 <dd><p>Set screens to use in fullscreen mode. The value is an integer in which bits
 are set for each screen that should be used (screen 1 = lowest bit). The value
 0 means the default screen.
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-flip-left <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-flip-left <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen flip left (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-flop-left<var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-flop-left<var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen flop left (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-flip-right <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-flip-right <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen flip right (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-flop-right <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-flop-right <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen flop right (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-inhibit-screensaver <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-inhibit-screensaver <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen inhibit screensaver (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-fullscreen-3dr-sync <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-fullscreen-3dr-sync <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set fullscreen DLP&reg; 3-D Ready Sync (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-contrast <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-contrast <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set contrast to the given <var>value</var>, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-contrast <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-contrast <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust contrast by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-brightness <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-brightness <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set brightness to the given <var>value</var>, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-brightness <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-brightness <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust brightness by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-hue <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-hue <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set hue to the given <var>value</var>, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-hue <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-hue <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust hue by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-saturation <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-saturation <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set saturation to the given <var>value</var>, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-saturation <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-saturation <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust saturation by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-zoom <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-zoom <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set zoom to the given <var>value</var>, from 0 to 1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-zoom <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-zoom <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust zoom by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-loop-mode <var>mode</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-loop-mode <var>mode</var></samp>&rsquo;</span></dt>
 <dd><p>Set loop mode to &lsquo;<samp>off</samp>&rsquo; or &lsquo;<samp>current</samp>&rsquo;.
 </p></dd>
-<dt>&lsquo;<samp>set-audio-delay <var>milliseconds</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-audio-delay <var>milliseconds</var></samp>&rsquo;</span></dt>
 <dd><p>Set audio delay.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-encoding <var>enc</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-encoding <var>enc</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle encoding. An empty value means to use the default.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-font <var>font</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-font <var>font</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle font. An empty value means to use the default.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-size <var>size</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-size <var>size</var></samp>&rsquo;</span></dt>
 <dd><p>Set the subtitle font size. The value is an integer, e.g. 12.
 Use -1 to keep the default size.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-color <var>color</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-color <var>color</var></samp>&rsquo;</span></dt>
 <dd><p>Set the subtitle color as an integer that represents an RGB color.
 Use a value larger than UINT32_MAX to keep the default color.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-shadow <var>mode</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-shadow <var>mode</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle shadow to force-on (1), force-off (0), or default (-1).
 </p></dd>
-<dt>&lsquo;<samp>set-video-stream <var>stream</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-video-stream <var>stream</var></samp>&rsquo;</span></dt>
 <dd><p>Set video stream. Stream numbers start with 0.
 </p></dd>
-<dt>&lsquo;<samp>cycle-video-stream</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>cycle-video-stream</samp>&rsquo;</span></dt>
 <dd><p>Cycle through available video streams.
 </p></dd>
-<dt>&lsquo;<samp>set-audio-stream <var>stream</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-audio-stream <var>stream</var></samp>&rsquo;</span></dt>
 <dd><p>Set audio stream. Stream numbers start with 0.
 </p></dd>
-<dt>&lsquo;<samp>cycle-audio-stream</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>cycle-audio-stream</samp>&rsquo;</span></dt>
 <dd><p>Cycle through available audio streams.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-stream <var>stream</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-stream <var>stream</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle stream. Stream numbers start with 0. Using -1 disables subtitles.
 </p></dd>
-<dt>&lsquo;<samp>cycle-subtitle-stream</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>cycle-subtitle-stream</samp>&rsquo;</span></dt>
 <dd><p>Cycle through available subtitle streams.
 </p></dd>
-<dt>&lsquo;<samp>set-stereo-layout <var>layout</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-stereo-layout <var>layout</var></samp>&rsquo;</span></dt>
 <dd><p>Set stereo layout. See <a href="#Supported-Input-Layouts">Supported Input Layouts</a>. Note that here only the
 left first, right second modes are supported. To get the right first, left second
 modes, use &lsquo;<samp>set-stereo-layout-swap</samp>&rsquo;.
 </p></dd>
-<dt>&lsquo;<samp>set-stereo-layout-swap <var>b</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-stereo-layout-swap <var>b</var></samp>&rsquo;</span></dt>
 <dd><p>Set stereo layout swap (on or off).
 </p></dd>
-<dt>&lsquo;<samp>set-crop-aspect-ratio <var>ar</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-crop-aspect-ratio <var>ar</var></samp>&rsquo;</span></dt>
 <dd><p>Set crop aspect ratio, either as a floating point number (e.g. 1.78), or as a
 ratio (e.g. 16:9).
 </p></dd>
-<dt>&lsquo;<samp>set-parallax <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-parallax <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set parallax, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-parallax <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-parallax <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust parallax by adding <var>delta</var>, e.g. -0.05 or + 0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-ghostbust <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-ghostbust <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set ghostbust, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-ghostbust <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-ghostbust <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust ghostbust by adding <var>delta</var>, e.g. -0.05 or + 0.05.
 </p></dd>
-<dt>&lsquo;<samp>set-subtitle-parallax <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-subtitle-parallax <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set subtitle parallax, from -1 to +1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-subtitle-parallax <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-subtitle-parallax <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust subtitle parallax by adding <var>delta</var>, e.g. -0.05 or + 0.05.
 </p></dd>
-<dt>&lsquo;<samp>toggle-fullscreen</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>toggle-fullscreen</samp>&rsquo;</span></dt>
 <dd><p>Toggle fullscreen.
 </p></dd>
-<dt>&lsquo;<samp>center</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>center</samp>&rsquo;</span></dt>
 <dd><p>Center window.
 </p></dd>
-<dt>&lsquo;<samp>set-audio-volume <var>value</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>set-audio-volume <var>value</var></samp>&rsquo;</span></dt>
 <dd><p>Set audio volume, from 0 to 1.
 </p></dd>
-<dt>&lsquo;<samp>adjust-audio-volume <var>delta</var></samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>adjust-audio-volume <var>delta</var></samp>&rsquo;</span></dt>
 <dd><p>Adjust audio volume by adding <var>delta</var>, e.g. -0.05 or +0.05.
 </p></dd>
-<dt>&lsquo;<samp>toggle-audio-mute</samp>&rsquo;</dt>
+<dt><span>&lsquo;<samp>toggle-audio-mute</samp>&rsquo;</span></dt>
 <dd><p>Toggle audio mute.
+</p></dd>
+<dt><span>&lsquo;<samp>set-vertical-pixel-shift-left =<var>L</var></samp>&rsquo;</span></dt>
+<dd><p>Set left vertical shift in input pixels.
+</p></dd>
+<dt><span>&lsquo;<samp>set-vertical-pixel-shift-right <var>R</var></samp>&rsquo;</span></dt>
+<dd><p>Set right vertical shift in input pixels.
 </p></dd>
 </dl>
 
 
 <hr>
-<a name="Camera-Devices"></a>
+</div>
+</div>
+<div class="chapter" id="Camera-Devices">
 <div class="header">
 <p>
-Next: <a href="#Audio_002fVideo-Synchronization" accesskey="n" rel="next">Audio/Video Synchronization</a>, Previous: <a href="#Scripting" accesskey="p" rel="prev">Scripting</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Audio_002fVideo-Synchronization" accesskey="n" rel="next">Audio/Video Synchronization</a>, Previous: <a href="#Scripting" accesskey="p" rel="prev">Scripting</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Camera-Devices-1"></a>
-<h2 class="chapter">7 Camera Devices</h2>
+<span id="Camera-Devices-1"></span><h2 class="chapter">7 Camera Devices</h2>
 
 <p>Bino supports the following types of camera devices:
 </p><ul>
@@ -1508,13 +1526,13 @@ must have <var>libdc1394</var> and <var>x11grab</var> support enabled.
 </p>
 
 <hr>
-<a name="Audio_002fVideo-Synchronization"></a>
+</div>
+<div class="chapter" id="Audio_002fVideo-Synchronization">
 <div class="header">
 <p>
-Next: <a href="#Performance-Tweaking" accesskey="n" rel="next">Performance Tweaking</a>, Previous: <a href="#Camera-Devices" accesskey="p" rel="prev">Camera Devices</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="#Performance-Tweaking" accesskey="n" rel="next">Performance Tweaking</a>, Previous: <a href="#Camera-Devices" accesskey="p" rel="prev">Camera Devices</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Audio_002fVideo-Synchronization-1"></a>
-<h2 class="chapter">8 Audio/Video Synchronization</h2>
+<span id="Audio_002fVideo-Synchronization-1"></span><h2 class="chapter">8 Audio/Video Synchronization</h2>
 
 <p>Bino uses OpenGL to display video, and OpenGL unfortunately does not provide a
 way to determine exactly when a frame will be visible on screen. On most systems,
@@ -1535,13 +1553,13 @@ test video until audio and video are synchronized.
 </p>
 
 <hr>
-<a name="Performance-Tweaking"></a>
+</div>
+<div class="chapter" id="Performance-Tweaking">
 <div class="header">
 <p>
-Previous: <a href="#Audio_002fVideo-Synchronization" accesskey="p" rel="prev">Audio/Video Synchronization</a>, Up: <a href="#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Previous: <a href="#Audio_002fVideo-Synchronization" accesskey="p" rel="prev">Audio/Video Synchronization</a>, Up: <a href="#Top" accesskey="u" rel="up">Bino</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
-<a name="Performance-Tweaking-1"></a>
-<h2 class="chapter">9 Performance Tweaking</h2>
+<span id="Performance-Tweaking-1"></span><h2 class="chapter">9 Performance Tweaking</h2>
 
 <p>Bino should be able to play most video files on a computer with reasonable CPU and graphics power.
 </p>
@@ -1562,7 +1580,8 @@ enough, or your graphics card cannot render the video fast enough.
 </li><li> Disable subtitles.
 </li></ol>
 
-<hr>
+</div>
+</div>
 
 
 

@@ -1,7 +1,7 @@
 /*
  * This file is part of bino, a 3D video player.
  *
- * Copyright (C) 2010, 2011, 2012, 2015
+ * Copyright (C) 2010, 2011, 2012, 2015, 2018
  * Martin Lambers <marlam@marlam.de>
  * Alexey Osipov <lion-simba@pridelands.ru>
  * Joe <cuchac@email.cz>
@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <vector>
+#include <cmath>
 #include <unistd.h>
 
 #include "base/exc.h"
@@ -101,10 +102,10 @@ void player::set_current_subtitle_box()
     }
 }
 
-int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool *drop_frame, bool *display_frame)
+int64_t player::step(bool *more_steps, bool *do_seek, int64_t *seek_to, bool *prep_frame, bool *drop_frame, bool *display_frame)
 {
     *more_steps = false;
-    *seek_to = -1;
+    *do_seek = false;
     *prep_frame = false;
     *drop_frame = false;
     *display_frame = false;
@@ -184,16 +185,24 @@ int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool 
     {
         if (_set_pos_request >= 0.0f)
         {
-            int64_t dest_pos_min = _start_pos + global_dispatch->get_media_input()->initial_skip();
-            int64_t dest_pos_max = dest_pos_min + global_dispatch->get_media_input()->duration() - 2000000;
-            if (dest_pos_max <= dest_pos_min)
+            if (std::signbit(_set_pos_request))
             {
-                *seek_to = _current_pos;
+                // this was caused by loop mode: seek to the very beginning
+                *seek_to = std::numeric_limits<int64_t>::min();
             }
             else
             {
-                *seek_to = static_cast<double>(_set_pos_request) * dest_pos_max
-                    + (1.0 - static_cast<double>(_set_pos_request)) * dest_pos_min;
+                int64_t dest_pos_min = _start_pos + global_dispatch->get_media_input()->initial_skip();
+                int64_t dest_pos_max = dest_pos_min + global_dispatch->get_media_input()->duration() - 2000000;
+                if (dest_pos_max <= dest_pos_min)
+                {
+                    *seek_to = _current_pos;
+                }
+                else
+                {
+                    *seek_to = static_cast<double>(_set_pos_request) * dest_pos_max
+                        + (1.0 - static_cast<double>(_set_pos_request)) * dest_pos_min;
+                }
             }
         }
         else
@@ -211,6 +220,7 @@ int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool 
             }
             *seek_to = _current_pos + _seek_request;
         }
+        *do_seek = true;
         _seek_request = 0;
         _set_pos_request = -1.0f;
         global_dispatch->get_media_input()->seek(*seek_to);
@@ -314,7 +324,7 @@ int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool 
                 msg::dbg("End of video stream.");
                 if (dispatch::parameters().loop_mode() == parameters::loop_current)
                 {
-                    _set_pos_request = 0.0f;
+                    _set_pos_request = -0.0f; // the sign bit signals that this is loop mode
                     *more_steps = true;
                 }
                 return 0;
@@ -397,7 +407,7 @@ int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool 
                     msg::dbg("End of audio stream.");
                     if (dispatch::parameters().loop_mode() == parameters::loop_current)
                     {
-                        _set_pos_request = 0.0f;
+                        _set_pos_request = -0.0f; // the sign bit signals that this is loop mode
                         *more_steps = true;
                     }
                     return 0;
@@ -481,13 +491,14 @@ int64_t player::step(bool *more_steps, int64_t *seek_to, bool *prep_frame, bool 
 bool player::run_step()
 {
     bool more_steps;
+    bool do_seek;
     int64_t seek_to;
     bool prep_frame;
     bool drop_frame;
     bool display_frame;
     int64_t allowed_sleep;
 
-    allowed_sleep = step(&more_steps, &seek_to, &prep_frame, &drop_frame, &display_frame);
+    allowed_sleep = step(&more_steps, &do_seek, &seek_to, &prep_frame, &drop_frame, &display_frame);
 
     if (!more_steps)
     {
